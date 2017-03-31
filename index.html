@@ -117,23 +117,23 @@
             );
         };
 
-        function Attack(props) {
+        function Attack(character, speed, rank, base, chip, maxCombo, maxDamage, goodCombo, goodDamage) {
             return (
-                <tr key={props.character + props.rank}>
-                    <td>{props[0]}</td>
-                    <td>{props.character}</td>
-                    <td>{props.rank}</td>
-                    <td>{props.baseDamage}</td>
-                    <td>{props.chipDamage}</td>
-                    <td>{props.maxCombo}</td>
-                    <td>{props.maxDamage}</td>
-                    <td>{props.goodCombo}</td>
-                    <td>{props.goodDamage}</td>
+                <tr key={character + rank}>
+                    <td>{speed}</td>
+                    <td>{character}</td>
+                    <td>{rank}</td>
+                    <td>{base}</td>
+                    <td>{chip}</td>
+                    <td>{maxCombo}</td>
+                    <td>{maxDamage}</td>
+                    <td>{goodCombo}</td>
+                    <td>{goodDamage}</td>
                 </tr>
             );
         };
 
-        function Attacks(attacks) {
+        function Attacks(character, attacks) {
             return (
                 <Table>
                     <thead>
@@ -150,7 +150,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {attacks.map(Attack)}
+                        {attacks.map((attack) => Attack(character, ...attack))}
                     </tbody>
                 </Table>
             );
