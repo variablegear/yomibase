@@ -61,7 +61,7 @@
                         <section>
                             <PageHeader>YomiBase</PageHeader>
                             {CharacterSummary(this.state.character.summary)}
-                            {Attacks(this.state.character.attacks)}
+                            {Attacks(this.state.character.name, this.state.character.attacks)}
                         </section>
                     );
                 } else {
