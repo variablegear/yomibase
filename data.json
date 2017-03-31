@@ -1,0 +1,17 @@
+{
+    "character": {
+        "summary": {
+            "name": "Setsuki",
+            "attackSpeed": 2,
+            "throwSpeed": 2,
+            "throwDamage": 6,
+            "attacks": [2, 3, 4, 5, 6, "J", "Q", "K", "A"],
+            "throws": ["7*", 8, 9, "10*", "K"],
+            "blocks": [6, "7*", 8, 9],
+            "dodges": [2, 3, 4, 5, "10*"]
+        },
+        "attacks": [
+            [2.2, 2, 2, 0, "", "", "", ""]
+        ]
+    }
+}

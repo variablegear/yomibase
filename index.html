@@ -1,0 +1,184 @@
+<html>
+
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">
+
+    <script src="https://unpkg.com/react@15.4.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.4.2/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.30.8/react-bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://npmcdn.com/react-router@3.0.2/umd/ReactRouter.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="node_modules/js-yaml/dist/js-yaml.js"></script>
+
+</head>
+
+<body>
+    <div id="container">
+
+    </div>
+
+    <script type="text/babel">
+        var {
+            Router, Route, IndexRoute,
+            IndexLink, hashHistory, Link
+        } = ReactRouter;
+
+        var PageHeader = ReactBootstrap.PageHeader;
+        var Table = ReactBootstrap.Table;
+
+        class YomiBase extends React.Component {
+
+            constructor(props) {
+                super(props);
+                this.state = {};
+            }
+
+            componentDidMount() {
+                var _this = this;
+                this.serverRequest = axios
+                    .get("data.json")
+                    .then(function(result) {
+                        console.log(result.data);
+                        _this.setState({
+                            character: result.data.character
+                        });
+                    })
+            }
+
+            componentWillUnmount() {
+                this.serverRequest.abort();
+            }
+
+            render() {
+                console.log(this.state);
+                if (this.state.character) {
+                    return (
+                        <section>
+                            <PageHeader>YomiBase</PageHeader>
+                            {CharacterSummary(this.state.character.summary)}
+                            {Attacks(this.state.character.attacks)}
+                        </section>
+                    );
+                } else {
+                    return (
+                        <section>
+                            <PageHeader>YomiBase</PageHeader>
+                        </section>
+                    );
+                }
+            }
+        };
+
+        function CharacterSummary(props) {
+            return (
+                <section>
+                    <Table>
+                        <tbody>
+                            <tr>
+                                <td><strong>Normal attack speed</strong>:</td>
+                                <td>x.{props.attackSpeed} (x = card rank)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Normal throw speed</strong>:</td>
+                                <td>x.{props.throwSpeed} (x = card rank) {props.throwCP} {props.throwKD}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Normal throw damage</strong>:</td>
+                                <td>{props.throwDamage}</td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                    <Table>
+                        <tbody>
+                            <tr>
+                                <td><strong>Attacks</strong>:</td>
+                                <td>{props.attacks.join(', ')}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Throws</strong>:</td>
+                                <td>{props.throws.join(', ')}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Blocks</strong>:</td>
+                                <td>{props.blocks.join(', ')}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dodges</strong>:</td>
+                                <td>{props.dodges.join(', ')}</td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                </section>
+            );
+        };
+
+        function Attack(props) {
+            return (
+                <tr key={props.character + props.rank}>
+                    <td>{props[0]}</td>
+                    <td>{props.character}</td>
+                    <td>{props.rank}</td>
+                    <td>{props.baseDamage}</td>
+                    <td>{props.chipDamage}</td>
+                    <td>{props.maxCombo}</td>
+                    <td>{props.maxDamage}</td>
+                    <td>{props.goodCombo}</td>
+                    <td>{props.goodDamage}</td>
+                </tr>
+            );
+        };
+
+        function Attacks(attacks) {
+            return (
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>Speed</th>
+                            <th>Character</th>
+                            <th>Rank</th>
+                            <th>Base Damage</th>
+                            <th>Chip Damage</th>
+                            <th>Max Combo</th>
+                            <th>Max Damage</th>
+                            <th>Good Combo</th>
+                            <th>Good Damage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {attacks.map(Attack)}
+                    </tbody>
+                </Table>
+            );
+        };
+
+        function Throw(props) {
+            return (
+                <tr>
+                    <td>{props.speed}</td>
+                    <td>{props.character}</td>
+                    <td>{props.rank}</td>
+                    <td>{props.maxCombo}</td>
+                    <td>{props.maxDamage}</td>
+                    <td>{props.goodCombo}</td>
+                    <td>{props.goodDamage}</td>
+                </tr>
+            );
+        };
+
+        var destination = document.querySelector("#container");
+        ReactDOM.render(
+            <ReactRouter.Router history={ReactRouter.hashHistory}>
+                <ReactRouter.Route path="/" component={YomiBase}>
+                </ReactRouter.Route>
+            </ReactRouter.Router>,
+            destination
+        );
+    </script>
+</body>
+
+</html>
