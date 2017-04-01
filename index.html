@@ -135,7 +135,7 @@
             onSort(sortIdx, event) {
                 event.preventDefault();
                 if (sortIdx == this.state.sortIdx) {
-                    this.setState({sortOrder: this.state * -1});
+                    this.setState({sortOrder: this.state.sortOrder * -1});
                 } else {
                     this.setState({
                         sortIdx: sortIdx,
