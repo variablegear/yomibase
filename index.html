@@ -155,20 +155,43 @@
             );
         };
 
-        function Throw(props) {
+        function Throw(character, speed, rank, base, maxCombo, maxDamage, goodCombo, goodDamage) {
             return (
                 <tr>
-                    <td>{props.speed}</td>
-                    <td>{props.character}</td>
-                    <td>{props.rank}</td>
-                    <td>{props.maxCombo}</td>
-                    <td>{props.maxDamage}</td>
-                    <td>{props.goodCombo}</td>
-                    <td>{props.goodDamage}</td>
+                    <td>{speed}</td>
+                    <td>{character}</td>
+                    <td>{rank}</td>
+                    <td>{base}</td>
+                    <td>{maxCombo}</td>
+                    <td>{maxDamage}</td>
+                    <td>{goodCombo}</td>
+                    <td>{goodDamage}</td>
                 </tr>
             );
         };
 
+        function Throws(character, throws) {
+            return (
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>Speed</th>
+                            <th>Character</th>
+                            <th>Rank</th>
+                            <th>Base Damage</th>
+                            <th>Max Combo</th>
+                            <th>Max Damage</th>
+                            <th>Good Combo</th>
+                            <th>Good Damage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {throws.map((throw) => Throw(character, ...throw))}
+                    </tbody>
+                </Table>
+            );
+        };
+        
         var destination = document.querySelector("#container");
         ReactDOM.render(
             <ReactRouter.Router history={ReactRouter.hashHistory}>
