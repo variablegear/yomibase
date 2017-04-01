@@ -41,6 +41,7 @@
                 K: 13,
                 A: 14,
             }
+            console.log((ranks[a] || a), (ranks[b] || b));
             return (ranks[a] || a) - (ranks[b] || b);
         };
         
@@ -48,6 +49,7 @@
             a = typeof a === "string" ? a.replace(/[^\d.].*/, "") : a;
             b = typeof b === "string" ? b.replace(/[^\d.].*/, "") : b;
             
+            console.log(a, b);
             return a - b;
         }
         
