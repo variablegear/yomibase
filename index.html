@@ -61,6 +61,7 @@
                             <PageHeader>YomiBase</PageHeader>
                             {CharacterSummary(this.state.character.summary)}
                             {Attacks(this.state.character.summary.name, this.state.character.attacks)}
+                            {Throws(this.state.character.summary.name, this.state.character.throws)}
                         </section>
                     );
                 } else {
@@ -157,7 +158,7 @@
 
         function Throw(character, speed, rank, base, maxCombo, maxDamage, goodCombo, goodDamage) {
             return (
-                <tr>
+                <tr key={character + rank}>
                     <td>{speed}</td>
                     <td>{character}</td>
                     <td>{rank}</td>
