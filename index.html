@@ -146,7 +146,7 @@
             }
             
             sortedData() {
-                if (this.state.sortIdx) {
+                if (this.state.sortIdx != null) {
                     var _this = this;
                     var data = this.props.data.slice();
                     data.sort((a, b) => a[_this.state.sortIdx] - b[_this.state.sortIdx]);
