@@ -30,6 +30,37 @@
         var PageHeader = ReactBootstrap.PageHeader;
         var Table = ReactBootstrap.Table;
 
+        function rankSort(a, b) {
+            a = typeof a === "string" ? a[0] : a;
+            b = typeof b === "string" ? b[0] : b;
+            
+            const ranks = {
+                T: 10,
+                J: 11,
+                Q: 12,
+                K: 13,
+                A: 14,
+            }
+            return (ranks[a] || a) - (ranks[b] || b);
+        };
+        
+        function valueSort(a, b) {
+            a = typeof a === "string" ? a.replace(/[^\d.].*/, "") : a;
+            b = typeof b === "string" ? b.replace(/[^\d.].*/, "") : b;
+            
+            return a - b;
+        }
+        
+        function sortName(a, b) {
+            if (a < b) {
+                return -1;
+            }
+            if (a > b) {
+                return 1;
+            }
+            return 0;
+        }
+
         class YomiBase extends React.Component {
 
             constructor(props) {
@@ -149,7 +180,7 @@
                     var _this = this;
                     console.log(_this.state);
                     var data = this.props.data.slice();
-                    data.sort((a, b) => _this.state.sortOrder * (a[_this.state.sortIdx] - b[_this.state.sortIdx]));
+                    data.sort(this.props.children[this.state.sortIdx].props.sort);
                     return data;
                 } else {
                     return this.props.data;
@@ -181,14 +212,14 @@
         function Attacks(character, attacks) {
             return (
                 <SortableTable data={attacks}>
-                    <SortHeader name="Speed"/>
-                    <SortHeader key name="Rank"/>
-                    <SortHeader name="Base Damage"/>
-                    <SortHeader name="Chip Damage"/>
-                    <SortHeader name="Max Combo"/>
-                    <SortHeader name="Max Damage"/>
-                    <SortHeader name="Good Combo"/>
-                    <SortHeader name="Good Damage"/>
+                    <SortHeader name="Speed" sort={valueSort}/>
+                    <SortHeader key name="Rank" sort={rankSort}/>
+                    <SortHeader name="Base Damage" sort={valueSort}/>
+                    <SortHeader name="Chip Damage" sort={valueSort}/>
+                    <SortHeader name="Max Combo" sort={rankSort}/>
+                    <SortHeader name="Max Damage" sort={valueSort}/>
+                    <SortHeader name="Good Combo" sort={rankSort}/>
+                    <SortHeader name="Good Damage" sort={valueSort}/>
                 </SortableTable>
             );
         };
@@ -196,13 +227,13 @@
         function Throws(character, throws) {
             return (
                 <SortableTable data={throws}>
-                    <SortHeader name="Speed"/>
-                    <SortHeader key name="Rank"/>
-                    <SortHeader name="Base Damage"/>
-                    <SortHeader name="Max Combo"/>
-                    <SortHeader name="Max Damage"/>
-                    <SortHeader name="Good Combo"/>
-                    <SortHeader name="Good Damage"/>
+                    <SortHeader name="Speed" sort={valueSort}/>
+                    <SortHeader key name="Rank" sort={rankSort}/>
+                    <SortHeader name="Base Damage" sort={valueSort}/>
+                    <SortHeader name="Max Combo" sort={rankSort}/>
+                    <SortHeader name="Max Damage" sort={valueSort}/>
+                    <SortHeader name="Good Combo" sort={rankSort}/>
+                    <SortHeader name="Good Damage" sort={valueSort}/>
                 </SortableTable>
             );
         };
