@@ -115,9 +115,9 @@
             );
         };
 
-        function SortingHeader(headerDef, onClick) {
+        function SortingHeader(headerDef, idx, onClick) {
             return (
-                <th key={headerDef.props.name} onClick={onClick}>{headerDef.props.name}</th>
+                <th idx={idx} key={headerDef.props.name} onClick={onClick}>{headerDef.props.name}</th>
             );
         };
         
@@ -127,18 +127,36 @@
             constructor(props) {
                 super(props);
                 this.state = {
-                    sortColumn: null,
+                    sortIdx: null,
                     sortOrder: 1,
                 };
             }
             
             onSort(event) {
                 event.preventDefault();
-                console.log(event.target);
+                const sortIdx = event.target.idx;
+                console.log(sortIdx);
+                if (sortIdx == this.state.sortIdx) {
+                    this.state.sortOrder *= -1;
+                } else {
+                    this.state.sortIdx = sortIdx;
+                    this.state.sortOrder = 1;
+                }
+            }
+            
+            sortedData() {
+                if (this.state.sortIdx) {
+                    var data = this.props.data.slice();
+                    data.sort((a, b) => a[this.state.sortIdx] - b[this.state.sortIdx]);
+                    return data;
+                } else {
+                    return this.props.data;
+                }
+                
             }
 
             render() {
-                const rows = this.props.data.map((row) => (
+                const rows = this.sortedData().map((row) => (
                     <tr key={row.filter((ele, idx) => this.props.children[idx].key).concat()}>
                         {row.map((cell, idx) => <td key={idx}>{cell}</td>)}
                     </tr>
@@ -147,7 +165,7 @@
                     <Table>
                         <thead>
                             <tr>
-                                {this.props.children.map((header) => SortingHeader(header, this.onSort))}
+                                {this.props.children.map((header, idx) => SortingHeader(header, idx, this.onSort))}
                             </tr>
                         </thead>
                         <tbody>
