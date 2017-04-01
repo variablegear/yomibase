@@ -73,8 +73,15 @@
         
         function Selector(props) {
             return (
-                <DropdownButton title={props.current || "Pick a character..."} id={props.slot+"-character-selector"}>
-                    {props.characters.map((char) => <MenuItem key={char} eventKey={char}>{char}</MenuItem>)}
+                <DropdownButton
+                    onSelect={props.onSelect}
+                    title={props.current || "Pick a character..."}
+                    id={props.slot+"-character-selector"}
+                >
+                    {props.characters.map((char) => <MenuItem key={char}
+                        eventKey={char}
+                        disabled={char == props.disabled}
+                    >{char}</MenuItem>)}
                 </DropdownButton>
              );
         }
@@ -138,7 +145,7 @@
                                 <Row>
                                     <Col md={6}>
                                         <Selector
-                                            onChange={(c) => this.loadCharacter(c, "left")}
+                                            onSelect={(c) => this.loadCharacter(c, "left")}
                                             characters={this.state.characters}
                                             current={this.state.left}
                                             disabled={this.state.right}
@@ -147,7 +154,7 @@
                                     </Col>
                                     <Col md={6}>
                                         <Selector
-                                            onChange={(c) => this.loadCharacter(c, "right")}
+                                            onSelect={(c) => this.loadCharacter(c, "right")}
                                             characters={this.state.characters}
                                             current={this.state.right}
                                             disabled={this.state.left}
