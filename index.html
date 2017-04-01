@@ -116,7 +116,6 @@
         };
 
         function SortingHeader(headerDef, onClick) {
-            console.log(headerDef);
             return (
                 <th key={headerDef.props.name} onClick={onClick}>{headerDef.props.name}</th>
             );
@@ -132,6 +131,11 @@
                     sortOrder: 1,
                 };
             }
+            
+            onSort(event) {
+                event.preventDefault();
+                console.log(event);
+            }
 
             render() {
                 const rows = this.props.data.map((row) => (
@@ -143,7 +147,7 @@
                     <Table>
                         <thead>
                             <tr>
-                                {this.props.children.map((header) => SortingHeader(header, this.sort))}
+                                {this.props.children.map((header) => SortingHeader(header, this.onSort))}
                             </tr>
                         </thead>
                         <tbody>
