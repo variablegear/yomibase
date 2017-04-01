@@ -62,6 +62,10 @@
             }
             return 0;
         }
+        
+        function sortByColumn(idx, sort) {
+            return (a, b) => sort(a[idx], b[idx]);
+        }
 
         class YomiBase extends React.Component {
 
@@ -184,7 +188,10 @@
                     var data = this.props.data.slice();
                     console.log(this.props.children[this.state.sortIdx]);
                     console.log(this.props.children[this.state.sortIdx].props.sort);
-                    data.sort(this.props.children[this.state.sortIdx].props.sort);
+                    data.sort(sortByColumn(
+                        this.state.sortIdx,
+                        this.props.children[this.state.sortIdx].props.sort
+                    ));
                     return data;
                 } else {
                     return this.props.data;
