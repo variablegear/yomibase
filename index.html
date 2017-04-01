@@ -135,14 +135,14 @@
             render() {
                 const rows = this.props.data.map((row) => (
                     <tr key={row.filter((ele, idx) => this.props.children[idx].key).concat()}>
-                        {row.map((cell) => <td>{cell}</td>)}
+                        {row.map((cell, idx) => <td key={idx}>{cell}</td>)}
                     </tr>
                 ));
                 return (
                     <Table>
                         <thead>
                             <tr>
-                                {this.props.children.map((header) => SortingHeader(this.sort))}
+                                {this.props.children.map((header) => SortingHeader(header, this.sort))}
                             </tr>
                         </thead>
                         <tbody>
