@@ -136,10 +136,12 @@
                 console.log(sortIdx, event);
                 event.preventDefault();
                 if (sortIdx == this.state.sortIdx) {
-                    this.state.sortOrder *= -1;
+                    this.setState({sortOrder: this.state * -1});
                 } else {
-                    this.state.sortIdx = sortIdx;
-                    this.state.sortOrder = 1;
+                    this.setState({
+                        sortIdx: sortIdx,
+                        sortOrder: 1
+                    });
                 }
             }
             
