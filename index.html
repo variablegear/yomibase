@@ -116,6 +116,7 @@
         };
 
         function SortingHeader(headerDef, onClick) {
+            console.log(headerDef);
             return (
                 <th key={headerDef.name} onClick={onClick}>{headerDef.name}</th>
             );
