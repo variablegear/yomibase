@@ -180,6 +180,8 @@
                     var _this = this;
                     console.log(_this.state);
                     var data = this.props.data.slice();
+                    console.log(this.props.children[this.state.sortIdx]);
+                    console.log(this.props.children[this.state.sortIdx].props.sort);
                     data.sort(this.props.children[this.state.sortIdx].props.sort);
                     return data;
                 } else {
