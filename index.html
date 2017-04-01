@@ -146,8 +146,8 @@
             
             sortedData() {
                 if (this.state.sortIdx != null) {
-                    console.log(_this.state);
                     var _this = this;
+                    console.log(_this.state);
                     var data = this.props.data.slice();
                     data.sort((a, b) => _this.state.sortOrder * (a[_this.state.sortIdx] - b[_this.state.sortIdx]));
                     return data;
