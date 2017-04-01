@@ -183,14 +183,11 @@
             
             sortedData() {
                 if (this.state.sortIdx != null) {
-                    var _this = this;
-                    console.log(_this.state);
+                    const colSorter = this.props.children[this.state.sortIdx].props.sort;
                     var data = this.props.data.slice();
-                    console.log(this.props.children[this.state.sortIdx]);
-                    console.log(this.props.children[this.state.sortIdx].props.sort);
                     data.sort(sortByColumn(
                         this.state.sortIdx,
-                        this.props.children[this.state.sortIdx].props.sort
+                        (a, b) => this.state.sortOrder * colSorter(a, b)
                     ));
                     return data;
                 } else {
