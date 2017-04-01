@@ -134,6 +134,7 @@
             
             onSort(event) {
                 event.preventDefault();
+                console.log(event.target);
                 const sortIdx = event.target.data['idx'];
                 console.log(sortIdx);
                 if (sortIdx == this.state.sortIdx) {
