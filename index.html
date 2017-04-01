@@ -95,7 +95,14 @@
             render() {
                 return (
                     <div>
-                        <PageHeader>YomiBase</PageHeader>
+                        <Navbar staticTop componentClass="header" className="bs-docs-nav" role="banner">
+                            <Navbar.Header>
+                                <Navbar.Brand>
+                                    <Link to="/">YomiBase</Link>
+                                </Navbar.Brand>
+                                <Navbar.Toggle />
+                            </Navbar.Header>
+                        </Navbar>
                         {this.state.character &&
                             <Grid>
                                 <Row>
