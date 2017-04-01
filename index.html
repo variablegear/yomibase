@@ -133,7 +133,6 @@
             }
             
             onSort(sortIdx, event) {
-                console.log(sortIdx, event);
                 event.preventDefault();
                 if (sortIdx == this.state.sortIdx) {
                     this.setState({sortOrder: this.state * -1});
@@ -147,6 +146,7 @@
             
             sortedData() {
                 if (this.state.sortIdx != null) {
+                    console.log(_this.state);
                     var _this = this;
                     var data = this.props.data.slice();
                     data.sort((a, b) => _this.state.sortOrder * (a[_this.state.sortIdx] - b[_this.state.sortIdx]));
@@ -158,7 +158,6 @@
             }
 
             render() {
-                console.log(this.sortedData());
                 const rows = this.sortedData().map((row) => (
                     <tr key={row.filter((ele, idx) => this.props.children[idx].key).concat()}>
                         {row.map((cell, idx) => <td key={idx}>{cell}</td>)}
