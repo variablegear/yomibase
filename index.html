@@ -133,30 +133,37 @@
                                 <Navbar.Toggle />
                             </Navbar.Header>
                         </Navbar>
-                        <Grid>
-                            <Row>
-                                <Col md={6}>
-                                    <Selector
-                                        onChange={(c) => this.loadCharacter(c, "left")}
-                                        characters={this.state.characters}
-                                        current={this.state.left}
-                                        disabled={this.state.right}
-                                    />
-                                </Col>
-                                <Col md={6}>
-                                    <Selector
-                                        onChange={(c) => this.loadCharacter(c, "right")}
-                                        characters={this.state.characters}
-                                        current={this.state.right}
-                                        disabled={this.state.left}
-                                    />
-                                </Col>
-                            </Row>
-                        </Grid>
-                        {this.state.character &&
+                        {this.state.characters &&
                             <Grid>
                                 <Row>
-                                    <Col md={6}>{CharacterSummary(this.state.character.summary)}</Col>
+                                    <Col md={6}>
+                                        <Selector
+                                            onChange={(c) => this.loadCharacter(c, "left")}
+                                            characters={this.state.characters}
+                                            current={this.state.left}
+                                            disabled={this.state.right}
+                                        />
+                                    </Col>
+                                    <Col md={6}>
+                                        <Selector
+                                            onChange={(c) => this.loadCharacter(c, "right")}
+                                            characters={this.state.characters}
+                                            current={this.state.right}
+                                            disabled={this.state.left}
+                                        />
+                                    </Col>
+                                </Row>
+                            </Grid>
+                        }
+                        {(this.state.left || this.state.right) &&
+                            <Grid>
+                                <Row>
+                                    {this.state.left &&
+                                        <Col md={6}>{CharacterSummary(this.state.character[this.state.left].summary)}</Col>
+                                    }
+                                    {this.state.right &&
+                                        <Col md={6} xOffset={6}>{CharacterSummary(this.state.character[this.state.right].summary)}</Col>
+                                    }
                                 </Row>
                                 <Row>
                                     <Col md={12}>{Attacks(this.state.character.summary.name, this.state.character.attacks)}</Col>
