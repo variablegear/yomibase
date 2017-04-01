@@ -117,7 +117,7 @@
 
         function SortingHeader(headerDef, idx, onClick) {
             return (
-                <th data-idx={idx} key={headerDef.props.name} onClick={onClick}>{headerDef.props.name}</th>
+                <th key={headerDef.props.name} onClick={(event) => onClick(idx, event)}>{headerDef.props.name}</th>
             );
         };
         
@@ -132,11 +132,8 @@
                 };
             }
             
-            onSort(event) {
+            onSort(sortIdx, event) {
                 event.preventDefault();
-                console.log(event.target);
-                const sortIdx = event.target.data['idx'];
-                console.log(sortIdx);
                 if (sortIdx == this.state.sortIdx) {
                     this.state.sortOrder *= -1;
                 } else {
