@@ -150,7 +150,9 @@
                                     />
                                 </Col>
                             </Row>
-                            {this.state.character &&
+                        </Grid>
+                        {this.state.character &&
+                            <Grid>
                                 <Row>
                                     <Col md={6}>{CharacterSummary(this.state.character.summary)}</Col>
                                 </Row>
@@ -160,8 +162,8 @@
                                 <Row>
                                     <Col md={12}>{Throws(this.state.character.summary.name, this.state.character.throws)}</Col>
                                 </Row>
-                            }
-                        </Grid>
+                            </Grid>
+                        }
                     </div>
                 );
             }
