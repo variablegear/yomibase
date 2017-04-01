@@ -149,7 +149,7 @@
                 if (this.state.sortIdx != null) {
                     var _this = this;
                     var data = this.props.data.slice();
-                    data.sort((a, b) => a[_this.state.sortIdx] - b[_this.state.sortIdx]);
+                    data.sort((a, b) => _this.state.sortOrder * (a[_this.state.sortIdx] - b[_this.state.sortIdx]));
                     return data;
                 } else {
                     return this.props.data;
