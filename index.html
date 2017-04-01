@@ -73,7 +73,7 @@
         
         function Selector(props) {
             return (
-                <DropdownButton title={props.current}>
+                <DropdownButton title={props.current || "Pick a character..."} id={props.slot+"-character-selector"}>
                     {props.characters.map((char) => <MenuItem key={char} eventKey={char}>{char}</MenuItem>)}
                 </DropdownButton>
              );
@@ -142,6 +142,7 @@
                                             characters={this.state.characters}
                                             current={this.state.left}
                                             disabled={this.state.right}
+                                            slot="left"
                                         />
                                     </Col>
                                     <Col md={6}>
@@ -150,6 +151,7 @@
                                             characters={this.state.characters}
                                             current={this.state.right}
                                             disabled={this.state.left}
+                                            slot="right"
                                         />
                                     </Col>
                                 </Row>
