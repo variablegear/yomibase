@@ -117,7 +117,7 @@
 
         function SortingHeader(headerDef, onClick) {
             return (
-                <th onClick={onClick}>{headerDef.name}</th>
+                <th key={headerDef.name} onClick={onClick}>{headerDef.name}</th>
             );
         };
         
