@@ -156,6 +156,7 @@
             }
 
             render() {
+                console.log(this.sortedData());
                 const rows = this.sortedData().map((row) => (
                     <tr key={row.filter((ele, idx) => this.props.children[idx].key).concat()}>
                         {row.map((cell, idx) => <td key={idx}>{cell}</td>)}
