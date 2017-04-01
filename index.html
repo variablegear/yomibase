@@ -203,7 +203,7 @@
                     </tr>
                 ));
                 return (
-                    <Table>
+                    <Table condensed hover>
                         <thead>
                             <tr>
                                 {this.props.children.map((header, idx) => SortingHeader(header, (e) => this.onSort(idx, e)))}
