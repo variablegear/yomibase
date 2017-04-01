@@ -90,22 +90,22 @@
             }
 
             render() {
-                if (this.state.character) {
-                    return (
-                        <section>
-                            <PageHeader>YomiBase</PageHeader>
-                            {CharacterSummary(this.state.character.summary)}
-                            {Attacks(this.state.character.summary.name, this.state.character.attacks)}
-                            {Throws(this.state.character.summary.name, this.state.character.throws)}
-                        </section>
-                    );
-                } else {
-                    return (
-                        <section>
-                            <PageHeader>YomiBase</PageHeader>
-                        </section>
-                    );
-                }
+                return (
+                    <div>
+                        <PageHeader>YomiBase</PageHeader>
+                        <Grid>
+                            <Row>
+                                <Col md={6}>{CharacterSummary(this.state.character.summary)}</Col>
+                            </Row>
+                            <Row>
+                                <Col md={12}>{Attacks(this.state.character.summary.name, this.state.character.attacks)}</Col>
+                            </Row>
+                            <Row>
+                                <Col md={12}>{Throws(this.state.character.summary.name, this.state.character.throws)}</Col>
+                            </Row>
+                        </Grid>
+                    </div>
+                );
             }
         };
 
