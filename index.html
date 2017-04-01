@@ -115,9 +115,9 @@
             );
         };
 
-        function SortingHeader(headerDef, idx, onClick) {
+        function SortingHeader(headerDef, onClick) {
             return (
-                <th key={headerDef.props.name} onClick={(event) => onClick(idx, event)}>{headerDef.props.name}</th>
+                <th key={headerDef.props.name} onClick={onClick}>{headerDef.props.name}</th>
             );
         };
         
@@ -130,10 +130,10 @@
                     sortIdx: null,
                     sortOrder: 1,
                 };
-                this.onSort = this.onSort.bind(this);
             }
             
             onSort(sortIdx, event) {
+                console.log(sortIdx, event);
                 event.preventDefault();
                 if (sortIdx == this.state.sortIdx) {
                     this.state.sortOrder *= -1;
@@ -166,7 +166,7 @@
                     <Table>
                         <thead>
                             <tr>
-                                {this.props.children.map((header, idx) => SortingHeader(header, idx, this.onSort))}
+                                {this.props.children.map((header, idx) => SortingHeader(header, (e) => this.onSort(idx, e)))}
                             </tr>
                         </thead>
                         <tbody>
