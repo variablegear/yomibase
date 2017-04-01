@@ -45,7 +45,6 @@
                 K: 13,
                 A: 14,
             }
-            console.log((ranks[a] || a), (ranks[b] || b));
             return (ranks[a] || a) - (ranks[b] || b);
         };
         
@@ -53,7 +52,6 @@
             a = typeof a === "string" ? a.replace(/[^\d.].*/, "") : a;
             b = typeof b === "string" ? b.replace(/[^\d.].*/, "") : b;
             
-            console.log(a, b);
             return a - b;
         }
         
@@ -70,6 +68,14 @@
         function sortByColumn(idx, sort) {
             return (a, b) => sort(a[idx], b[idx]);
         }
+        
+        function Selector(props) {
+            return (
+                <DropdownButton title={props.current}>
+                    {props.characters.map((char) => <MenuItem key={char} eventKey={char}>{char}</MenuItem>)}
+                </DropdownButton>
+             );
+        }
 
         class YomiBase extends React.Component {
 
@@ -81,16 +87,37 @@
             componentDidMount() {
                 var _this = this;
                 this.serverRequest = axios
-                    .get("data.json")
+                    .get("characters.json")
                     .then(function(result) {
                         _this.setState({
-                            character: result.data.character
+                            characters: result.data.characters
                         });
                     })
             }
 
             componentWillUnmount() {
                 this.serverRequest.abort();
+            }
+            
+            loadCharacter(character, slot) {
+                var _this = this;
+                
+                if (_this.state.characterData[character] == null) {
+                    this.serverRequest = axios
+                        .get("characters/"+character+".json")
+                        .then(function(result) {
+                            _this.setState((prevState, props) => {
+                                var charData = prevState.characterData;
+                                charData[character] = result.data.character;
+                                return {
+                                    characterData: charData,
+                                    slot: character
+                                };
+                            });
+                        })
+                } else {
+                    _this.setState({slot: character});
+                }
             }
 
             render() {
@@ -104,8 +131,26 @@
                                 <Navbar.Toggle />
                             </Navbar.Header>
                         </Navbar>
-                        {this.state.character &&
-                            <Grid>
+                        <Grid>
+                            <Row>
+                                <Col md={6}>
+                                    <Selector
+                                        onChange={(c) => this.loadCharacter(c, "left"}
+                                        characters={this.state.characters}
+                                        current={this.state.left}
+                                        disabled={this.state.right}
+                                    />
+                                </Col>
+                                <Col md={6}>
+                                    <Selector
+                                        onChange={(c) => this.loadCharacter(c, "right"}
+                                        characters={this.state.characters}
+                                        current={this.state.right}
+                                        disabled={this.state.left}
+                                    />
+                                </Col>
+                            </Row>
+                            {this.state.character &&
                                 <Row>
                                     <Col md={6}>{CharacterSummary(this.state.character.summary)}</Col>
                                 </Row>
@@ -115,8 +160,8 @@
                                 <Row>
                                     <Col md={12}>{Throws(this.state.character.summary.name, this.state.character.throws)}</Col>
                                 </Row>
-                            </Grid>
-                        }
+                            }
+                        </Grid>
                     </div>
                 );
             }
