@@ -90,7 +90,12 @@
 
             constructor(props) {
                 super(props);
-                this.state = {};
+                this.state = {
+                    left: null,
+                    right: null,
+                    characters: [],
+                    characterData: {}
+                };
             }
 
             componentDidMount() {
