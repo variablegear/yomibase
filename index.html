@@ -141,6 +141,9 @@
             }
 
             render() {
+                leftCharacter = this.state.characterData[this.state.left];
+                rightCharacter = this.state.characterData[this.state.right];
+                
                 return (
                     <div>
                         <Navbar staticTop componentClass="header" className="bs-docs-nav" role="banner">
@@ -175,24 +178,24 @@
                                 </Row>
                             </Grid>
                         }
-                        {(this.state.left || this.state.right) &&
+                        {(leftCharacter || rightCharacter) &&
                             <Grid>
                                 <Row>
-                                    {this.state.left &&
-                                        <Col md={6}>{CharacterSummary(this.state.character[this.state.left].summary)}</Col>
+                                    {leftCharacter &&
+                                        <Col md={6}>{CharacterSummary(leftCharacter.summary)}</Col>
                                     }
-                                    {this.state.right &&
-                                        <Col md={6} xOffset={6}>{CharacterSummary(this.state.character[this.state.right].summary)}</Col>
+                                    {rightCharacter &&
+                                        <Col md={6} xOffset={6}>{CharacterSummary(rightCharacter.summary)}</Col>
                                     }
                                 </Row>
                                 <Row>
-                                    <Col md={12}>{Attacks(this.state.character.summary.name, this.state.character.attacks)}</Col>
+                                    <Col md={12}>{Attacks(leftCharacter.summary.name, leftCharacter.attacks)}</Col>
                                 </Row>
                                 <Row>
-                                    <Col md={12}>{Throws(this.state.character.summary.name, this.state.character.throws)}</Col>
+                                    <Col md={12}>{Throws(leftCharacter.summary.name, leftCharacter.throws)}</Col>
                                 </Row>
                             </Grid>
-                        }
+                       }
                     </div>
                 );
             }
