@@ -15,7 +15,7 @@
                 "Speed of the Fox": "If you start the draw phase with 1 or 0 cards in hand, draw 5 cards (instead of 1) and you may hit back with a full combo if you dodge an attack or Joker this turn."
             },
             "cardAbilities": {
-                7: {
+                "7": {
                     "name": "Bag of Tricks",
                     "timing": "End of Turn",
                     "text": "At the end of turn, if this is the only card in your hand, you may put up to three non-Joker cards from your discard pile on top of your deck in any order, then discard this card."
