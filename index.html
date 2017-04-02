@@ -128,12 +128,14 @@
                                     characterData: charData,
                                 };
                                 state[slot] = character;
+                                console.log(state);
                                 return state;
                             });
                         })
                 } else {
                     state = {};
                     state[slot] = character;
+                    console.log(state);
                     this.setState(state);
                 }
             }
