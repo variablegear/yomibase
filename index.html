@@ -115,22 +115,26 @@
             
             loadCharacter(character, slot) {
                 var _this = this;
+                console.log(character, slot, this.state);
                 
-                if (_this.state.characterData[character] == null) {
+                if (this.state.characterData[character] == null) {
                     this.serverRequest = axios
                         .get("characters/"+character+".json")
                         .then(function(result) {
                             _this.setState((prevState, props) => {
                                 var charData = prevState.characterData;
                                 charData[character] = result.data.character;
-                                return {
+                                state = {
                                     characterData: charData,
-                                    slot: character
                                 };
+                                state[slot] = character;
+                                return state;
                             });
                         })
                 } else {
-                    _this.setState({slot: character});
+                    state = {};
+                    state[slot] = character;
+                    this.setState(state);
                 }
             }
 
