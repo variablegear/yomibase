@@ -124,7 +124,7 @@
                             _this.setState((prevState, props) => {
                                 var charData = prevState.characterData;
                                 charData[character] = result.data.character;
-                                state = {
+                                var state = {
                                     characterData: charData,
                                 };
                                 state[slot] = character;
@@ -133,7 +133,7 @@
                             });
                         })
                 } else {
-                    state = {};
+                    var state = {};
                     state[slot] = character;
                     console.log(state);
                     this.setState(state);
