@@ -119,7 +119,7 @@
                 
                 if (this.state.characterData[character] == null) {
                     this.serverRequest = axios
-                        .get("characters/"+character.toLower()+".json")
+                        .get("characters/"+character.toLowerCase()+".json")
                         .then(function(result) {
                             _this.setState((prevState, props) => {
                                 var charData = prevState.characterData;
