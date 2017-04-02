@@ -1,0 +1,51 @@
+{
+    "character": {
+        "summary": {
+            "name": "Jaina Stormborne",
+            "hitPoints": 85,
+            "maxCombo": 5,
+            "attackSpeed": 6,
+            "throwSpeed": 6,
+            "throwDamage": 7,
+            "attacks": [2, 3, 4, 5, 6, "J", "Q", "K", "A"],
+            "throws": [6, 7, 8, 9, "T"],
+            "blocks": [7, 8, 9, "T"],
+            "dodges": [2, 3, 4, 5],
+            "innateAbilities": {
+                "Burning Vigor": "At the end of combat, if you attacked, you may return any number of combo cards to your hand other than Queens or Aces. Take 3 damage for each card returned this way.",
+                "Burning Desperation": "If you have 35 life or less, you may also return Queens and Aces and take 4 damage for each."
+            },
+            "cardAbilities": {
+                "7": {
+                    "name": "Bag of Tricks",
+                    "timing": "End of Turn",
+                    "text": "At the end of turn, if this is the only card in your hand, you may put up to three non-Joker cards from your discard pile on top of your deck in any order, then discard this card."
+                },
+                "T": {
+                    "name": "Smoke Bomb",
+                    "timing": "Reaction",
+                    "text": "Discard two cards (and this card) to counter an ability. (Prevent and undo the ability and the opponent discards the card if played from hand. You can't counter Aces, Jokers or character cards.)"
+                }
+            }
+        },
+        "attacks": [
+            [2.2, 2, 2, 0, "", "", "", ""],
+            [3.2, 3, 3, 0, "", "", "", ""],
+            [4.2, 4, 4, 0, "", "", "", ""],
+            [5.2, 5, 5, 0, "", "", "", ""],
+            [6.2, 6, 6, 0, "", "", "", ""],
+            [1.4, "J", 5, 1, "", "", "", ""],
+            ["0.0", "Q", "1+4", 1, "", "", "", ""],
+            [2.2, "K", "5+3", 2, "", "", "", ""],
+            ["1.0", "A", "9+9", 3, "A+++", 36, "A++", "27"],
+            [1.2, "AA", 17, 3, "-", "-", "-", "-"]
+        ],
+        "throws": [
+            [7.2, 7, 6, "", "", "", ""],
+            [8.2, 8, 6, "", "", "", ""],
+            [9.2, 9, 6, "", "", "", ""],
+            [10.2, 10, 6, "", "", "", ""],
+            [9.2, "K", 6, "-", "-", "-", "-"]
+        ]
+    }
+}
