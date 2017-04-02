@@ -11,7 +11,7 @@
             "throws": ["7*", 8, 9, "10*", "K"],
             "blocks": [6, "7*", 8, 9],
             "dodges": [2, 3, 4, 5, "10*"],
-            "innateAbilities: {
+            "innateAbilities": {
                 "Speed of the Fox": "If you start the draw phase with 1 or 0 cards in hand, draw 5 cards (instead of 1) and you may hit back with a full combo if you dodge an attack or Joker this turn."
             },
             "cardAbilities": {
