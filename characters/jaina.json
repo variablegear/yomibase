@@ -11,22 +11,30 @@
             "throws": [6, 7, 8, 9, "T"],
             "blocks": [7, 8, 9, "T"],
             "dodges": [2, 3, 4, 5],
-            "innateAbilities": {
-                "Burning Vigor": "At the end of combat, if you attacked, you may return any number of combo cards to your hand other than Queens or Aces. Take 3 damage for each card returned this way.",
-                "Burning Desperation": "If you have 35 life or less, you may also return Queens and Aces and take 4 damage for each."
-            },
-            "cardAbilities": {
-                "7": {
-                    "name": "Bag of Tricks",
-                    "timing": "End of Turn",
-                    "text": "At the end of turn, if this is the only card in your hand, you may put up to three non-Joker cards from your discard pile on top of your deck in any order, then discard this card."
+            "innateAbilities": [
+                {
+                    "name": "Burning Vigor",
+                    "text": "At the end of combat, if you attacked, you may return any number of combo cards to your hand other than Queens or Aces. Take 3 damage for each card returned this way."
                 },
-                "T": {
-                    "name": "Smoke Bomb",
-                    "timing": "Reaction",
-                    "text": "Discard two cards (and this card) to counter an ability. (Prevent and undo the ability and the opponent discards the card if played from hand. You can't counter Aces, Jokers or character cards.)"
+                {
+                    "name": "Burning Desperation",
+                    "text": "If you have 35 life or less, you may also return Queens and Aces and take 4 damage for each."
                 }
-            }
+            ],
+            "cardAbilities": [
+                {
+                    "rank": 7,
+                    "name": "Unstable Power",
+                    "timing": "Draw Phase",
+                    "text": "Knocked down opponents stand up. You can't play Aces this turn, but you can rotate your combat-revealed attack 180 degrees. If you hit the opponent this combat, search your deck or discard pile for 2 Aces. Otherwise, take 7 damage."
+                },
+                {
+                    "rank": "T",
+                    "name": "Smoldering Embers",
+                    "timing": "Combat Reveal",
+                    "text": "If the opponent dodged while this card is in your discard pile, they take two damage. You can't power up with this card. (It's too hot.)"
+                }
+            ]
         },
         "attacks": [
             [2.2, 2, 2, 0, "", "", "", ""],

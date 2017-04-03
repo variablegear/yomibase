@@ -216,6 +216,16 @@
         };
 
         function CharacterSummary(props) {
+            var abilities = []
+            {props.innateAbilities.forEach((entry) => {
+                abilities.push(<dt key={entry.name + "-name"}>{entry.name}</dt>);
+                abilities.push(<dd key={entry.name + "-text"}>{entry.text}</dd>);
+            })}
+            {props.cardAbilities.map((entry) => {
+                abilities.push(<dt key={entry.rank + "-rank"}>{entry.rank} - {entry.name} [{entry.timing}]</dt>);
+                abilities.push(<dd key={entry.rank + "-text"}>{entry.text}</dd>);
+            })}
+
             return (
                 <section>
                     <PageHeader>{props.name}</PageHeader>
@@ -255,6 +265,7 @@
                             </tr>
                         </tbody>
                     </Table>
+                    <dl>{abilities}</dl>
                 </section>
             );
         };
