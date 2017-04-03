@@ -75,7 +75,7 @@
             return (
                 <DropdownButton
                     onSelect={props.onSelect}
-                    title={props.current || "Pick a character..."}
+                    title={props.current || props.default}
                     id={props.slot+"-character-selector"}
                 >
                     {props.characters.map((char) => <MenuItem key={char}
@@ -164,17 +164,21 @@
                                             current={this.state.left}
                                             disabled={this.state.right}
                                             slot="left"
+                                            default="Pick a character..."
                                         />
                                     </Col>
-                                    <Col md={6}>
-                                        <Selector
-                                            onSelect={(c) => this.loadCharacter(c, "right")}
-                                            characters={this.state.characters}
-                                            current={this.state.right}
-                                            disabled={this.state.left}
-                                            slot="right"
-                                        />
-                                    </Col>
+                                    {this.state.left &&
+                                        <Col md={6}>
+                                            <Selector
+                                                onSelect={(c) => this.loadCharacter(c, "right")}
+                                                characters={this.state.characters}
+                                                current={this.state.right}
+                                                disabled={this.state.left}
+                                                slot="right"
+                                                default="Match up against..."
+                                            />
+                                        </Col>
+                                    }
                                 </Row>
                             </Grid>
                         }
