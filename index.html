@@ -35,6 +35,7 @@
         var Navbar = ReactBootstrap.Navbar;
         var DropdownButton = ReactBootstrap.DropdownButton;
         var MenuItem = ReactBootstrap.MenuItem;
+        var Glyphicon = ReactBootstrap.Glyphicon;
 
         function rankSort(a, b) {
             a = typeof a === "string" ? a[0] : a;
@@ -285,9 +286,24 @@
             );
         };
 
-        function SortingHeader(headerDef, onClick) {
+        function SortingHeader(idx, headerDef, currentSort, onClick) {
+            var sortGlyph;
+            if (currentSort.sortIdx != idx) {
+                sortGlyph = <Glyphicon glyph="sort"/>;
+            } else if (currentSort.sortOrder == 1) {
+                sortGlyph = <Glyphicon glyph="sort-by-attributes"/>;
+            } else {
+                sortGlyph = <Glyphicon glyph="sort-by-attributes-alt"/>;
+            }
             return (
-                <th key={headerDef.props.name} onClick={onClick}>{headerDef.props.name}</th>
+                <th
+                    key={headerDef.props.name}
+                    onClick={onClick}
+                >
+                    {headerDef.props.name}
+                    {"\u00a0"}
+                    <small>{sortGlyph}</small>
+                </th>
             );
         };
 
@@ -339,7 +355,9 @@
                     <Table condensed hover>
                         <thead>
                             <tr>
-                                {this.props.children.map((header, idx) => SortingHeader(header, (e) => this.onSort(idx, e)))}
+                                {this.props.children.map((header, idx) => (
+                                    SortingHeader(idx, header, this.state, (e) => this.onSort(idx, e)))
+                                )}
                             </tr>
                         </thead>
                         <tbody>
