@@ -88,6 +88,19 @@
              );
         }
 
+        function EditLink(character) {
+            return (
+                <Col md={6}>
+                    Found a bug, or have a suggestion about {character.summary.name}?
+                    Suggest a change <a href={
+                        "https://github.com/cpennington/yomibase/edit/master/characters/" +
+                        character.summary.name.toLowerCase() +
+                        ".json"
+                    }>here</a>
+                </Col>
+            );
+        }
+
         class YomiBase extends React.Component {
 
             constructor(props) {
@@ -153,8 +166,8 @@
                                 <Navbar.Toggle />
                             </Navbar.Header>
                         </Navbar>
-                        {this.state.characters &&
-                            <Grid>
+                        <Grid>
+                            {this.state.characters &&
                                 <Row>
                                     <Col md={6}>
                                         <Selector
@@ -188,9 +201,7 @@
                                         </Col>
                                     }
                                 </Row>
-                            </Grid>
-                        }
-                        <Grid>
+                            }
                             <Row>
                                 {leftCharacter &&
                                     <Col md={6}>{CharacterSummary(leftCharacter.summary)}</Col>
@@ -209,6 +220,10 @@
                                     <Col md={12}>{Throws(leftCharacter, rightCharacter)}</Col>
                                 </Row>
                             }
+                            <Row>
+                                {leftCharacter && EditLink(leftCharacter)}
+                                {rightCharacter && EditLink(rightCharacter)}
+                            </Row>
                         </Grid>
                     </div>
                 );
