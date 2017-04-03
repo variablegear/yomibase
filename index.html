@@ -115,7 +115,6 @@
 
             loadCharacter(character, slot) {
                 var _this = this;
-                console.log(character, slot, this.state);
 
                 if (this.state.characterData[character] == null) {
                     this.serverRequest = axios
@@ -128,14 +127,12 @@
                                     characterData: charData,
                                 };
                                 state[slot] = character;
-                                console.log(state);
                                 return state;
                             });
                         })
                 } else {
                     var state = {};
                     state[slot] = character;
-                    console.log(state);
                     this.setState(state);
                 }
             }
