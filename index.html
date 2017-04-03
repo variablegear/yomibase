@@ -14,6 +14,18 @@
     <script src="https://npmcdn.com/react-router@3.0.2/umd/ReactRouter.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+
+    <style>
+        .yomi-block {
+            color: #2369db;
+        }
+        .yomi-attack {
+            color: #bf1515;
+        }
+        .yomi-dodge {
+            color: #670d9b;
+        }
+    </style>
 </head>
 
 <body>
@@ -248,7 +260,7 @@
                     <Table>
                         <tbody>
                             <tr>
-                                <td><strong>Normal attack speed</strong>:</td>
+                                <td><strong className="yomi-attack">Normal attack speed</strong>:</td>
                                 <td>x.{props.attackSpeed} (x = card rank)</td>
                             </tr>
                             <tr>
@@ -265,7 +277,7 @@
                         <tbody>
                             <tr>
                                 <td><strong>Attacks</strong>:</td>
-                                <td>{props.attacks.join(', ')}</td>
+                                <td className="yomi-attack">{props.attacks.join(', ')}</td>
                             </tr>
                             <tr>
                                 <td><strong>Throws</strong>:</td>
@@ -273,11 +285,11 @@
                             </tr>
                             <tr>
                                 <td><strong>Blocks</strong>:</td>
-                                <td>{props.blocks.join(', ')}</td>
+                                <td className="yomi-block">{props.blocks.join(', ')}</td>
                             </tr>
                             <tr>
                                 <td><strong>Dodges</strong>:</td>
-                                <td>{props.dodges.join(', ')}</td>
+                                <td className="yomi-dodge">{props.dodges.join(', ')}</td>
                             </tr>
                         </tbody>
                     </Table>
@@ -356,7 +368,9 @@
                                 (header) => row[header.props.rowKey]
                             )
                     }>
-                        {this.props.children.map((header, idx) => <td key={idx}>{row[header.props.rowKey]}</td>)}
+                        {this.props.children.map((header, idx) => <td key={idx}>{
+                            (header.props.format && header.props.format(row)) || row[header.props.rowKey]
+                        }</td>)}
                     </tr>
                 ));
                 return (
@@ -400,8 +414,9 @@
                     <SortHeader isKey name="Character" sort={nameSort} rowKey="name" />
                     <SortHeader name="Speed" sort={valueSort} rowKey="speed" />
                     <SortHeader isKey name="Rank" sort={rankSort} rowKey="rank" />
-                    <SortHeader name="Base Damage" sort={valueSort} rowKey="baseDamage" />
-                    <SortHeader name="Chip Damage" sort={valueSort} rowKey="chipDamage" />
+                    <SortHeader name="Damage" sort={valueSort}
+                        format={(row) => <span>{row.baseDamage}<sub className="yomi-block">{row.chipDamage}</sub></span>}
+                    />
                     <SortHeader name="Max Combo" sort={rankSort} rowKey="maxCombo" />
                     <SortHeader name="Max Damage" sort={valueSort} rowKey="maxDamage" />
                     <SortHeader name="Good Combo" sort={rankSort} rowKey="goodCombo" />
@@ -434,7 +449,7 @@
                     <SortHeader isKey name="Character" sort={nameSort} rowKey="name" />
                     <SortHeader name="Speed" sort={valueSort} rowKey="speed" />
                     <SortHeader isKey name="Rank" sort={rankSort} rowKey="rank" />
-                    <SortHeader name="Base Damage" sort={valueSort} rowKey="baseDamage" />
+                    <SortHeader name="Damage" sort={valueSort} rowKey="baseDamage" />
                     <SortHeader name="Max Combo" sort={rankSort} rowKey="maxCombo" />
                     <SortHeader name="Max Damage" sort={valueSort} rowKey="maxDamage" />
                     <SortHeader name="Good Combo" sort={rankSort} rowKey="goodCombo" />
