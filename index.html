@@ -68,8 +68,8 @@
             return 0;
         }
 
-        function sortByColumn(idx, sort) {
-            return (a, b) => sort(a[idx], b[idx]);
+        function sortByKey(key, sort) {
+            return (a, b) => sort(a[key], b[key]);
         }
 
         function Selector(props) {
@@ -332,11 +332,11 @@
 
             sortedData() {
                 if (this.state.sortIdx != null) {
-                    const colSorter = this.props.children[this.state.sortIdx].props.sort;
+                    const sortHeader = this.props.children[this.state.sortIdx];
                     var data = this.props.data.slice();
-                    data.sort(sortByColumn(
-                        this.state.sortIdx,
-                        (a, b) => this.state.sortOrder * colSorter(a, b)
+                    data.sort(sortByKey(
+                        sortHeader.props.rowKey,
+                        (a, b) => this.state.sortOrder * sortHeader.props.sort(a, b)
                     ));
                     return data;
                 } else {
@@ -347,8 +347,14 @@
 
             render() {
                 const rows = this.sortedData().map((row) => (
-                    <tr key={row.filter((ele, idx) => this.props.children[idx].key).concat()}>
-                        {row.map((cell, idx) => <td key={idx}>{cell}</td>)}
+                    <tr key={
+                            this.props.children.filter(
+                                (header) => header.props.isKey
+                            ).map(
+                                (header) => row[header.props.rowKey]
+                            )
+                    }>
+                        {this.props.children.map((header, idx) => <td key={idx}>{row[header.props.rowKey]}</td>)}
                     </tr>
                 ));
                 return (
@@ -368,39 +374,66 @@
             }
         };
 
+        function attackObject(character, row) {
+            return {
+                "name": character,
+                "speed": row[0],
+                "rank": row[1],
+                "baseDamage": row[2],
+                "chipDamage": row[3],
+                "maxCombo": row[4],
+                "maxDamage": row[5],
+                "goodCombo": row[6],
+                "goodDamage": row[7]
+            }
+        }
+
         function Attacks(left, right) {
-            const leftAttacks = (left && left.attacks.map((row) => [left.summary.name].concat(row))) || [];
-            const rightAttacks = (right && right.attacks.map((row) => [right.summary.name].concat(row))) || [];
+            const leftAttacks = (left && left.attacks.map((row) => attackObject(left.summary.name, row))) || [];
+            const rightAttacks = (right && right.attacks.map((row) => attackObject(right.summary.name, row))) || [];
 
             return (
                 <SortableTable data={leftAttacks.concat(rightAttacks)}>
-                    <SortHeader key name="Character" sort={nameSort}/>
-                    <SortHeader name="Speed" sort={valueSort}/>
-                    <SortHeader key name="Rank" sort={rankSort}/>
-                    <SortHeader name="Base Damage" sort={valueSort}/>
-                    <SortHeader name="Chip Damage" sort={valueSort}/>
-                    <SortHeader name="Max Combo" sort={rankSort}/>
-                    <SortHeader name="Max Damage" sort={valueSort}/>
-                    <SortHeader name="Good Combo" sort={rankSort}/>
-                    <SortHeader name="Good Damage" sort={valueSort}/>
+                    <SortHeader isKey name="Character" sort={nameSort} rowKey="name" />
+                    <SortHeader name="Speed" sort={valueSort} rowKey="speed" />
+                    <SortHeader isKey name="Rank" sort={rankSort} rowKey="rank" />
+                    <SortHeader name="Base Damage" sort={valueSort} rowKey="baseDamage" />
+                    <SortHeader name="Chip Damage" sort={valueSort} rowKey="chipDamage" />
+                    <SortHeader name="Max Combo" sort={rankSort} rowKey="maxCombo" />
+                    <SortHeader name="Max Damage" sort={valueSort} rowKey="maxDamage" />
+                    <SortHeader name="Good Combo" sort={rankSort} rowKey="goodCombo" />
+                    <SortHeader name="Good Damage" sort={valueSort} rowKey="goodDamage" />
                 </SortableTable>
             );
         };
 
+        function throwObject(character, row) {
+            return {
+                "name": character,
+                "speed": row[0],
+                "rank": row[1],
+                "baseDamage": row[2],
+                "maxCombo": row[3],
+                "maxDamage": row[4],
+                "goodCombo": row[5],
+                "goodDamage": row[6]
+            }
+        }
+
         function Throws(left, right) {
-            const leftThrows = (left && left.throws.map((row) => [left.summary.name].concat(row))) || [];
-            const rightThrows = (right && right.throws.map((row) => [right.summary.name].concat(row))) || [];
+            const leftThrows = (left && left.throws.map((row) => throwObject(left.summary.name, row))) || [];
+            const rightThrows = (right && right.throws.map((row) => throwObject(right.summary.name, row))) || [];
 
             return (
                 <SortableTable data={leftThrows.concat(rightThrows)}>
-                    <SortHeader key name="Character" sort={nameSort}/>
-                    <SortHeader name="Speed" sort={valueSort}/>
-                    <SortHeader key name="Rank" sort={rankSort}/>
-                    <SortHeader name="Base Damage" sort={valueSort}/>
-                    <SortHeader name="Max Combo" sort={rankSort}/>
-                    <SortHeader name="Max Damage" sort={valueSort}/>
-                    <SortHeader name="Good Combo" sort={rankSort}/>
-                    <SortHeader name="Good Damage" sort={valueSort}/>
+                    <SortHeader isKey name="Character" sort={nameSort} rowKey="name" />
+                    <SortHeader name="Speed" sort={valueSort} rowKey="speed" />
+                    <SortHeader isKey name="Rank" sort={rankSort} rowKey="rank" />
+                    <SortHeader name="Base Damage" sort={valueSort} rowKey="baseDamage" />
+                    <SortHeader name="Max Combo" sort={rankSort} rowKey="maxCombo" />
+                    <SortHeader name="Max Damage" sort={valueSort} rowKey="maxDamage" />
+                    <SortHeader name="Good Combo" sort={rankSort} rowKey="goodCombo" />
+                    <SortHeader name="Good Damage" sort={valueSort} rowKey="goodDamage" />
                 </SortableTable>
             );
         };
