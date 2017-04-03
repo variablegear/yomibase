@@ -287,13 +287,15 @@
         };
 
         function SortingHeader(idx, headerDef, currentSort, onClick) {
-            var sortGlyph;
-            if (currentSort.sortIdx != idx) {
-                sortGlyph = <Glyphicon glyph="sort"/>;
-            } else if (currentSort.sortOrder == 1) {
-                sortGlyph = <Glyphicon glyph="sort-by-attributes"/>;
-            } else {
-                sortGlyph = <Glyphicon glyph="sort-by-attributes-alt"/>;
+            var sortGlyph = null;
+            if (headerDef.props.sort) {
+                if (currentSort.sortIdx != idx) {
+                    sortGlyph = <Glyphicon glyph="sort"/>;
+                } else if (currentSort.sortOrder == 1) {
+                    sortGlyph = <Glyphicon glyph="sort-by-attributes"/>;
+                } else {
+                    sortGlyph = <Glyphicon glyph="sort-by-attributes-alt"/>;
+                }
             }
             return (
                 <th
@@ -384,7 +386,8 @@
                 "maxCombo": row[4],
                 "maxDamage": row[5],
                 "goodCombo": row[6],
-                "goodDamage": row[7]
+                "goodDamage": row[7],
+                "notes": row[8]
             }
         }
 
@@ -403,6 +406,7 @@
                     <SortHeader name="Max Damage" sort={valueSort} rowKey="maxDamage" />
                     <SortHeader name="Good Combo" sort={rankSort} rowKey="goodCombo" />
                     <SortHeader name="Good Damage" sort={valueSort} rowKey="goodDamage" />
+                    <SortHeader name="Notes" rowKey="notes" />
                 </SortableTable>
             );
         };
@@ -416,7 +420,8 @@
                 "maxCombo": row[3],
                 "maxDamage": row[4],
                 "goodCombo": row[5],
-                "goodDamage": row[6]
+                "goodDamage": row[6],
+                "notes": row[7]
             }
         }
 
@@ -434,6 +439,7 @@
                     <SortHeader name="Max Damage" sort={valueSort} rowKey="maxDamage" />
                     <SortHeader name="Good Combo" sort={rankSort} rowKey="goodCombo" />
                     <SortHeader name="Good Damage" sort={valueSort} rowKey="goodDamage" />
+                    <SortHeader name="Notes" rowKey="notes" />
                 </SortableTable>
             );
         };
