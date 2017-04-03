@@ -415,7 +415,12 @@
                     <SortHeader name="Speed" sort={valueSort} rowKey="speed" />
                     <SortHeader isKey name="Rank" sort={rankSort} rowKey="rank" />
                     <SortHeader name="Damage" sort={valueSort}
-                        format={(row) => <span>{row.baseDamage}<sub className="yomi-block">{row.chipDamage}</sub></span>}
+                        format={(row) => (
+                            <span>
+                                {row.baseDamage}
+                                {row.chipDamage > 0 && <sub className="yomi-block">{row.chipDamage}</sub>}
+                            </span>
+                        )}
                     />
                     <SortHeader name="Max Combo" sort={rankSort} rowKey="maxCombo" />
                     <SortHeader name="Max Damage" sort={valueSort} rowKey="maxDamage" />
