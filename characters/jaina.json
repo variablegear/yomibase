@@ -1,7 +1,9 @@
 {
     "character": {
         "summary": {
-            "name": "Jaina Stormborne",
+            "name": "Jaina",
+            "fullName": "Jaina Stormborne",
+            "title": "Phoenix Archer",
             "hitPoints": 85,
             "maxCombo": 5,
             "attackSpeed": 6,
