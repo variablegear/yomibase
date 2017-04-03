@@ -39,7 +39,7 @@
         function rankSort(a, b) {
             a = typeof a === "string" ? a[0] : a;
             b = typeof b === "string" ? b[0] : b;
-            
+
             const ranks = {
                 T: 10,
                 J: 11,
@@ -49,14 +49,14 @@
             }
             return (ranks[a] || a) - (ranks[b] || b);
         };
-        
+
         function valueSort(a, b) {
             a = typeof a === "string" ? a.replace(/[^\d.].*/, "") : a;
             b = typeof b === "string" ? b.replace(/[^\d.].*/, "") : b;
-            
+
             return a - b;
         }
-        
+
         function sortName(a, b) {
             if (a < b) {
                 return -1;
@@ -66,11 +66,11 @@
             }
             return 0;
         }
-        
+
         function sortByColumn(idx, sort) {
             return (a, b) => sort(a[idx], b[idx]);
         }
-        
+
         function Selector(props) {
             return (
                 <DropdownButton
@@ -112,11 +112,11 @@
             componentWillUnmount() {
                 this.serverRequest.abort();
             }
-            
+
             loadCharacter(character, slot) {
                 var _this = this;
                 console.log(character, slot, this.state);
-                
+
                 if (this.state.characterData[character] == null) {
                     this.serverRequest = axios
                         .get("characters/"+character.toLowerCase()+".json")
@@ -143,7 +143,7 @@
             render() {
                 const leftCharacter = this.state.characterData[this.state.left];
                 const rightCharacter = this.state.characterData[this.state.right];
-                
+
                 return (
                     <div>
                         <Navbar staticTop componentClass="header" className="bs-docs-nav" role="banner">
@@ -250,7 +250,7 @@
                 <th key={headerDef.props.name} onClick={onClick}>{headerDef.props.name}</th>
             );
         };
-        
+
         class SortHeader extends React.Component {};
 
         class SortableTable extends React.Component {
@@ -261,7 +261,7 @@
                     sortOrder: 1,
                 };
             }
-            
+
             onSort(sortIdx, event) {
                 event.preventDefault();
                 if (sortIdx == this.state.sortIdx) {
@@ -273,7 +273,7 @@
                     });
                 }
             }
-            
+
             sortedData() {
                 if (this.state.sortIdx != null) {
                     const colSorter = this.props.children[this.state.sortIdx].props.sort;
@@ -286,7 +286,7 @@
                 } else {
                     return this.props.data;
                 }
-                
+
             }
 
             render() {
@@ -338,7 +338,7 @@
                 </SortableTable>
             );
         };
-        
+
         var destination = document.querySelector("#container");
         ReactDOM.render(
             <ReactRouter.Router history={ReactRouter.hashHistory}>
