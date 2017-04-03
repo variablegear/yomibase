@@ -82,6 +82,8 @@
                         eventKey={char}
                         disabled={char == props.disabled}
                     >{char}</MenuItem>)}
+                    <MenuItem divider/>
+                    <MenuItem onSelect={props.onReset}>Reset...</MenuItem>
                 </DropdownButton>
              );
         }
@@ -156,23 +158,32 @@
                                 <Row>
                                     <Col md={6}>
                                         <Selector
-                                            onSelect={(c) => this.loadCharacter(c, "left")}
+                                            onSelect={(c) => c && this.loadCharacter(c, "left")}
                                             characters={this.state.characters}
                                             current={this.state.left}
                                             disabled={this.state.right}
                                             slot="left"
                                             default="Pick a character..."
+                                            onReset={() => {
+                                                this.setState({
+                                                    left: null,
+                                                    right: null
+                                                });
+                                            }}
                                         />
                                     </Col>
                                     {this.state.left &&
                                         <Col md={6}>
                                             <Selector
-                                                onSelect={(c) => this.loadCharacter(c, "right")}
+                                                onSelect={(c) => c && this.loadCharacter(c, "right")}
                                                 characters={this.state.characters}
                                                 current={this.state.right}
                                                 disabled={this.state.left}
                                                 slot="right"
                                                 default="Match up against..."
+                                                onReset={() => {
+                                                    this.setState({right: null});
+                                                }}
                                             />
                                         </Col>
                                     }
