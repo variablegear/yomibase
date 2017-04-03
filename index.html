@@ -328,8 +328,6 @@
             const leftAttacks = (left && left.attacks.map((row) => [left.summary.name].concat(row))) || [];
             const rightAttacks = (right && right.attacks.map((row) => [right.summary.name].concat(row))) || [];
 
-            console.log(leftAttacks.concat(rightAttacks));
-
             return (
                 <SortableTable data={leftAttacks.concat(rightAttacks)}>
                     <SortHeader key name="Character" sort={nameSort}/>
@@ -349,7 +347,6 @@
             const leftThrows = (left && left.throws.map((row) => [left.summary.name].concat(row))) || [];
             const rightThrows = (right && right.throws.map((row) => [right.summary.name].concat(row))) || [];
 
-            console.log(leftThrows.concat(rightThrows));
             return (
                 <SortableTable data={leftThrows.concat(rightThrows)}>
                     <SortHeader key name="Character" sort={nameSort}/>
