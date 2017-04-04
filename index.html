@@ -280,15 +280,15 @@
                         <tbody>
                             <tr>
                                 <td><strong className="yomi-attack">Normal attack speed</strong>:</td>
-                                <td>x.{props.attackSpeed} (x = card rank)</td>
+                                <td>{props.attackDefaults.speedOffset.toFixed(1).replace('0.', 'x.')} (x = card rank)</td>
                             </tr>
                             <tr>
                                 <td><strong>Normal throw speed</strong>:</td>
-                                <td>x.{props.throwSpeed} (x = card rank) {props.throwCP} {props.throwKD}</td>
+                                <td>{props.throwDefaults.speedOffset.toFixed(1).replace('0.', 'x.')} (x = card rank) {props.throwCP} {props.throwKD}</td>
                             </tr>
                             <tr>
                                 <td><strong>Normal throw damage</strong>:</td>
-                                <td>{props.throwDamage}</td>
+                                <td>{props.throwDefaults.damage}</td>
                             </tr>
                         </tbody>
                     </Table>
@@ -415,61 +415,63 @@
             }
         };
 
+        function speedValue(row) {
+            if (row.speed == null) {
+                return rankValue(row.rank) + row.speedOffset;
+            } else {
+                return parseFloat(row.speed);
+            }
+        }
+
+        function Move(rank, pumpWith, name) {
+            return (
+                <div>
+                    {rank}
+                    <span className="text-muted">{pumpWith}</span>
+                    {name && <div><small className="move-name">{name}</small></div>}
+                </div>
+            );
+        }
+
+        function Damage(damage, chip, pump) {
+            return (
+                <span>
+                    {damage}
+                    {chip > 0 && <sub className="yomi-block">{chip}</sub>}
+                    {pump > 0 && <span className="text-muted">+{pump}</span>}
+                </span>
+            )
+        }
+
+
+        function withCharacter(character, moveKey, defaultKey) {
+            return (character && character[moveKey].map((row) => Object.assign({
+                "character": character.summary.name,
+            }, character.summary[defaultKey], row))) || [];
+        }
 
         class Attacks extends React.Component {
-
-            withCharacter(character, move) {
-                return (character && character[move].map((row) => Object.assign({
-                    "character": character.summary.name,
-                    "summary": character.summary
-                }, row))) || [];
-            }
-
             render() {
-                const leftAttacks = this.withCharacter(this.props.left, 'attacks');
-                const rightAttacks = this.withCharacter(this.props.right, 'attacks');
+                const leftAttacks = withCharacter(this.props.left, 'attacks', 'attackDefaults');
+                const rightAttacks = withCharacter(this.props.right, 'attacks', 'attackDefaults');
 
                 return (
                     <SortableTable data={leftAttacks.concat(rightAttacks)}>
                         <SortHeader isKey name="Character" sort={nameSort} rowKey="character" />
                         <SortHeader
                             name="Speed"
-                            sort={(row) => {
-                                if (row.speed == null) {
-                                    return rankValue(row.rank) + row.summary.attackSpeed / 10
-                                } else {
-                                    return parseFloat(row.speed)
-                                }
-                            }}
-                            format={(row) => {
-                                if (row.speed == null) {
-                                    return rankValue(row.rank) + "." + row.summary.attackSpeed;
-                                } else {
-                                    return row.speed.toFixed(1);
-                                }
-                            }}
+                            sort={(row) => speedValue(row)}
+                            format={(row) => speedValue(row).toFixed(1)}
                         />
                         <SortHeader
                             isKey={(row) => row.rank.toString().concat(row.name)}
                             name="Rank"
                             sort={(row) => rankValue(row.rank)}
-                            format={(row) => (
-                                <div>
-                                    {row.rank}
-                                    <span className="text-muted">{row.pumpWith}</span>
-                                    {row.name && <div><small className="move-name">{row.name}</small></div>}
-                                </div>
-                            )}
+                            format={(row) => Move(row.rank, row.pumpWith, row.name)}
                         />
                         <SortHeader name="Damage"
                             sort={(row) => row.damage || rankValue(row.rank)}
-                            format={(row) => (
-                                <span>
-                                    {row.damage || rankValue(row.rank)}
-                                    {row.chip > 0 && <sub className="yomi-block">{row.chip}</sub>}
-                                    {row.pump > 0 && <span className="text-muted">+{row.pump}</span>}
-                                </span>
-                            )}
+                            format={(row) => Damage(row.damage || rankValue(row.rank), row.chip, row.pump)}
                         />
                         <SortHeader name="Max Combo" sort={rankSort} rowKey="maxCombo" />
                         <SortHeader name="Max Damage" sort={valueSort} rowKey="maxDamage" />
@@ -482,57 +484,28 @@
         };
 
         class Throws extends React.Component {
-            withCharacter(character, move) {
-                return (character && character[move].map((row) => Object.assign({
-                    "character": character.summary.name,
-                    "summary": character.summary
-                }, row))) || [];
-            }
 
             render() {
-                const leftThrows = this.withCharacter(this.props.left, "throws");
-                const rightThrows = this.withCharacter(this.props.right, "throws");
+                const leftThrows = withCharacter(this.props.left, "throws", "throwDefaults");
+                const rightThrows = withCharacter(this.props.right, "throws", "throwDefaults");
 
                 return (
                     <SortableTable data={leftThrows.concat(rightThrows)}>
                         <SortHeader isKey name="Character" sort={nameSort} rowKey="character" />
                         <SortHeader
                             name="Speed"
-                            sort={(row) => {
-                                if (row.speed == null) {
-                                    return rankValue(row.rank) + row.summary.throwSpeed / 10
-                                } else {
-                                    return parseFloat(row.speed)
-                                }
-                            }}
-                            format={(row) => {
-                                if (row.speed == null) {
-                                    return rankValue(row.rank) + "." + row.summary.throwSpeed;
-                                } else {
-                                    return row.speed.toFixed(1);
-                                }
-                            }}
+                            sort={(row) => speedValue(row)}
+                            format={(row) => speedValue(row).toFixed(1)}
                         />
                         <SortHeader
                             isKey={(row) => row.rank.toString().concat(row.name)}
                             name="Rank"
                             sort={(row) => rankValue(row.rank)}
-                            format={(row) => (
-                                <div>
-                                    {row.rank}
-                                    <span className="text-muted">{row.pumpWith}</span>
-                                    {row.name && <div><small className="move-name">{row.name}</small></div>}
-                                </div>
-                            )}
+                            format={(row) => Move(row.rank, row.pumpWith, row.name)}
                         />
                         <SortHeader name="Damage"
-                            sort={(row) => row.damage || row.summary.throwDamage}
-                            format={(row) => (
-                                <span>
-                                    {row.damage || row.summary.throwDamage}
-                                    {row.pump > 0 && <span className="text-muted">+{row.pump}</span>}
-                                </span>
-                            )}
+                            sort={(row) => row.damage}
+                            format={(row) => Damage(row.damage, null, row.pump)}
                         />
                         <SortHeader name="Max Combo" sort={rankSort} rowKey="maxCombo" />
                         <SortHeader name="Max Damage" sort={valueSort} rowKey="maxDamage" />

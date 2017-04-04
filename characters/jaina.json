@@ -6,9 +6,13 @@
             "title": "Phoenix Archer",
             "hitPoints": 85,
             "maxCombo": 5,
-            "attackSpeed": 6,
-            "throwSpeed": 6,
-            "throwDamage": 7,
+            "attackDefaults": {
+                "speedOffset": 0.6
+            },
+            "throwDefaults": {
+                "speedOffset": 0.6,
+                "damage": 7
+            },
             "attacks": [2, 3, 4, 5, 6, "J", "Q", "K", "A"],
             "throws": [6, 7, 8, 9, "T"],
             "blocks": [7, 8, 9, "T"],

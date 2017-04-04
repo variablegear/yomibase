@@ -6,9 +6,13 @@
             "title": "Mentor Dragon",
             "hitPoints": 90,
             "maxCombo": 3,
-            "attackSpeed": 2,
-            "throwSpeed": 8,
-            "throwDamage": 8,
+            "attackDefaults": {
+                "speedOffset": 0.2
+            },
+            "throwDefaults": {
+                "speedOffset": 0.8,
+                "damage": 8
+            },
             "attacks": [4, 5, 6, 7, 8, "J", "Q", "A"],
             "throws": ["2*", 3, 4, 5, 9, "T", "K", "A"],
             "blocks": ["2*", 3, 6, 7, 8],
