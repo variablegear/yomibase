@@ -109,16 +109,18 @@
         }
 
         function Selector(props) {
+            const current = props.characters.filter((char) => char.toLowerCase() == props.current);
             return (
                 <DropdownButton
-                    onSelect={props.onSelect}
-                    title={props.current || props.default}
+                    title={current[0] || props.default}
                     id={props.slot+"-character-selector"}
                 >
-                    {props.characters.map((char) => <MenuItem key={char}
-                        eventKey={char}
-                        disabled={char == props.disabled}
-                    >{char}</MenuItem>)}
+                    {props.characters.map((char) => (
+                        <MenuItem key={char} onSelect={props.onSelect}
+                            eventKey={char.toLowerCase()}
+                            disabled={char.toLowerCase() == props.disabled}
+                        >{char}</MenuItem>
+                    ))}
                     <MenuItem divider/>
                     <MenuItem onSelect={props.onReset}>Reset...</MenuItem>
                 </DropdownButton>
@@ -140,11 +142,14 @@
 
         class YomiBase extends React.Component {
 
+            static contextTypes = {
+                router: ReactRouter.routerShape
+            };
+
             constructor(props) {
+                console.log(props);
                 super(props);
                 this.state = {
-                    left: null,
-                    right: null,
                     characters: [],
                     characterData: {}
                 };
@@ -159,6 +164,13 @@
                             characters: result.data.characters
                         });
                     })
+                this.loadCharacter(this.props.params.left, "left");
+                this.loadCharacter(this.props.params.right, "right");
+            }
+
+            componentDidUpdate() {
+                this.loadCharacter(this.props.params.left, "left");
+                this.loadCharacter(this.props.params.right, "right");
             }
 
             componentWillUnmount() {
@@ -167,6 +179,10 @@
 
             loadCharacter(character, slot) {
                 var _this = this;
+
+                if (character == null) {
+                    return null;
+                }
 
                 if (this.state.characterData[character] == null) {
                     this.serverRequest = axios
@@ -178,20 +194,15 @@
                                 var state = {
                                     characterData: charData,
                                 };
-                                state[slot] = character;
                                 return state;
                             });
                         })
-                } else {
-                    var state = {};
-                    state[slot] = character;
-                    this.setState(state);
                 }
             }
 
             render() {
-                const leftCharacter = this.state.characterData[this.state.left];
-                const rightCharacter = this.state.characterData[this.state.right];
+                const leftCharacter = this.state.characterData[this.props.params.left];
+                const rightCharacter = this.state.characterData[this.props.params.right];
 
                 return (
                     <div>
@@ -208,32 +219,25 @@
                                 <Row>
                                     <Col md={6}>
                                         <Selector
-                                            onSelect={(c) => c && this.loadCharacter(c, "left")}
+                                            onSelect={(c) => this.context.router.push({pathname: "/" + c})}
                                             characters={this.state.characters}
-                                            current={this.state.left}
-                                            disabled={this.state.right}
+                                            current={this.props.params.left}
+                                            disabled={this.props.params.right}
                                             slot="left"
                                             default="Pick a character..."
-                                            onReset={() => {
-                                                this.setState({
-                                                    left: null,
-                                                    right: null
-                                                });
-                                            }}
+                                            onReset={() => this.context.router.push("/")}
                                         />
                                     </Col>
-                                    {this.state.left &&
+                                    {this.props.params.left &&
                                         <Col md={6}>
                                             <Selector
-                                                onSelect={(c) => c && this.loadCharacter(c, "right")}
+                                                onSelect={(c) => this.context.router.push({pathname: "/" + this.props.params.left + "/" + c})}
                                                 characters={this.state.characters}
-                                                current={this.state.right}
-                                                disabled={this.state.left}
+                                                current={this.props.params.right}
+                                                disabled={this.props.params.left}
                                                 slot="right"
                                                 default="Match up against..."
-                                                onReset={() => {
-                                                    this.setState({right: null});
-                                                }}
+                                                onReset={(c) => this.context.router.push("/" + this.props.params.left)}
                                             />
                                         </Col>
                                     }
@@ -579,8 +583,9 @@
         var destination = document.querySelector("#container");
         ReactDOM.render(
             <ReactRouter.Router history={ReactRouter.hashHistory}>
-                <ReactRouter.Route path="/" component={YomiBase}>
-                </ReactRouter.Route>
+                <ReactRouter.Route path="/" component={YomiBase}/>
+                <ReactRouter.Route path="/:left" component={YomiBase}/>
+                <ReactRouter.Route path="/:left/:right" component={YomiBase}/>
             </ReactRouter.Router>,
             destination
         );
