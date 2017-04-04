@@ -447,7 +447,7 @@
         }
 
         function Move(props) {
-            const abilities = props.abilities.filter((ability) => ability.rank == rank);
+            const abilities = props.abilities.filter((ability) => ability.rank == props.rank);
             var rank;
             if (abilities.length > 0) {
                 const tooltip = (
