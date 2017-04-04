@@ -452,7 +452,7 @@
             if (abilities.length > 0) {
                 const tooltip = (
                     <Tooltip
-                        id={rank.toString().concat(abilities.map((ability) => ability.name))}
+                        id={props.rank.toString().concat(abilities.map((ability) => ability.name))}
                     >
                         <dl>{abilities.map((ability) => CardAbility(ability))}</dl>
                     </Tooltip>
