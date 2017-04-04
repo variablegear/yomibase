@@ -39,23 +39,23 @@
             ]
         },
         "attacks": [
-            [2.6, 2, 2, "(1)", "", "", "", "", "Chip Damage only on Red normals"],
-            [3.6, 3, 3, "(2)", "", "", "", "", "Chip Damage only on Red normals"],
-            [4.6, 4, 4, "(3)", "", "", "", "", "Chip Damage only on Red normals"],
-            [5.6, 5, 5, "(4)", "", "", "", "", "Chip Damage only on Red normals"],
-            [6.6, 6, 6, "(5)", "", "", "", "", "Chip Damage only on Red normals"],
-            [2.6, "J 'Flame Arrow'", 6, 5, "-", "-", "-", "-", ""],
-            [4.6, "J 'Charged Shot'", 8, 7, "", "", "", "", ""],
-            [0.2, "Q 'Dragonheart'", "8+5", 1, "-", "-", "-", "-", ""],
-            [2.4, "K 'Crossfire Kick'", "6+7", 3, "", "", "", "", ""],
-            [0.8, "A 'Red Dragon'", "10+9", 2, "", "", "", "", ""],
-            [0.2, "AA 'Letter J'", 18, 4, "-", "-", "-", "-", ""]
+            {"rank": 2, "chip": "(1)", "notes": "Chip Damage only on Red"},
+            {"rank": 3, "chip": "(2)", "notes": "Chip Damage only on Red"},
+            {"rank": 4, "chip": "(3)", "notes": "Chip Damage only on Red"},
+            {"rank": 5, "chip": "(4)", "notes": "Chip Damage only on Red"},
+            {"rank": 6, "chip": "(5)", "notes": "Chip Damage only on Red"},
+            {"speed": 2.6, "rank": "J", "name": "Flame Arrow", "damage": 6, "chip": 5},
+            {"speed": 4.6, "rank": "J", "name": "Charged Shot", "damage": 8, "chip": 7},
+            {"speed": 0.2, "rank": "Q", "name": "Dragonheart", "pumpWith": "+X", "damage": 8, "pump": 5, "chip": 1},
+            {"speed": 2.4, "rank": "K", "name": "Crossfire Kick", "pumpWith": "+K+K+K", "damage": 6, "pump": 7, "chip": 3},
+            {"speed": 0.8, "rank": "A", "name": "Red Dragon", "pumpWith": "+A+A+A", "damage": 10, "pump": 9, "chip": 2},
+            {"speed": 0.2, "rank": "AA", "name": "Letter J", "damage": 18, "chip": 4}
         ],
         "throws": [
-            [7.6, 7, 7, "", "", "", "", ""],
-            [8.6, 8, 7, "", "", "", "", ""],
-            [9.6, 9, 7, "", "", "", "", ""],
-            [10.6, 10, 7, "", "", "", "", ""]
+            {"rank": 7},
+            {"rank": 8},
+            {"rank": 9},
+            {"rank": "T"}
         ]
     }
 }

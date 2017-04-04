@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script src="https://npmcdn.com/react-router@3.0.2/umd/ReactRouter.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
@@ -25,6 +25,9 @@
         }
         .yomi-dodge {
             color: #670d9b;
+        }
+        .move-name {
+            white-space: nowrap;
         }
     </style>
 </head>
@@ -50,10 +53,21 @@
         var MenuItem = ReactBootstrap.MenuItem;
         var Glyphicon = ReactBootstrap.Glyphicon;
 
-        function rankSort(a, b) {
-            a = typeof a === "string" ? a[0] : a;
-            b = typeof b === "string" ? b[0] : b;
+        function keyedSort(list, keyFn, reversed) {
+            console.log(list, keyFn, reversed);
+            var keyed = list.map((el) => ({
+                key: keyFn(el),
+                value: el
+            }));
 
+            keyed.sort((a, b) => (reversed ? -1 : 1) * (+(a.key > b.key) || +(a.key === b.key) - 1))
+            console.log(keyed);
+
+            return keyed.map((el) => el.value);
+        }
+
+        function rankValue(rank) {
+            rank = typeof rank === "string" ? rank[0] : rank;
             const ranks = {
                 T: 10,
                 J: 11,
@@ -61,7 +75,11 @@
                 K: 13,
                 A: 14,
             }
-            return (ranks[a] || a) - (ranks[b] || b);
+            return (ranks[rank] || rank);
+        }
+
+        function rankSort(a, b) {
+            return rankValue(a) - rankValue(b);
         };
 
         function valueSort(a, b) {
@@ -226,12 +244,12 @@
                             </Row>
                             {(leftCharacter || rightCharacter) &&
                                 <Row>
-                                    <Col md={12}>{Attacks(leftCharacter, rightCharacter)}</Col>
+                                    <Col md={12}><Attacks left={leftCharacter} right={rightCharacter}/></Col>
                                 </Row>
                             }
                             {(leftCharacter || rightCharacter) &&
                                 <Row>
-                                    <Col md={12}>{Throws(leftCharacter, rightCharacter)}</Col>
+                                    <Col md={12}><Throws left={leftCharacter} right={rightCharacter}/></Col>
                                 </Row>
                             }
                             <Row>
@@ -304,10 +322,10 @@
             if (headerDef.props.sort) {
                 if (currentSort.sortIdx != idx) {
                     sortGlyph = <Glyphicon glyph="sort"/>;
-                } else if (currentSort.sortOrder == 1) {
-                    sortGlyph = <Glyphicon glyph="sort-by-attributes"/>;
-                } else {
+                } else if (currentSort.reversed) {
                     sortGlyph = <Glyphicon glyph="sort-by-attributes-alt"/>;
+                } else {
+                    sortGlyph = <Glyphicon glyph="sort-by-attributes"/>;
                 }
             }
             return (
@@ -329,18 +347,18 @@
                 super(props);
                 this.state = {
                     sortIdx: 1,
-                    sortOrder: 1,
+                    reversed: false,
                 };
             }
 
             onSort(sortIdx, event) {
                 event.preventDefault();
                 if (sortIdx == this.state.sortIdx) {
-                    this.setState({sortOrder: this.state.sortOrder * -1});
+                    this.setState({reversed: !this.state.reversed});
                 } else {
                     this.setState({
                         sortIdx: sortIdx,
-                        sortOrder: 1
+                        reversed: false
                     });
                 }
             }
@@ -349,15 +367,23 @@
                 if (this.state.sortIdx != null) {
                     const sortHeader = this.props.children[this.state.sortIdx];
                     var data = this.props.data.slice();
-                    data.sort(sortByKey(
-                        sortHeader.props.rowKey,
-                        (a, b) => this.state.sortOrder * sortHeader.props.sort(a, b)
-                    ));
-                    return data;
+                    return keyedSort(data, sortHeader.props.sort, this.state.reversed);
                 } else {
                     return this.props.data;
                 }
 
+            }
+
+            formatEntry(header, row) {
+                return (
+                    <td key={header.props.name}>{
+                        (header.props.format && header.props.format(row)) || row[header.props.rowKey]
+                    }</td>
+                );
+            }
+
+            formatKey(header, row) {
+                return (typeof header.props.isKey == "function" && header.props.isKey(row)) || row[header.props.rowKey];
             }
 
             render() {
@@ -366,12 +392,10 @@
                             this.props.children.filter(
                                 (header) => header.props.isKey
                             ).map(
-                                (header) => row[header.props.rowKey]
+                                (header) => this.formatKey(header, row)
                             )
                     }>
-                        {this.props.children.map((header, idx) => <td key={idx}>{
-                            (header.props.format && header.props.format(row)) || row[header.props.rowKey]
-                        }</td>)}
+                        {this.props.children.map((header) => this.formatEntry(header, row))}
                     </tr>
                 ));
                 return (
@@ -391,78 +415,133 @@
             }
         };
 
-        function attackObject(character, row) {
-            return {
-                "name": character,
-                "speed": row[0],
-                "rank": row[1],
-                "baseDamage": row[2],
-                "chipDamage": row[3],
-                "maxCombo": row[4],
-                "maxDamage": row[5],
-                "goodCombo": row[6],
-                "goodDamage": row[7],
-                "notes": row[8]
+
+        class Attacks extends React.Component {
+
+            withCharacter(character, move) {
+                return (character && character[move].map((row) => Object.assign({
+                    "character": character.summary.name,
+                    "summary": character.summary
+                }, row))) || [];
             }
-        }
 
-        function Attacks(left, right) {
-            const leftAttacks = (left && left.attacks.map((row) => attackObject(left.summary.name, row))) || [];
-            const rightAttacks = (right && right.attacks.map((row) => attackObject(right.summary.name, row))) || [];
+            render() {
+                const leftAttacks = this.withCharacter(this.props.left, 'attacks');
+                const rightAttacks = this.withCharacter(this.props.right, 'attacks');
 
-            return (
-                <SortableTable data={leftAttacks.concat(rightAttacks)}>
-                    <SortHeader isKey name="Character" sort={nameSort} rowKey="name" />
-                    <SortHeader name="Speed" sort={valueSort} rowKey="speed" />
-                    <SortHeader isKey name="Rank" sort={rankSort} rowKey="rank" />
-                    <SortHeader name="Damage" sort={valueSort}
-                        format={(row) => (
-                            <span>
-                                {row.baseDamage}
-                                {row.chipDamage > 0 && <sub className="yomi-block">{row.chipDamage}</sub>}
-                            </span>
-                        )}
-                    />
-                    <SortHeader name="Max Combo" sort={rankSort} rowKey="maxCombo" />
-                    <SortHeader name="Max Damage" sort={valueSort} rowKey="maxDamage" />
-                    <SortHeader name="Good Combo" sort={rankSort} rowKey="goodCombo" />
-                    <SortHeader name="Good Damage" sort={valueSort} rowKey="goodDamage" />
-                    <SortHeader name="Notes" rowKey="notes" />
-                </SortableTable>
-            );
+                return (
+                    <SortableTable data={leftAttacks.concat(rightAttacks)}>
+                        <SortHeader isKey name="Character" sort={nameSort} rowKey="character" />
+                        <SortHeader
+                            name="Speed"
+                            sort={(row) => {
+                                if (row.speed == null) {
+                                    return rankValue(row.rank) + row.summary.attackSpeed / 10
+                                } else {
+                                    return parseFloat(row.speed)
+                                }
+                            }}
+                            format={(row) => {
+                                if (row.speed == null) {
+                                    return rankValue(row.rank) + "." + row.summary.attackSpeed;
+                                } else {
+                                    return row.speed.toFixed(1);
+                                }
+                            }}
+                        />
+                        <SortHeader
+                            isKey={(row) => row.rank.toString().concat(row.name)}
+                            name="Rank"
+                            sort={(row) => rankValue(row.rank)}
+                            format={(row) => (
+                                <div>
+                                    {row.rank}
+                                    <span className="text-muted">{row.pumpWith}</span>
+                                    {row.name && <div><small className="move-name">{row.name}</small></div>}
+                                </div>
+                            )}
+                        />
+                        <SortHeader name="Damage"
+                            sort={(row) => row.damage || rankValue(row.rank)}
+                            format={(row) => (
+                                <span>
+                                    {row.damage || rankValue(row.rank)}
+                                    {row.chip > 0 && <sub className="yomi-block">{row.chip}</sub>}
+                                    {row.pump > 0 && <span className="text-muted">+{row.pump}</span>}
+                                </span>
+                            )}
+                        />
+                        <SortHeader name="Max Combo" sort={rankSort} rowKey="maxCombo" />
+                        <SortHeader name="Max Damage" sort={valueSort} rowKey="maxDamage" />
+                        <SortHeader name="Good Combo" sort={rankSort} rowKey="goodCombo" />
+                        <SortHeader name="Good Damage" sort={valueSort} rowKey="goodDamage" />
+                        <SortHeader name="Notes" rowKey="notes" />
+                    </SortableTable>
+                );
+            }
         };
 
-        function throwObject(character, row) {
-            return {
-                "name": character,
-                "speed": row[0],
-                "rank": row[1],
-                "baseDamage": row[2],
-                "maxCombo": row[3],
-                "maxDamage": row[4],
-                "goodCombo": row[5],
-                "goodDamage": row[6],
-                "notes": row[7]
+        class Throws extends React.Component {
+            withCharacter(character, move) {
+                return (character && character[move].map((row) => Object.assign({
+                    "character": character.summary.name,
+                    "summary": character.summary
+                }, row))) || [];
             }
-        }
 
-        function Throws(left, right) {
-            const leftThrows = (left && left.throws.map((row) => throwObject(left.summary.name, row))) || [];
-            const rightThrows = (right && right.throws.map((row) => throwObject(right.summary.name, row))) || [];
+            render() {
+                const leftThrows = this.withCharacter(this.props.left, "throws");
+                const rightThrows = this.withCharacter(this.props.right, "throws");
 
-            return (
-                <SortableTable data={leftThrows.concat(rightThrows)}>
-                    <SortHeader isKey name="Character" sort={nameSort} rowKey="name" />
-                    <SortHeader name="Speed" sort={valueSort} rowKey="speed" />
-                    <SortHeader isKey name="Rank" sort={rankSort} rowKey="rank" />
-                    <SortHeader name="Damage" sort={valueSort} rowKey="baseDamage" />
-                    <SortHeader name="Max Combo" sort={rankSort} rowKey="maxCombo" />
-                    <SortHeader name="Max Damage" sort={valueSort} rowKey="maxDamage" />
-                    <SortHeader name="Good Combo" sort={rankSort} rowKey="goodCombo" />
-                    <SortHeader name="Good Damage" sort={valueSort} rowKey="goodDamage" />
-                    <SortHeader name="Notes" rowKey="notes" />
-                </SortableTable>
-            );
+                return (
+                    <SortableTable data={leftThrows.concat(rightThrows)}>
+                        <SortHeader isKey name="Character" sort={nameSort} rowKey="character" />
+                        <SortHeader
+                            name="Speed"
+                            sort={(row) => {
+                                if (row.speed == null) {
+                                    return rankValue(row.rank) + row.summary.throwSpeed / 10
+                                } else {
+                                    return parseFloat(row.speed)
+                                }
+                            }}
+                            format={(row) => {
+                                if (row.speed == null) {
+                                    return rankValue(row.rank) + "." + row.summary.throwSpeed;
+                                } else {
+                                    return row.speed.toFixed(1);
+                                }
+                            }}
+                        />
+                        <SortHeader
+                            isKey={(row) => row.rank.toString().concat(row.name)}
+                            name="Rank"
+                            sort={(row) => rankValue(row.rank)}
+                            format={(row) => (
+                                <div>
+                                    {row.rank}
+                                    <span className="text-muted">{row.pumpWith}</span>
+                                    {row.name && <div><small className="move-name">{row.name}</small></div>}
+                                </div>
+                            )}
+                        />
+                        <SortHeader name="Damage"
+                            sort={(row) => row.damage || row.summary.throwDamage}
+                            format={(row) => (
+                                <span>
+                                    {row.damage || row.summary.throwDamage}
+                                    {row.pump > 0 && <span className="text-muted">+{row.pump}</span>}
+                                </span>
+                            )}
+                        />
+                        <SortHeader name="Max Combo" sort={rankSort} rowKey="maxCombo" />
+                        <SortHeader name="Max Damage" sort={valueSort} rowKey="maxDamage" />
+                        <SortHeader name="Good Combo" sort={rankSort} rowKey="goodCombo" />
+                        <SortHeader name="Good Damage" sort={valueSort} rowKey="goodDamage" />
+                        <SortHeader name="Notes" rowKey="notes" />
+                    </SortableTable>
+                );
+            }
         };
 
         var destination = document.querySelector("#container");

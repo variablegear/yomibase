@@ -39,27 +39,27 @@
             ]
         },
         "attacks": [
-            [4.2, 4, 4, 0, "", "", "", "", ""],
-            [5.2, 5, 5, 0, "", "", "", "", ""],
-            [6.2, 6, 6, 0, "", "", "", "", ""],
-            [7.2, 7, 7, 0, "", "", "", "", ""],
-            [8.2, 8, 8, 0, "", "", "", "", ""],
-            [2.4, "J 'Whirlwind'", "8+8", 2, "", "", "", "", ""],
-            [2.4, "J 'Toxic Breath'", 9, 2, "", "", "", "", "Requires Dragon Form"],
-            [1.2, "Q 'Rising Mountain'", 10, 1, "-", "-", "-", "-", ""],
-            [0.6, "Q 'Dragon Mountain'", 14, 2, "", "", "", "", "Requires Dragon Form"],
-            [1.2, "AA 'Wrath of Earth'", 20, 2, "-", "-", "-", "-", ""]
+            {"rank": 4},
+            {"rank": 5},
+            {"rank": 6},
+            {"rank": 7},
+            {"rank": 8},
+            {"speed": 2.4, "rank": "J", "pumpWith": "+J", "name": "Whirlwind", "damage": 8, "pump": 8, "chip": 2},
+            {"speed": 2.4, "rank": "J", "name": "Toxic Breath", "damage": 9, "chip": 2, "notes": "Requires Dragon Form"},
+            {"speed": 1.2, "rank": "Q", "name": "Rising Mountain", "damage": 10, "chip": 1},
+            {"speed": 0.6, "rank": "Q", "name": "Dragon Mountain", "damage": 14, "chip": 2, "notes": "Requires Dragon Form"},
+            {"speed": 1.2, "rank": "AA", "name": "Wrath of Earth", "damage": 20, "chip": 2}
         ],
         "throws": [
-            [2.8, 2, 8, "", "", "", "", ""],
-            [3.8, 3, 8, "", "", "", "", ""],
-            [4.8, 4, 8, "", "", "", "", ""],
-            [5.8, 5, 8, "", "", "", "", ""],
-            [9.8, 9, 8, "", "", "", "", ""],
-            [10.8, "T", 8, "", "", "", ""],
-            [4.4, "K 'Rushing River'", 12, "-", "-", "-", "-", ""],
-            [1.8, "K 'Talon Swoop'", 17, "-", "-", "-", "-", "Requires Dragon Form"],
-            ["0.0", "AA 'Final Dragon Buster'", "20+16", "-", "-", "-", "-", "Requires Dragon Form"]
+            {"rank": 2},
+            {"rank": 3},
+            {"rank": 4},
+            {"rank": 5},
+            {"rank": 9},
+            {"rank": "T"},
+            {"speed": 4.4, "rank": "K", "name": "Rushing River", "damage": 12},
+            {"speed": 1.8, "rank": "K", "name": "Talon Swoop", "damage": 17, "notes": "Requires Dragon Form"},
+            {"speed": 0.0, "rank": "AA", "pumpWith": "+A+A", "name": "Final Dragon Buster", "damage": 20, "pump": 16, "notes": "Requires Dragon Form"}
         ]
     }
 }
