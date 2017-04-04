@@ -44,19 +44,19 @@
             {"rank": 4},
             {"rank": 5},
             {"rank": 6},
-            {"speed": 1.4, "rank": "J", "damage": 5, "chip": 1},
-            {"speed": 0.0, "rank": "Q", "pumpWith": "+X+X", "damage": 1, "pump": 4, "chip": 1},
-            {"speed": 2.2, "rank": "K", "pumpWith": "+X+X", "damage": 5, "pump": 3, "chip": 2},
-            {"speed": 1.0, "rank": "A", "pumpWith": "+A+A+A", "damage": 9, "pump": 9, "chip": 3,
+            {"speed": 1.4, "rank": "J", "name": "Esper Dash", "damage": 5, "chip": 1},
+            {"speed": 0.0, "rank": "Q", "name": "Ninpo Flash", "pumpWith": "+X+X", "damage": 1, "pump": 4, "chip": 1},
+            {"speed": 2.2, "rank": "K", "name": "Starlight Kick", "pumpWith": "+X+X", "damage": 5, "pump": 3, "chip": 2},
+            {"speed": 1.0, "rank": "A", "pumpWith": "+A+A+A", "name": "Shuriken Hail", "damage": 9, "pump": 9, "chip": 3,
              "maxCombo": "A+++", "maxDamage": 36, "goodCombo": "A++", "goodDamage": "27"},
-            {"speed": 1.2, "rank": "AA", "damage": 17, "chip": 3}
+            {"speed": 1.2, "rank": "AA", "name": "Surprise Gift", "damage": 17, "chip": 3}
         ],
         "throws": [
             {"rank": 7},
             {"rank": 8},
             {"rank": 9},
             {"rank": "T"},
-            {"speed": 9.2, "rank": "K", "damage": 6}
+            {"speed": 9.2, "rank": "K", "name": "Starlight Tumbler", "damage": 6}
         ]
     }
 }
