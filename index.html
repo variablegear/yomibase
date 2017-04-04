@@ -31,6 +31,9 @@
         .move-name {
             white-space: nowrap;
         }
+        .combo-points {
+            line-height: 0.75;
+        }
     </style>
 </head>
 
@@ -285,6 +288,14 @@
                     <Table>
                         <tbody>
                             <tr>
+                                <td><strong>Hit Points</strong>:</td>
+                                <td>{props.hitPoints}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Max Combo</strong>:</td>
+                                <td><ComboPoints count={props.maxCombo}/></td>
+                            </tr>
+                            <tr>
                                 <td><strong className="yomi-attack">Normal attack speed</strong>:</td>
                                 <td>{props.attackDefaults.speedOffset.toFixed(1).replace('0.', 'x.')} (x = card rank)</td>
                             </tr>
@@ -296,10 +307,6 @@
                                 <td><strong>Normal throw damage</strong>:</td>
                                 <td>{props.throwDefaults.damage}</td>
                             </tr>
-                        </tbody>
-                    </Table>
-                    <Table>
-                        <tbody>
                             <tr>
                                 <td><strong>Attacks</strong>:</td>
                                 <td className="yomi-attack">{props.attacks.join(', ')}</td>
@@ -466,6 +473,19 @@
             )
         }
 
+        function ComboPoints(props) {
+            if (props.count == null) {
+                return null;
+            }
+            const points = "\u25CF".repeat(props.count) + "\u25CB".repeat(6-props.count);
+
+            return (
+                <div className="combo-points">
+                    <div>{points.slice(0, 3)}</div>
+                    <div>{points.slice(3, 6)}</div>
+                </div>
+            );
+        }
 
         function withCharacter(character, moveKey, defaultKey) {
             return (character && character[moveKey].map((row) => Object.assign({
