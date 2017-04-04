@@ -125,13 +125,13 @@
              );
         }
 
-        function EditLink(character) {
+        function EditLink(props) {
             return (
                 <Col md={6}>
-                    Found a bug, or have a suggestion about {character.summary.name}?
+                    Found a bug, or have a suggestion about {props.char.summary.name}?
                     Suggest a change <a href={
                         "https://github.com/cpennington/yomibase/edit/master/characters/" +
-                        character.summary.name.toLowerCase() +
+                        props.char.summary.name.toLowerCase() +
                         ".json"
                     }>here</a>
                 </Col>
@@ -258,8 +258,8 @@
                                 </Row>
                             }
                             <Row>
-                                {leftCharacter && EditLink(leftCharacter)}
-                                {rightCharacter && EditLink(rightCharacter)}
+                                {leftCharacter && <EditLink char={leftCharacter}/>}
+                                {rightCharacter && <EditLink char={rightCharacter}/>}
                             </Row>
                         </Grid>
                     </div>
@@ -330,12 +330,12 @@
             );
         };
 
-        function SortingHeader(idx, headerDef, currentSort, onClick) {
+        function SortingHeader(props) {
             var sortGlyph = null;
-            if (headerDef.props.sort) {
-                if (currentSort.sortIdx != idx) {
+            if (props.header.props.sort) {
+                if (props.current.sortIdx != props.idx) {
                     sortGlyph = <Glyphicon glyph="sort"/>;
-                } else if (currentSort.reversed) {
+                } else if (props.current.reversed) {
                     sortGlyph = <Glyphicon glyph="sort-by-attributes-alt"/>;
                 } else {
                     sortGlyph = <Glyphicon glyph="sort-by-attributes"/>;
@@ -343,10 +343,10 @@
             }
             return (
                 <th
-                    key={headerDef.props.name}
-                    onClick={onClick}
+                    key={props.header.props.name}
+                    onClick={props.onClick}
                 >
-                    {headerDef.props.name}
+                    {props.header.props.name}
                     {"\u00a0"}
                     <small>{sortGlyph}</small>
                 </th>
@@ -416,8 +416,14 @@
                         <thead>
                             <tr>
                                 {this.props.children.map((header, idx) => (
-                                    SortingHeader(idx, header, this.state, (e) => this.onSort(idx, e)))
-                                )}
+                                    <SortingHeader
+                                        key={header.props.name}
+                                        idx={idx}
+                                        header={header}
+                                        current={this.state}
+                                        onClick={(e) => this.onSort(idx, e)}
+                                    />
+                                ))}
                             </tr>
                         </thead>
                         <tbody>
@@ -436,8 +442,9 @@
             }
         }
 
-        function Move(abilities, rank, pumpWith, name) {
-            abilities = abilities.filter((ability) => ability.rank == rank);
+        function Move(props) {
+            const abilities = props.abilities.filter((ability) => ability.rank == rank);
+            var rank;
             if (abilities.length > 0) {
                 const tooltip = (
                     <Tooltip
@@ -449,26 +456,28 @@
 
                 rank = (
                     <OverlayTrigger placement="top" overlay={tooltip}>
-                        <div>{rank}*</div>
+                        <div>{props.rank}*</div>
                     </OverlayTrigger>
                 );
-            };
+            } else {
+                rank = props.rank;
+            }
 
             return (
                 <div>
                     {rank}
-                    <span className="text-muted">{pumpWith}</span>
-                    {name && <div><small className="move-name">{name}</small></div>}
+                    <span className="text-muted">{props.pump}</span>
+                    {props.name && <div><small className="move-name">{props.name}</small></div>}
                 </div>
             );
         }
 
-        function Damage(damage, chip, pump) {
+        function Damage(props) {
             return (
                 <span>
-                    {damage}
-                    {chip > 0 && <sub className="yomi-block">{chip}</sub>}
-                    {pump > 0 && <span className="text-muted">+{pump}</span>}
+                    {props.damage}
+                    {props.chip > 0 && <sub className="yomi-block">{props.chip}</sub>}
+                    {props.pump > 0 && <span className="text-muted">+{props.pump}</span>}
                 </span>
             )
         }
@@ -511,11 +520,15 @@
                             isKey={(row) => row.rank.toString().concat(row.name)}
                             name="Rank"
                             sort={(row) => rankValue(row.rank)}
-                            format={(row) => Move(row.abilities, row.rank, row.pumpWith, row.name)}
+                            format={(row) => (
+                                <Move abilities={row.abilities} rank={row.rank} pump={row.pumpWith} name={row.name}/>
+                            )}
                         />
                         <SortHeader name="Damage"
                             sort={(row) => row.damage || rankValue(row.rank)}
-                            format={(row) => Damage(row.damage || rankValue(row.rank), row.chip, row.pump)}
+                            format={(row) => (
+                                <Damage damage={row.damage || rankValue(row.rank)} chip={row.chip} pump={row.pump}/>
+                            )}
                         />
                         <SortHeader name="Max Combo" sort={rankSort} rowKey="maxCombo" />
                         <SortHeader name="Max Damage" sort={valueSort} rowKey="maxDamage" />
@@ -545,11 +558,13 @@
                             isKey={(row) => row.rank.toString().concat(row.name)}
                             name="Rank"
                             sort={(row) => rankValue(row.rank)}
-                            format={(row) => Move(row.abilities, row.rank, row.pumpWith, row.name)}
+                            format={(row) => (
+                                <Move abilities={row.abilities} rank={row.rank} pump={row.pumpWith} name={row.name}/>
+                            )}
                         />
                         <SortHeader name="Damage"
                             sort={(row) => row.damage}
-                            format={(row) => Damage(row.damage, null, row.pump)}
+                            format={(row) => <Damage damage={row.damage} pump={row.pump}/>}
                         />
                         <SortHeader name="Max Combo" sort={rankSort} rowKey="maxCombo" />
                         <SortHeader name="Max Damage" sort={valueSort} rowKey="maxDamage" />
