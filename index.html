@@ -56,14 +56,12 @@
         var Glyphicon = ReactBootstrap.Glyphicon;
 
         function keyedSort(list, keyFn, reversed) {
-            console.log(list, keyFn, reversed);
             var keyed = list.map((el) => ({
                 key: keyFn(el),
                 value: el
             }));
 
-            keyed.sort((a, b) => (reversed ? -1 : 1) * (+(a.key > b.key) || +(a.key === b.key) - 1))
-            console.log(keyed);
+            keyed.sort((a, b) => (reversed ? -1 : 1) * (+(a.key > b.key) || +(a.key === b.key) - 1));
 
             return keyed.map((el) => el.value);
         }
