@@ -54,6 +54,8 @@
         var DropdownButton = ReactBootstrap.DropdownButton;
         var MenuItem = ReactBootstrap.MenuItem;
         var Glyphicon = ReactBootstrap.Glyphicon;
+        var Tooltip = ReactBootstrap.Tooltip;
+        var OverlayTrigger = ReactBootstrap.OverlayTrigger;
 
         function keyedSort(list, keyFn, reversed) {
             var keyed = list.map((el) => ({
@@ -262,16 +264,20 @@
             }
         };
 
+        function CardAbility(entry) {
+            return [
+                <dt key={entry.rank + "-rank"}>{entry.rank} - {entry.name} [{entry.timing}]</dt>,
+                <dd key={entry.rank + "-text"}>{entry.text}</dd>,
+            ];
+        }
+
         function CharacterSummary(props) {
             var abilities = []
-            {props.innateAbilities.forEach((entry) => {
+            props.innateAbilities.forEach((entry) => {
                 abilities.push(<dt key={entry.name + "-name"}>{entry.name}</dt>);
                 abilities.push(<dd key={entry.name + "-text"}>{entry.text}</dd>);
-            })}
-            {props.cardAbilities.map((entry) => {
-                abilities.push(<dt key={entry.rank + "-rank"}>{entry.rank} - {entry.name} [{entry.timing}]</dt>);
-                abilities.push(<dd key={entry.rank + "-text"}>{entry.text}</dd>);
-            })}
+            })
+            props.cardAbilities.forEach((entry) => abilities.push(...CardAbility(entry)));
 
             return (
                 <section>
@@ -423,7 +429,24 @@
             }
         }
 
-        function Move(rank, pumpWith, name) {
+        function Move(abilities, rank, pumpWith, name) {
+            abilities = abilities.filter((ability) => ability.rank == rank);
+            if (abilities.length > 0) {
+                const tooltip = (
+                    <Tooltip
+                        id={rank.toString().concat(abilities.map((ability) => ability.name))}
+                    >
+                        <dl>{abilities.map((ability) => CardAbility(ability))}</dl>
+                    </Tooltip>
+                );
+
+                rank = (
+                    <OverlayTrigger placement="top" overlay={tooltip}>
+                        <div>{rank}*</div>
+                    </OverlayTrigger>
+                );
+            };
+
             return (
                 <div>
                     {rank}
@@ -447,6 +470,7 @@
         function withCharacter(character, moveKey, defaultKey) {
             return (character && character[moveKey].map((row) => Object.assign({
                 "character": character.summary.name,
+                "abilities": character.summary.cardAbilities,
             }, character.summary[defaultKey], row))) || [];
         }
 
@@ -467,7 +491,7 @@
                             isKey={(row) => row.rank.toString().concat(row.name)}
                             name="Rank"
                             sort={(row) => rankValue(row.rank)}
-                            format={(row) => Move(row.rank, row.pumpWith, row.name)}
+                            format={(row) => Move(row.abilities, row.rank, row.pumpWith, row.name)}
                         />
                         <SortHeader name="Damage"
                             sort={(row) => row.damage || rankValue(row.rank)}
@@ -501,7 +525,7 @@
                             isKey={(row) => row.rank.toString().concat(row.name)}
                             name="Rank"
                             sort={(row) => rankValue(row.rank)}
-                            format={(row) => Move(row.rank, row.pumpWith, row.name)}
+                            format={(row) => Move(row.abilities, row.rank, row.pumpWith, row.name)}
                         />
                         <SortHeader name="Damage"
                             sort={(row) => row.damage}
