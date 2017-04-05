@@ -370,9 +370,13 @@
                 }
             }
 
+            headers() {
+                return this.props.children.filter((header) => header);
+            }
+
             sortedData() {
                 if (this.state.sortIdx != null) {
-                    const sortHeader = this.props.children[this.state.sortIdx];
+                    const sortHeader = this.headers()[this.state.sortIdx];
                     var data = this.props.data.slice();
                     return keyedSort(data, sortHeader.props.sort, this.state.reversed);
                 } else {
@@ -396,20 +400,20 @@
             render() {
                 const rows = this.sortedData().map((row) => (
                     <tr key={
-                            this.props.children.filter(
+                            this.headers().filter(
                                 (header) => header.props.isKey
                             ).map(
                                 (header) => this.formatKey(header, row)
                             )
                     }>
-                        {this.props.children.map((header) => this.formatEntry(header, row))}
+                        {this.headers().map((header) => this.formatEntry(header, row))}
                     </tr>
                 ));
                 return (
                     <Table condensed hover>
                         <thead>
                             <tr>
-                                {this.props.children.map((header, idx) => (
+                                {this.headers().map((header, idx) => (
                                     <SortingHeader
                                         key={header.props.name}
                                         idx={idx}
@@ -520,7 +524,7 @@
 
                 return (
                     <SortableTable data={leftAttacks.concat(rightAttacks)}>
-                        <SortHeader isKey name="Character" rowKey="character" />
+                        {this.props.left && this.props.right && <SortHeader isKey name="Character" rowKey="character" />}
                         <SortHeader
                             name="Speed"
                             sort={(row) => speedValue(row)}
@@ -540,11 +544,11 @@
                                 <Damage damage={row.damage || rankValue(row.rank)} chip={row.chip} pump={row.pump}/>
                             )}
                         />
-                        <SortHeader name="Combo"
+                        {!this.props.left != !this.props.right && <SortHeader name="Combo"
                             format={(row) => (
                                 <ComboDetails points={row.comboPts} max={row.maxComboPts} type={row.comboType} kd={row.kd}/>
                             )}
-                        />
+                        />}
                         <SortHeader name="Max Combo" sort={(row) => rankValue(row.maxCombo)}
                             format={(row) => <Combo combo={row.maxCombo}/>}
                         />
@@ -585,11 +589,11 @@
                             sort={(row) => row.damage}
                             format={(row) => <Damage damage={row.damage} pump={row.pump}/>}
                         />
-                        <SortHeader name="Combo"
+                        {!this.props.left != !this.props.right && <SortHeader name="Combo"
                             format={(row) => (
                                 <ComboDetails points={row.comboPts} max={row.maxComboPts} type={row.comboType} kd={row.kd}/>
                             )}
-                        />
+                        />}
                         <SortHeader name="Max Combo" sort={(row) => rankValue(row.maxCombo)}
                             format={(row) => <Combo combo={row.maxCombo}/>}
                         />
