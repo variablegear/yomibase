@@ -503,9 +503,23 @@
             return (
                 <span className="combo-details">
                     <ComboPoints count={props.points} max={props.max}/>
-                    {props.type && <span className="combo-type"><small>{props.type}</small></span>}
+                    {props.type && <span className="combo-type move-name"><small>{props.type}</small></span>}
                     {props.kd && <img className="combo-kd" src="images/knockdown.jpg" height="24" />}
                 </span>
+            );
+        }
+
+        function Note(props) {
+            if (!props.text) {
+                return null;
+            }
+
+            const tooltip = <Tooltip>{props.text}</Tooltip>;
+
+            return (
+                <OverlayTrigger placement="top" overlay={tooltip}>
+                    <span>*</span>
+                </OverlayTrigger>
             );
         }
 
@@ -557,7 +571,7 @@
                             format={(row) => <Combo combo={row.goodCombo}/>}
                         />
                         <SortHeader name="Good Damage" sort={(row) => (parseFloat(row.goodDamage) || 0)} rowKey="goodDamage" />
-                        <SortHeader name="Notes" rowKey="notes" />
+                        <SortHeader name="Notes" format={(row) => <Note text={row.notes}/>} />
                     </SortableTable>
                 );
             }
@@ -602,7 +616,7 @@
                             format={(row) => <Combo combo={row.goodCombo}/>}
                         />
                         <SortHeader name="Good Damage" sort={(row) => (parseFloat(row.goodDamage) || 0)} rowKey="goodDamage" />
-                        <SortHeader name="Notes" rowKey="notes" />
+                        <SortHeader name="Notes" format={(row) => <Note text={row.notes}/>} />
                     </SortableTable>
                 );
             }
