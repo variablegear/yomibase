@@ -95,6 +95,7 @@
         var Glyphicon = ReactBootstrap.Glyphicon;
         var Tooltip = ReactBootstrap.Tooltip;
         var OverlayTrigger = ReactBootstrap.OverlayTrigger;
+        var Well = ReactBootstrap.Well;
 
         function keyedSort(list, keyFn, reversed) {
             var keyed = list.map((el) => ({
@@ -140,14 +141,14 @@
 
         function EditLink(props) {
             return (
-                <Col md={6}>
+                <Well>
                     Found a bug, or have a suggestion about {props.char.summary.name}?
                     Suggest a change <a href={
                         "https://github.com/cpennington/yomibase/edit/master/characters/" +
                         props.char.summary.name.toLowerCase() +
                         ".json"
                     }>here</a>
-                </Col>
+                </Well>
             );
         }
 
@@ -226,7 +227,7 @@
                         </Navbar>
                         <Grid>
                             {this.state.characters &&
-                                <Row className="selectors">
+                                <Row className="selectors" key="selectors">
                                     <Col md={6}>
                                         <Selector
                                             onSelect={(c) => this.context.router.push({pathname: "/" + c})}
@@ -278,8 +279,15 @@
                                 ]
                             }
                             <Row>
-                                {leftCharacter && <EditLink char={leftCharacter}/>}
-                                {rightCharacter && <EditLink char={rightCharacter}/>}
+                                {leftCharacter && <Col md={6}><EditLink char={leftCharacter}/></Col>}
+                                {rightCharacter && <Col md={6}><EditLink char={rightCharacter}/></Col>}
+                            </Row>
+                            <Row>
+                                <Col md={12}>
+                                    <Well>
+                                        Missing your favorite character? <a href="">Add them!</a> (you can copy <a href="">this template</a> to start out)
+                                    </Well>
+                                </Col>
                             </Row>
                         </Grid>
                     </div>
