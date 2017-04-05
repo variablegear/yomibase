@@ -122,12 +122,15 @@
 
         function Selector(props) {
             const current = props.characters.filter((char) => char.toLowerCase() == props.current);
+            const characters = props.characters.slice();
+            characters.sort();
+
             return (
                 <DropdownButton
                     title={current[0] || props.default}
                     id={props.slot+"-character-selector"}
                 >
-                    {props.characters.map((char) => (
+                    {characters.map((char) => (
                         <MenuItem key={char} onSelect={props.onSelect}
                             eventKey={char.toLowerCase()}
                             disabled={char.toLowerCase() == props.disabled}
