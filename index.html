@@ -83,31 +83,6 @@
             return (ranks[rank] || rank);
         }
 
-        function rankSort(a, b) {
-            return rankValue(a) - rankValue(b);
-        };
-
-        function valueSort(a, b) {
-            a = typeof a === "string" ? a.replace(/[^\d.].*/, "") : a;
-            b = typeof b === "string" ? b.replace(/[^\d.].*/, "") : b;
-
-            return a - b;
-        }
-
-        function nameSort(a, b) {
-            if (a < b) {
-                return -1;
-            }
-            if (a > b) {
-                return 1;
-            }
-            return 0;
-        }
-
-        function sortByKey(key, sort) {
-            return (a, b) => sort(a[key], b[key]);
-        }
-
         function Selector(props) {
             const current = props.characters.filter((char) => char.toLowerCase() == props.current);
             return (
@@ -518,7 +493,7 @@
 
                 return (
                     <SortableTable data={leftAttacks.concat(rightAttacks)}>
-                        <SortHeader isKey name="Character" sort={nameSort} rowKey="character" />
+                        <SortHeader isKey name="Character" rowKey="character" />
                         <SortHeader
                             name="Speed"
                             sort={(row) => speedValue(row)}
@@ -538,14 +513,14 @@
                                 <Damage damage={row.damage || rankValue(row.rank)} chip={row.chip} pump={row.pump}/>
                             )}
                         />
-                        <SortHeader name="Max Combo" sort={rankSort}
+                        <SortHeader name="Max Combo" sort={(row) => rankValue(row.maxCombo)}
                             format={(row) => <Combo combo={row.maxCombo}/>}
                         />
-                        <SortHeader name="Max Damage" sort={valueSort} rowKey="maxDamage" />
-                        <SortHeader name="Good Combo" sort={rankSort}
+                        <SortHeader name="Max Damage" sort={(row) => (parseFloat(row.maxDamage) || 0)} rowKey="maxDamage" />
+                        <SortHeader name="Good Combo" sort={(row) => rankValue(row.goodCombo)}
                             format={(row) => <Combo combo={row.goodCombo}/>}
                         />
-                        <SortHeader name="Good Damage" sort={valueSort} rowKey="goodDamage" />
+                        <SortHeader name="Good Damage" sort={(row) => (parseFloat(row.goodDamage) || 0)} rowKey="goodDamage" />
                         <SortHeader name="Notes" rowKey="notes" />
                     </SortableTable>
                 );
@@ -560,7 +535,7 @@
 
                 return (
                     <SortableTable data={leftThrows.concat(rightThrows)}>
-                        <SortHeader isKey name="Character" sort={nameSort} rowKey="character" />
+                        <SortHeader isKey name="Character" rowKey="character" />
                         <SortHeader
                             name="Speed"
                             sort={(row) => speedValue(row)}
@@ -578,14 +553,14 @@
                             sort={(row) => row.damage}
                             format={(row) => <Damage damage={row.damage} pump={row.pump}/>}
                         />
-                        <SortHeader name="Max Combo" sort={rankSort}
+                        <SortHeader name="Max Combo" sort={(row) => rankValue(row.maxCombo)}
                             format={(row) => <Combo combo={row.maxCombo}/>}
                         />
-                        <SortHeader name="Max Damage" sort={valueSort} rowKey="maxDamage" />
-                        <SortHeader name="Good Combo" sort={rankSort}
+                        <SortHeader name="Max Damage" sort={(row) => (parseFloat(row.maxDamage) || 0)} rowKey="maxDamage" />
+                        <SortHeader name="Good Combo" sort={(row) => rankValue(row.goodCombo)}
                             format={(row) => <Combo combo={row.goodCombo}/>}
                         />
-                        <SortHeader name="Good Damage" sort={valueSort} rowKey="goodDamage" />
+                        <SortHeader name="Good Damage" sort={(row) => (parseFloat(row.goodDamage) || 0)} rowKey="goodDamage" />
                         <SortHeader name="Notes" rowKey="notes" />
                     </SortableTable>
                 );
