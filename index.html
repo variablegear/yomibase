@@ -460,7 +460,7 @@
 
                 rank = (
                     <OverlayTrigger placement="top" overlay={tooltip}>
-                        <div>{props.rank}*</div>
+                        <span>{props.rank}*</span>
                     </OverlayTrigger>
                 );
             } else {
@@ -500,6 +500,10 @@
             );
         }
 
+        function Combo(props) {
+            return <span>{props.combo && props.combo.replace(/>/g, "\u27A7")}</span>;
+        }
+
         function withCharacter(character, moveKey, defaultKey) {
             return (character && character[moveKey].map((row) => Object.assign({
                 "character": character.summary.name,
@@ -534,9 +538,13 @@
                                 <Damage damage={row.damage || rankValue(row.rank)} chip={row.chip} pump={row.pump}/>
                             )}
                         />
-                        <SortHeader name="Max Combo" sort={rankSort} rowKey="maxCombo" />
+                        <SortHeader name="Max Combo" sort={rankSort}
+                            format={(row) => <Combo combo={row.maxCombo}/>}
+                        />
                         <SortHeader name="Max Damage" sort={valueSort} rowKey="maxDamage" />
-                        <SortHeader name="Good Combo" sort={rankSort} rowKey="goodCombo" />
+                        <SortHeader name="Good Combo" sort={rankSort}
+                            format={(row) => <Combo combo={row.goodCombo}/>}
+                        />
                         <SortHeader name="Good Damage" sort={valueSort} rowKey="goodDamage" />
                         <SortHeader name="Notes" rowKey="notes" />
                     </SortableTable>
@@ -570,9 +578,13 @@
                             sort={(row) => row.damage}
                             format={(row) => <Damage damage={row.damage} pump={row.pump}/>}
                         />
-                        <SortHeader name="Max Combo" sort={rankSort} rowKey="maxCombo" />
+                        <SortHeader name="Max Combo" sort={rankSort}
+                            format={(row) => <Combo combo={row.maxCombo}/>}
+                        />
                         <SortHeader name="Max Damage" sort={valueSort} rowKey="maxDamage" />
-                        <SortHeader name="Good Combo" sort={rankSort} rowKey="goodCombo" />
+                        <SortHeader name="Good Combo" sort={rankSort}
+                            format={(row) => <Combo combo={row.goodCombo}/>}
+                        />
                         <SortHeader name="Good Damage" sort={valueSort} rowKey="goodDamage" />
                         <SortHeader name="Notes" rowKey="notes" />
                     </SortableTable>

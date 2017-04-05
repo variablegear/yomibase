@@ -6,9 +6,13 @@
             "title": "Doomed Wanderer",
             "hitPoints": 85,
             "maxCombo": 6,
-            "attackSpeed": 0,
-            "throwSpeed": 6,
-            "throwDamage": 6,
+            "attackDefaults": {
+                "speedOffset": 0.0
+            },
+            "throwDefaults": {
+                "speedOffset": 0.6,
+                "damage": 6
+            },
             "attacks": [2, 3, 4, 5, 6, "J*", "Q", "K", "A"],
             "throws": [7, 8, 9, "T*", "AAA"],
             "blocks": [2, 3, 4, 9, "T*"],
@@ -17,7 +21,7 @@
                 {
                     "name": "Shadow Plague",
                     "text": "During the draw phase, draw an extra card and take 2 damage."
-                }
+                },
                 {
                     "name": "Relentless Strikes",
                     "text": "Whenever the opponent normal blocks your non-Ender attack, you may discard a red and a black normal attack. If you do, the black one hits, you win combat (and it ends), the opponent's block is discarded, and they draw a card."
