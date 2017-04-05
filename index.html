@@ -19,6 +19,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
+        .selectors {
+            padding: 10px;
+        }
+        .base {
+            background: white;
+        }
+        .left {
+            background: #fce3e3;
+        }
+        .right {
+            background: #e0e2fc;
+        }
         .yomi-block {
             color: #2369db;
         }
@@ -30,6 +42,13 @@
         }
         .move-name {
             white-space: nowrap;
+        }
+        .summary-col {
+            padding-bottom: 100%;
+            margin-bottom: -100%;
+        }
+        .summary-row {
+            overflow: hidden;
         }
         .combo-points {
             line-height: 0.75;
@@ -44,6 +63,7 @@
             vertical-align: middle;
         }
         .combo-type {
+            background: white;
             padding-left: 2px;
             padding-right: 2px;
             border: black;
@@ -195,7 +215,7 @@
                 const rightCharacter = this.state.characterData[this.props.params.right];
 
                 return (
-                    <div>
+                    <div className="base">
                         <Navbar staticTop componentClass="header" className="bs-docs-nav" role="banner">
                             <Navbar.Header>
                                 <Navbar.Brand>
@@ -206,7 +226,7 @@
                         </Navbar>
                         <Grid>
                             {this.state.characters &&
-                                <Row>
+                                <Row className="selectors">
                                     <Col md={6}>
                                         <Selector
                                             onSelect={(c) => this.context.router.push({pathname: "/" + c})}
@@ -233,23 +253,29 @@
                                     }
                                 </Row>
                             }
-                            <Row>
+                            <Row className="summary-row">
                                 {leftCharacter &&
-                                    <Col md={6}>{CharacterSummary(leftCharacter.summary)}</Col>
+                                    <Col className="left summary-col" md={6}><CharacterSummary char={leftCharacter.summary} /></Col>
                                 }
                                 {rightCharacter &&
-                                    <Col md={6}>{CharacterSummary(rightCharacter.summary)}</Col>
+                                    <Col className="right summary-col" md={6}><CharacterSummary char={rightCharacter.summary} /></Col>
                                 }
                             </Row>
                             {(leftCharacter || rightCharacter) &&
-                                <Row>
-                                    <Col md={12}><Attacks left={leftCharacter} right={rightCharacter}/></Col>
-                                </Row>
+                                [
+                                    <Row key="attacks-header"><Col md={12}><h2>Attacks</h2></Col></Row>,
+                                    <Row key="attacks-table" className="table-row">
+                                        <Col md={12}><Attacks left={leftCharacter} right={rightCharacter}/></Col>
+                                    </Row>
+                                ]
                             }
                             {(leftCharacter || rightCharacter) &&
-                                <Row>
-                                    <Col md={12}><Throws left={leftCharacter} right={rightCharacter}/></Col>
-                                </Row>
+                                [
+                                    <Row key="throws-header"><Col md={12}><h2>Throws</h2></Col></Row>,
+                                    <Row key="throws-table" className="table-row">
+                                        <Col md={12}><Throws left={leftCharacter} right={rightCharacter}/></Col>
+                                    </Row>
+                                ]
                             }
                             <Row>
                                 {leftCharacter && <EditLink char={leftCharacter}/>}
@@ -270,52 +296,52 @@
 
         function CharacterSummary(props) {
             var abilities = []
-            props.innateAbilities.forEach((entry) => {
+            props.char.innateAbilities.forEach((entry) => {
                 abilities.push(<dt key={entry.name + "-name"}>{entry.name}</dt>);
                 abilities.push(<dd key={entry.name + "-text"}>{entry.text}</dd>);
             })
-            props.cardAbilities.forEach((entry) => abilities.push(...CardAbility(entry)));
+            props.char.cardAbilities.forEach((entry) => abilities.push(...CardAbility(entry)));
 
             return (
-                <section>
-                    <PageHeader>{props.fullName} <small>{props.title}</small></PageHeader>
-                    <Table>
+                <section className={props.className + " character-summary"} >
+                    <h1>{props.char.fullName} <small>{props.char.title}</small></h1>
+                    <Table responsive>
                         <tbody>
                             <tr>
                                 <td><strong>Hit Points</strong>:</td>
-                                <td>{props.hitPoints}</td>
+                                <td>{props.char.hitPoints}</td>
                             </tr>
                             <tr>
                                 <td><strong>Max Combo</strong>:</td>
-                                <td><ComboPoints count={props.maxCombo} max={props.maxCombo}/></td>
+                                <td><ComboPoints count={props.char.maxCombo} max={props.char.maxCombo}/></td>
                             </tr>
                             <tr>
                                 <td><strong className="yomi-attack">Normal attack speed</strong>:</td>
-                                <td>{props.attackDefaults.speedOffset.toFixed(1).replace('0.', 'x.')} (x = card rank)</td>
+                                <td>{props.char.attackDefaults.speedOffset.toFixed(1).replace('0.', 'x.')} (x = card rank)</td>
                             </tr>
                             <tr>
                                 <td><strong>Normal throw speed</strong>:</td>
-                                <td>{props.throwDefaults.speedOffset.toFixed(1).replace('0.', 'x.')} (x = card rank) {props.throwCP} {props.throwKD}</td>
+                                <td>{props.char.throwDefaults.speedOffset.toFixed(1).replace('0.', 'x.')} (x = card rank) {props.char.throwCP} {props.char.throwKD}</td>
                             </tr>
                             <tr>
                                 <td><strong>Normal throw damage</strong>:</td>
-                                <td>{props.throwDefaults.damage}</td>
+                                <td>{props.char.throwDefaults.damage}</td>
                             </tr>
                             <tr>
                                 <td><strong>Attacks</strong>:</td>
-                                <td className="yomi-attack">{props.attacks.join(', ')}</td>
+                                <td className="yomi-attack">{props.char.attacks.join(', ')}</td>
                             </tr>
                             <tr>
                                 <td><strong>Throws</strong>:</td>
-                                <td>{props.throws.join(', ')}</td>
+                                <td>{props.char.throws.join(', ')}</td>
                             </tr>
                             <tr>
                                 <td><strong>Blocks</strong>:</td>
-                                <td className="yomi-block">{props.blocks.join(', ')}</td>
+                                <td className="yomi-block">{props.char.blocks.join(', ')}</td>
                             </tr>
                             <tr>
                                 <td><strong>Dodges</strong>:</td>
-                                <td className="yomi-dodge">{props.dodges.join(', ')}</td>
+                                <td className="yomi-dodge">{props.char.dodges.join(', ')}</td>
                             </tr>
                         </tbody>
                     </Table>
@@ -399,7 +425,7 @@
 
             render() {
                 const rows = this.sortedData().map((row) => (
-                    <tr key={
+                    <tr className={this.props.className(row)} key={
                             this.headers().filter(
                                 (header) => header.props.isKey
                             ).map(
@@ -523,8 +549,9 @@
             );
         }
 
-        function withCharacter(character, moveKey, defaultKey) {
+        function withCharacter(className, character, moveKey, defaultKey) {
             return (character && character[moveKey].map((row) => Object.assign({
+                "className": className,
                 "character": character.summary.name,
                 "abilities": character.summary.cardAbilities,
                 "maxComboPts": character.summary.maxCombo
@@ -533,12 +560,14 @@
 
         class Attacks extends React.Component {
             render() {
-                const leftAttacks = withCharacter(this.props.left, 'attacks', 'attackDefaults');
-                const rightAttacks = withCharacter(this.props.right, 'attacks', 'attackDefaults');
+                const leftAttacks = withCharacter("left", this.props.left, 'attacks', 'attackDefaults');
+                const rightAttacks = withCharacter("right", this.props.right, 'attacks', 'attackDefaults');
 
                 return (
-                    <SortableTable data={leftAttacks.concat(rightAttacks)}>
-                        {this.props.left && this.props.right && <SortHeader isKey name="Character" rowKey="character" />}
+                    <SortableTable data={leftAttacks.concat(rightAttacks)} className={(row) => row.className} >
+                        {this.props.left && this.props.right &&
+                            <SortHeader isKey name="Character" rowKey="character" sort={(row) => row.character}/>
+                        }
                         <SortHeader
                             name="Speed"
                             sort={(row) => speedValue(row)}
@@ -580,12 +609,14 @@
         class Throws extends React.Component {
 
             render() {
-                const leftThrows = withCharacter(this.props.left, "throws", "throwDefaults");
-                const rightThrows = withCharacter(this.props.right, "throws", "throwDefaults");
+                const leftThrows = withCharacter("left", this.props.left, "throws", "throwDefaults");
+                const rightThrows = withCharacter("right", this.props.right, "throws", "throwDefaults");
 
                 return (
-                    <SortableTable data={leftThrows.concat(rightThrows)}>
-                        <SortHeader isKey name="Character" rowKey="character" />
+                    <SortableTable data={leftThrows.concat(rightThrows)} className={(row) => row.className} >
+                        {this.props.left && this.props.right &&
+                            <SortHeader isKey name="Character" rowKey="character" sort={(row) => row.character}/>
+                        }
                         <SortHeader
                             name="Speed"
                             sort={(row) => speedValue(row)}
