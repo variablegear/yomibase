@@ -14,7 +14,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.30.8/react-bootstrap.min.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script src="https://npmcdn.com/react-router@3.0.2/umd/ReactRouter.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="characters/setsuki.js" type="text/babel"></script>
+    <script src="characters/gwen.js" type="text/babel"></script>
+    <script src="characters/midori.js" type="text/babel"></script>
+    <script src="characters/grave.js" type="text/babel"></script>
+    <script src="characters/jaina.js" type="text/babel"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -128,21 +133,23 @@
         }
 
         function Selector(props) {
-            const current = props.characters.filter((char) => char.toLowerCase() == props.current);
-            const characters = props.characters.slice();
+            const current = props.characters[props.current];
+            const characters = Object.keys(props.characters);
             characters.sort();
+
+            const charSelectors = characters.map((char) => (
+                <MenuItem key={char} onSelect={props.onSelect}
+                    eventKey={char}
+                    disabled={char == props.disabled}
+                >{props.characters[char].summary.fullName}</MenuItem>
+            ));
 
             return (
                 <DropdownButton
-                    title={current[0] || props.default}
+                    title={(current && current.fullName) || props.default}
                     id={props.slot+"-character-selector"}
                 >
-                    {characters.map((char) => (
-                        <MenuItem key={char} onSelect={props.onSelect}
-                            eventKey={char.toLowerCase()}
-                            disabled={char.toLowerCase() == props.disabled}
-                        >{char}</MenuItem>
-                    ))}
+                    {charSelectors}
                     <MenuItem divider/>
                     <MenuItem onSelect={props.onReset}>Reset...</MenuItem>
                 </DropdownButton>
@@ -152,10 +159,10 @@
         function EditLink(props) {
             return (
                 <Well>
-                    Found a bug, or have a suggestion about {props.char.summary.name}?
+                    Found a bug, or have a suggestion about {props.char.name}?
                     Suggest a change <a href={
                         "https://github.com/cpennington/yomibase/edit/master/characters/" +
-                        props.char.summary.name.toLowerCase() +
+                        props.char.name.toLowerCase() +
                         ".json"
                     }>here</a>
                 </Well>
@@ -163,67 +170,13 @@
         }
 
         class YomiBase extends React.Component {
-
             static contextTypes = {
                 router: ReactRouter.routerShape
             };
 
-            constructor(props) {
-                super(props);
-                this.state = {
-                    characters: [],
-                    characterData: {}
-                };
-            }
-
-            componentDidMount() {
-                var _this = this;
-                this.serverRequest = axios
-                    .get("characters.json")
-                    .then(function(result) {
-                        _this.setState({
-                            characters: result.data.characters
-                        });
-                    })
-                this.loadCharacter(this.props.params.left, "left");
-                this.loadCharacter(this.props.params.right, "right");
-            }
-
-            componentDidUpdate() {
-                this.loadCharacter(this.props.params.left, "left");
-                this.loadCharacter(this.props.params.right, "right");
-            }
-
-            componentWillUnmount() {
-                this.serverRequest.abort();
-            }
-
-            loadCharacter(character, slot) {
-                var _this = this;
-
-                if (character == null) {
-                    return null;
-                }
-
-                if (this.state.characterData[character] == null) {
-                    this.serverRequest = axios
-                        .get("characters/"+character.toLowerCase()+".json")
-                        .then(function(result) {
-                            _this.setState((prevState, props) => {
-                                var charData = prevState.characterData;
-                                charData[character] = result.data.character;
-                                var state = {
-                                    characterData: charData,
-                                };
-                                return state;
-                            });
-                        })
-                }
-            }
-
             render() {
-                const leftCharacter = this.state.characterData[this.props.params.left];
-                const rightCharacter = this.state.characterData[this.props.params.right];
+                const leftCharacter = this.props.characters[this.props.params.left];
+                const rightCharacter = this.props.characters[this.props.params.right];
 
                 return (
                     <div className="base">
@@ -236,12 +189,12 @@
                             </Navbar.Header>
                         </Navbar>
                         <Grid>
-                            {this.state.characters &&
+                            {Object.keys(this.props.characters) &&
                                 <Row className="selectors" key="selectors">
                                     <Col md={6}>
                                         <Selector
                                             onSelect={(c) => this.context.router.push({pathname: "/" + c})}
-                                            characters={this.state.characters}
+                                            characters={this.props.characters}
                                             current={this.props.params.left}
                                             disabled={this.props.params.right}
                                             slot="left"
@@ -253,7 +206,7 @@
                                         <Col md={6}>
                                             <Selector
                                                 onSelect={(c) => this.context.router.push({pathname: "/" + this.props.params.left + "/" + c})}
-                                                characters={this.state.characters}
+                                                characters={this.props.characters}
                                                 current={this.props.params.right}
                                                 disabled={this.props.params.left}
                                                 slot="right"
@@ -289,8 +242,8 @@
                                 ]
                             }
                             <Row>
-                                {leftCharacter && <Col md={6}><EditLink char={leftCharacter}/></Col>}
-                                {rightCharacter && <Col md={6}><EditLink char={rightCharacter}/></Col>}
+                                {leftCharacter && <Col md={6}><EditLink char={leftCharacter.summary}/></Col>}
+                                {rightCharacter && <Col md={6}><EditLink char={rightCharacter.summary}/></Col>}
                             </Row>
                             <Row>
                                 <Col md={12}>
@@ -679,11 +632,16 @@
         };
 
         var destination = document.querySelector("#container");
+
+        function mkYomiBase(props) {
+            return <YomiBase {...Object.assign({characters: window.characters}, props)} />;
+        }
+
         ReactDOM.render(
             <ReactRouter.Router history={ReactRouter.hashHistory}>
-                <ReactRouter.Route path="/" component={YomiBase}/>
-                <ReactRouter.Route path="/:left" component={YomiBase}/>
-                <ReactRouter.Route path="/:left/:right" component={YomiBase}/>
+                <ReactRouter.Route path="/" component={mkYomiBase}/>
+                <ReactRouter.Route path="/:left" component={mkYomiBase}/>
+                <ReactRouter.Route path="/:left/:right" component={mkYomiBase}/>
             </ReactRouter.Router>,
             destination
         );
