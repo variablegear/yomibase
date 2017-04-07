@@ -147,7 +147,7 @@
 
             return (
                 <DropdownButton
-                    title={(current && current.fullName) || props.default}
+                    title={(current && current.summary.fullName) || props.default}
                     id={props.slot+"-character-selector"}
                 >
                     {charSelectors}
