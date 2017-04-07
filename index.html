@@ -540,9 +540,10 @@
             render() {
                 const leftAttacks = withCharacter("left", this.props.left, 'attacks', 'attackDefaults');
                 const rightAttacks = withCharacter("right", this.props.right, 'attacks', 'attackDefaults');
+                const attacks = leftAttacks.concat(rightAttacks);
 
                 return (
-                    <SortableTable data={leftAttacks.concat(rightAttacks)} className={(row) => row.className} >
+                    <SortableTable data={attacks} className={(row) => row.className} >
                         {this.props.left && this.props.right &&
                             <SortHeader isKey name="Character" rowKey="character" sort={(row) => row.character}/>
                         }
@@ -578,7 +579,9 @@
                             format={(row) => <Combo combo={row.goodCombo}/>}
                         />
                         <SortHeader name="Good Damage" sort={(row) => (parseFloat(row.goodDamage) || 0)} rowKey="goodDamage" />
-                        <SortHeader name="Notes" format={(row) => <Note text={row.notes}/>} />
+                        {!attacks.every((row) => row.notes == null) &&
+                            <SortHeader name="Notes" format={(row) => <Note text={row.notes}/>} />
+                        }
                     </SortableTable>
                 );
             }
@@ -589,9 +592,10 @@
             render() {
                 const leftThrows = withCharacter("left", this.props.left, "throws", "throwDefaults");
                 const rightThrows = withCharacter("right", this.props.right, "throws", "throwDefaults");
+                const throws = leftThrows.concat(rightThrows);
 
                 return (
-                    <SortableTable data={leftThrows.concat(rightThrows)} className={(row) => row.className} >
+                    <SortableTable data={throws} className={(row) => row.className} >
                         {this.props.left && this.props.right &&
                             <SortHeader isKey name="Character" rowKey="character" sort={(row) => row.character}/>
                         }
@@ -625,7 +629,9 @@
                             format={(row) => <Combo combo={row.goodCombo}/>}
                         />
                         <SortHeader name="Good Damage" sort={(row) => (parseFloat(row.goodDamage) || 0)} rowKey="goodDamage" />
-                        <SortHeader name="Notes" format={(row) => <Note text={row.notes}/>} />
+                        {!throws.every((row) => row.notes == null) &&
+                            <SortHeader name="Notes" format={(row) => <Note text={row.notes}/>} />
+                        }
                     </SortableTable>
                 );
             }
