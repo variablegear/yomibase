@@ -36,26 +36,20 @@ if (window.characters == null) {
                     name: "",
                     timing: "",
                     text: ""
+                },
+                {
+                    rank: "T",
+                    name: "",
+                    timing: "",
+                    text: ""
                 }
             ]
         },
         attacks: [
             {
-                speed: "",
-                rank: "",
-                name: "",
-                pumpWith: "",
-                damage: "",
-                pump: "",
-                chip: "",
-                comboPts: 1,
-                comboType: "Starter",
-                kd: false,
-                maxCombo: "",
-                maxDamage: "",
-                goodCombo: "",
-                goodDamage: "",
-                notes: ""
+                speed: 0, rank: "", name: "", pumpWith: "",
+                damage: "", pump: "", chip: "", comboPts: 1, comboType: "Starter", kd: false,
+                maxCombo: "", maxDamage: "", goodCombo: "", goodDamage: "", notes: ""
             }
         ],
         throws: [
