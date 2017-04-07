@@ -262,9 +262,9 @@
             }
         };
 
-        function CardAbility(entry) {
+        function CardAbility(entry, multiline) {
             return [
-                <dt key={entry.rank + "-rank"}>{entry.rank} - {entry.name} [{entry.timing}]</dt>,
+                <dt key={entry.rank + "-rank"}>{entry.rank} - {entry.name}{multiline ? <br/> : " "}[{entry.timing}]</dt>,
                 <dd key={entry.rank + "-text"}>{entry.text}</dd>,
             ];
         }
@@ -449,7 +449,7 @@
                     <Tooltip
                         id={props.rank.toString().concat(abilities.map((ability) => ability.name))}
                     >
-                        <dl>{abilities.map((ability) => CardAbility(ability))}</dl>
+                        <dl>{abilities.map((ability) => CardAbility(ability, true))}</dl>
                     </Tooltip>
                 );
 
