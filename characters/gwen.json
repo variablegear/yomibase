@@ -59,10 +59,10 @@
              "maxCombo": "A+", "maxDamage": 16}
         ],
         "throws": [
-            {"rank": 7, "maxCombo": "7>6>A+", "maxDamage": 28, "goodCombo": "7>4>5>6", "goodDamage": 21},
-            {"rank": 8, "maxCombo": "8>6>A+", "maxDamage": 28, "goodCombo": "7>6>J>6", "goodDamage": 24},
-            {"rank": 9, "maxCombo": "9>6>A+", "maxDamage": 28, "goodCombo": "7>6>K++", "goodDamage": 24},
-            {"rank": "T", "maxCombo": "T>6>A+", "maxDamage": 28, "goodCombo": "7>J>J>J", "goodDamage": 24},
+            {"rank": 7, "maxCombo": "t7>6>A+", "maxDamage": 28, "goodCombo": "t7>4>5>6", "goodDamage": 21},
+            {"rank": 8, "maxCombo": "t8>6>A+", "maxDamage": 28, "goodCombo": "t8>6>J>6", "goodDamage": 24},
+            {"rank": 9, "maxCombo": "t9>6>A+", "maxDamage": 28, "goodCombo": "t9>6>K++", "goodDamage": 24},
+            {"rank": "T", "maxCombo": "tT>6>A+", "maxDamage": 28, "goodCombo": "tT>J>J>J", "goodDamage": 24},
             {"speed": 4.6, "rank": "AAA", "damage": 22}
         ]
     }

@@ -33,12 +33,19 @@
         }
         .yomi-block {
             color: #2369db;
+            font-weight: bold;
         }
         .yomi-attack {
             color: #bf1515;
+            font-weight: bold;
         }
         .yomi-dodge {
             color: #670d9b;
+            font-weight: bold;
+        }
+        .yomi-throw {
+            color: black;
+            font-weight: bold;
         }
         .move-name {
             white-space: nowrap;
@@ -346,7 +353,7 @@
                             </tr>
                             <tr>
                                 <td><strong>Throws</strong>:</td>
-                                <td>{props.char.throws.join(', ')}</td>
+                                <td className="yomi-throw">{props.char.throws.join(', ')}</td>
                             </tr>
                             <tr>
                                 <td><strong>Blocks</strong>:</td>
@@ -535,7 +542,12 @@
         }
 
         function Combo(props) {
-            return <span>{props.combo && props.combo.replace(/>/g, "\u27A7")}</span>;
+            return <span>{props.combo && props.combo.split('>').map((move, idx) => [
+                idx > 0 ? "\u27A7" : null,
+                move.startsWith('t')
+                    ? <span className="yomi-throw">{move.replace('t', '')}</span>
+                    : <span className="yomi-attack">{move}</span>
+            ])}</span>;
         }
 
         function ComboDetails(props) {
