@@ -3,6 +3,7 @@ if (window.characters == null) {
 }
 
 (function (characters) {
+    const dragon = <Note text="Requires Dragon Form" icon={<span>{"\uD83D\uDC32"}</span>}/>
     characters.midori = {
         summary: {
             name: "Midori",
@@ -56,9 +57,9 @@ if (window.characters == null) {
             { rank: 7 },
             { rank: 8 },
             { speed: 2.4, rank: "J", pumpWith: "+J", name: "Whirlwind", damage: 8, pump: 8, chip: 2 },
-            { speed: 2.4, rank: "J", name: "Toxic Breath", damage: 9, chip: 2, notes: "Requires Dragon Form" },
+            { speed: 2.4, rank: "J", name: "Toxic Breath", damage: 9, chip: 2, notes: dragon },
             { speed: 1.2, rank: "Q", name: "Rising Mountain", damage: 10, chip: 1 },
-            { speed: 0.6, rank: "Q", name: "Dragon Mountain", damage: 14, chip: 2, notes: "Requires Dragon Form" },
+            { speed: 0.6, rank: "Q", name: "Dragon Mountain", damage: 14, chip: 2, notes: dragon },
             { speed: 1.2, rank: "AA", name: "Wrath of Earth", damage: 20, chip: 2 }
         ],
         throws: [
@@ -69,8 +70,8 @@ if (window.characters == null) {
             { rank: 9 },
             { rank: "T" },
             { speed: 4.4, rank: "K", name: "Rushing River", damage: 12 },
-            { speed: 1.8, rank: "K", name: "Talon Swoop", damage: 17, notes: "Requires Dragon Form" },
-            { speed: 0.0, rank: "AA", pumpWith: "+A+A", name: "Final Dragon Buster", damage: 20, pump: 16, notes: "Requires Dragon Form" }
+            { speed: 1.8, rank: "K", name: "Talon Swoop", damage: 17, notes: dragon },
+            { speed: 0.0, rank: "AA", pumpWith: "+A+A", name: "Final Dragon Buster", damage: 20, pump: 16, notes: dragon }
         ]
     }
 })(window.characters);

@@ -15,6 +15,7 @@
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script src="https://npmcdn.com/react-router@3.0.2/umd/ReactRouter.min.js"></script>
 
+    <script src="note.js" type="text/babel"></script>
     <script src="characters/setsuki.js" type="text/babel"></script>
     <script src="characters/gwen.js" type="text/babel"></script>
     <script src="characters/midori.js" type="text/babel"></script>
@@ -513,20 +514,6 @@
             );
         }
 
-        function Note(props) {
-            if (!props.text) {
-                return null;
-            }
-
-            const tooltip = <Tooltip>{props.text}</Tooltip>;
-
-            return (
-                <OverlayTrigger placement="top" overlay={tooltip}>
-                    <span>*</span>
-                </OverlayTrigger>
-            );
-        }
-
         function withCharacter(className, character, moveKey, defaultKey) {
             return (character && character[moveKey].map((row) => Object.assign({
                 "className": className,
@@ -580,7 +567,7 @@
                         />
                         <SortHeader name="Good Damage" sort={(row) => (parseFloat(row.goodDamage) || 0)} rowKey="goodDamage" />
                         {!attacks.every((row) => row.notes == null) &&
-                            <SortHeader name="Notes" format={(row) => <Note text={row.notes}/>} />
+                            <SortHeader name="Notes" format={(row) => row.notes} />
                         }
                     </SortableTable>
                 );
@@ -630,7 +617,7 @@
                         />
                         <SortHeader name="Good Damage" sort={(row) => (parseFloat(row.goodDamage) || 0)} rowKey="goodDamage" />
                         {!throws.every((row) => row.notes == null) &&
-                            <SortHeader name="Notes" format={(row) => <Note text={row.notes}/>} />
+                            <SortHeader name="Notes" format={(row) => row.notes} />
                         }
                     </SortableTable>
                 );

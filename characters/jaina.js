@@ -5,7 +5,19 @@ if (window.characters == null) {
 (function (characters) {
     function normal(rank, max, maxDmg, good, goodDmg) {
         return {
-            rank: rank, chip: "(" + rank + ")", notes: "Chip Damage only on Red",
+            rank: rank, chip: "(" + rank + ")",
+            notes: <Note
+                text="Chip Damage only on Red"
+                icon={
+                    <span>
+                        <span className='yomi-attack'>{"\u2764"}</span>
+                        /
+                        <span className='yomi-attack'>{"\u2666"}</span>
+                        {"\u21D2"}
+                        <span className='yomi-block'>{"\u26CA"}</span>
+                    </span>
+                }
+            />,
             maxCombo: max, maxDamage: maxDmg, goodCombo: good, goodDamage: goodDmg
         }
     }
