@@ -58,7 +58,10 @@ if (window.characters == null) {
             {
                 speed: 3.6, rank: "J", pumpWith: "+J", name: "Chains of Ice", damage: 7, pump: 7, chip: 5,
                 maxCombo: "J+>K++>A+", maxDamage: 42, goodCombo: "J+>3>4>5>6", goodDamage: 32,
-                notes: <Note text="Unburstable due to Chillbane" icon={<strike>{"\uD83D\uDCA5"}</strike>} />
+                notes: <Note
+                    text="Unburstable due to Chillbane"
+                    icon={<strike style={{fontSize: "150%"}}>{"\uD83D\uDCA5"}</strike>}
+                />
             },
             {
                 speed: 4.0, rank: "J", name: "Links of Ice", damage: 6, chip: 1, maxCombo: "J>6>K++>A+",

@@ -3,7 +3,7 @@ if (window.characters == null) {
 }
 
 (function (characters) {
-    const dragon = <Note text="Requires Dragon Form" icon={<span>{"\uD83D\uDC32"}</span>}/>
+    const dragon = <Note text="Requires Dragon Form" icon={<span style={{fontSize: "150%"}}>{"\uD83D\uDC32"}</span>}/>
     characters.midori = {
         summary: {
             name: "Midori",
