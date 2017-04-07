@@ -3,7 +3,7 @@ if (window.characters == null) {
 }
 
 (function (characters) {
-    const dragon = <Note text="Requires Dragon Form" icon={<span style={{fontSize: "150%"}}>{"\uD83D\uDC32"}</span>}/>
+    const dragon = <Note text="Requires Dragon Form" icon={<span style={{ fontSize: "150%" }}>{"\uD83D\uDC32"}</span>} />
     characters.midori = {
         summary: {
             name: "Midori",
@@ -51,27 +51,42 @@ if (window.characters == null) {
             ]
         },
         attacks: [
-            { rank: 4 },
-            { rank: 5 },
-            { rank: 6 },
-            { rank: 7 },
-            { rank: 8 },
-            { speed: 2.4, rank: "J", pumpWith: "+J", name: "Whirlwind", damage: 8, pump: 8, chip: 2 },
-            { speed: 2.4, rank: "J", name: "Toxic Breath", damage: 9, chip: 2, notes: dragon },
-            { speed: 1.2, rank: "Q", name: "Rising Mountain", damage: 10, chip: 1 },
-            { speed: 0.6, rank: "Q", name: "Dragon Mountain", damage: 14, chip: 2, notes: dragon },
-            { speed: 1.2, rank: "AA", name: "Wrath of Earth", damage: 20, chip: 2 }
+            { rank: 4, maxCombo: "4>5>J+", maxDamage: 25, goodCombo: "4>5>6", goodDamage: 15 },
+            { rank: 5, maxCombo: "5>6>J+", maxDamage: 27, goodCombo: "5>6>7", goodDamage: 18 },
+            { rank: 6, maxCombo: "6>7>J+", maxDamage: 29, goodCombo: "6>7>8", goodDamage: 21 },
+            { rank: 7, maxCombo: "7>8>J+", maxDamage: 31, goodCombo: "7>8>J", goodDamage: 23 },
+            { rank: 8, maxCombo: "8>J+", maxDamage: 24, goodCombo: "8>Q", goodDamage: 18 },
+            {
+                speed: 2.4, rank: "J", pumpWith: "+J", name: "Whirlwind", damage: 8, pump: 8, chip: 2,
+                comboPts: 1, comboType: "Ender"
+            },
+            {
+                speed: 2.4, rank: "J", name: "Toxic Breath", damage: 9, chip: 2, comboPts: 1, comboType: "Starter",
+                maxCombo: "dJ>AA", maxDamage: 29, goodCombo: "J>7>8", goodDamage: 24, notes: dragon
+            },
+            { speed: 1.2, rank: "Q", name: "Rising Mountain", damage: 10, chip: 1, comboPts: 2, comboType: "Ender" },
+            {
+                speed: 0.6, rank: "Q", name: "Dragon Mountain", damage: 14, chip: 2, comboPts: 2, comboType: "Linker",
+                maxCombo: "dQ>J+", maxDamage: 30, goodCombo: "dQ>8", goodDamage: 22, notes: dragon
+            },
+            { speed: 1.2, rank: "AA", name: "Wrath of Earth", damage: 20, chip: 2, comboType: "Can't Combo" }
         ],
         throws: [
-            { rank: 2 },
-            { rank: 3 },
-            { rank: 4 },
-            { rank: 5 },
-            { rank: 9 },
-            { rank: "T" },
-            { speed: 4.4, rank: "K", name: "Rushing River", damage: 12 },
-            { speed: 1.8, rank: "K", name: "Talon Swoop", damage: 17, notes: dragon },
-            { speed: 0.0, rank: "AA", pumpWith: "+A+A", name: "Final Dragon Buster", damage: 20, pump: 16, notes: dragon }
+            { rank: 2, maxCombo: "t2>J+", maxDamage: 24, goodCombo: "t2>8", goodDamage: 16 },
+            { rank: 3, maxCombo: "t3>J+", maxDamage: 24, goodCombo: "t3>8", goodDamage: 16 },
+            { rank: 4, maxCombo: "t4>J+", maxDamage: 24, goodCombo: "t4>8", goodDamage: 16 },
+            { rank: 5, maxCombo: "t5>J+", maxDamage: 24, goodCombo: "t5>8", goodDamage: 16 },
+            { rank: 9, maxCombo: "t9>J+", maxDamage: 24, goodCombo: "t9>8", goodDamage: 16 },
+            { rank: "T", maxCombo: "tT>J+", maxDamage: 24, goodCombo: "tT>8", goodDamage: 16 },
+            { speed: 4.4, rank: "K", name: "Rushing River", damage: 12, comboType: "Can't Combo", comboPts: null },
+            {
+                speed: 1.8, rank: "K", name: "Talon Swoop", damage: 17, comboType: "Can't Combo",
+                comboPts: null, notes: dragon
+            },
+            {
+                speed: 0.0, rank: "AA", pumpWith: "+A+A", name: "Final Dragon Buster", damage: 20,
+                pump: 16, comboType: "Can't Combo", comboPts: null, notes: dragon
+            }
         ]
     }
 })(window.characters);
