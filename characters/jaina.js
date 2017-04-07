@@ -20,7 +20,9 @@ if (window.characters == null) {
             />,
             maxCombo: max, maxDamage: maxDmg, goodCombo: good, goodDamage: goodDmg
         }
-    }
+    };
+
+    const recycle35 = recycles("Card is likely to recycle from the discard once Jaina is below 35 life");
 
     characters.jaina = {
         summary: {
@@ -86,7 +88,7 @@ if (window.characters == null) {
             {
                 speed: 0.2, rank: "Q", name: "Dragonheart", pumpWith: "+X",
                 damage: 8, pump: 5, chip: 1, comboType: "Ender", comboPts: 3,
-                maxCombo: "Q+", maxDamage: 13
+                maxCombo: "Q+", maxDamage: 13, notes: recycle35
             },
             {
                 speed: 2.4, rank: "K", name: "Crossfire Kick", pumpWith: "+K+K+K",
@@ -96,12 +98,12 @@ if (window.characters == null) {
             {
                 speed: 0.8, rank: "A", name: "Red Dragon", pumpWith: "+A+A+A",
                 damage: 10, pump: 9, chip: 2, comboType: "Can't Combo", comboPts: null,
-                maxCombo: "A+++", maxDamage: 37, goodCombo: "A++", goodDamage: 28
+                maxCombo: "A+++", maxDamage: 37, goodCombo: "A++", goodDamage: 28, notes: recycle35
             },
             {
                 speed: 0.2, rank: "AA", name: "Letter J", damage: 18, chip: 4,
                 comboType: "Ender", comboPts: 2, maxCombo: "AA", maxDamage: 18,
-                goodCombo: "AA", goodDamage: 18
+                goodCombo: "AA", goodDamage: 18, notes: recycle35
             }
         ],
         throws: [
@@ -114,5 +116,5 @@ if (window.characters == null) {
             { rank: 9, maxCombo: "t9>K+++>6", maxDamage: 40, goodCombo: "t9>4>5>6", goodDamage: "22" },
             { rank: "T", maxCombo: "tT>K+++>6", maxDamage: 40, goodCombo: "tT>4>5>6", goodDamage: "22" }
         ]
-    }
+    };
 })(window.characters);

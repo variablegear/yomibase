@@ -11,3 +11,10 @@ function Note(props) {
         </OverlayTrigger>
     );
 }
+
+function recycles(text) {
+    return <Note
+        text={text || "Card is likely to recycle from the discard"}
+        icon={<span style={{fontSize: "200%"}}>{"\u2672"}</span>}
+    />;
+}
