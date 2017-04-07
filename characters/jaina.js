@@ -7,7 +7,7 @@ if (window.characters == null) {
         return {
             rank: rank, chip: "(" + rank + ")",
             notes: <Note
-                text="Chip Damage only on Red"
+                text="Chip damage on *red* normals only"
                 icon={
                     <span>
                         <span className='yomi-attack'>{"\u2764"}</span>
