@@ -474,8 +474,8 @@
             return (
                 <span>
                     {props.damage}
-                    {props.chip > 0 && <sub className="yomi-block">{props.chip}</sub>}
-                    {props.pump > 0 && <span className="text-muted">+{props.pump}</span>}
+                    {props.chip && <sub className="yomi-block">{props.chip}</sub>}
+                    {props.pump && <span className="text-muted">+{props.pump}</span>}
                 </span>
             )
         }
