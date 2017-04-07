@@ -67,7 +67,7 @@ if (window.characters == null) {
             },
             {
                 speed: 2.2, rank: "K", pumpWith: "+K", name: "Whirlwind", damage: 7, pump: 7, chip: 1,
-                comboPts: 2, comboType: "Linker", maxCombo: "K+>AAA", maxDamage: 59, goodCombo: "K+>6>J", goodDamage: 29
+                comboPts: 2, comboType: "Linker", maxCombo: "K+>6>J", maxDamage: 29, goodCombo: "K+>A", goodDamage: 26
             },
             {
                 speed: 1.0, rank: "A", name: "True-Spark Arc", damage: 12, chip: 3,
