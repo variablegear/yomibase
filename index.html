@@ -281,39 +281,39 @@
                     <Table responsive>
                         <tbody>
                             <tr>
-                                <td><strong>Hit Points</strong>:</td>
+                                <th>Hit Points:</th>
                                 <td>{props.char.hitPoints}</td>
                             </tr>
                             <tr>
-                                <td><strong>Max Combo</strong>:</td>
+                                <th>Max Combo:</th>
                                 <td><ComboPoints count={props.char.maxCombo} max={props.char.maxCombo}/></td>
                             </tr>
                             <tr>
-                                <td><strong className="yomi-attack">Normal attack speed</strong>:</td>
+                                <th><span className="yomi-attack">Normal attack speed</span>:</th>
                                 <td>{props.char.attackDefaults.speedOffset.toFixed(1).replace('0.', 'x.')} (x = card rank)</td>
                             </tr>
                             <tr>
-                                <td><strong>Normal throw speed</strong>:</td>
+                                <th><span className="yomi-throw">Normal throw speed</span>:</th>
                                 <td>{props.char.throwDefaults.speedOffset.toFixed(1).replace('0.', 'x.')} (x = card rank) {props.char.throwCP} {props.char.throwKD}</td>
                             </tr>
                             <tr>
-                                <td><strong>Normal throw damage</strong>:</td>
+                                <th><span className="yomi-throw">Normal throw damage</span>:</th>
                                 <td>{props.char.throwDefaults.damage}</td>
                             </tr>
                             <tr>
-                                <td><span className="yomi-attack">Attacks</span>:</td>
+                                <th><span className="yomi-attack">Attacks</span>:</th>
                                 <td className="yomi-attack">{props.char.attacks.join(', ')}</td>
                             </tr>
                             <tr>
-                                <td><span className="yomi-throw">Throws</span>:</td>
+                                <th><span className="yomi-throw">Throws</span>:</th>
                                 <td className="yomi-throw">{props.char.throws.join(', ')}</td>
                             </tr>
                             <tr>
-                                <td><span className="yomi-block">Blocks</span>:</td>
+                                <th><span className="yomi-block">Blocks</span>:</th>
                                 <td className="yomi-block">{props.char.blocks.join(', ')}</td>
                             </tr>
                             <tr>
-                                <td><span className="yomi-dodge">Dodges</span>:</td>
+                                <th><span className="yomi-dodge">Dodges</span>:</th>
                                 <td className="yomi-dodge">{props.char.dodges.join(', ')}</td>
                             </tr>
                         </tbody>
