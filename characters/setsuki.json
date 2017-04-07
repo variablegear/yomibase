@@ -42,24 +42,33 @@
             ]
         },
         "attacks": [
-            {"rank": 2},
-            {"rank": 3},
-            {"rank": 4},
-            {"rank": 5},
-            {"rank": 6},
-            {"speed": 1.4, "rank": "J", "name": "Esper Dash", "damage": 5, "chip": 1},
-            {"speed": 0.0, "rank": "Q", "name": "Ninpo Flash", "pumpWith": "+X+X", "damage": 1, "pump": 4, "chip": 1},
-            {"speed": 2.2, "rank": "K", "name": "Starlight Kick", "pumpWith": "+X+X", "damage": 5, "pump": 3, "chip": 2},
-            {"speed": 1.0, "rank": "A", "pumpWith": "+A+A+A", "name": "Shuriken Hail", "damage": 9, "pump": 9, "chip": 3,
+            {"rank": 2, "maxCombo": "2>K++>6>AA", "maxDamage": 36, "goodCombo": "2>3>4>5>K", "goodDamage": 20},
+            {"rank": 3, "maxCombo": "3>K++>6>AA", "maxDamage": 37, "goodCombo": "3>4>5>6>K", "goodDamage": 24},
+            {"rank": 4, "maxCombo": "4>K++>6>AA", "maxDamage": 38, "goodCombo": "4>5>6>K+>5", "goodDamage": 28},
+            {"rank": 5, "maxCombo": "5>K++>6>AA", "maxDamage": 39, "goodCombo": "5>6>K+>4>5", "goodDamage": 28},
+            {"rank": 6, "maxCombo": "6>K++>6>AA", "maxDamage": 40, "goodCombo": "6>K+>3>4>5", "goodDamage": 26},
+            {"speed": 1.4, "rank": "J", "name": "Esper Dash", "damage": 5, "chip": 1,
+             "comboPts": 1, "comboType": "Linker", "maxCombo": "J>K++>6>AA", "maxDamage": 39,
+             "goodCombo": "J>K+>3>4>5", "goodDamage": 25},
+            {"speed": 0.0, "rank": "Q", "name": "Ninpo Flash", "pumpWith": "+X+X", "damage": 1,
+             "pump": 4, "chip": 1,  "comboPts": 3, "comboType": "Starter", "maxCombo": "Q++>6>AA", "maxDamage": 32,
+             "goodCombo": "Q++>K+>6", "goodDamage": 23},
+            {"speed": 2.2, "rank": "K", "name": "Starlight Kick", "pumpWith": "+X+X", "damage": 5,
+             "pump": 3, "chip": 2, "comboPts": 2, "comboType": "Linker", "maxCombo": "K++>K++>AA", "maxDamage": 39,
+             "goodCombo": "K++>4>5>6>J", "goodDamage": 31},
+            {"speed": 1.0, "rank": "A", "pumpWith": "+A+A+A", "name": "Shuriken Hail", "damage": 9,
+             "pump": 9, "chip": 3, "comboType": "Can't Combo",
              "maxCombo": "A+++", "maxDamage": 36, "goodCombo": "A++", "goodDamage": "27"},
-            {"speed": 1.2, "rank": "AA", "name": "Surprise Gift", "damage": 17, "chip": 3}
+            {"speed": 1.2, "rank": "AA", "name": "Surprise Gift", "damage": 17, "chip": 3,
+             "comboPts": 2, "comboType": "Ender"}
         ],
         "throws": [
-            {"rank": 7},
-            {"rank": 8},
-            {"rank": 9},
-            {"rank": "T"},
-            {"speed": 9.2, "rank": "K", "name": "Starlight Tumbler", "damage": 6}
+            {"rank": 7, "maxCombo": "7>6>AA", "maxDamage": 29, "goodCombo": "7>4>5>6", "goodDamage": 21},
+            {"rank": 8, "maxCombo": "8>6>AA", "maxDamage": 29, "goodCombo": "8>4>5>6", "goodDamage": 21},
+            {"rank": 9, "maxCombo": "9>6>AA", "maxDamage": 29, "goodCombo": "9>4>5>6", "goodDamage": 21},
+            {"rank": "T", "maxCombo": "T>6>AA", "maxDamage": 29, "goodCombo": "T>4>5>6", "goodDamage": 21},
+            {"speed": 9.2, "rank": "K", "name": "Starlight Tumbler", "damage": 6, "comboPts": 2,
+             "comboType": "Ender", "kd": true}
         ]
     }
 }
