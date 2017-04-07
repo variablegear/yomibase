@@ -64,11 +64,11 @@ if (window.characters == null) {
             ]
         },
         attacks: [
-            {rank: 2, maxCombo: "2>6>6>6>J++", maxDamage: 41, goodCombo: "2>4>5>5>J", goodDamage: 23},
-            {rank: 3, maxCombo: "3>6>6>6>J++", maxDamage: 42, goodCombo: "3>4>5>5>J", goodDamage: 24},
-            {rank: 4, maxCombo: "4>6>6>6>J++", maxDamage: 43, goodCombo: "4>4>5>5>J", goodDamage: 25},
-            {rank: 5, maxCombo: "5>6>6>6>J++", maxDamage: 44, goodCombo: "5>3>4>6>J", goodDamage: 25},
-            {rank: 6, maxCombo: "6>6>6>6>J++", maxDamage: 45, goodCombo: "6>3>5>5>J", goodDamage: 26},
+            {rank: 2, maxCombo: "2>6>6>6>J++", maxDamage: 41, goodCombo: "2>3>4>5>5>6", goodDamage: 25},
+            {rank: 3, maxCombo: "3>6>6>6>J++", maxDamage: 42, goodCombo: "3>2>4>5>5>6", goodDamage: 25},
+            {rank: 4, maxCombo: "4>6>6>6>J++", maxDamage: 43, goodCombo: "4>2>3>5>5>6", goodDamage: 25},
+            {rank: 5, maxCombo: "5>6>6>6>J++", maxDamage: 44, goodCombo: "5>2>4>4>5>6", goodDamage: 26},
+            {rank: 6, maxCombo: "6>6>6>6>J++", maxDamage: 45, goodCombo: "6>3>4>5>5>6", goodDamage: 29},
             {
                 speed: 2.2, rank: "J", name: "Three Colors", pumpWith: "+F+F",
                 damage: 7, pump: 7, chip: 2, comboPts: 2, comboType: "Ender"
@@ -80,7 +80,7 @@ if (window.characters == null) {
             {
                 speed: 3.4, rank: "K", name: "Flying Rainbow Strike",
                 damage: 6, chip: 2, comboPts: 1, comboType: "Linker",
-                maxCombo: "", maxDamage: "", goodCombo: "", goodDamage: "",
+                maxCombo: "K>6>6>6>J++", maxDamage: 45, goodCombo: "K>3>4>4>5>6", goodDamage: 28,
             },
             {
                 speed: 1.0, rank: "A", name: "Chromatic Orb",
