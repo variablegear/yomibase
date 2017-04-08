@@ -102,14 +102,14 @@ if (window.characters == null) {
             },
             {
                 speed: 0.2, rank: "AA", name: "Letter J", damage: 18, chip: 4,
-                comboType: "Ender", comboPts: 2, maxCombo: "AA", maxDamage: 18,
-                goodCombo: "AA", goodDamage: 18, notes: recycle35
+                comboType: "Ender", comboPts: 2, notes: recycle35
             }
         ],
         throws: [
             {
                 rank: 6, speed: 8.6, name: "Knee Bash", pumpWith: "+X+X", damage: 7,
-                pump: 4, comboType: "Can't Combo", kd: false, comboPts: null
+                pump: 4, comboType: "Can't Combo", kd: false, comboPts: null,
+                maxCombo: "6++", maxDamage: 15, goodCombo: "6+", goodDamage: 11,
             },
             { rank: 7, maxCombo: "t7>K+++>6", maxDamage: 40, goodCombo: "t7>4>5>6", goodDamage: "22" },
             { rank: 8, maxCombo: "t8>K+++>6", maxDamage: 40, goodCombo: "t8>4>5>6", goodDamage: "22" },

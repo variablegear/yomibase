@@ -58,7 +58,7 @@ if (window.characters == null) {
             { rank: 8, maxCombo: "8>J+", maxDamage: 24, goodCombo: "8>Q", goodDamage: 18 },
             {
                 speed: 2.4, rank: "J", pumpWith: "+J", name: "Whirlwind", damage: 8, pump: 8, chip: 2,
-                comboPts: 1, comboType: "Ender"
+                comboPts: 1, comboType: "Ender", maxCombo: "J+", maxDamage: 16,
             },
             {
                 speed: 2.4, rank: "J", name: "Toxic Breath", damage: 9, chip: 2, comboPts: 1, comboType: "Starter",
@@ -85,7 +85,8 @@ if (window.characters == null) {
             },
             {
                 speed: 0.0, rank: "AA", pumpWith: "+A+A", name: "Final Dragon Buster", damage: 20,
-                pump: 16, comboType: "Can't Combo", comboPts: null, notes: dragon
+                pump: 16, comboType: "Can't Combo", comboPts: null,
+                maxCombo: "AA++", maxDamage: 52, goodCombo: "AA+", goodDamage: 36, notes: dragon
             }
         ]
     }

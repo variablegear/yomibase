@@ -71,11 +71,13 @@ if (window.characters == null) {
             {rank: 6, maxCombo: "6>6>6>6>J++", maxDamage: 45, goodCombo: "6>3>4>5>5>6", goodDamage: 29},
             {
                 speed: 2.2, rank: "J", name: "Three Colors", pumpWith: "+F+F",
-                damage: 7, pump: 7, chip: 2, comboPts: 2, comboType: "Ender"
+                damage: 7, pump: 7, chip: 2, comboPts: 2, comboType: "Ender",
+                maxCombo: "J++", maxDamage: 21, goodCombo: "J+", goodDamage: 14,
             },
             {
                 speed: 0.2, rank: "Q", name: "Crimson Passion", pumpWith: "+X+X",
-                damage: 8, pump: 3, chip: 1, comboPts: 3, comboType: "Ender"
+                damage: 8, pump: 3, chip: 1, comboPts: 3, comboType: "Ender",
+                maxCombo: "Q++", maxDamage: 14, goodCombo: "Q+", goodDamage: 11,
             },
             {
                 speed: 3.4, rank: "K", name: "Flying Rainbow Strike",

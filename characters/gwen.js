@@ -56,24 +56,32 @@ if (window.characters == null) {
             { rank: 5, maxCombo: "5>6>K++>A+", maxDamage: 39, goodCombo: "5>6>J>A+", goodDamage: 33 },
             { rank: 6, maxCombo: "6>J>K++>A+", maxDamage: 40, goodCombo: "6>J>3>4>5>6", goodDamage: 30 },
             {
-                speed: 3.6, rank: "J", pumpWith: "+J", name: "Chains of Ice", damage: 7, pump: 7, chip: 5,
+                speed: 3.6, rank: "J", pumpWith: "+J", name: "Chains of Ice",
+                damage: 7, pump: 7, chip: 5,
+                comboPts: 2, comboType: "Starter",
                 maxCombo: "J+>K++>A+", maxDamage: 42, goodCombo: "J+>3>4>5>6", goodDamage: 32,
                 notes: <Note
                     text="Unburstable due to Chillbane"
-                    icon={<strike style={{fontSize: "150%"}}>{"\uD83D\uDCA5"}</strike>}
+                    icon={<strike style={{ fontSize: "150%" }}>{"\uD83D\uDCA5"}</strike>}
                 />
             },
             {
                 speed: 4.0, rank: "J", name: "Links of Ice", damage: 6, chip: 1, maxCombo: "J>6>K++>A+",
-                maxDamage: 40, goodCombo: "J>2>3>4>5>6", goodDamage: 26
-            },
-            { speed: 0.0, rank: "Q", pumpWith: "+X", damage: 6, pump: 4, chip: 1, maxCombo: "Q+", maxDamage: 10 },
-            {
-                speed: 1.2, rank: "K", pumpWith: "+X+X", damage: 4, pump: 4, chip: 3, maxCombo: "K++>K++>A+",
-                maxDamage: 40, goodCombo: "K++>3>4>5>6", goodDamage: 30
+                maxDamage: 40, goodCombo: "J>2>3>4>5>6", goodDamage: 26, comboPts: 1, comboType: "Linker",
             },
             {
-                speed: 1.2, rank: "A", pumpWith: "+A", damage: 8, pump: 8, chip: 3,
+                speed: 0.0, rank: "Q", name: "Shadow Slice", pumpWith: "+X",
+                damage: 6, pump: 4, chip: 1, comboPts: 3, comboType: "Ender",
+                maxCombo: "Q+", maxDamage: 10
+            },
+            {
+                speed: 1.2, rank: "K", name: "Burnbarrow", pumpWith: "+X+X",
+                damage: 4, pump: 4, chip: 3, comboPts: 2, comboType: "Linker",
+                maxCombo: "K++>K++>A+", maxDamage: 40, goodCombo: "K++>3>4>5>6", goodDamage: 30
+            },
+            {
+                speed: 1.2, rank: "A", name: "Dashgorger", pumpWith: "+A",
+                damage: 8, pump: 8, chip: 3, comboPts: 2, comboType: "Ender",
                 maxCombo: "A+", maxDamage: 16
             }
         ],
@@ -82,7 +90,7 @@ if (window.characters == null) {
             { rank: 8, maxCombo: "t8>6>A+", maxDamage: 28, goodCombo: "t8>6>J>6", goodDamage: 24 },
             { rank: 9, maxCombo: "t9>6>A+", maxDamage: 28, goodCombo: "t9>6>K++", goodDamage: 24 },
             { rank: "T", maxCombo: "tT>6>A+", maxDamage: 28, goodCombo: "tT>J>J>J", goodDamage: 24 },
-            { speed: 4.6, rank: "AAA", damage: 22 }
+            { speed: 4.6, rank: "AAA", name: "Dreadlands Portal", damage: 22, comboPts: null, comboType: "Can't Combo", kd: false }
         ]
     }
 })(window.characters);
