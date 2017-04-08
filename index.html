@@ -54,6 +54,9 @@
             color: black;
             font-weight: bold;
         }
+        .default-damage {
+            color: #777777;
+        }
         .move-name {
             white-space: nowrap;
         }
@@ -524,54 +527,72 @@
             }, character.summary[defaultKey], row))) || [];
         }
 
+        function MoveTable(props) {
+            const charHeader = <SortHeader isKey name="Character" rowKey="character" sort={(row) => row.character}/>;
+            const speedHeader = <SortHeader
+                name="Speed" sort={(row) => speedValue(row)}
+                format={(row) => speedValue(row).toFixed(1)}
+            />;
+            const rankHeader = <SortHeader
+                isKey={(row) => row.rank.toString().concat(row.name)}
+                name="Rank"
+                sort={(row) => rankValue(row.rank)}
+                format={(row) => (
+                    <Move abilities={row.abilities} rank={row.rank} pump={row.pumpWith} name={row.name}/>
+                )}
+            />;
+            const damageHeader = <SortHeader
+                name="Damage"
+                sort={(row) => row.damage || rankValue(row.rank)}
+                format={(row) => (
+                    <Damage damage={row.damage || rankValue(row.rank)} chip={row.chip} pump={row.pump}/>
+                )}
+            />;
+            const comboHeader = <SortHeader
+                name="Combo"
+                format={(row) => (
+                    <ComboDetails points={row.comboPts} max={row.maxComboPts} type={row.comboType} kd={row.kd}/>
+                )}
+            />;
+            const maxComboHeader = <SortHeader name="Max Combo" format={(row) => <Combo combo={row.maxCombo}/>} />;
+            const maxDamageHeader = <SortHeader
+                name="Max Damage"
+                sort={(row) => (parseFloat(row.maxDamage) || row.damage)}
+                format={(row) => row.maxDamage || <span className="default-damage">{row.damage}</span>}
+            />;
+            const goodComboHeader = <SortHeader name="Good Combo" format={(row) => <Combo combo={row.goodCombo}/>} />;
+            const goodDamageHeader = <SortHeader
+                name="Good Damage"
+                sort={(row) => (parseFloat(row.goodDamage) || row.damage)}
+                format={(row) => row.goodDamage || <span className="default-damage">{row.damage}</span>}
+            />;
+            const notesHeader = <SortHeader name="Notes" format={(row) => row.notes} />;
+
+            return <SortableTable data={props.moves} className={(row) => row.className} >
+                {props.showCharacter && charHeader}
+                {speedHeader}
+                {rankHeader}
+                {damageHeader}
+                {props.showComboDetails && comboHeader}
+                {maxComboHeader}
+                {maxDamageHeader}
+                {goodComboHeader}
+                {goodDamageHeader}
+                {!props.moves.every((row) => row.notes == null) && notesHeader}
+            </SortableTable>;
+        }
+
         class Attacks extends React.Component {
             render() {
                 const leftAttacks = withCharacter("left", this.props.left, 'attacks', 'attackDefaults');
                 const rightAttacks = withCharacter("right", this.props.right, 'attacks', 'attackDefaults');
                 const attacks = leftAttacks.concat(rightAttacks);
 
-                return (
-                    <SortableTable data={attacks} className={(row) => row.className} >
-                        {this.props.left && this.props.right &&
-                            <SortHeader isKey name="Character" rowKey="character" sort={(row) => row.character}/>
-                        }
-                        <SortHeader
-                            name="Speed"
-                            sort={(row) => speedValue(row)}
-                            format={(row) => speedValue(row).toFixed(1)}
-                        />
-                        <SortHeader
-                            isKey={(row) => row.rank.toString().concat(row.name)}
-                            name="Rank"
-                            sort={(row) => rankValue(row.rank)}
-                            format={(row) => (
-                                <Move abilities={row.abilities} rank={row.rank} pump={row.pumpWith} name={row.name}/>
-                            )}
-                        />
-                        <SortHeader name="Damage"
-                            sort={(row) => row.damage || rankValue(row.rank)}
-                            format={(row) => (
-                                <Damage damage={row.damage || rankValue(row.rank)} chip={row.chip} pump={row.pump}/>
-                            )}
-                        />
-                        {!this.props.left != !this.props.right && <SortHeader name="Combo"
-                            format={(row) => (
-                                <ComboDetails points={row.comboPts} max={row.maxComboPts} type={row.comboType} kd={row.kd}/>
-                            )}
-                        />}
-                        <SortHeader name="Max Combo" sort={(row) => rankValue(row.maxCombo)}
-                            format={(row) => <Combo combo={row.maxCombo}/>}
-                        />
-                        <SortHeader name="Max Damage" sort={(row) => (parseFloat(row.maxDamage) || 0)} rowKey="maxDamage" />
-                        <SortHeader name="Good Combo" sort={(row) => rankValue(row.goodCombo)}
-                            format={(row) => <Combo combo={row.goodCombo}/>}
-                        />
-                        <SortHeader name="Good Damage" sort={(row) => (parseFloat(row.goodDamage) || 0)} rowKey="goodDamage" />
-                        {!attacks.every((row) => row.notes == null) &&
-                            <SortHeader name="Notes" format={(row) => row.notes} />
-                        }
-                    </SortableTable>
-                );
+                return <MoveTable
+                    moves={attacks}
+                    showCharacter={this.props.left && this.props.right}
+                    showComboDetails={!this.props.left != !this.props.right}
+                />;
             }
         };
 
@@ -582,46 +603,11 @@
                 const rightThrows = withCharacter("right", this.props.right, "throws", "throwDefaults");
                 const throws = leftThrows.concat(rightThrows);
 
-                return (
-                    <SortableTable data={throws} className={(row) => row.className} >
-                        {this.props.left && this.props.right &&
-                            <SortHeader isKey name="Character" rowKey="character" sort={(row) => row.character}/>
-                        }
-                        <SortHeader
-                            name="Speed"
-                            sort={(row) => speedValue(row)}
-                            format={(row) => speedValue(row).toFixed(1)}
-                        />
-                        <SortHeader
-                            isKey={(row) => row.rank.toString().concat(row.name)}
-                            name="Rank"
-                            sort={(row) => rankValue(row.rank)}
-                            format={(row) => (
-                                <Move abilities={row.abilities} rank={row.rank} pump={row.pumpWith} name={row.name}/>
-                            )}
-                        />
-                        <SortHeader name="Damage"
-                            sort={(row) => row.damage}
-                            format={(row) => <Damage damage={row.damage} pump={row.pump}/>}
-                        />
-                        {!this.props.left != !this.props.right && <SortHeader name="Combo"
-                            format={(row) => (
-                                <ComboDetails points={row.comboPts} max={row.maxComboPts} type={row.comboType} kd={row.kd}/>
-                            )}
-                        />}
-                        <SortHeader name="Max Combo" sort={(row) => rankValue(row.maxCombo)}
-                            format={(row) => <Combo combo={row.maxCombo}/>}
-                        />
-                        <SortHeader name="Max Damage" sort={(row) => (parseFloat(row.maxDamage) || 0)} rowKey="maxDamage" />
-                        <SortHeader name="Good Combo" sort={(row) => rankValue(row.goodCombo)}
-                            format={(row) => <Combo combo={row.goodCombo}/>}
-                        />
-                        <SortHeader name="Good Damage" sort={(row) => (parseFloat(row.goodDamage) || 0)} rowKey="goodDamage" />
-                        {!throws.every((row) => row.notes == null) &&
-                            <SortHeader name="Notes" format={(row) => row.notes} />
-                        }
-                    </SortableTable>
-                );
+                return <MoveTable
+                    moves={throws}
+                    showCharacter={this.props.left && this.props.right}
+                    showComboDetails={!this.props.left != !this.props.right}
+                />;
             }
         };
 
