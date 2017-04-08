@@ -54,7 +54,7 @@
             color: black;
             font-weight: bold;
         }
-        .default-damage {
+        .combo-default {
             color: #777777;
         }
         .full-name {
@@ -554,17 +554,23 @@
                     <ComboDetails points={row.comboPts} max={row.maxComboPts} type={row.comboType} kd={row.kd}/>
                 )}
             />;
-            const maxComboHeader = <SortHeader name="Max Combo" format={(row) => <Combo combo={row.maxCombo}/>} />;
+            const maxComboHeader = <SortHeader
+                name="Max Combo"
+                format={(row) => row.maxCombo ? <Combo combo={row.maxCombo}/> : <span className="combo-default">{row.rank}</span>}
+            />;
             const maxDamageHeader = <SortHeader
                 name="Max Damage"
                 sort={(row) => (parseFloat(row.maxDamage) || row.damage)}
-                format={(row) => row.maxDamage || <span className="default-damage">{row.damage}</span>}
+                format={(row) => row.maxDamage || <span className="combo-default">{row.damage}</span>}
             />;
-            const goodComboHeader = <SortHeader name="Good Combo" format={(row) => <Combo combo={row.goodCombo}/>} />;
+            const goodComboHeader = <SortHeader
+                name="Good Combo"
+                format={(row) => row.goodCombo ? <Combo combo={row.goodCombo}/> : <span className="combo-default">{row.rank}</span>}
+            />;
             const goodDamageHeader = <SortHeader
                 name="Good Damage"
                 sort={(row) => (parseFloat(row.goodDamage) || row.damage)}
-                format={(row) => row.goodDamage || <span className="default-damage">{row.damage}</span>}
+                format={(row) => row.goodDamage || <span className="combo-default">{row.damage}</span>}
             />;
             const notesHeader = <SortHeader name="Notes" format={(row) => row.notes} />;
 
