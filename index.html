@@ -57,7 +57,7 @@
         .default-damage {
             color: #777777;
         }
-        .move-name {
+        .full-name {
             white-space: nowrap;
         }
         .summary-col {
@@ -196,7 +196,7 @@
                         <Grid>
                             {Object.keys(this.props.characters) &&
                                 <Row className="selectors" key="selectors">
-                                    <Col md={6}>
+                                    <Col md={12}>
                                         <Selector
                                             onSelect={(c) => this.context.router.push({pathname: "/" + c})}
                                             characters={this.props.characters}
@@ -205,10 +205,10 @@
                                             default="Pick a character..."
                                             onReset={() => this.context.router.push("/")}
                                         />
-                                    </Col>
                                     {this.props.params.left &&
-                                        <Col md={6}>
+                                        <span style={{float: "right"}}>
                                             <Selector
+                                                style={{float: "right"}}
                                                 onSelect={(c) => this.context.router.push({pathname: "/" + this.props.params.left + "/" + c})}
                                                 characters={this.props.characters}
                                                 current={this.props.params.right}
@@ -217,8 +217,9 @@
                                                 default="Match up against..."
                                                 onReset={(c) => this.context.router.push("/" + this.props.params.left)}
                                             />
-                                        </Col>
+                                        </span>
                                     }
+                                    </Col>
                                 </Row>
                             }
                             <Row className="summary-row">
@@ -281,7 +282,7 @@
 
             return (
                 <section className={props.className + " character-summary"} >
-                    <h1>{props.char.fullName} <small>{props.char.title}</small></h1>
+                    <h1>{props.char.fullName} <small className="full-name">{props.char.title}</small></h1>
                     <Table responsive>
                         <tbody>
                             <tr>
@@ -468,7 +469,7 @@
                 <div>
                     {rank}
                     <span className="text-muted">{props.pump}</span>
-                    {props.name && <div><small className="move-name">{props.name}</small></div>}
+                    {props.name && <div><small className="full-name">{props.name}</small></div>}
                 </div>
             );
         }
@@ -511,7 +512,7 @@
             return (
                 <span className="combo-details">
                     <ComboPoints count={props.points} max={props.max}/>
-                    {props.type && <span className="combo-type move-name"><small>{props.type}</small></span>}
+                    {props.type && <span className="combo-type full-name"><small>{props.type}</small></span>}
                     {props.kd && <img className="combo-kd" src="images/knockdown.jpg" height="24" />}
                 </span>
             );
