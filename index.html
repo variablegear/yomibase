@@ -147,7 +147,7 @@
                 <MenuItem key={char} onSelect={props.onSelect}
                     eventKey={char}
                     disabled={char == props.disabled}
-                >{props.characters[char].summary.fullName}</MenuItem>
+                >{props.characters[char].summary.name}</MenuItem>
             ));
 
             return (
@@ -561,8 +561,8 @@
             />;
             const maxDamageHeader = <SortHeader
                 name="Max Damage"
-                sort={(row) => (parseFloat(row.maxDamage) || row.damage)}
-                format={(row) => row.maxDamage || <span className="combo-default">{row.damage}</span>}
+                sort={(row) => (parseFloat(row.maxDamage) || row.damage || rankValue(row.rank))}
+                format={(row) => row.maxDamage || <span className="combo-default">{row.damage || rankValue(row.rank)}</span>}
             />;
             const goodComboHeader = <SortHeader
                 name="Good Combo"
@@ -570,8 +570,8 @@
             />;
             const goodDamageHeader = <SortHeader
                 name="Good Damage"
-                sort={(row) => (parseFloat(row.goodDamage) || row.damage)}
-                format={(row) => row.goodDamage || <span className="combo-default">{row.damage}</span>}
+                sort={(row) => (parseFloat(row.goodDamage) || row.damage || rankValue(row.rank))}
+                format={(row) => row.goodDamage || <span className="combo-default">{row.damage || rankValue(row.rank)}</span>}
             />;
             const notesHeader = <SortHeader name="Notes" format={(row) => row.notes} />;
 
