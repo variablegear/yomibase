@@ -54,8 +54,8 @@
             color: black;
             font-weight: bold;
         }
-        .combo-default {
-            color: #777777;
+        .combo-default > .damage, .combo-default > .moves > * {
+            opacity: .50;
         }
         .full-name {
             white-space: nowrap;
@@ -86,6 +86,9 @@
             border: black;
             border-style: solid;
             border-width: 1px;
+        }
+        .sort-icon {
+            padding-left: 2px;
         }
     </style>
 </head>
@@ -283,7 +286,7 @@
             return (
                 <section className={props.className + " character-summary"} >
                     <h1>{props.char.fullName} <small className="full-name">{props.char.title}</small></h1>
-                    <Table responsive>
+                    <Table>
                         <tbody>
                             <tr>
                                 <th>Hit Points:</th>
@@ -345,8 +348,7 @@
                     onClick={props.onClick}
                 >
                     {props.header.props.name}
-                    {"\u00a0"}
-                    <small>{sortGlyph}</small>
+                    <small className="sort-icon">{sortGlyph}</small>
                 </th>
             );
         };
@@ -414,7 +416,7 @@
                     </tr>
                 ));
                 return (
-                    <Table condensed hover>
+                    <Table condensed hover responsive >
                         <thead>
                             <tr>
                                 {this.headers().map((header, idx) => (
@@ -500,12 +502,19 @@
         }
 
         function Combo(props) {
-            return <span>{props.combo && props.combo.split('>').map((move, idx) => [
-                idx > 0 ? "\u27A7" : null,
-                move.startsWith('t')
-                    ? <span className="yomi-throw">{move.replace('t', '')}</span>
-                    : <span className="yomi-attack">{move}</span>
-            ])}</span>;
+            const combo = props.combo.toString();
+            return <span className={(props.className || "") + " combo"}>
+                <span className="damage">{props.damage}</span>
+                <br/>
+                <small className="moves">
+                    {combo && combo.split('>').map((move, idx) => [
+                    idx > 0 ? "\u27A7" : null,
+                    move.startsWith('t')
+                        ? <span className="yomi-throw">{move.replace('t', '')}</span>
+                        : <span className="yomi-attack">{move}</span>
+                    ])}
+                </small>
+            </span>;
         }
 
         function ComboDetails(props) {
@@ -516,6 +525,24 @@
                     {props.kd && <img className="combo-kd" src="images/knockdown.jpg" height="24" />}
                 </span>
             );
+        }
+
+        function mkComboHeader(prefix, throws) {
+            const lowerPrefix = prefix.toLowerCase();
+            return <SortHeader
+                name={prefix + " Combo"}
+                sort={(row) => {
+                    const damage = parseFloat(row[lowerPrefix + "Damage"]) || row.damage || rankValue(row.rank);
+                    console.log(lowerPrefix + "Damage", row, row[lowerPrefix + "Damage"]);
+                    return damage;
+                }}
+                format={(row) => {
+                    const damage = row[lowerPrefix + "Damage"] || row.damage || rankValue(row.rank);
+                    const combo = row[lowerPrefix + "Combo"] || (throws ? "t" : "") + row.rank;
+                    const className = row[lowerPrefix + "Combo"] ? "" : "combo-default";
+                    return <Combo combo={combo} damage={damage} className={className}/>;
+                }}
+            />;
         }
 
         function withCharacter(className, character, moveKey, defaultKey) {
@@ -554,24 +581,8 @@
                     <ComboDetails points={row.comboPts} max={row.maxComboPts} type={row.comboType} kd={row.kd}/>
                 )}
             />;
-            const maxComboHeader = <SortHeader
-                name="Max Combo"
-                format={(row) => row.maxCombo ? <Combo combo={row.maxCombo}/> : <span className="combo-default">{row.rank}</span>}
-            />;
-            const maxDamageHeader = <SortHeader
-                name="Max Damage"
-                sort={(row) => (parseFloat(row.maxDamage) || row.damage || rankValue(row.rank))}
-                format={(row) => row.maxDamage || <span className="combo-default">{row.damage || rankValue(row.rank)}</span>}
-            />;
-            const goodComboHeader = <SortHeader
-                name="Good Combo"
-                format={(row) => row.goodCombo ? <Combo combo={row.goodCombo}/> : <span className="combo-default">{row.rank}</span>}
-            />;
-            const goodDamageHeader = <SortHeader
-                name="Good Damage"
-                sort={(row) => (parseFloat(row.goodDamage) || row.damage || rankValue(row.rank))}
-                format={(row) => row.goodDamage || <span className="combo-default">{row.damage || rankValue(row.rank)}</span>}
-            />;
+            const maxComboHeader = mkComboHeader("Max", props.throws);
+            const goodComboHeader = mkComboHeader("Good", props.throws);
             const notesHeader = <SortHeader name="Notes" format={(row) => row.notes} />;
 
             return <SortableTable data={props.moves} className={(row) => row.className} >
@@ -581,9 +592,7 @@
                 {damageHeader}
                 {props.showComboDetails && comboHeader}
                 {maxComboHeader}
-                {maxDamageHeader}
                 {goodComboHeader}
-                {goodDamageHeader}
                 {!props.moves.every((row) => row.notes == null) && notesHeader}
             </SortableTable>;
         }
@@ -611,6 +620,7 @@
 
                 return <MoveTable
                     moves={throws}
+                    throws={true}
                     showCharacter={this.props.left && this.props.right}
                     showComboDetails={!this.props.left != !this.props.right}
                 />;
