@@ -1,0 +1,64 @@
+.selectors {
+    padding-bottom: 10px;
+}
+.base {
+    background: white;
+}
+.left {
+    background: #fce3e3;
+}
+.right {
+    background: #e0e2fc;
+}
+.yomi-block {
+    color: #2369db;
+    font-weight: bold;
+}
+.yomi-attack {
+    color: #bf1515;
+    font-weight: bold;
+}
+.yomi-dodge {
+    color: #670d9b;
+    font-weight: bold;
+}
+.yomi-throw {
+    color: black;
+    font-weight: bold;
+}
+.combo-default > .damage, .combo-default > .moves > * {
+    opacity: .50;
+}
+.full-name {
+    white-space: nowrap;
+}
+.summary-col {
+    padding-bottom: 100%;
+    margin-bottom: -100%;
+}
+.summary-row {
+    overflow: hidden;
+}
+.combo-points {
+    line-height: 0.75;
+}
+.combo-details {
+    display: table;
+    border-spacing: 3px;
+    border-collapse: separate;
+}
+.combo-type, .combo-kd, .combo-details > .combo-points {
+    display: table-cell;
+    vertical-align: middle;
+}
+.combo-type {
+    background: white;
+    padding-left: 2px;
+    padding-right: 2px;
+    border: black;
+    border-style: solid;
+    border-width: 1px;
+}
+.sort-icon {
+    padding-left: 2px;
+}
