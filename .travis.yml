@@ -1,8 +1,5 @@
 script: npm run build
 
-install:
-  - npm install -g
-
 deploy:
   provider: pages
   skip_cleanup: true
