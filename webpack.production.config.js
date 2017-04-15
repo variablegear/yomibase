@@ -17,7 +17,7 @@ module.exports = {
     './styles/index.scss'
   ],
   output: {
-    publicPath: './',
+    publicPath: '/yomibase/',
     path: path.join(__dirname, 'public'),
     filename: '[chunkhash].js'
   },
