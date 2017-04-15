@@ -110,7 +110,7 @@ class YomiBase extends Component {
                         <Row className="selectors" key="selectors">
                             <Col md={12}>
                                 <Selector
-                                    onSelect={(c) => this.props.history.push({pathname: '/' + c})}
+                                    onSelect={(c) => this.props.history.push('/' + c)}
                                     characters={characters}
                                     current={leftKey}
                                     slot="left"
@@ -121,7 +121,7 @@ class YomiBase extends Component {
                                     <span style={{float: 'right'}}>
                                         <Selector
                                             style={{float: 'right'}}
-                                            onSelect={(c) => this.props.history.push({pathname: '/' + leftKey + '/' + c})}
+                                            onSelect={(c) => this.props.history.push('/' + leftKey + '/' + c)}
                                             characters={characters}
                                             current={rightKey}
                                             disabled={leftKey}
@@ -534,7 +534,8 @@ class Throws extends Component {
 export default class App extends Component {
     render() {
         const history = createBrowserHistory();
-        return <Router history={history}>
+
+        return <Router history={history} basename="/yomibase">
             <div>
                 <Route path="/:left?/:right?" component={YomiBase} />
             </div>
