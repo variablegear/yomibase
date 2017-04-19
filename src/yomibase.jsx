@@ -1,20 +1,18 @@
 
-import {
-    Navbar,
-    Grid,
-    Row,
-    Col,
-    Well,
-    MenuItem,
-    DropdownButton,
-    Table,
-    Glyphicon,
-    Tooltip,
-    OverlayTrigger,
-} from 'react-bootstrap';
-import {Component} from 'react';
+import Navbar from 'react-bootstrap/lib/Navbar';
+import Grid from 'react-bootstrap/lib/Grid';
+import Row from 'react-bootstrap/lib/Row';
+import Col from 'react-bootstrap/lib/Col';
+import Well from 'react-bootstrap/lib/Well';
+import MenuItem from 'react-bootstrap/lib/MenuItem';
+import DropdownButton from 'react-bootstrap/lib/DropdownButton';
+import Table from 'react-bootstrap/lib/Table';
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
+import Tooltip from 'react-bootstrap/lib/Tooltip';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 
-import React from 'react';
+import React, {Component} from 'react';
+
 import {
     HashRouter as Router,
     Route,
@@ -117,9 +115,9 @@ class YomiBase extends Component {
                                     onReset={() => this.props.history.push('/')}
                                 />
                                 {leftKey &&
-                                    <span style={{float: 'right'}}>
+                                    <span style={{ float: 'right' }}>
                                         <Selector
-                                            style={{float: 'right'}}
+                                            style={{ float: 'right' }}
                                             onSelect={(c) => this.props.history.push('/' + leftKey + '/' + c)}
                                             characters={characters}
                                             current={rightKey}
@@ -275,7 +273,7 @@ class SortableTable extends Component {
     onSort(sortIdx, event) {
         event.preventDefault();
         if (sortIdx == this.state.sortIdx) {
-            this.setState({reversed: !this.state.reversed});
+            this.setState({ reversed: !this.state.reversed });
         } else {
             this.setState({
                 sortIdx: sortIdx,
