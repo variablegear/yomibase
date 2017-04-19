@@ -16,11 +16,10 @@ import {Component} from 'react';
 
 import React from 'react';
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Route,
     Link,
 } from 'react-router-dom';
-import createBrowserHistory from 'history/createBrowserHistory';
 
 import * as characters from './characters.js';
 
@@ -533,9 +532,7 @@ class Throws extends Component {
 
 export default class App extends Component {
     render() {
-        const history = createBrowserHistory();
-
-        return <Router history={history} basename="/yomibase">
+        return <Router>
             <div>
                 <Route path="/:left?/:right?" component={YomiBase} />
             </div>
