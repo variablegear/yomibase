@@ -11,7 +11,7 @@ import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 
 import {
     HashRouter as Router,
@@ -85,7 +85,7 @@ function EditLink(props) {
     );
 }
 
-class YomiBase extends Component {
+class YomiBase extends PureComponent {
     render() {
         const leftKey = this.props.match.params.left;
         const rightKey = this.props.match.params.right;
@@ -259,9 +259,9 @@ function SortingHeader(props) {
     );
 };
 
-class SortHeader extends Component { };
+class SortHeader extends PureComponent { };
 
-class SortableTable extends Component {
+class SortableTable extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -498,7 +498,7 @@ function MoveTable(props) {
     </SortableTable>;
 }
 
-class Attacks extends Component {
+class Attacks extends PureComponent {
     render() {
         const leftAttacks = withCharacter('left', this.props.left, 'attacks', 'attackDefaults');
         const rightAttacks = withCharacter('right', this.props.right, 'attacks', 'attackDefaults');
@@ -512,7 +512,7 @@ class Attacks extends Component {
     }
 };
 
-class Throws extends Component {
+class Throws extends PureComponent {
 
     render() {
         const leftThrows = withCharacter('left', this.props.left, 'throws', 'throwDefaults');
@@ -528,7 +528,7 @@ class Throws extends Component {
     }
 };
 
-export default class App extends Component {
+export default class App extends PureComponent {
     render() {
         return <Router>
             <div>
