@@ -77,9 +77,9 @@ function EditLink(props) {
         <Well>
             Found a bug, or have a suggestion about {props.char.name}?
                 Suggest a change <a href={
-                'https://github.com/cpennington/yomibase/edit/master/characters/' +
+                'https://github.com/cpennington/yomibase/edit/master/src/characters/' +
                 props.char.name.toLowerCase() +
-                '.json'
+                '.jsx'
             }>here</a>
         </Well>
     );
@@ -163,8 +163,8 @@ class YomiBase extends Component {
                         <Col md={12}>
                             <Well>
                                 Missing your favorite character?{'\u00A0'}
-                                <a href="https://github.com/cpennington/yomibase/new/master/characters">Add them!</a>{'\u00A0'}
-                                (you can copy <a href="https://github.com/cpennington/yomibase/blob/master/characters/template.json">this template</a> to start out)
+                                <a href="https://github.com/cpennington/yomibase/new/master/src/characters">Add them!</a>{'\u00A0'}
+                                (you can copy <a href="https://github.com/cpennington/yomibase/blob/master/src/characters/template.jsx">this template</a> to start out)
                                 </Well>
                         </Col>
                     </Row>
