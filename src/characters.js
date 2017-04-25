@@ -7,6 +7,7 @@ import {rook} from './characters/rook.jsx';
 import {setsuki} from './characters/setsuki.jsx';
 import {troq} from './characters/troq.jsx';
 import {valerie} from './characters/valerie.jsx';
+import {argagarg} from './characters/argagarg.jsx';
 
 export {
     geiger,
@@ -18,4 +19,5 @@ export {
     setsuki,
     troq,
     valerie,
+    argagarg,
 };
