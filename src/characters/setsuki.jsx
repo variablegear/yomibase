@@ -22,7 +22,9 @@ export const setsuki = {
         innateAbilities: [
             {
                 name: 'Speed of the Fox',
-                text: 'If you start the draw phase with 1 or 0 cards in hand, draw 5 cards (instead of 1) and you may hit back with a full combo if you dodge an attack or Joker this turn.',
+                text: 'If you start the draw phase with 1 or 0 cards in hand, draw 5 cards \
+                       (instead of 1) and you may hit back with a full combo if you dodge an \
+                       attack or Joker this turn.',
             },
         ],
         cardAbilities: [
@@ -30,13 +32,17 @@ export const setsuki = {
                 rank: 7,
                 name: 'Bag of Tricks',
                 timing: 'End of Turn',
-                text: 'At the end of turn, if this is the only card in your hand, you may put up to three non-Joker cards from your discard pile on top of your deck in any order, then discard this card.',
+                text: 'At the end of turn, if this is the only card in your hand, you may put \
+                       up to three non-Joker cards from your discard pile on top of your deck \
+                       in any order, then discard this card.',
             },
             {
                 rank: 'T',
                 name: 'Smoke Bomb',
                 timing: 'Reaction',
-                text: 'Discard two cards (and this card) to counter an ability. (Prevent and undo the ability and the opponent discards the card if played from hand. You can\'t counter Aces, Jokers or character cards.)',
+                text: 'Discard two cards (and this card) to counter an ability. (Prevent and \
+                      undo the ability and the opponent discards the card if played from hand. \
+                      You can\'t counter Aces, Jokers or character cards.)',
             },
         ],
     },

@@ -22,7 +22,11 @@ export const geiger = {
         innateAbilities: [
             {
                 name: 'Time Stop',
-                text: 'If your opponent takes block damage from a Time Spiral, your opponent can\'t activate innate abilities from blocking, and you may throw him. (Play a throw card from your hand and continue your combo if you want. The opponent doesn\'t draw a card from blocking if you throw him.)',
+                text: 'If your opponent takes block damage from a Time Spiral, your \
+                       opponent can\'t activate innate abilities from blocking, and \
+                       you may throw him. (Play a throw card from your hand and continue \
+                       your combo if you want. The opponent doesn\'t draw a card from \
+                       blocking if you throw him.)',
             },
         ],
         cardAbilities: [
@@ -30,13 +34,18 @@ export const geiger = {
                 rank: 4,
                 name: 'Temporal Distortion',
                 timing: 'Draw Phase',
-                text: 'Fetch a Jack or Queen from your discard pile. Ongoing. Your Time Spirals are zero combo point Linkers that do +1 damage each and are immune to Rewind Time Jokers. Discard this card when you get hit by an attack or throw.',
+                text: 'Fetch a Jack or Queen from your discard pile. Ongoing. Your Time \
+                       Spirals are zero combo point Linkers that do +1 damage each and \
+                       are immune to Rewind Time Jokers. Discard this card when you get \
+                       hit by an attack or throw.',
             },
             {
                 rank: 8,
                 name: 'Research and Development',
                 timing: 'Draw Phase',
-                text: 'Look at the top X cards of your deck, put one in your hand, then put the rest back on top of your deck in any order. X is the number of Time Spiral cards in your discard pile.',
+                text: 'Look at the top X cards of your deck, put one in your hand, then \
+                       put the rest back on top of your deck in any order. X is the number \
+                       of Time Spiral cards in your discard pile.',
             },
         ],
     },

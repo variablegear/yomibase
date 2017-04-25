@@ -22,7 +22,10 @@ export const grave = {
         innateAbilities: [
             {
                 name: 'Knowing the Opponent',
-                text: 'When you block an attack, you may reveal a card from your hand. If you combat-reveal that card next turn but don\'t win combat with it, draw a card. If you do win combat with it, search your deck or discard pile for a Queen. (Shuffle your deck if you searched for it).',
+                text: 'When you block an attack, you may reveal a card from your hand. If \
+                       you combat-reveal that card next turn but don\'t win combat with it, \
+                       draw a card. If you do win combat with it, search your deck or discard \
+                       pile for a Queen. (Shuffle your deck if you searched for it).',
             },
         ],
         cardAbilities: [
@@ -36,13 +39,16 @@ export const grave = {
                 rank: 'T',
                 name: 'Mental Toughness',
                 timing: 'Reaction',
-                text: 'Discard a face card (and this card) to counter an ability. (Prevent and undo the ability and the opponent discards the card if played from hand. You can\'t counter Aces, Jokers or character cards).',
+                text: 'Discard a face card (and this card) to counter an ability. (Prevent \
+                       and undo the ability and the opponent discards the card if played \
+                       from hand. You can\'t counter Aces, Jokers or character cards).',
             },
             {
                 rank: 'J',
                 name: 'Lightning Trap',
                 timing: 'During Combat',
-                text: 'When you deal block damage with Lightning Cloud, return this card to your hand and the opponent doesn\'t draw a card from blocking.',
+                text: 'When you deal block damage with Lightning Cloud, return this card \
+                       to your hand and the opponent doesn\'t draw a card from blocking.',
             },
         ],
     },
@@ -61,8 +67,9 @@ export const grave = {
             comboPts: 3, comboType: 'Ender',
         },
         {
-            speed: 2.2, rank: 'K', pumpWith: '+K', name: 'Whirlwind', damage: 7, pump: 7, chip: 1,
-            comboPts: 2, comboType: 'Linker', maxCombo: 'K+>6>J', maxDamage: 29, goodCombo: 'K+>A', goodDamage: 26,
+            speed: 2.2, rank: 'K', pumpWith: '+K', name: 'Whirlwind',
+            damage: 7, pump: 7, chip: 1, comboPts: 2, comboType: 'Linker',
+            maxCombo: 'K+>6>J', maxDamage: 29, goodCombo: 'K+>A', goodDamage: 26,
         },
         {
             speed: 1.0, rank: 'A', name: 'True-Spark Arc', damage: 12, chip: 3,

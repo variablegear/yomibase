@@ -21,7 +21,11 @@ export const rook = {
         innateAbilities: [
             {
                 name: 'Rock Armor',
-                text: 'If your normal attack is hit by the opponent\'s faster normal attack or special attack, the opponent finishes his combo, then if you were not knocked down, you may discard two cards of the same suit as your attack. If you do, your attack is not interrupted and you may finish your combo.',
+                text: 'If your normal attack is hit by the opponent\'s faster normal \
+                       attack or special attack, the opponent finishes his combo, then \
+                       if you were not knocked down, you may discard two cards of the \
+                       same suit as your attack. If you do, your attack is not interrupted \
+                       and you may finish your combo.',
             },
             {
                 name: 'Defense Mastery',
@@ -33,19 +37,24 @@ export const rook = {
                 rank: 3,
                 name: 'Entangling Vines',
                 timing: 'During Combat',
-                text: 'This block avoids block damage, knocks down attackers, and deals 5 damage to them. When it does, next turn your attacks and throws are 3 speed faster, to a minimum of speed 1.0. (This doesn\'t return this card to your hand or draw from blocking.)',
+                text: 'This block avoids block damage, knocks down attackers, and deals 5 \
+                       damage to them. When it does, next turn your attacks and throws are 3 \
+                       speed faster, to a minimum of speed 1.0. (This doesn\'t return this \
+                       card to your hand or draw from blocking.)',
             },
             {
                 rank: 5,
                 name: 'Stone Wall',
                 timing: 'During Combat',
-                text: 'This block reflects an attack\'s damage back to the attacker. (This doesn\'t return this card to your hand or draw from blocking.)',
+                text: 'This block reflects an attack\'s damage back to the attacker. (This \
+                       doesn\'t return this card to your hand or draw from blocking.)',
             },
             {
                 rank: 'K',
                 name: 'Windmill Crusher',
                 timing: 'During Combat',
-                text: 'This throw beats normal attacks with speed 5.0 or faster, but you still take damage from the opponent\'s normal attack.',
+                text: 'This throw beats normal attacks with speed 5.0 or faster, but you still \
+                       take damage from the opponent\'s normal attack.',
             },
         ],
     },

@@ -29,7 +29,10 @@ export const gwen = {
             },
             {
                 name: 'Relentless Strikes',
-                text: 'Whenever the opponent normal blocks your non-Ender attack, you may discard a red and a black normal attack. If you do, the black one hits, you win combat (and it ends), the opponent\'s block is discarded, and they draw a card.',
+                text: 'Whenever the opponent normal blocks your non-Ender attack, you \
+                       may discard a red and a black normal attack. If you do, the black \
+                       one hits, you win combat (and it ends), the opponent\'s block is \
+                       discarded, and they draw a card.',
             },
         ],
         cardAbilities: [
@@ -37,13 +40,17 @@ export const gwen = {
                 rank: 'T',
                 name: 'Gloria\'s Remedy',
                 timing: 'During Combat',
-                text: 'When you block an attack or Joker with this card, take no block damage, discard this card, and don\'t draw a card from blocking. Gain 6 life.',
+                text: 'When you block an attack or Joker with this card, take no block \
+                       damage, discard this card, and don\'t draw a card from blocking. \
+                       Gain 6 life.',
             },
             {
                 rank: 'J',
                 name: 'Chillbane',
                 timing: 'During Combat',
-                text: 'When you hit with Chains of Ice, freeze the opponent (they skip all decisions they would make the rest of the turn). Next turn, their attacks and throws are 2 speed slower.',
+                text: 'When you hit with Chains of Ice, freeze the opponent (they skip all \
+                       decisions they would make the rest of the turn). Next turn, their \
+                       attacks and throws are 2 speed slower.',
             },
         ],
     },
@@ -88,6 +95,9 @@ export const gwen = {
         {rank: 8, maxCombo: 't8>6>A+', maxDamage: 28, goodCombo: 't8>6>J>6', goodDamage: 24},
         {rank: 9, maxCombo: 't9>6>A+', maxDamage: 28, goodCombo: 't9>6>K++', goodDamage: 24},
         {rank: 'T', maxCombo: 'tT>6>A+', maxDamage: 28, goodCombo: 'tT>J>J>J', goodDamage: 24},
-        {speed: 4.6, rank: 'AAA', name: 'Dreadlands Portal', damage: 22, comboPts: null, comboType: 'Can\'t Combo', kd: false},
+        {
+            speed: 4.6, rank: 'AAA', name: 'Dreadlands Portal', damage: 22, comboPts: null,
+            comboType: 'Can\'t Combo', kd: false,
+        },
     ],
 };

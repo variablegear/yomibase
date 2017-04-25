@@ -22,7 +22,8 @@ export const valerie = {
             innateAbilities: [
                 {
                     name: 'Agile Hands',
-                    text: 'You can combo normal attacks in any order. (Out-of-order normals count as chain combos for you and let you search for Aces during the Power Up phase.)',
+                    text: 'You can combo normal attacks in any order. (Out-of-order normals count \
+                           as chain combos for you and let you search for Aces during the Power Up phase.)',
                 },
             ],
             cardAbilities: [
@@ -36,7 +37,8 @@ export const valerie = {
                     rank: 'T',
                     name: 'Burst of Speed',
                     timing: 'Combat Reveal',
-                    text: 'The attack or throw you combat-revealed is 2 speed faster, to a minimum of speed 1.0. (Does stack if you play multiples.)',
+                    text: 'The attack or throw you combat-revealed is 2 speed faster, to a minimum \
+                           of speed 1.0. (Does stack if you play multiples.)',
                 },
                 {
                     rank: 'K',

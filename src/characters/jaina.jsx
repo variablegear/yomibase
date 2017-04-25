@@ -46,11 +46,14 @@ export const jaina = {
         innateAbilities: [
             {
                 name: 'Burning Vigor',
-                text: 'At the end of combat, if you attacked, you may return any number of combo cards to your hand other than Queens or Aces. Take 3 damage for each card returned this way.',
+                text: 'At the end of combat, if you attacked, you may return any number of combo \
+                       cards to your hand other than Queens or Aces. Take 3 damage for each card \
+                       returned this way.',
             },
             {
                 name: 'Burning Desperation',
-                text: 'If you have 35 life or less, you may also return Queens and Aces and take 4 damage for each.',
+                text: 'If you have 35 life or less, you may also return Queens and Aces and take \
+                       4 damage for each.',
             },
         ],
         cardAbilities: [
@@ -58,13 +61,16 @@ export const jaina = {
                 rank: 7,
                 name: 'Unstable Power',
                 timing: 'Draw Phase',
-                text: 'Knocked down opponents stand up. You can\'t play Aces this turn, but you can rotate your combat-revealed attack 180 degrees. If you hit the opponent this combat, search your deck or discard pile for 2 Aces. Otherwise, take 7 damage.',
+                text: 'Knocked down opponents stand up. You can\'t play Aces this turn, but you can \
+                       rotate your combat-revealed attack 180 degrees. If you hit the opponent this \
+                       combat, search your deck or discard pile for 2 Aces. Otherwise, take 7 damage.',
             },
             {
                 rank: 'T',
                 name: 'Smoldering Embers',
                 timing: 'Combat Reveal',
-                text: 'If the opponent dodged while this card is in your discard pile, they take two damage. You can\'t power up with this card. (It\'s too hot.)',
+                text: 'If the opponent dodged while this card is in your discard pile, they take two \
+                       damage. You can\'t power up with this card. (It\'s too hot.)',
             },
         ],
     },
