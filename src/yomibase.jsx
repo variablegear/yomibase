@@ -240,7 +240,7 @@ function CharacterSummary(props) {
 function SortingHeader(props) {
     let sortGlyph = null;
     if (props.header.props.sort) {
-        if (props.current.sortIdx != props.idx) {
+        if (props.current.sortHeader != props.name) {
             sortGlyph = <Glyphicon glyph="sort" />;
         } else if (props.current.reversed) {
             sortGlyph = <Glyphicon glyph="sort-by-attributes-alt" />;
@@ -265,18 +265,18 @@ class SortableTable extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            sortIdx: 1,
+            sortHeader: this.headers().find((header) => header.props.sortDefault).props.name,
             reversed: false,
         };
     }
 
-    onSort(sortIdx, event) {
+    onSort(sortHeader, event) {
         event.preventDefault();
-        if (sortIdx == this.state.sortIdx) {
+        if (sortHeader == this.state.sortHeader) {
             this.setState({ reversed: !this.state.reversed });
         } else {
             this.setState({
-                sortIdx: sortIdx,
+                sortHeader: sortHeader,
                 reversed: false,
             });
         }
@@ -287,8 +287,8 @@ class SortableTable extends PureComponent {
     }
 
     sortedData() {
-        if (this.state.sortIdx != null) {
-            const sortHeader = this.headers()[this.state.sortIdx];
+        if (this.state.sortHeader != null) {
+            const sortHeader = this.headers().find((header) => header.props.name == this.state.sortHeader);
             let data = this.props.data.slice();
             return keyedSort(data, sortHeader.props.sort, this.state.reversed);
         } else {
@@ -327,10 +327,10 @@ class SortableTable extends PureComponent {
                         {this.headers().map((header, idx) => (
                             <SortingHeader
                                 key={header.props.name}
-                                idx={idx}
+                                name={header.props.name}
                                 header={header}
                                 current={this.state}
-                                onClick={(e) => this.onSort(idx, e)}
+                                onClick={(e) => this.onSort(header.props.name, e)}
                             />
                         ))}
                     </tr>
@@ -458,6 +458,7 @@ function withCharacter(className, character, moveKey, defaultKey) {
 function MoveTable(props) {
     const charHeader = <SortHeader isKey name="Character" rowKey="character" sort={(row) => row.character} />;
     const speedHeader = <SortHeader
+        sortDefault
         name="Speed" sort={(row) => speedValue(row)}
         format={(row) => speedValue(row).toFixed(1)}
     />;
