@@ -19,7 +19,7 @@ import {
     Link,
 } from 'react-router-dom';
 
-import * as characters from './characters.js';
+import characters from './characters.js';
 
 import '../styles/index.scss';
 

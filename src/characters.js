@@ -1,23 +1,14 @@
-import {geiger} from './characters/geiger.jsx';
-import {grave} from './characters/grave.jsx';
-import {gwen} from './characters/gwen.jsx';
-import {jaina} from './characters/jaina.jsx';
-import {midori} from './characters/midori.jsx';
-import {rook} from './characters/rook.jsx';
-import {setsuki} from './characters/setsuki.jsx';
-import {troq} from './characters/troq.jsx';
-import {valerie} from './characters/valerie.jsx';
-import {argagarg} from './characters/argagarg.jsx';
+export const characters = Object.assign({},
+    require('./characters/geiger.jsx'),
+    require('./characters/grave.jsx'),
+    require('./characters/gwen.jsx'),
+    require('./characters/jaina.jsx'),
+    require('./characters/midori.jsx'),
+    require('./characters/rook.jsx'),
+    require('./characters/setsuki.jsx'),
+    require('./characters/troq.jsx'),
+    require('./characters/valerie.jsx'),
+    require('./characters/argagarg.jsx'),
+);
 
-export {
-    geiger,
-    grave,
-    gwen,
-    jaina,
-    midori,
-    rook,
-    setsuki,
-    troq,
-    valerie,
-    argagarg,
-};
+export default characters
