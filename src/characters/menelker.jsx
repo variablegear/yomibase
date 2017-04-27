@@ -65,12 +65,12 @@ export const menelker = {
         {
             speed: 4.0, rank: 'J', pumpWith: '+J+J', name: 'Nether Orb',
             damage: 9, pump: 9, chip: 6, comboPts: 3, comboType: 'Starter',
-            maxCombo: 'J++>A+', maxDamage: 49,
+            maxCombo: 'J++>A+', maxDamage: 49, goodCombo: 'J++>K++', goodDamage: 44,
         },
         {
             speed: 0.0, rank: 'Q', pumpWith: '+x+x', name: 'Rising Dragon',
             damage: 8, pump: 4, chip: 2, comboPts: 3, comboType: 'Ender',
-            maxCombo: 'Q++', maxDamage: 16,
+            maxCombo: 'Q++', maxDamage: 16, goodCombo: 'Q+', goodDamage: 12,
         },
         {
             speed: 2.2, rank: 'K', pumpWith: '+x+x', name: 'Sweeping Claws',
@@ -87,7 +87,7 @@ export const menelker = {
         {rank: 7, maxCombo: 't7>A+', maxDamage: 28, goodCombo: 't7>K+', goodDamage: 22},
         {rank: 8, maxCombo: 't8>A+', maxDamage: 28, goodCombo: 't8>K+', goodDamage: 22},
         {rank: 9, maxCombo: 't9>A+', maxDamage: 28, goodCombo: 't9>K+', goodDamage: 22},
-        {rank: 'T', maxCombo: 'tT>A+', maxDamage: 22, goodCombo: 'tT>K+', goodDamage: 22},
+        {rank: 'T', maxCombo: 'tT>A+', maxDamage: 28, goodCombo: 'tT>K+', goodDamage: 22},
         {
             speed: 0.0, rank: 'AAAA', name: 'Deathstrike Dragon', damage: 55,
             comboType: 'Can\'t Combo', comboPts: null,
