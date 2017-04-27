@@ -5,7 +5,7 @@ function normalThrow(rank) {
         speed: rank + 0.4, rank: rank, pumpWith: '+X+X+X',
         damage: rank, pump: 3,
         comboType: "Can't Combo", kd: false,
-        maxCombo: rank + '+++', maxDamage: rank + 9, goodCombo: rank + '+', goodDamage: rank + 3,
+        maxCombo: 't' + rank + '+++', maxDamage: rank + 9, goodCombo: 't' + rank + '+', goodDamage: rank + 3,
     };
 };
 
@@ -119,7 +119,7 @@ export const lum = {
         {
             rank: 'T', name: 'Extra Juice', pumpWith: '+X+X+X', speed: 10.4,
             damage: 10, pump: 4,
-            maxCombo: 'T+++', maxDamage: 22, goodCombo: 'T+', goodDamage: 14,
+            maxCombo: 'tT+++', maxDamage: 22, goodCombo: 'tT+', goodDamage: 14,
         },
     ],
 };

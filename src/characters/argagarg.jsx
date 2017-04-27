@@ -78,9 +78,9 @@ export const argagarg = {
         },
     ],
     throws: [
-        { rank: 7, maxCombo: '7>K+>K+', maxDamage: 27, goodCombo: '7>5>6', goodDamage: 17 },
-        { rank: 8, maxCombo: '8>K+>K+', maxDamage: 27, goodCombo: '8>5>6', goodDamage: 17 },
-        { rank: 9, maxCombo: '9>K+>K+', maxDamage: 27, goodCombo: '9>5>6', goodDamage: 17 },
-        { rank: 'T', maxCombo: 'T>K+>K+', maxDamage: 27, goodCombo: 'T>5>6', goodDamage: 17 },
+        { rank: 7, maxCombo: 't7>K+>K+', maxDamage: 27, goodCombo: 't7>5>6', goodDamage: 17 },
+        { rank: 8, maxCombo: 't8>K+>K+', maxDamage: 27, goodCombo: '8t>5>6', goodDamage: 17 },
+        { rank: 9, maxCombo: 't9>K+>K+', maxDamage: 27, goodCombo: 't9>5>6', goodDamage: 17 },
+        { rank: 'T', maxCombo: 'tT>K+>K+', maxDamage: 27, goodCombo: 'tT>5>6', goodDamage: 17 },
     ],
 };

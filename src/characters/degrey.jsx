@@ -84,9 +84,9 @@ export const degrey = {
         },
     ],
     throws: [
-        { rank: 7, maxCombo: '7>AA', maxDamage: 28, goodCombo: '7>J', goodDamage: 15 },
-        { rank: 8, maxCombo: '8>AA', maxDamage: 28, goodCombo: '8>J', goodDamage: 15 },
-        { rank: 9, maxCombo: '9>AA', maxDamage: 28, goodCombo: '9>J', goodDamage: 15 },
-        { rank: 'T', maxCombo: 'T>AA', maxDamage: 28, goodCombo: 'T>J', goodDamage: 15 },
+        { rank: 7, maxCombo: 't7>AA', maxDamage: 28, goodCombo: 't7>J', goodDamage: 15 },
+        { rank: 8, maxCombo: 't8>AA', maxDamage: 28, goodCombo: 't8>J', goodDamage: 15 },
+        { rank: 9, maxCombo: 't9>AA', maxDamage: 28, goodCombo: 't9>J', goodDamage: 15 },
+        { rank: 'T', maxCombo: 'tT>AA', maxDamage: 28, goodCombo: 'tT>J', goodDamage: 15 },
     ],
 };
