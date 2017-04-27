@@ -1,4 +1,6 @@
-export const CHARACTER_NAME_HERE = {
+import React from 'react';
+
+export const menelker = {
     summary: {
         name: 'Menelker',
         fullName: 'Master Menelker',
@@ -22,22 +24,31 @@ export const CHARACTER_NAME_HERE = {
         innateAbilities: [
             {
                 name: 'Bleeding Wounds',
-                text: 'When you hit the opponent with a black face card attack (even multiple times in a combo), draw a card and they discard a card. (Aces are not face cards.)
-During the powerup phase, you may power up for black face cards. (You may still power up for Aces, too.)',
+                text: <div>
+                    When you hit the opponent with a black face card attack (even multiple times in a
+                    combo), draw a card and they discard a card. (Aces are not face cards.) During the
+                    powerup phase, you may power up for black face cards. (You may still power up for
+                    Aces, too.)
+                </div>,
             },
         ],
         cardAbilities: [
             {
                 rank: 7,
                 name: 'Bonecracker',
-                timing: '[During Combat]',
+                timing: 'During Combat',
                 text: 'When you throw the opponent with this card, the opponent reveals their hand and discards a card of your choice.',
             },
             {
                 rank: 'T',
                 name: 'Into Oblivion',
-                timing: '[Draw Phase]',
-                text: 'Banish a card from the opponent's discard pile from the game. They must then banish another card of that same rank from their hand or from their deck. (They shuffle their deck afterwards. Banished cards are removed from the game.)',
+                timing: 'Draw Phase',
+                text: <div>
+                    Banish a card from the opponent's discard pile from the game. They
+                    must then banish another card of that same rank from their hand or
+                    from their deck. (They shuffle their deck afterwards. Banished cards
+                    are removed from the game.)
+                </div>,
             },
         ],
     },
