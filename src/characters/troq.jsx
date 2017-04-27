@@ -98,11 +98,11 @@ export const troq = {
         {rank: 'T', maxCombo: 'tT>8', maxDamage: 16, goodCombo: 'tT>6', goodDamage: 14},
         {
             speed: 2.4, rank: 'K', name: 'Lockhorn Skewer',
-            damage: 15, comboPts: null, comboType: 'Can\'t Combo',
+            damage: 15, comboPts: null, comboType: 'Can\'t Combo', kd: false,
         },
         {
             speed: 0.0, rank: 'AAA', name: 'Beast Unleashed',
-            damage: 45, comboPts: null, comboType: 'Can\'t Combo',
+            damage: 45, comboPts: null, comboType: 'Can\'t Combo', kd: false,
             notes: <Note
                 text="Requires 2 attached blocks"
                 icon={<span className='yomi-block'>{'+\u26CA >= 2'}</span>}
