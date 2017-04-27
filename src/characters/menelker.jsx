@@ -90,7 +90,7 @@ export const menelker = {
         {rank: 'T', maxCombo: 'tT>A+', maxDamage: 28, goodCombo: 'tT>K+', goodDamage: 22},
         {
             speed: 0.0, rank: 'AAAA', name: 'Deathstrike Dragon', damage: 55,
-            comboType: 'Can\'t Combo', comboPts: null,
+            comboType: 'Can\'t Combo', comboPts: null, kd: false,
         },
     ],
 };
