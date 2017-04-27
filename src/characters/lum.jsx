@@ -2,13 +2,10 @@ import React from 'react';
 
 function normalThrow(rank) {
     return {
-        speed: rank + 0.4,
-        rank: rank,
-        pumpWith: '+X+X+X',
-        damage: rank,
-        pump: 3,
-        comboType: "Can't Combo",
-        kd: false,
+        speed: rank + 0.4, rank: rank, pumpWith: '+X+X+X',
+        damage: rank, pump: 3,
+        comboType: "Can't Combo", kd: false,
+        maxCombo: rank + '+++', maxDamage: rank + 9, goodCombo: rank + '+', goodDamage: rank + 3,
     };
 };
 
@@ -89,27 +86,30 @@ export const lum = {
         ],
     },
     attacks: [
-        { rank: 3 },
-        { rank: 4 },
-        { rank: 5 },
-        { rank: 6 },
-        { rank: 7 },
+        { rank: 3, maxCombo: '3>K+++', maxDamage: 33, goodCombo: '3>4>5>6', goodDamage: 18 },
+        { rank: 4, maxCombo: '4>K+++', maxDamage: 34, goodCombo: '4>5>6>7', goodDamage: 22 },
+        { rank: 5, maxCombo: '5>K+++', maxDamage: 35, goodCombo: '5>6>7>J', goodDamage: 22 },
+        { rank: 6, maxCombo: '6>K+++', maxDamage: 36, goodCombo: '6>7>J>5', goodDamage: 22 },
+        { rank: 7, maxCombo: '7>K+++', maxDamage: 37, goodCombo: '7>J>5>6', goodDamage: 22 },
         {
             speed: 1.4, rank: 'J', name: 'Coin Toss',
             damage: 4, chip: 1, comboPts: 1, comboType: 'Linker',
-            maxCombo: '', maxDamage: '', goodCombo: '', goodDamage: '', notes: '',
+            maxCombo: 'J>K+++', maxDamage: 34, goodCombo: 'J>5>6>7', goodDamage: 22,
         },
         {
             speed: 0.4, rank: 'Q', name: 'Rolling Panda', pumpWith: '+Q',
             damage: 8, pump: 8, chip: 2, comboPts: 3, comboType: 'Ender',
+            maxCombo: 'Q+', maxDamage: 16,
         },
         {
             speed: 3.0, rank: 'K', name: 'Polar Cartwheel', pumpWith: '+K+K+K',
             damage: 6, pump: 8, chip: 3, comboPts: 3, comboType: 'Ender',
+            maxCombo: 'K+++', maxDamage: 30, goodCombo: 'K+', goodDamage: 14,
         },
         {
             speed: 0.8, rank: 'AA', name: 'Great Pandamonium', pumpWith: '+A+A',
             damage: 21, pump: 12, chip: 4, comboType: "Can't Combo",
+            maxCombo: 'AA++', maxDamage: 45, goodCombo: 'AA+', goodDamage: 33,
         },
     ],
     throws: [
@@ -119,6 +119,7 @@ export const lum = {
         {
             rank: 'T', name: 'Extra Juice', pumpWith: '+X+X+X', speed: 10.4,
             damage: 10, pump: 4,
+            maxCombo: 'T+++', maxDamage: 22, goodCombo: 'T+', goodDamage: 14,
         },
     ],
 };
