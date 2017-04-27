@@ -10,6 +10,7 @@ export const characters = Object.assign({},
     require('./characters/valerie.jsx'),
     require('./characters/argagarg.jsx'),
     require('./characters/degrey.jsx'),
+    require('./characters/lum.jsx'),
 );
 
 export default characters
