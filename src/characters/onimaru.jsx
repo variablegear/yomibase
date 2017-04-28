@@ -91,16 +91,16 @@ export const onimaru = {
         normalAttack('T'),
         {
             speed: 3.4, rank: 'J', name: 'Divide and Conquer', pumpWith: '+J',
-            damage: 10, pump: 10, chip: 1, comboPts: 1, comboType: <CantCombo/>,
+            damage: 10, pump: 10, chip: 1, comboType: <CantCombo/>,
             maxCombo: 'J+', maxDamage: 20,
         },
         {
             speed: 0.8, rank: 'Q', name: 'Rising Sword',
-            damage: 10, chip: 2, comboPts: 1, comboType: <CantCombo/>,
+            damage: 10, chip: 2, comboType: <CantCombo/>,
         },
         {
             speed: 4.0, rank: 'K', name: 'Spirit Fire', pumpWith: '+K+K+K',
-            damage: 8, pump: 9, chip: 3, comboPts: 1, comboType: <CantCombo/>,
+            damage: 8, pump: 9, chip: 3, comboType: <CantCombo/>,
             maxCombo: 'K+++', maxDamage: 35, goodCombo: 'K+', goodDamage: 17,
         },
         {
@@ -109,7 +109,7 @@ export const onimaru = {
         },
         {
             speed: 1.4, rank: 'AA', name: 'Martial Law',
-            damage: 20, chip: 2, comboPts: 1, comboType: <CantCombo/>,
+            damage: 20, chip: 2, comboType: <CantCombo/>,
         },
     ],
     throws: [
