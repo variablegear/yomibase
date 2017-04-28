@@ -91,7 +91,7 @@ export const onimaru = {
         normalAttack('T'),
         {
             speed: 3.4, rank: 'J', name: 'Divide and Conquer', pumpWith: '+J',
-            damage: 10, pump: 10 chip: 1, comboPts: 1, comboType: <CantCombo/>,
+            damage: 10, pump: 10, chip: 1, comboPts: 1, comboType: <CantCombo/>,
             maxCombo: 'J+', maxDamage: 20,
         },
         {
