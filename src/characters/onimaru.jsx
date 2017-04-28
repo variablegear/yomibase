@@ -2,8 +2,7 @@ import React from 'react';
 import {CantCombo, Ender, Linker, Starter} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
 
-const normalThrow = mkNormal({
-    speed: (rank) => rank + 0.2,
+const normalThrow = mkNormal(0.2, {
     pumpWith: '+X+X',
     damage: (rank) => rank,
     pump: 4,
@@ -15,8 +14,7 @@ const normalThrow = mkNormal({
     goodDamage: (rank) => rank + 4,
 });
 
-const normalAttack = mkNormal({
-    speed: (rank) => rank + 0.4,
+const normalAttack = mkNormal(0.4, {
     pumpWith: '+X',
     damage: 10,
     pump: (rank) => rank,
@@ -34,6 +32,7 @@ export const onimaru = {
         hitPoints: 90,
         maxCombo: 1,
         attackSpeed: <span>x.4 <i>(x = card rank)</i></span>,
+        attackDamage: <span>10+x</span>,
         throwSpeed: <span>x.2 <CantCombo/></span>,
         throwDamage: <span>x+4 (+2 any)</span>,
         attacks: [3, 4, 5, 6, 8, 'T', 'J', 'Q', 'K', 'A'],
@@ -55,7 +54,7 @@ export const onimaru = {
                 name: 'General\'s Armor',
                 timing: 'During Combat',
                 text: <div>
-                    This attack can't be interrupted by normal attacks except those that knock down. 
+                    This attack can't be interrupted by normal attacks except those that knock down.
                     (If it's hit by a faster (non-knockdown) normal attack, the opponent can't combo.
                     This hits afterwards and wins combat.)
                 </div>

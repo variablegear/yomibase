@@ -31,6 +31,12 @@ export function CharacterSummary(props) {
                             <td>{props.char.attackSpeed}</td>
                         </tr>
                     }
+                    {props.char.attackDamage &&
+                        <tr>
+                            <th><span className="yomi-attack">Normal attack damage</span>:</th>
+                            <td>{props.char.attackDamage}</td>
+                        </tr>
+                    }
                     {props.char.throwSpeed &&
                         <tr>
                             <th><span className="yomi-throw">Normal throw speed</span>:</th>
