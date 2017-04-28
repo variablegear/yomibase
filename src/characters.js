@@ -14,6 +14,7 @@ export const characters = Object.assign({},
     require('./characters/menelker.jsx'),
     require('./characters/quince.jsx'),
     require('./characters/persephone.jsx'),
+    require('./characters/onimaru.jsx'),
 );
 
 export default characters
