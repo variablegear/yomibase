@@ -52,7 +52,7 @@ export const onimaru = {
         cardAbilities: [
             {
                 rank: 5,
-                name: 'General's Armor',
+                name: 'General\'s Armor',
                 timing: 'During Combat',
                 text: <div>
                     This attack can't be interrupted by normal attacks except those that knock down. 
