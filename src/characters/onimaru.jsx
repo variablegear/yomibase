@@ -1,27 +1,28 @@
 import React from 'react';
 import {CantCombo, Ender, Linker, Starter} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
+import {rankValue} from '../rank.js';
 
 const normalThrow = mkNormal(0.2, {
     pumpWith: '+X+X',
-    damage: (rank) => rank,
+    damage: (rank) => rankValue(rank),
     pump: 4,
     comboType: <CantCombo/>,
     kd: false,
     maxCombo: (rank) => 't' + rank + '++',
-    maxDamage: (rank) => rank + 8,
+    maxDamage: (rank) => rankValue(rank) + 8,
     goodCombo: (rank) => 't' + rank + '+',
-    goodDamage: (rank) => rank + 4,
+    goodDamage: (rank) => rankValue(rank) + 4,
 });
 
 const normalAttack = mkNormal(0.4, {
     pumpWith: '+X',
     damage: 10,
-    pump: (rank) => rank,
+    pump: (rank) => rankValue(rank),
     comboType: <CantCombo/>,
     kd: false,
     maxCombo: (rank) => rank + '+',
-    maxDamage: (rank) => 10 + rank,
+    maxDamage: (rank) => 10 + rankValue(rank),
 });
 
 export const onimaru = {
