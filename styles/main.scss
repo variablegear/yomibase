@@ -43,21 +43,28 @@
     line-height: 0.75;
 }
 .combo-details {
-    display: table;
-    border-spacing: 3px;
+    display: inline-table;
+    border-spacing: 3px 0px;
     border-collapse: separate;
+    vertical-align: text-bottom;
 }
+
+td > .combo-details {
+    vertical-align: middle;
+}
+
 .combo-type, .combo-kd, .combo-details > .combo-points {
     display: table-cell;
     vertical-align: middle;
 }
 .combo-type {
     background: white;
-    padding-left: 2px;
-    padding-right: 2px;
+    padding: 2px;
     border: black;
     border-style: solid;
     border-width: 1px;
+    line-height: 1.1;
+    font-size: 0.9em;
 }
 .sort-icon {
     padding-left: 2px;

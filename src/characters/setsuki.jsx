@@ -1,3 +1,20 @@
+import React from 'react';
+import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
+import {mkNormal} from '../move.jsx';
+
+const normalAttack = mkNormal(0.2);
+
+const normalThrow = mkNormal(0.2, {
+    damage: 6,
+    comboPts: 3,
+    comboType: <Starter/>,
+    kd: true,
+    maxCombo: (rank) => 't' + rank + '>6>AA',
+    maxDamage: 29,
+    goodCombo: (rank) => 't' + rank + '>4>5>6',
+    goodDamage: 21,
+});
+
 export const setsuki = {
     summary: {
         name: 'Setsuki',
@@ -5,16 +22,9 @@ export const setsuki = {
         title: 'Ninja Student',
         hitPoints: 70,
         maxCombo: 6,
-        attackDefaults: {
-            speedOffset: 0.2,
-        },
-        throwDefaults: {
-            speedOffset: 0.2,
-            damage: 6,
-            comboPts: 3,
-            comboType: 'Starter',
-            kd: true,
-        },
+        attackSpeed: <span>x.2 <i>(x = card rank)</i></span>,
+        throwSpeed: <div>x.2 <ComboDetails points={3} max={3} kd={true}/></div>,
+        throwDamage: 6,
         attacks: [2, 3, 4, 5, 6, 'J', 'Q', 'K', 'A'],
         throws: ['7*', 8, 9, 'T*', 'K'],
         blocks: [6, '7*', 8, 9],
@@ -47,44 +57,44 @@ export const setsuki = {
         ],
     },
     attacks: [
-        {rank: 2, maxCombo: '2>K++>6>AA', maxDamage: 36, goodCombo: '2>3>4>5>tK', goodDamage: 20},
-        {rank: 3, maxCombo: '3>K++>6>AA', maxDamage: 37, goodCombo: '3>4>5>6>tK', goodDamage: 24},
-        {rank: 4, maxCombo: '4>K++>6>AA', maxDamage: 38, goodCombo: '4>5>6>K+>5', goodDamage: 28},
-        {rank: 5, maxCombo: '5>K++>6>AA', maxDamage: 39, goodCombo: '5>6>K+>4>5', goodDamage: 28},
-        {rank: 6, maxCombo: '6>K++>6>AA', maxDamage: 40, goodCombo: '6>K+>3>4>5', goodDamage: 26},
+        normalAttack(2, {maxCombo: '2>K++>6>AA', maxDamage: 36, goodCombo: '2>3>4>5>tK', goodDamage: 20}),
+        normalAttack(3, {maxCombo: '3>K++>6>AA', maxDamage: 37, goodCombo: '3>4>5>6>tK', goodDamage: 24}),
+        normalAttack(4, {maxCombo: '4>K++>6>AA', maxDamage: 38, goodCombo: '4>5>6>K+>5', goodDamage: 28}),
+        normalAttack(5, {maxCombo: '5>K++>6>AA', maxDamage: 39, goodCombo: '5>6>K+>4>5', goodDamage: 28}),
+        normalAttack(6, {maxCombo: '6>K++>6>AA', maxDamage: 40, goodCombo: '6>K+>3>4>5', goodDamage: 26}),
         {
             speed: 1.4, rank: 'J', name: 'Esper Dash', damage: 5, chip: 1,
-            comboPts: 1, comboType: 'Linker', maxCombo: 'J>K++>6>AA', maxDamage: 39,
+            comboPts: 1, comboType: <Linker/>, maxCombo: 'J>K++>6>AA', maxDamage: 39,
             goodCombo: 'J>K+>3>4>5', goodDamage: 25,
         },
         {
             speed: 0.0, rank: 'Q', name: 'Ninpo Flash', pumpWith: '+X+X', damage: 1,
-            pump: 4, chip: 1, comboPts: 3, comboType: 'Starter', maxCombo: 'Q++>6>AA', maxDamage: 32,
+            pump: 4, chip: 1, comboPts: 3, comboType: <Starter/>, maxCombo: 'Q++>6>AA', maxDamage: 32,
             goodCombo: 'Q++>K+>6', goodDamage: 23,
         },
         {
             speed: 2.2, rank: 'K', name: 'Starlight Kick', pumpWith: '+X+X', damage: 5,
-            pump: 3, chip: 2, comboPts: 2, comboType: 'Linker', maxCombo: 'K++>K++>AA', maxDamage: 39,
+            pump: 3, chip: 2, comboPts: 2, comboType: <Linker/>, maxCombo: 'K++>K++>AA', maxDamage: 39,
             goodCombo: 'K++>4>5>6>J', goodDamage: 31,
         },
         {
             speed: 1.0, rank: 'A', pumpWith: '+A+A+A', name: 'Shuriken Hail', damage: 9,
-            pump: 9, chip: 3, comboType: 'Can\'t Combo',
+            pump: 9, chip: 3, comboType: <CantCombo/>,
             maxCombo: 'A+++', maxDamage: 36, goodCombo: 'A++', goodDamage: '27',
         },
         {
             speed: 1.2, rank: 'AA', name: 'Surprise Gift', damage: 17, chip: 3,
-            comboPts: 2, comboType: 'Ender',
+            comboPts: 2, comboType: <Ender/>,
         },
     ],
     throws: [
-        {rank: 7, maxCombo: 't7>6>AA', maxDamage: 29, goodCombo: 't7>4>5>6', goodDamage: 21},
-        {rank: 8, maxCombo: 't8>6>AA', maxDamage: 29, goodCombo: 't8>4>5>6', goodDamage: 21},
-        {rank: 9, maxCombo: 't9>6>AA', maxDamage: 29, goodCombo: 't9>4>5>6', goodDamage: 21},
-        {rank: 'T', maxCombo: 'tT>6>AA', maxDamage: 29, goodCombo: 'tT>4>5>6', goodDamage: 21},
+        normalThrow(7),
+        normalThrow(8),
+        normalThrow(9),
+        normalThrow('T'),
         {
             speed: 9.2, rank: 'K', name: 'Starlight Tumbler', damage: 6, comboPts: 2,
-            comboType: 'Ender', kd: true,
+            comboType: <Ender/>, kd: true,
         },
     ],
 };

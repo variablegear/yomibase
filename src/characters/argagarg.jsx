@@ -1,3 +1,20 @@
+import React from 'react';
+import {Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
+import {mkNormal} from '../move.jsx';
+
+const normalAttack = mkNormal(0.4);
+
+const normalThrow = mkNormal(0.8, {
+    damage: 6,
+    comboPts: 2,
+    comboType: <Starter/>,
+    kd: true,
+    maxCombo: (rank) => 't' + rank + '>K+>K+',
+    maxDamage: 27,
+    goodCombo: (rank) => 't' + rank + '>5>6',
+    goodDamage: 17,
+});
+
 export const argagarg = {
     summary: {
         name: 'Argagarg',
@@ -5,16 +22,9 @@ export const argagarg = {
         title: 'Water Shaman',
         hitPoints: 85,
         maxCombo: 3,
-        attackDefaults: {
-            speedOffset: 0.4,
-        },
-        throwDefaults: {
-            speedOffset: 0.8,
-            damage: 6,
-            comboPts: 2,
-            comboType: 'Starter',
-            kd: true,
-        },
+        attackSpeed: <span>x.4 <i>(x = card rank)</i></span>,
+        throwSpeed: <div>x.8 <ComboDetails points={2} max={2} kd={true}/></div>,
+        throwDamage: 6,
         attacks: [2, 3, 4, 5, 6, 'J', 'Q', 'K', 'A'],
         throws: [7, 8, 9, 'T'],
         blocks: [5, 6, 7, 8, 9, 'T', 'A'],
@@ -54,33 +64,33 @@ export const argagarg = {
         ],
     },
     attacks: [
-        { rank: 2, maxCombo: '2>K+>K+', maxDamage: 22, goodCombo: '2>3>4', goodCombo: 9 },
-        { rank: 3, maxCombo: '3>K+>K+', maxDamage: 23, goodCombo: '3>4>5', goodCombo: 12 },
-        { rank: 4, maxCombo: '4>K+>K+', maxDamage: 24, goodCombo: '4>5>6', goodCombo: 15 },
-        { rank: 5, maxCombo: '5>K+>K+', maxDamage: 25, goodCombo: '5>6>J', goodCombo: 18 },
-        { rank: 6, maxCombo: '6>K+>K+', maxDamage: 26, goodCombo: '6>K+>5', goodCombo: 21 },
+        normalAttack(2, {maxCombo: '2>K+>K+', maxDamage: 22, goodCombo: '2>3>4', goodCombo: 9}),
+        normalAttack(3, {maxCombo: '3>K+>K+', maxDamage: 23, goodCombo: '3>4>5', goodCombo: 12}),
+        normalAttack(4, {maxCombo: '4>K+>K+', maxDamage: 24, goodCombo: '4>5>6', goodCombo: 15}),
+        normalAttack(5, {maxCombo: '5>K+>K+', maxDamage: 25, goodCombo: '5>6>J', goodCombo: 18}),
+        normalAttack(6, {maxCombo: '6>K+>K+', maxDamage: 26, goodCombo: '6>K+>5', goodCombo: 21}),
         {
             speed: 2.4, rank: 'J', name: 'Flying Fish',
-            damage: 7, chip: 2, comboPts: 1, comboType: 'Ender',
+            damage: 7, chip: 2, comboPts: 1, comboType: <Ender/>,
         },
         {
             speed: 2.2, rank: 'Q', name: 'Water Spirit',
-            damage: 9, chip: 2, comboPts: 2, comboType: 'Ender',
+            damage: 9, chip: 2, comboPts: 2, comboType: <Ender/>,
         },
         {
             speed: 3.2, rank: 'K', name: 'Sparkling Bubble', pumpWith: '+K',
-            damage: 6, pump: 4, chip: 3, comboPts: 1, comboType: 'Linker',
+            damage: 6, pump: 4, chip: 3, comboPts: 1, comboType: <Linker/>,
             maxCombo: 'K+>K+>J', maxDamage: 27, goodCombo: 'K>5>6', goodDamage: 17,
         },
         {
             speed: 0.2, rank: 'AA', name: 'Blowfish Spikes',
-            damage: 16, chip: 2, comboPts: 2, comboType: 'Ender',
+            damage: 16, chip: 2, comboPts: 2, comboType: <Ender/>,
         },
     ],
     throws: [
-        { rank: 7, maxCombo: 't7>K+>K+', maxDamage: 27, goodCombo: 't7>5>6', goodDamage: 17 },
-        { rank: 8, maxCombo: 't8>K+>K+', maxDamage: 27, goodCombo: '8t>5>6', goodDamage: 17 },
-        { rank: 9, maxCombo: 't9>K+>K+', maxDamage: 27, goodCombo: 't9>5>6', goodDamage: 17 },
-        { rank: 'T', maxCombo: 'tT>K+>K+', maxDamage: 27, goodCombo: 'tT>5>6', goodDamage: 17 },
+        normalThrow(7),
+        normalThrow(8),
+        normalThrow(9),
+        normalThrow('T'),
     ],
 };

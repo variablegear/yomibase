@@ -1,5 +1,20 @@
 import React from 'react';
 import Note from '../note.jsx';
+import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
+import {mkNormal} from '../move.jsx';
+
+const normalAttack = mkNormal(0.0);
+
+const normalThrow = mkNormal(0.6, {
+    damage: 6,
+    comboPts: 3,
+    comboType: <Starter/>,
+    kd: true,
+    maxCombo: (rank) => 't' + rank + '>6>A+',
+    maxDamage: 21,
+    goodCombo: (rank) => 't' + rank + '>4>5>6',
+    goodDamage: 21,
+});
 
 export const gwen = {
     summary: {
@@ -8,16 +23,9 @@ export const gwen = {
         title: 'Doomed Wanderer',
         hitPoints: 85,
         maxCombo: 6,
-        attackDefaults: {
-            speedOffset: 0.0,
-        },
-        throwDefaults: {
-            speedOffset: 0.6,
-            damage: 6,
-            comboPts: 3,
-            comboType: 'Starter',
-            kd: true,
-        },
+        attackSpeed: <span>x.0 <i>(x = card rank)</i></span>,
+        throwSpeed: <div>x.6 <ComboDetails points={3} max={3} kd={true}/></div>,
+        throwDamage: 6,
         attacks: [2, 3, 4, 5, 6, 'J*', 'Q', 'K', 'A'],
         throws: [7, 8, 9, 'T*', 'AAA'],
         blocks: [2, 3, 4, 9, 'T*'],
@@ -55,15 +63,15 @@ export const gwen = {
         ],
     },
     attacks: [
-        {rank: 2, maxCombo: '2>J>K++>A+', maxDamage: 36, goodCombo: '2>3>4>5>6', goodDamage: 20},
-        {rank: 3, maxCombo: '3>J>K++>A+', maxDamage: 37, goodCombo: '3>4>5>6>A+', goodDamage: 34},
-        {rank: 4, maxCombo: '4>J>K++>A+', maxDamage: 38, goodCombo: '4>5>6>J>A+', goodDamage: 37},
-        {rank: 5, maxCombo: '5>6>K++>A+', maxDamage: 39, goodCombo: '5>6>J>A+', goodDamage: 33},
-        {rank: 6, maxCombo: '6>J>K++>A+', maxDamage: 40, goodCombo: '6>J>3>4>5>6', goodDamage: 30},
+        normalAttack(2, {maxCombo: '2>J>K++>A+', maxDamage: 36, goodCombo: '2>3>4>5>6', goodDamage: 20}),
+        normalAttack(3, {maxCombo: '3>J>K++>A+', maxDamage: 37, goodCombo: '3>4>5>6>A+', goodDamage: 34}),
+        normalAttack(4, {maxCombo: '4>J>K++>A+', maxDamage: 38, goodCombo: '4>5>6>J>A+', goodDamage: 37}),
+        normalAttack(5, {maxCombo: '5>6>K++>A+', maxDamage: 39, goodCombo: '5>6>J>A+', goodDamage: 33}),
+        normalAttack(6, {maxCombo: '6>J>K++>A+', maxDamage: 40, goodCombo: '6>J>3>4>5>6', goodDamage: 30}),
         {
             speed: 3.6, rank: 'J', pumpWith: '+J', name: 'Chains of Ice',
             damage: 7, pump: 7, chip: 5,
-            comboPts: 2, comboType: 'Starter',
+            comboPts: 2, comboType: <Starter/>,
             maxCombo: 'J+>K++>A+', maxDamage: 42, goodCombo: 'J+>3>4>5>6', goodDamage: 32,
             notes: <Note
                 text="Unburstable due to Chillbane"
@@ -72,32 +80,32 @@ export const gwen = {
         },
         {
             speed: 4.0, rank: 'J', name: 'Links of Ice', damage: 6, chip: 1, maxCombo: 'J>6>K++>A+',
-            maxDamage: 40, goodCombo: 'J>2>3>4>5>6', goodDamage: 26, comboPts: 1, comboType: 'Linker',
+            maxDamage: 40, goodCombo: 'J>2>3>4>5>6', goodDamage: 26, comboPts: 1, comboType: <Linker/>,
         },
         {
             speed: 0.0, rank: 'Q', name: 'Shadow Slice', pumpWith: '+X',
-            damage: 6, pump: 4, chip: 1, comboPts: 3, comboType: 'Ender',
+            damage: 6, pump: 4, chip: 1, comboPts: 3, comboType: <Ender/>,
             maxCombo: 'Q+', maxDamage: 10,
         },
         {
             speed: 1.2, rank: 'K', name: 'Burnbarrow', pumpWith: '+X+X',
-            damage: 4, pump: 4, chip: 3, comboPts: 2, comboType: 'Linker',
+            damage: 4, pump: 4, chip: 3, comboPts: 2, comboType: <Linker/>,
             maxCombo: 'K++>K++>A+', maxDamage: 40, goodCombo: 'K++>3>4>5>6', goodDamage: 30,
         },
         {
             speed: 1.2, rank: 'A', name: 'Dashgorger', pumpWith: '+A',
-            damage: 8, pump: 8, chip: 3, comboPts: 2, comboType: 'Ender',
+            damage: 8, pump: 8, chip: 3, comboPts: 2, comboType: <Ender/>,
             maxCombo: 'A+', maxDamage: 16,
         },
     ],
     throws: [
-        {rank: 7, maxCombo: 't7>6>A+', maxDamage: 28, goodCombo: 't7>4>5>6', goodDamage: 21},
-        {rank: 8, maxCombo: 't8>6>A+', maxDamage: 28, goodCombo: 't8>6>J>6', goodDamage: 24},
-        {rank: 9, maxCombo: 't9>6>A+', maxDamage: 28, goodCombo: 't9>6>K++', goodDamage: 24},
-        {rank: 'T', maxCombo: 'tT>6>A+', maxDamage: 28, goodCombo: 'tT>J>J>J', goodDamage: 24},
+        normalThrow(7),
+        normalThrow(8),
+        normalThrow(9),
+        normalThrow('T'),
         {
             speed: 4.6, rank: 'AAA', name: 'Dreadlands Portal', damage: 22, comboPts: null,
-            comboType: 'Can\'t Combo', kd: false,
+            comboType: <CantCombo/>, kd: false,
         },
     ],
 };

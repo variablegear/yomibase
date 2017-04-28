@@ -1,3 +1,20 @@
+import React from 'react';
+import {Ender, Starter, ComboDetails} from '../combo.jsx';
+import {mkNormal} from '../move.jsx';
+
+const normalAttack = mkNormal(0.6);
+
+const normalThrow = mkNormal(0.8, {
+    damage: 8,
+    comboPts: 2,
+    comboType: <Starter/>,
+    kd: true,
+    maxCombo: (rank) => 't' + rank + '>AA',
+    maxDamage: 28,
+    goodCombo: (rank) => 't' + rank + '>J',
+    goodDamage: 15,
+});
+
 export const degrey = {
     summary: {
         name: 'DeGrey',
@@ -5,16 +22,9 @@ export const degrey = {
         title: 'Ghostly Diplomat',
         hitPoints: 90,
         maxCombo: 4,
-        attackDefaults: {
-            speedOffset: 0.6,
-        },
-        throwDefaults: {
-            speedOffset: 0.8,
-            damage: 8,
-            comboPts: 2,
-            comboType: 'Starter',
-            kd: true,
-        },
+        attackSpeed: <span>x.6 <i>(x = card rank)</i></span>,
+        throwSpeed: <div>x.8 <ComboDetails points={2} max={2} kd={true}/></div>,
+        throwDamage: 8,
         attacks: [2, 3, 5, 6, 7, 'J', 'Q', 'K', 'A'],
         throws: [7, 8, 9, 'T'],
         blocks: [4, 5, 6, 8, 9, 'T'],
@@ -54,39 +64,39 @@ export const degrey = {
         ],
     },
     attacks: [
-        {
-            rank: 2, name: 'Spectral Pull', damage: 4,
+        normalAttack(2, {
+            name: 'Spectral Pull', damage: 4,
             maxCombo: '2>3>AA', maxDamage: 28, goodCombo: '2>3>K', goodDamage: 18,
-        },
-        {
-            rank: 3, name: 'Spectral Push', damage: 4,
+        }),
+        normalAttack(3, {
+            name: 'Spectral Push', damage: 4,
             maxCombo: '3>AA', maxDamage: 24, goodCombo: '3>K', goodDamage: 14,
-        },
-        { rank: 5, maxCombo: '5>6>AA', maxDamage: 31, goodCombo: '5>6>7>J', goodDamage: 25 },
-        { rank: 6, maxCombo: '6>7>AA', maxDamage: 33, goodCombo: '6>7>J', goodDamage: 20 },
-        { rank: 7, maxCombo: '7>AA', maxDamage: 27, goodCombo: '7>K', goodDamage: 17 },
+        }),
+        normalAttack(5, {maxCombo: '5>6>AA', maxDamage: 31, goodCombo: '5>6>7>J', goodDamage: 25 }),
+        normalAttack(6, {maxCombo: '6>7>AA', maxDamage: 33, goodCombo: '6>7>J', goodDamage: 20 }),
+        normalAttack(7, {maxCombo: '7>AA', maxDamage: 27, goodCombo: '7>K', goodDamage: 17 }),
         {
             speed: 2.4, rank: 'J', name: 'Daggerfall Thrust',
-            damage: 7, chip: 2, comboPts: 1, comboType: 'Ender',
+            damage: 7, chip: 2, comboPts: 1, comboType: <Ender/>,
         },
         {
             speed: 7.0, rank: 'Q', name: 'Pilebunker',
-            damage: 14, chip: 4, comboPts: 2, comboType: 'Starter', kd: true,
+            damage: 14, chip: 4, comboPts: 2, comboType: <Starter/>, kd: true,
             maxCombo: 'Q>AA', maxDamage: 34, goodCombo: 'Q>J', goodDamage: 21,
         },
         {
             speed: 0.2, rank: 'K', name: 'Spirit Justice',
-            damage: 10, chip: 2, comboPts: 2, comboType: 'Ender',
+            damage: 10, chip: 2, comboPts: 2, comboType: <Ender/>,
         },
         {
             speed: 1.2, rank: 'AA', name: 'Final Arbiter',
-            damage: 20, chip: 2, comboPts: 2, comboType: 'Ender',
+            damage: 20, chip: 2, comboPts: 2, comboType: <Ender/>,
         },
     ],
     throws: [
-        { rank: 7, maxCombo: 't7>AA', maxDamage: 28, goodCombo: 't7>J', goodDamage: 15 },
-        { rank: 8, maxCombo: 't8>AA', maxDamage: 28, goodCombo: 't8>J', goodDamage: 15 },
-        { rank: 9, maxCombo: 't9>AA', maxDamage: 28, goodCombo: 't9>J', goodDamage: 15 },
-        { rank: 'T', maxCombo: 'tT>AA', maxDamage: 28, goodCombo: 'tT>J', goodDamage: 15 },
+        normalThrow(7),
+        normalThrow(8),
+        normalThrow(9),
+        normalThrow('T'),
     ],
 };

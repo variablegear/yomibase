@@ -1,13 +1,23 @@
 import React from 'react';
+import {CantCombo, Ender, Linker, Starter} from '../combo.jsx';
+import {mkNormal} from '../move.jsx';
 
-function normalThrow(rank) {
-    return {
-        speed: rank + 0.4, rank: rank, pumpWith: '+X+X+X',
-        damage: rank, pump: 3,
-        comboType: "Can't Combo", kd: false,
-        maxCombo: 't' + rank + '+++', maxDamage: rank + 9, goodCombo: 't' + rank + '+', goodDamage: rank + 3,
-    };
-};
+const normalThrow = mkNormal({
+    speed: (rank) => rank + 0.4,
+    pumpWith: '+X+X+X',
+    damage: (rank) => rank,
+    pump: 3,
+    comboType: <CantCombo/>,
+    kd: false,
+    maxCombo: (rank) => 't' + rank + '+++',
+    maxDamage: (rank) => rank + 9,
+    goodCombo: (rank) => 't' + rank + '+',
+    goodDamage: (rank) => rank + 3,
+});
+
+const normalAttack = mkNormal({
+    speed: (rank) => rank + 0.4,
+});
 
 export const lum = {
     summary: {
@@ -16,14 +26,9 @@ export const lum = {
         title: 'Gambling Panda',
         hitPoints: 90,
         maxCombo: 4,
-        attackDefaults: {
-            speedOffset: 0.4,
-        },
-        throwDefaults: {
-            speedOffset: 0.4,
-            comboType: "Can't Combo",
-            kd: false,
-        },
+        attackSpeed: <span>x.4 <i>(x = card rank)</i></span>,
+        throwSpeed: <span>x.4 <CantCombo/></span>,
+        throwDamage: <span>x+3 (+3 any)</span>,
         attacks: [3, 4, 5, 6, 7, 8, 'J', 'Q', 'K', 'A'],
         throws: [6, 8, 9, 'T'],
         blocks: [2, 5, 7, 9, 'T'],
@@ -86,29 +91,29 @@ export const lum = {
         ],
     },
     attacks: [
-        { rank: 3, maxCombo: '3>K+++', maxDamage: 33, goodCombo: '3>4>5>6', goodDamage: 18 },
-        { rank: 4, maxCombo: '4>K+++', maxDamage: 34, goodCombo: '4>5>6>7', goodDamage: 22 },
-        { rank: 5, maxCombo: '5>K+++', maxDamage: 35, goodCombo: '5>6>7>J', goodDamage: 22 },
-        { rank: 6, maxCombo: '6>K+++', maxDamage: 36, goodCombo: '6>7>J>5', goodDamage: 22 },
-        { rank: 7, maxCombo: '7>K+++', maxDamage: 37, goodCombo: '7>J>5>6', goodDamage: 22 },
+        normalAttack(3, { maxCombo: '3>K+++', maxDamage: 33, goodCombo: '3>4>5>6', goodDamage: 18 }),
+        normalAttack(4, { maxCombo: '4>K+++', maxDamage: 34, goodCombo: '4>5>6>7', goodDamage: 22 }),
+        normalAttack(5, { maxCombo: '5>K+++', maxDamage: 35, goodCombo: '5>6>7>J', goodDamage: 22 }),
+        normalAttack(6, { maxCombo: '6>K+++', maxDamage: 36, goodCombo: '6>7>J>5', goodDamage: 22 }),
+        normalAttack(7, { maxCombo: '7>K+++', maxDamage: 37, goodCombo: '7>J>5>6', goodDamage: 22 }),
         {
             speed: 1.4, rank: 'J', name: 'Coin Toss',
-            damage: 4, chip: 1, comboPts: 1, comboType: 'Linker',
+            damage: 4, chip: 1, comboPts: 1, comboType: <Linker/>,
             maxCombo: 'J>K+++', maxDamage: 34, goodCombo: 'J>5>6>7', goodDamage: 22,
         },
         {
             speed: 0.4, rank: 'Q', name: 'Rolling Panda', pumpWith: '+Q',
-            damage: 8, pump: 8, chip: 2, comboPts: 3, comboType: 'Ender',
+            damage: 8, pump: 8, chip: 2, comboPts: 3, comboType: <Ender/>,
             maxCombo: 'Q+', maxDamage: 16,
         },
         {
             speed: 3.0, rank: 'K', name: 'Polar Cartwheel', pumpWith: '+K+K+K',
-            damage: 6, pump: 8, chip: 3, comboPts: 3, comboType: 'Ender',
+            damage: 6, pump: 8, chip: 3, comboPts: 3, comboType: <Ender/>,
             maxCombo: 'K+++', maxDamage: 30, goodCombo: 'K+', goodDamage: 14,
         },
         {
             speed: 0.8, rank: 'AA', name: 'Great Pandamonium', pumpWith: '+A+A',
-            damage: 21, pump: 12, chip: 4, comboType: "Can't Combo",
+            damage: 21, pump: 12, chip: 4, comboType: <CantCombo/>,
             maxCombo: 'AA++', maxDamage: 45, goodCombo: 'AA+', goodDamage: 33,
         },
     ],

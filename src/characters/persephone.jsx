@@ -1,4 +1,19 @@
 import React from 'react';
+import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
+import {mkNormal} from '../move.jsx';
+
+const normalAttack = mkNormal(0.4);
+
+const normalThrow = mkNormal(0.6, {
+    damage: 7,
+    comboPts: 2,
+    comboType: <Starter/>,
+    kd: true,
+    maxCombo: (rank) => 't' + rank + '>6>J+++',
+    maxDamage: 32,
+    goodCombo: (rank) => 't' + rank + '>5>6',
+    goodDamage: 18,
+});
 
 export const persephone = {
     summary: {
@@ -7,16 +22,9 @@ export const persephone = {
         title: 'Nox Oracle',
         hitPoints: 75,
         maxCombo: 4,
-        attackDefaults: {
-            speedOffset: 0.4,
-        },
-        throwDefaults: {
-            speedOffset: 0.6,
-            damage: 7,
-            comboPts: 2,
-            comboType: 'Starter',
-            kd: true,
-        },
+        attackSpeed: <span>x.4 <i>(x = card rank)</i></span>,
+        throwSpeed: <div>x.6 <ComboDetails points={2} max={2} kd={true}/></div>,
+        throwDamage: 7,
         attacks: [2, 3, 4, 5, 6, 'J', 'Q', 'A'],
         throws: [7, 8, 9, 'T', 'K'],
         blocks: [5, 6, 7, 8, 9, 'T'],
@@ -49,40 +57,40 @@ export const persephone = {
         ],
     },
     attacks: [
-        {rank: 2, maxCombo: '2>3>4>J+++', maxDamage: 28, goodCombo: '2>3>AA', goodDamage: 21},
-        {rank: 3, maxCombo: '3>4>5>J+++', maxDamage: 31, goodCombo: '3>4>AA', goodDamage: 23},
-        {rank: 4, maxCombo: '4>5>6>J+++', maxDamage: 34, goodCombo: '4>5>AA', goodDamage: 25},
-        {rank: 5, maxCombo: '5>6>J+++', maxDamage: 30, goodCombo: '5>6>AA', goodDamage: 27},
-        {rank: 6, maxCombo: '6>J+++', maxDamage: 25, goodCombo: '6>AA', goodDamage: 22},
+        normalAttack(2, {maxCombo: '2>3>4>J+++', maxDamage: 28, goodCombo: '2>3>AA', goodDamage: 21}),
+        normalAttack(3, {maxCombo: '3>4>5>J+++', maxDamage: 31, goodCombo: '3>4>AA', goodDamage: 23}),
+        normalAttack(4, {maxCombo: '4>5>6>J+++', maxDamage: 34, goodCombo: '4>5>AA', goodDamage: 25}),
+        normalAttack(5, {maxCombo: '5>6>J+++', maxDamage: 30, goodCombo: '5>6>AA', goodDamage: 27}),
+        normalAttack(6, {maxCombo: '6>J+++', maxDamage: 25, goodCombo: '6>AA', goodDamage: 22}),
         {
             speed: 2.4, rank: 'J', name: 'Rapid Lashes', pumpWith: '+x+x',
-            damage: '7', pump: '4', chip: '3', comboPts: 1, comboType: 'Ender', kd: false,
+            damage: '7', pump: '4', chip: '3', comboPts: 1, comboType: <Ender/>, kd: false,
         },
         {
             speed: 4.0, rank: 'J', name: 'Power Lash', damage: '7', chip: '3',
-            comboType: 'Can\'t Combo', kd: true,
+            comboType: <CantCombo/>, kd: true,
         },
         {
             speed: 0.2, rank: 'Q', name: 'Rising Pleasure', damage: '9', chip: '2',
-            comboPts: 3, comboType: 'Ender', kd: false,
+            comboPts: 3, comboType: <Ender/>, kd: false,
         },
         {
             speed: 3.0, rank: 'A', name: "Mistress's Command", damage: '1',
-            comboType: 'Can\'t Combo', kd: false,
+            comboType: <CantCombo/>, kd: false,
         },
         {
             speed: 0.4, rank: 'AA', name: 'On Your Knees', damage: '16', chip: '3',
-            comboPts: 2, comboType: 'Ender', kd: true,
+            comboPts: 2, comboType: <Ender/>, kd: true,
         },
     ],
     throws: [
-        {rank: 7, maxCombo: 't7>6>J+++', maxDamage: 32, goodCombo: 't7>5>6', goodDamage: 18},
-        {rank: 8, maxCombo: 't8>6>J+++', maxDamage: 32, goodCombo: 't8>5>6', goodDamage: 18},
-        {rank: 9, maxCombo: 't9>6>J+++', maxDamage: 32, goodCombo: 't9>5>6', goodDamage: 18},
-        {rank: 'T', maxCombo: 'tT>6>J+++', maxDamage: 32, goodCombo: 'tT>5>6', goodDamage: 18},
+        normalThrow(7),
+        normalThrow(8),
+        normalThrow(9),
+        normalThrow('T'),
         {
             speed: 8.0, rank: 'K', name: 'Wild Ride', damage: 9,
-            comboType: 'Starter', comboPts: 2, kd: true,
+            comboType: <Starter/>, comboPts: 2, kd: true,
             maxCombo: 'tK>6>J+++', maxDamage: 34, goodCombo: 'tK>5>6', goodDamage: 20
         },
     ],

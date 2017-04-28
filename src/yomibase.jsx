@@ -20,10 +20,13 @@ import {
 } from 'react-router-dom';
 
 import characters from './characters.js';
+import {CharacterSummary} from './summary.jsx';
+import {ComboDetails} from './combo.jsx';
+import {CardAbility} from './ability.jsx';
+import {rankValue} from './rank.js';
 
 import '../styles/index.scss';
 
-const knockdown = require('../images/knockdown.jpg');
 
 function keyedSort(list, keyFn, reversed) {
     let keyed = list.map((el) => ({
@@ -34,18 +37,6 @@ function keyedSort(list, keyFn, reversed) {
     keyed.sort((a, b) => (reversed ? -1 : 1) * (+(a.key > b.key) || +(a.key === b.key) - 1));
 
     return keyed.map((el) => el.value);
-}
-
-function rankValue(rank) {
-    rank = typeof rank === 'string' ? rank[0] : rank;
-    const ranks = {
-        T: 10,
-        J: 11,
-        Q: 12,
-        K: 13,
-        A: 14,
-    };
-    return (ranks[rank] || rank);
 }
 
 function Selector(props) {
@@ -174,68 +165,6 @@ class YomiBase extends PureComponent {
     }
 };
 
-function CardAbility(entry, multiline) {
-    return [
-        <dt key={entry.rank + '-rank'}>{entry.rank} - {entry.name}{multiline ? <br /> : ' '}[{entry.timing}]</dt>,
-        <dd key={entry.rank + '-text'}>{entry.text}</dd>,
-    ];
-}
-
-function CharacterSummary(props) {
-    let abilities = [];
-    props.char.innateAbilities.forEach((entry) => {
-        abilities.push(<dt key={entry.name + '-name'}>{entry.name}</dt>);
-        abilities.push(<dd key={entry.name + '-text'}>{entry.text}</dd>);
-    });
-    props.char.cardAbilities.forEach((entry) => abilities.push(...CardAbility(entry)));
-
-    return (
-        <section className={props.className + ' character-summary'} >
-            <h1>{props.char.fullName} <small className="full-name">{props.char.title}</small></h1>
-            <Table>
-                <tbody>
-                    <tr>
-                        <th>Hit Points:</th>
-                        <td>{props.char.hitPoints}</td>
-                    </tr>
-                    <tr>
-                        <th>Max Combo:</th>
-                        <td><ComboPoints count={props.char.maxCombo} max={props.char.maxCombo} /></td>
-                    </tr>
-                    <tr>
-                        <th><span className="yomi-attack">Normal attack speed</span>:</th>
-                        <td>{props.char.attackDefaults.speedOffset.toFixed(1).replace('0.', 'x.')} (x = card rank)</td>
-                    </tr>
-                    <tr>
-                        <th><span className="yomi-throw">Normal throw speed</span>:</th>
-                        <td>{props.char.throwDefaults.speedOffset.toFixed(1).replace('0.', 'x.')} (x = card rank) {props.char.throwCP} {props.char.throwKD}</td>
-                    </tr>
-                    <tr>
-                        <th><span className="yomi-throw">Normal throw damage</span>:</th>
-                        <td>{props.char.throwDefaults.damage}</td>
-                    </tr>
-                    <tr>
-                        <th><span className="yomi-attack">Attacks</span>:</th>
-                        <td className="yomi-attack">{props.char.attacks.join(', ')}</td>
-                    </tr>
-                    <tr>
-                        <th><span className="yomi-throw">Throws</span>:</th>
-                        <td className="yomi-throw">{props.char.throws.join(', ')}</td>
-                    </tr>
-                    <tr>
-                        <th><span className="yomi-block">Blocks</span>:</th>
-                        <td className="yomi-block">{props.char.blocks.join(', ')}</td>
-                    </tr>
-                    <tr>
-                        <th><span className="yomi-dodge">Dodges</span>:</th>
-                        <td className="yomi-dodge">{props.char.dodges.join(', ')}</td>
-                    </tr>
-                </tbody>
-            </Table>
-            <dl>{abilities}</dl>
-        </section>
-    );
-};
 
 function SortingHeader(props) {
     let sortGlyph = null;
@@ -391,20 +320,6 @@ function Damage(props) {
     );
 }
 
-function ComboPoints(props) {
-    if (props.count == null) {
-        return null;
-    }
-    const max = props.max || 6;
-    const points = '\u25CF'.repeat(props.count) + '\u25CB'.repeat(max - props.count);
-
-    return (
-        <div className="combo-points">
-            <div>{points.slice(0, 3)}</div>
-            <div>{points.slice(3, 6)}</div>
-        </div>
-    );
-}
 
 function Combo(props) {
     const combo = props.combo.toString();
@@ -422,23 +337,13 @@ function Combo(props) {
     </span>;
 }
 
-function ComboDetails(props) {
-    return (
-        <span className="combo-details">
-            <ComboPoints count={props.points} max={props.max} />
-            {props.type && <span className="combo-type full-name"><small>{props.type}</small></span>}
-            {props.kd && <img className="combo-kd" src={knockdown} height="24" />}
-        </span>
-    );
-}
-
 function mkComboHeader(prefix, throws) {
     const lowerPrefix = prefix.toLowerCase();
     return <SortHeader
         name={prefix + ' Combo'}
-        sort={(row) => parseFloat(row[lowerPrefix + 'Damage']) || row.damage || rankValue(row.rank)}
+        sort={(row) => parseFloat(row[lowerPrefix + 'Damage']) || row.damage}
         format={(row) => {
-            const damage = row[lowerPrefix + 'Damage'] || row.damage || rankValue(row.rank);
+            const damage = row[lowerPrefix + 'Damage'] || row.damage;
             const combo = row[lowerPrefix + 'Combo'] || (throws ? 't' : '') + row.rank;
             const className = row[lowerPrefix + 'Combo'] ? '' : 'combo-default';
             return <Combo combo={combo} damage={damage} className={className} />;
@@ -459,8 +364,8 @@ function MoveTable(props) {
     const charHeader = <SortHeader isKey name="Character" rowKey="character" sort={(row) => row.character} />;
     const speedHeader = <SortHeader
         sortDefault
-        name="Speed" sort={(row) => speedValue(row)}
-        format={(row) => speedValue(row).toFixed(1)}
+        name="Speed" sort={(row) => parseFloat(row.speed)}
+        format={(row) => parseFloat(row.speed).toFixed(1)}
     />;
     const rankHeader = <SortHeader
         isKey={(row) => row.rank.toString().concat(row.name)}
@@ -472,9 +377,9 @@ function MoveTable(props) {
     />;
     const damageHeader = <SortHeader
         name="Damage"
-        sort={(row) => row.damage || rankValue(row.rank)}
+        sort={(row) => row.damage}
         format={(row) => (
-            <Damage damage={row.damage || rankValue(row.rank)} chip={row.chip} pump={row.pump} />
+            <Damage damage={row.damage} chip={row.chip} pump={row.pump} />
         )}
     />;
     const comboHeader = <SortHeader

@@ -1,4 +1,19 @@
 import React from 'react';
+import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
+import {mkNormal} from '../move.jsx';
+
+const normalAttack = mkNormal(0.6);
+
+const normalThrow = mkNormal(0.6, {
+    damage: 6,
+    comboPts: 3,
+    comboType: <Starter/>,
+    kd: true,
+    maxCombo: (rank) => 't' + rank + '>A+',
+    maxDamage: 28,
+    goodCombo: (rank) => 't' + rank + '>K+',
+    goodDamage: 22,
+});
 
 export const menelker = {
     summary: {
@@ -7,16 +22,9 @@ export const menelker = {
         title: 'Deathstrike Dragon',
         hitPoints: 70,
         maxCombo: 5,
-        attackDefaults: {
-            speedOffset: 0.6,
-        },
-        throwDefaults: {
-            speedOffset: 0.6,
-            damage: 6,
-            comboPts: 3,
-            comboType: 'Starter',
-            kd: true,
-        },
+        attackSpeed: <span>x.6 <i>(x = card rank)</i></span>,
+        throwSpeed: <div>x.6 <ComboDetails points={3} max={3} kd={true}/></div>,
+        throwDamage: 6,
         attacks: [2, 3, 4, 5, 6, 'J', 'Q', 'K', 'A'],
         throws: [7, 8, 9, 'T', 'A'],
         blocks: [5, 6, 7, 8, 9, 'T'],
@@ -53,44 +61,44 @@ export const menelker = {
         ],
     },
     attacks: [
-        {rank: 2, maxCombo: '2>K++>A+', maxDamage: '40', goodCombo: '2>3>4>K++', goodDamage: 31},
-        {rank: 3, maxCombo: '3>K++>A+', maxDamage: '41', goodCombo: '3>4>5>K++', goodDamage: 34},
-        {rank: 4, maxCombo: '4>K++>A+', maxDamage: '42', goodCombo: '4>5>6>K++', goodDamage: 37},
-        {rank: 5, maxCombo: '5>K++>A+', maxDamage: '43', goodCombo: '5>6>K++>J', goodDamage: 32},
-        {rank: 6, maxCombo: '6>K++>A+', maxDamage: '44', goodCombo: '6>K++>K++', goodDamage: 38},
+        normalAttack(2, {maxCombo: '2>K++>A+', maxDamage: 40, goodCombo: '2>3>4>K++', goodDamage: 31}),
+        normalAttack(3, {maxCombo: '3>K++>A+', maxDamage: 41, goodCombo: '3>4>5>K++', goodDamage: 34}),
+        normalAttack(4, {maxCombo: '4>K++>A+', maxDamage: 42, goodCombo: '4>5>6>K++', goodDamage: 37}),
+        normalAttack(5, {maxCombo: '5>K++>A+', maxDamage: 43, goodCombo: '5>6>K++>J', goodDamage: 32}),
+        normalAttack(6, {maxCombo: '6>K++>A+', maxDamage: 44, goodCombo: '6>K++>K++', goodDamage: 38}),
         {
             speed: 2.4, rank: 'J', name: 'Chaos Orb', damage: '7',
-            chip: '2', comboPts: 1, comboType: 'Ender', kd: false,
+            chip: '2', comboPts: 1, comboType: <Ender/>, kd: false,
         },
         {
             speed: 4.0, rank: 'J', pumpWith: '+J+J', name: 'Nether Orb',
-            damage: 9, pump: 9, chip: 6, comboPts: 3, comboType: 'Starter',
+            damage: 9, pump: 9, chip: 6, comboPts: 3, comboType: <Starter/>,
             maxCombo: 'J++>A+', maxDamage: 49, goodCombo: 'J++>K++', goodDamage: 44,
         },
         {
             speed: 0.0, rank: 'Q', pumpWith: '+x+x', name: 'Rising Dragon',
-            damage: 8, pump: 4, chip: 2, comboPts: 3, comboType: 'Ender',
+            damage: 8, pump: 4, chip: 2, comboPts: 3, comboType: <Ender/>,
             maxCombo: 'Q++', maxDamage: 16, goodCombo: 'Q+', goodDamage: 12,
         },
         {
             speed: 2.2, rank: 'K', pumpWith: '+x+x', name: 'Sweeping Claws',
-            damage: 6, pump: 5, chip: 2, comboPts: 2, comboType: 'Linker',
+            damage: 6, pump: 5, chip: 2, comboPts: 2, comboType: <Linker/>,
             maxCombo: 'K++>6>A+', maxDamage: 44, goodCombo: 'K++>K++', goodDamage: 32,
         },
         {
             speed: 1.2, rank: 'A', pumpWith: '+A', name: 'Dragon Breath',
-            damage: 11, pump: 11, chip: 3, comboPts: 2, comboType: 'Ender',
+            damage: 11, pump: 11, chip: 3, comboPts: 2, comboType: <Ender/>,
             maxCombo: 'A+', maxDamage: 22,
         },
     ],
     throws: [
-        {rank: 7, maxCombo: 't7>A+', maxDamage: 28, goodCombo: 't7>K+', goodDamage: 22},
-        {rank: 8, maxCombo: 't8>A+', maxDamage: 28, goodCombo: 't8>K+', goodDamage: 22},
-        {rank: 9, maxCombo: 't9>A+', maxDamage: 28, goodCombo: 't9>K+', goodDamage: 22},
-        {rank: 'T', maxCombo: 'tT>A+', maxDamage: 28, goodCombo: 'tT>K+', goodDamage: 22},
+        normalThrow(7),
+        normalThrow(8),
+        normalThrow(9),
+        normalThrow('T'),
         {
             speed: 0.0, rank: 'AAAA', name: 'Deathstrike Dragon', damage: 55,
-            comboType: 'Can\'t Combo', comboPts: null, kd: false,
+            comboType: <CantCombo/>, comboPts: null, kd: false,
         },
     ],
 };
