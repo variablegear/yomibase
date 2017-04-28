@@ -24,7 +24,7 @@ export const persephone = {
         innateAbilities: [
             {
                 name: 'Dominance',
-                text: 'Whenever you knock down your opponent, you may fetch a non-Joker card from your discard pile (before you discard combat cards). If you also knocked them down last combat, fetch up to four non-Joker cards of different ranks ',
+                text: "Whenever you knock down your opponent, you may fetch a non-Joker card from your discard pile (before you discard combat cards). If you also knocked them down last combat, fetch up to four non-Joker cards of different ranks instead.",
             },
         ],
         cardAbilities: [
@@ -32,20 +32,19 @@ export const persephone = {
                 rank: 7,
                 name: 'Do As Told',
                 timing: 'Reaction',
-                text: 'The opponent may take 10 damage to make their ability uncounterable. If they don't, counter that ability.
-(Prevent and undo the ability and the opponent discards the card if played from hand. You can't counter Aces, Jokers, or character cards.)',
+                text: "The opponent may take 10 damage to make their ability uncounterable. If they don't, counter that ability. (Prevent and undo the ability and the opponent discards the card if played from hand. You can't counter Aces, Jokers, or character cards.)",
             },
             {
                 rank: 'T',
                 name: 'Bare Your Soul',
                 timing: 'Draw Phase',
-                text: 'Put the top 3 cards of the opponent's deck face up on the table. If there are more than 3 such face up cards, discard down to 3 (your choice). Whenever they would draw a card, you may choose one of those face up cards for them to draw instead. If you don't, they discard the face up cards. Whenever the opponent would shuffle their deck, they shuffle those cards back into it.',
+                text: "Put the top 3 cards of the opponent's deck face up on the table. If there are more than 3 such face up cards, discard down to 3 (your choice). Whenever they would draw a card, you may choose one of those face up cards for them to draw instead. If you don't, they discard the face up cards. Whenever the opponent would shuffle their deck, they shuffle those cards back into it.",
             },
             {
                 rank: 'T',
                 name: 'Bare Your Soul',
                 timing: 'Draw Phase',
-                text: 'If you won combat and Mistress's Command deals damage, you control the opponent's next turn until (and including) the combat-reveal. You can't control two turns in a row.\n(Look at their hand, you may play their abilities and their combat card. You control your own turn as usual.)',
+                text: "If you won combat and Mistress's Command deals damage, you control the opponent's next turn until (and including) the combat-reveal. You can't control two turns in a row.\n(Look at their hand, you may play their abilities and their combat card. You control your own turn as usual.)",
             },
         ],
     },
