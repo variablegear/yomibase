@@ -83,7 +83,7 @@ export const persephone = {
         {
             speed: 8.0, rank: 'K', name: 'Wild Ride', damage: 9,
             comboType: 'Starter', comboPts: 2, kd: true,
-            maxCombo: 'tK>6>J+++', maxDamage: 34, goodCombo: 'tK>5>6', goodDamage: 20},
+            maxCombo: 'tK>6>J+++', maxDamage: 34, goodCombo: 'tK>5>6', goodDamage: 20
         },
     ],
 };
