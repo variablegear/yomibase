@@ -4,8 +4,6 @@ import Grid from 'react-bootstrap/lib/Grid';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import Well from 'react-bootstrap/lib/Well';
-import MenuItem from 'react-bootstrap/lib/MenuItem';
-import DropdownButton from 'react-bootstrap/lib/DropdownButton';
 import Table from 'react-bootstrap/lib/Table';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
@@ -24,6 +22,7 @@ import {CharacterSummary} from './summary.jsx';
 import {ComboDetails} from './combo.jsx';
 import {CardAbility} from './ability.jsx';
 import {rankValue} from './rank.js';
+import {DropdownSelectorRow, ImageSelectorRow} from './selector.jsx';
 
 import '../styles/index.scss';
 
@@ -39,29 +38,6 @@ function keyedSort(list, keyFn, reversed) {
     return keyed.map((el) => el.value);
 }
 
-function Selector(props) {
-    const current = props.characters[props.current];
-    const characters = Object.keys(props.characters);
-    characters.sort();
-
-    const charSelectors = characters.map((char) => (
-        <MenuItem key={char} onSelect={props.onSelect}
-            eventKey={char}
-            disabled={char == props.disabled}
-        >{props.characters[char].summary.name}</MenuItem>
-    ));
-
-    return (
-        <DropdownButton
-            title={(current && current.summary.fullName) || props.default}
-            id={props.slot + '-character-selector'}
-        >
-            {charSelectors}
-            <MenuItem divider />
-            <MenuItem onSelect={props.onReset}>Reset...</MenuItem>
-        </DropdownButton>
-    );
-}
 
 function EditLink(props) {
     return (
@@ -94,34 +70,24 @@ class YomiBase extends PureComponent {
                     </Navbar.Header>
                 </Navbar>
                 <Grid>
-                    {Object.keys(characters) &&
-                        <Row className="selectors" key="selectors">
-                            <Col md={12}>
-                                <Selector
-                                    onSelect={(c) => this.props.history.push('/' + c)}
-                                    characters={characters}
-                                    current={leftKey}
-                                    slot="left"
-                                    default="Pick a character..."
-                                    onReset={() => this.props.history.push('/')}
-                                />
-                                {leftKey &&
-                                    <span style={{ float: 'right' }}>
-                                        <Selector
-                                            style={{ float: 'right' }}
-                                            onSelect={(c) => this.props.history.push('/' + leftKey + '/' + c)}
-                                            characters={characters}
-                                            current={rightKey}
-                                            disabled={leftKey}
-                                            slot="right"
-                                            default="Match up against..."
-                                            onReset={(c) => this.props.history.push('/' + leftKey)}
-                                        />
-                                    </span>
-                                }
-                            </Col>
-                        </Row>
-                    }
+                    <ImageSelectorRow
+                        selectLeft={(char) => this.props.history.push('/' + char + '/' + (rightKey || 'none'))}
+                        selectRight={(char) => this.props.history.push('/' + leftKey + '/' + char)}
+                        resetLeft={() => this.props.history.push('/none/' + rightKey)}
+                        resetRight={() => this.props.history.push('/' + leftKey)}
+                        characters={characters}
+                        left={leftKey}
+                        right={rightKey}
+                    />
+                    <DropdownSelectorRow
+                        selectLeft={(char) => this.props.history.push('/' + char)}
+                        selectRight={(char) => this.props.history.push('/' + leftKey + '/' + char)}
+                        resetLeft={() => this.props.history.push('/')}
+                        resetRight={() => this.props.history.push('/' + leftKey)}
+                        characters={characters}
+                        left={leftKey}
+                        right={rightKey}
+                    />
                     <Row className="summary-row">
                         {leftCharacter &&
                             <Col className="left summary-col" md={6}><CharacterSummary char={leftCharacter.summary} /></Col>
