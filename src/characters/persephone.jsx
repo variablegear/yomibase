@@ -41,8 +41,8 @@ export const persephone = {
                 text: "Put the top 3 cards of the opponent's deck face up on the table. If there are more than 3 such face up cards, discard down to 3 (your choice). Whenever they would draw a card, you may choose one of those face up cards for them to draw instead. If you don't, they discard the face up cards. Whenever the opponent would shuffle their deck, they shuffle those cards back into it.",
             },
             {
-                rank: 'T',
-                name: 'Bare Your Soul',
+                rank: 'A',
+                name: "Mistress's Command",
                 timing: 'Draw Phase',
                 text: "If you won combat and Mistress's Command deals damage, you control the opponent's next turn until (and including) the combat-reveal. You can't control two turns in a row.\n(Look at their hand, you may play their abilities and their combat card. You control your own turn as usual.)",
             },
@@ -67,7 +67,7 @@ export const persephone = {
             comboPts: 3, comboType: 'Ender', kd: false,
         },
         {
-            speed: 3.0, rank: 'A', name: 'Mistress's Command', damage: '1',
+            speed: 3.0, rank: 'A', name: "Mistress's Command", damage: '1',
             comboType: 'Can\'t Combo', kd: false,
         },
         {
