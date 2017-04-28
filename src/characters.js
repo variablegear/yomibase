@@ -13,6 +13,7 @@ export const characters = Object.assign({},
     require('./characters/lum.jsx'),
     require('./characters/menelker.jsx'),
     require('./characters/quince.jsx'),
+    require('./characters/persephone.jsx'),
 );
 
 export default characters
