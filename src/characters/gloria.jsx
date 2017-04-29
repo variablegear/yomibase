@@ -1,5 +1,5 @@
 import React from 'react';
-import {Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
+import {Ender, Linker, Starter, CantCombo, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
 
 const normalAttack = mkNormal(0.8);
@@ -89,7 +89,7 @@ export const gloria = {
         },
         {
             speed: 2.2, rank: 'K', name: 'Fountain of Light', damage: 9, chip: 3,
-            comboType: <CantCombo/>, kd: True,
+            comboType: <CantCombo/>, kd: true,
         },
         {
             speed: 2.0, rank: 'AA', name: 'Twilight Key', damage: 18, chip: 2,
