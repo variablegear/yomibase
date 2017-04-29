@@ -211,7 +211,7 @@ class SortableTable extends PureComponent {
                     (header) => header.props.isKey
                 ).map(
                     (header) => this.formatKey(header, row)
-                    )
+                )
             }>
                 {this.headers().map((header) => this.formatEntry(header, row))}
             </tr>
@@ -339,7 +339,7 @@ function MoveTable(props) {
         name="Rank"
         sort={(row) => rankValue(row.rank)}
         format={(row) => (
-            <Move abilities={row.abilities} rank={row.rank} pump={row.pumpWith} name={row.name} />
+            <Move abilities={row.abilities} rank={row.rankDisplay || row.rank} pump={row.pumpWith} name={row.name} />
         )}
     />;
     const damageHeader = <SortHeader

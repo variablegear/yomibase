@@ -2,6 +2,7 @@ import React from 'react';
 import Note from '../note.jsx';
 import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
+import styled from 'styled-components';
 
 const normalAttack = mkNormal(0.2);
 
@@ -17,6 +18,12 @@ const normalThrow = mkNormal(0.8, {
 });
 
 const dragon = <Note text="Requires Dragon Form" icon={<span style={{fontSize: '150%'}}>{'\uD83D\uDC32'}</span>} />;
+
+const Dragon = styled.span`
+    color: #126d1c;
+    font-weight: bold;
+`;
+
 export const midori = {
     summary: {
         name: 'Midori',
@@ -72,12 +79,12 @@ export const midori = {
             comboPts: 1, comboType: <Ender/>, maxCombo: 'J+', maxDamage: 16,
         },
         {
-            speed: 2.4, rank: 'J', name: 'Toxic Breath', damage: 9, chip: 2, comboPts: 1, comboType: <Starter/>,
+            speed: 2.4, rank: 'J', rankDisplay: <Dragon>J</Dragon>, name: <Dragon>Toxic Breath</Dragon>, damage: 9, chip: 2, comboPts: 1, comboType: <Starter/>,
             maxCombo: 'dJ>AA', maxDamage: 29, goodCombo: 'J>7>8', goodDamage: 24, notes: dragon,
         },
         {speed: 1.2, rank: 'Q', name: 'Rising Mountain', damage: 10, chip: 1, comboPts: 2, comboType: <Ender/>},
         {
-            speed: 0.6, rank: 'Q', name: 'Dragon Mountain', damage: 14, chip: 2, comboPts: 2, comboType: <Linker/>,
+            speed: 0.6, rank: 'Q', rankDisplay: <Dragon>Q</Dragon>, name: <Dragon>Dragon Mountain</Dragon>, damage: 14, chip: 2, comboPts: 2, comboType: <Linker/>,
             maxCombo: 'dQ>J+', maxDamage: 30, goodCombo: 'dQ>8', goodDamage: 22, notes: dragon,
         },
         {speed: 1.2, rank: 'AA', name: 'Wrath of Earth', damage: 20, chip: 2, comboType: <CantCombo/>},
@@ -91,11 +98,12 @@ export const midori = {
         normalThrow('T'),
         {speed: 4.4, rank: 'K', name: 'Rushing River', damage: 12, comboType: <CantCombo/>, comboPts: null},
         {
-            speed: 1.8, rank: 'K', name: 'Talon Swoop', damage: 17, comboType: <CantCombo/>,
+            speed: 1.8, rank: 'K', rankDisplay: <Dragon>K</Dragon>, name: <Dragon>Talon Swoop</Dragon>, damage: 17, comboType: <CantCombo/>,
             comboPts: null, notes: dragon,
         },
         {
-            speed: 0.0, rank: 'AA', pumpWith: '+A+A', name: 'Final Dragon Buster', damage: 20,
+            speed: 0.0, rank: 'AA', rankDisplay: <Dragon>AA</Dragon>, pumpWith: '+A+A',
+            name: <Dragon>Final Dragon Buster</Dragon>, damage: 20,
             pump: 16, comboType: <CantCombo/>, comboPts: null,
             maxCombo: 'AA++', maxDamage: 52, goodCombo: 'AA+', goodDamage: 36, notes: dragon,
         },
