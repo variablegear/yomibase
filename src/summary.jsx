@@ -5,6 +5,12 @@ import {ComboPoints} from './combo.jsx';
 import {CardAbility} from './ability.jsx';
 import {Block, Throw, Dodge, Attack} from './move.jsx';
 
+import styled from 'styled-components';
+
+export const Title = styled.small`
+    white-space: nowrap;
+`;
+
 export function CharacterSummary(props) {
     let abilities = [];
     props.char.innateAbilities.forEach((entry) => {
@@ -15,7 +21,7 @@ export function CharacterSummary(props) {
 
     return (
         <section className={props.className + ' character-summary'} >
-            <h1>{props.char.fullName} <small className="full-name">{props.char.title}</small></h1>
+            <h1>{props.char.fullName} <Title>{props.char.title}</Title></h1>
             <Table>
                 <tbody>
                     <tr>

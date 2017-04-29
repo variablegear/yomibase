@@ -18,7 +18,7 @@ import {
 } from 'react-router-dom';
 
 import characters from './characters.js';
-import {CharacterSummary} from './summary.jsx';
+import {CharacterSummary, Title} from './summary.jsx';
 import {ComboDetails} from './combo.jsx';
 import {CardAbility} from './ability.jsx';
 import {rankValue} from './rank.js';
@@ -272,7 +272,7 @@ function Move(props) {
         <div>
             {rank}
             <span className="text-muted">{props.pump}</span>
-            {props.name && <div><small className="full-name">{props.name}</small></div>}
+            {props.name && <div><Title>{props.name}</Title></div>}
         </div>
     );
 }
