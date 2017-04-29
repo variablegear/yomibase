@@ -1,6 +1,3 @@
-.selectors {
-    padding-bottom: 10px;
-}
 .base {
     background: white;
 }
@@ -13,9 +10,7 @@
 .combo-default > .damage, .combo-default > .moves > * {
     opacity: .50;
 }
-.full-name {
-    white-space: nowrap;
-}
+
 .summary-col {
     padding-bottom: 100%;
     margin-bottom: -100%;

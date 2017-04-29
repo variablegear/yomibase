@@ -3,6 +3,8 @@ import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
+import styled from 'styled-components';
+
 
 const headshots = {
     argagarg: require('../images/argagarg.jpg'),
@@ -26,6 +28,10 @@ const headshots = {
     vendetta: require('../images/vendetta.jpg'),
     zane: require('../images/zane.jpg'),
 };
+
+const SelectorRow = styled.div`
+    padding-bottom: 10px;
+`;
 
 function ImageSelector(props) {
     if (props.characters[props.char]) {
@@ -72,32 +78,34 @@ export function ImageSelectorRow(props) {
         />
     };
     return (
-        <Row className="selectors" key="selectors">
-            <Col md={5} className="normal-characters" xsHidden>
-                {mkImageSelector("grave")}
-                {mkImageSelector("midori")}
-                {mkImageSelector("rook")}
-                {mkImageSelector("valerie")}
-                {mkImageSelector("lum")}
-                {mkImageSelector("jaina")}
-                {mkImageSelector("setsuki")}
-                {mkImageSelector("degrey")}
-                {mkImageSelector("geiger")}
-                {mkImageSelector("argagarg")}
-            </Col>
-            <Col md={5} className="shadow-characters" xsHidden>
-                {mkImageSelector("quince")}
-                {mkImageSelector("bbb")}
-                {mkImageSelector("menelker")}
-                {mkImageSelector("gloria")}
-                {mkImageSelector("vendetta")}
-                {mkImageSelector("onimaru")}
-                {mkImageSelector("troq")}
-                {mkImageSelector("persephone")}
-                {mkImageSelector("gwen")}
-                {mkImageSelector("zane")}
-            </Col>
-        </Row>
+        <SelectorRow>
+            <Row>
+                <Col md={5} className="normal-characters" xsHidden>
+                    {mkImageSelector("grave")}
+                    {mkImageSelector("midori")}
+                    {mkImageSelector("rook")}
+                    {mkImageSelector("valerie")}
+                    {mkImageSelector("lum")}
+                    {mkImageSelector("jaina")}
+                    {mkImageSelector("setsuki")}
+                    {mkImageSelector("degrey")}
+                    {mkImageSelector("geiger")}
+                    {mkImageSelector("argagarg")}
+                </Col>
+                <Col md={5} className="shadow-characters" xsHidden>
+                    {mkImageSelector("quince")}
+                    {mkImageSelector("bbb")}
+                    {mkImageSelector("menelker")}
+                    {mkImageSelector("gloria")}
+                    {mkImageSelector("vendetta")}
+                    {mkImageSelector("onimaru")}
+                    {mkImageSelector("troq")}
+                    {mkImageSelector("persephone")}
+                    {mkImageSelector("gwen")}
+                    {mkImageSelector("zane")}
+                </Col>
+            </Row>
+        </SelectorRow>
     );
 }
 
@@ -127,31 +135,33 @@ export function DropDownSelector(props) {
 
 export function DropdownSelectorRow(props) {
     return (
-        <Row className="selectors" key="selectors">
-            <Col md={12} smHidden mdHidden lgHidden >
-                <DropDownSelector
-                    onSelect={props.selectLeft}
-                    characters={props.characters}
-                    current={props.left}
-                    slot="left"
-                    default="Pick a character..."
-                    onReset={props.resetLeft}
-                />
-                {props.left &&
-                    <span style={{ float: 'right' }}>
-                        <DropDownSelector
-                            style={{ float: 'right' }}
-                            onSelect={props.selectRight}
-                            characters={props.characters}
-                            current={props.right}
-                            disabled={props.left}
-                            slot="right"
-                            default="Match up against..."
-                            onReset={props.resetRight}
-                        />
-                    </span>
-                }
-            </Col>
-        </Row>
+        <SelectorRow>
+            <Row>
+                <Col md={12} smHidden mdHidden lgHidden >
+                    <DropDownSelector
+                        onSelect={props.selectLeft}
+                        characters={props.characters}
+                        current={props.left}
+                        slot="left"
+                        default="Pick a character..."
+                        onReset={props.resetLeft}
+                    />
+                    {props.left &&
+                        <span style={{ float: 'right' }}>
+                            <DropDownSelector
+                                style={{ float: 'right' }}
+                                onSelect={props.selectRight}
+                                characters={props.characters}
+                                current={props.right}
+                                disabled={props.left}
+                                slot="right"
+                                default="Match up against..."
+                                onReset={props.resetRight}
+                            />
+                        </span>
+                    }
+                </Col>
+            </Row>
+        </SelectorRow>
     );
 }
