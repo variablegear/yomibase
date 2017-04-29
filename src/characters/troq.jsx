@@ -1,7 +1,7 @@
 import React from 'react';
 import Note from '../note.jsx';
 import {CantCombo, Ender, Starter, ComboDetails} from '../combo.jsx';
-import {mkNormal} from '../move.jsx';
+import {mkNormal, Block} from '../move.jsx';
 
 const normalAttack = mkNormal(0.8);
 
@@ -27,7 +27,7 @@ export const troq = {
         throwSpeed: <div>x.0 <ComboDetails points={2} max={2} kd={true}/></div>,
         throwDamage: 8,
         attacks: [4, 5, 6, 7, 8, 'J', 'Q', 'A'],
-        throws: [2, 3, 4, , 5, 9, 'T', 'K', 'A'],
+        throws: [2, 3, 4, 5, 9, 'T', 'K', 'A'],
         blocks: [2, 3, 6, 7, 8],
         dodges: [9, 'T'],
         innateAbilities: [
@@ -113,7 +113,7 @@ export const troq = {
             damage: 45, comboPts: null, comboType: <CantCombo/>, kd: false,
             notes: <Note
                 text="Requires 2 attached blocks"
-                icon={<span className='yomi-block'>{'+\u26CA >= 2'}</span>}
+                icon={<Block>{'+\u26CA >= 2'}</Block>}
             />,
         },
     ],

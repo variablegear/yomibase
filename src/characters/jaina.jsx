@@ -1,7 +1,7 @@
 import React from 'react';
 import {Note, recycles} from '../note.jsx';
 import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
-import {mkNormal} from '../move.jsx';
+import {mkNormal, Block, Attack} from '../move.jsx';
 
 const normalAttack = mkNormal(0.6, {
     chip: (rank) => '(' + rank + ')',
@@ -9,11 +9,11 @@ const normalAttack = mkNormal(0.6, {
         text="Chip damage on *red* normals only"
         icon={
             <span>
-                <span className='yomi-attack'>{'\u2764'}</span>
+                <Attack>{'\u2764'}</Attack>
                 /
-                    <span className='yomi-attack'>{'\u2666'}</span>
+                <Attack>{'\u2666'}</Attack>
                 {'\u21D2'}
-                <span className='yomi-block'>{'\u26CA'}</span>
+                <Block>{'\u26CA'}</Block>
             </span>
         }
     />,

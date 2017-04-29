@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/lib/Table';
 
 import {ComboPoints} from './combo.jsx';
 import {CardAbility} from './ability.jsx';
+import {Block, Throw, Dodge, Attack} from './move.jsx';
 
 export function CharacterSummary(props) {
     let abilities = [];
@@ -27,43 +28,43 @@ export function CharacterSummary(props) {
                     </tr>
                     {props.char.attackSpeed &&
                         <tr>
-                            <th><span className="yomi-attack">Normal attack speed</span>:</th>
+                            <th><Attack>Normal attack speed</Attack>:</th>
                             <td>{props.char.attackSpeed}</td>
                         </tr>
                     }
                     {props.char.attackDamage &&
                         <tr>
-                            <th><span className="yomi-attack">Normal attack damage</span>:</th>
+                            <th><Attack>Normal attack damage</Attack>:</th>
                             <td>{props.char.attackDamage}</td>
                         </tr>
                     }
                     {props.char.throwSpeed &&
                         <tr>
-                            <th><span className="yomi-throw">Normal throw speed</span>:</th>
+                            <th><Throw>Normal throw speed</Throw>:</th>
                             <td>{props.char.throwSpeed}</td>
                         </tr>
                     }
                     {props.char.throwDamage &&
                         <tr>
-                            <th><span className="yomi-throw">Normal throw damage</span>:</th>
+                            <th><Throw>Normal throw damage</Throw>:</th>
                             <td>{props.char.throwDamage}</td>
                         </tr>
                     }
                     <tr>
-                        <th><span className="yomi-attack">Attacks</span>:</th>
-                        <td className="yomi-attack">{props.char.attacks.join(', ')}</td>
+                        <th><Attack>Attacks</Attack>:</th>
+                        <td><Attack>{props.char.attacks.join(', ')}</Attack></td>
                     </tr>
                     <tr>
-                        <th><span className="yomi-throw">Throws</span>:</th>
-                        <td className="yomi-throw">{props.char.throws.join(', ')}</td>
+                        <th><Throw>Throws</Throw>:</th>
+                        <td><Throw>{props.char.throws.join(', ')}</Throw></td>
                     </tr>
                     <tr>
-                        <th><span className="yomi-block">Blocks</span>:</th>
-                        <td className="yomi-block">{props.char.blocks.join(', ')}</td>
+                        <th><Block>Blocks</Block>:</th>
+                        <td><Block>{props.char.blocks.join(', ')}</Block></td>
                     </tr>
                     <tr>
-                        <th><span className="yomi-dodge">Dodges</span>:</th>
-                        <td className="yomi-dodge">{props.char.dodges.join(', ')}</td>
+                        <th><Dodge>Dodges</Dodge>:</th>
+                        <td><Dodge>{props.char.dodges.join(', ')}</Dodge></td>
                     </tr>
                 </tbody>
             </Table>

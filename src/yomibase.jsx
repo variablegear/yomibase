@@ -23,6 +23,7 @@ import {ComboDetails} from './combo.jsx';
 import {CardAbility} from './ability.jsx';
 import {rankValue} from './rank.js';
 import {DropdownSelectorRow, ImageSelectorRow} from './selector.jsx';
+import {Block, Attack, Throw} from './move.jsx';
 
 import '../styles/index.scss';
 
@@ -280,7 +281,7 @@ function Damage(props) {
     return (
         <span>
             {props.damage}
-            {props.chip && <sub className="yomi-block">{props.chip}</sub>}
+            {props.chip && <sub><Block>{props.chip}</Block></sub>}
             {props.pump && <span className="text-muted">+{props.pump}</span>}
         </span>
     );
@@ -296,8 +297,8 @@ function Combo(props) {
             {combo && combo.split('>').map((move, idx) => [
                 idx > 0 ? '\u27A7' : null,
                 move.startsWith('t')
-                    ? <span className="yomi-throw">{move.replace('t', '')}</span>
-                    : <span className="yomi-attack">{move}</span>,
+                    ? <Throw>{move.replace('t', '')}</Throw>
+                    : <Attack>{move}</Attack>,
             ])}
         </small>
     </span>;
