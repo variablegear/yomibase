@@ -60,7 +60,7 @@ const SummaryRow = styled(Row)`
 const SummaryCol = styled(Col)`
     padding-bottom: 100%;
     margin-bottom: -100%;
-    background-color: ${props => props.theme.background};
+    background: ${props => props.theme.background};
 `;
 
 class YomiBase extends PureComponent {
@@ -181,7 +181,7 @@ function SortingHeader(props) {
 class SortHeader extends PureComponent { };
 
 const SortableTableRow = styled.tr`
-    background-color: ${props => props.theme.background};
+    background: ${props => props.theme.background};
 `;
 
 class SortableTable extends PureComponent {

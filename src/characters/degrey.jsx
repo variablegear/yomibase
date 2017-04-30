@@ -16,6 +16,9 @@ const normalThrow = mkNormal(0.8, {
 });
 
 export const degrey = {
+    theme: {
+        background: '#f0cbd5',
+    },
     summary: {
         name: 'DeGrey',
         fullName: 'Jefferson DeGrey',
