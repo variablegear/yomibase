@@ -55,6 +55,15 @@ function EditLink(props) {
     );
 }
 
+const SummaryRow = styled(Row)`
+    overflow: hidden;
+`;
+
+const SummaryCol = styled(Col)`
+    padding-bottom: 100%;
+    margin-bottom: -100%;
+`;
+
 class YomiBase extends PureComponent {
     render() {
         const leftKey = this.props.match.params.left;
@@ -91,14 +100,18 @@ class YomiBase extends PureComponent {
                         left={leftKey}
                         right={rightKey}
                     />
-                    <Row className="summary-row">
+                    <SummaryRow>
                         {leftCharacter &&
-                            <Col className="left summary-col" md={6}><CharacterSummary char={leftCharacter.summary} /></Col>
+                            <SummaryCol className="left" md={6}>
+                                <CharacterSummary char={leftCharacter.summary} />
+                            </SummaryCol>
                         }
                         {rightCharacter &&
-                            <Col className="right summary-col" md={6}><CharacterSummary char={rightCharacter.summary} /></Col>
+                            <SummaryCol className="right" md={6}>
+                                <CharacterSummary char={rightCharacter.summary} />
+                            </SummaryCol>
                         }
-                    </Row>
+                    </SummaryRow>
                     {(leftCharacter || rightCharacter) &&
                         [
                             <Row key="attacks-header"><Col md={12}><h2>Attacks</h2></Col></Row>,
