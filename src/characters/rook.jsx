@@ -11,6 +11,9 @@ const normalThrow = mkNormal(0.0, {
 });
 
 export const rook = {
+    theme: {
+        text: "#D6DBE1",
+    },
     summary: {
         name: 'Rook',
         fullName: 'Garus Rook',

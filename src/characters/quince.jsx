@@ -16,6 +16,9 @@ const normalThrow = mkNormal(0.8, {
 });
 
 export const quince = {
+    theme: {
+        text: 'linear-gradient(#82A0FA, #F5FFFF)',
+    },
     summary: {
         name: 'Quince',
         fullName: 'Sirus Quince',

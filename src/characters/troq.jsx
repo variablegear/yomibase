@@ -17,6 +17,9 @@ const normalThrow = mkNormal(0.0, {
 });
 
 export const troq = {
+    theme: {
+        text: 'linear-gradient(#482310, #C59D7A)',
+    },
     summary: {
         name: 'Troq',
         fullName: 'Troq Bashar',

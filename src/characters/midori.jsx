@@ -25,6 +25,9 @@ const Dragon = styled.span`
 `;
 
 export const midori = {
+    theme: {
+        text: "#78BD52",
+    },
     summary: {
         name: 'Midori',
         fullName: 'Master Midori',

@@ -16,6 +16,9 @@ const normalThrow = mkNormal(0.8, {
 });
 
 export const gloria = {
+    theme: {
+        text: 'linear-gradient(#FFD0DE, #F1FFFF)',
+    },
     summary: {
         name: 'Gloria',
         fullName: 'Gloria Grayson',

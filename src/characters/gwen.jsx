@@ -17,6 +17,9 @@ const normalThrow = mkNormal(0.6, {
 });
 
 export const gwen = {
+    theme: {
+        text: 'linear-gradient(#99072E, #C3DFEB)',
+    },
     summary: {
         name: 'Gwen',
         fullName: 'Gwen Grayson',
