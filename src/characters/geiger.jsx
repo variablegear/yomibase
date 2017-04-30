@@ -16,6 +16,9 @@ const normalThrow = mkNormal(0.8, {
 });
 
 export const geiger = {
+    theme: {
+        text: '#DADE65',
+    },
     summary: {
         name: 'Geiger',
         fullName: 'Max Geiger',

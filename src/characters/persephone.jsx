@@ -16,6 +16,9 @@ const normalThrow = mkNormal(0.6, {
 });
 
 export const persephone = {
+    theme: {
+        text: 'linear-gradient(#4B555E, #FFFFFF)',
+    },
     summary: {
         name: 'Persephone',
         fullName: 'Mistress Persephone',

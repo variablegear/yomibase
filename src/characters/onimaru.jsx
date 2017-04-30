@@ -26,6 +26,9 @@ const normalAttack = mkNormal(0.4, {
 });
 
 export const onimaru = {
+    theme: {
+        text: 'linear-gradient(#FF9127 66%, #374536)',
+    },
     summary: {
         name: 'Onimaru',
         fullName: 'General Onimaru',

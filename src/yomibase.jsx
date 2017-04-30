@@ -53,14 +53,18 @@ function EditLink(props) {
     );
 }
 
-const SummaryRow = styled(Row)`
-    overflow: hidden;
+const SummaryCol = styled(Col)`
+    background: ${props => props.theme.text};
 `;
 
-const SummaryCol = styled(Col)`
-    padding-bottom: 100%;
-    margin-bottom: -100%;
-    background: ${props => props.theme.background};
+const FlexRow =  styled(Row)`
+    display: flex;
+    flex-wrap: wrap;
+
+    & > [class*='col-'] {
+        display: flex;
+        flex-direction: column;
+    }
 `;
 
 class YomiBase extends PureComponent {
@@ -99,7 +103,7 @@ class YomiBase extends PureComponent {
                         left={leftKey}
                         right={rightKey}
                     />
-                    <SummaryRow>
+                    <FlexRow>
                         {leftCharacter &&
                             <ThemeProvider theme={leftCharacter.theme || defaultLeftTheme}>
                                 <SummaryCol md={6}>
@@ -114,7 +118,7 @@ class YomiBase extends PureComponent {
                                 </SummaryCol>
                             </ThemeProvider>
                         }
-                    </SummaryRow>
+                    </FlexRow>
                     {(leftCharacter || rightCharacter) &&
                         [
                             <Row key="attacks-header"><Col md={12}><h2>Attacks</h2></Col></Row>,
@@ -181,7 +185,7 @@ function SortingHeader(props) {
 class SortHeader extends PureComponent { };
 
 const SortableTableRow = styled.tr`
-    background: ${props => props.theme.background};
+    background: ${props => props.theme.text};
 `;
 
 class SortableTable extends PureComponent {

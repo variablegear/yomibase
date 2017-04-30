@@ -20,6 +20,9 @@ const normalAttack = mkNormal({
 });
 
 export const lum = {
+    theme: {
+        text: '#FDFFF4',
+    },
     summary: {
         name: 'Lum',
         fullName: 'Lum Bam-Foo',

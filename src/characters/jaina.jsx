@@ -33,6 +33,9 @@ const normalThrow = mkNormal(0.6, {
 const recycle35 = recycles('Card is likely to recycle from the discard once Jaina is below 35 life');
 
 export const jaina = {
+    theme: {
+        text: "#FA4125",
+    },
     summary: {
         name: 'Jaina',
         fullName: 'Jaina Stormborne',
