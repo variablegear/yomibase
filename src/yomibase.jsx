@@ -17,7 +17,7 @@ import {
     Link,
 } from 'react-router-dom';
 
-import styled from 'styled-components';
+import styled, {ThemeProvider} from 'styled-components';
 
 import characters from './characters.js';
 import {CharacterSummary, Title} from './summary.jsx';
@@ -26,9 +26,7 @@ import {CardAbility} from './ability.jsx';
 import {rankValue} from './rank.js';
 import {DropdownSelectorRow, ImageSelectorRow} from './selector.jsx';
 import {Block, Attack, Throw} from './move.jsx';
-
-import '../styles/index.scss';
-
+import {defaultLeftTheme, defaultRightTheme} from './themes.js';
 
 function keyedSort(list, keyFn, reversed) {
     let keyed = list.map((el) => ({
@@ -62,6 +60,7 @@ const SummaryRow = styled(Row)`
 const SummaryCol = styled(Col)`
     padding-bottom: 100%;
     margin-bottom: -100%;
+    background-color: ${props => props.theme.background};
 `;
 
 class YomiBase extends PureComponent {
@@ -102,14 +101,18 @@ class YomiBase extends PureComponent {
                     />
                     <SummaryRow>
                         {leftCharacter &&
-                            <SummaryCol className="left" md={6}>
-                                <CharacterSummary char={leftCharacter.summary} />
-                            </SummaryCol>
+                            <ThemeProvider theme={leftCharacter.theme || defaultLeftTheme}>
+                                <SummaryCol md={6}>
+                                    <CharacterSummary char={leftCharacter.summary} />
+                                </SummaryCol>
+                            </ThemeProvider>
                         }
                         {rightCharacter &&
-                            <SummaryCol className="right" md={6}>
-                                <CharacterSummary char={rightCharacter.summary} />
-                            </SummaryCol>
+                            <ThemeProvider theme={rightCharacter.theme || defaultRightTheme}>
+                                <SummaryCol md={6}>
+                                    <CharacterSummary char={rightCharacter.summary} />
+                                </SummaryCol>
+                            </ThemeProvider>
                         }
                     </SummaryRow>
                     {(leftCharacter || rightCharacter) &&
@@ -177,6 +180,10 @@ function SortingHeader(props) {
 
 class SortHeader extends PureComponent { };
 
+const SortableTableRow = styled.tr`
+    background-color: ${props => props.theme.background};
+`;
+
 class SortableTable extends PureComponent {
     constructor(props) {
         super(props);
@@ -226,15 +233,17 @@ class SortableTable extends PureComponent {
 
     render() {
         const rows = this.sortedData().map((row) => (
-            <tr className={this.props.className(row)} key={
-                this.headers().filter(
-                    (header) => header.props.isKey
-                ).map(
-                    (header) => this.formatKey(header, row)
-                )
-            }>
-                {this.headers().map((header) => this.formatEntry(header, row))}
-            </tr>
+            <ThemeProvider theme={row.theme}>
+                <SortableTableRow key={
+                    this.headers().filter(
+                        (header) => header.props.isKey
+                    ).map(
+                        (header) => this.formatKey(header, row)
+                    )
+                }>
+                    {this.headers().map((header) => this.formatEntry(header, row))}
+                </SortableTableRow>
+            </ThemeProvider>
         ));
         return (
             <Table condensed hover responsive >
@@ -343,12 +352,12 @@ function mkComboHeader(prefix, throws) {
     />;
 }
 
-function withCharacter(className, character, moveKey, defaultKey) {
+function withCharacter(character, moveKey, defaultKey, defaultTheme) {
     return (character && character[moveKey].map((row) => Object.assign({
-        'className': className,
-        'character': character.summary.name,
-        'abilities': character.summary.cardAbilities,
-        'maxComboPts': character.summary.maxCombo,
+        theme: character.theme || defaultTheme,
+        character: character.summary.name,
+        abilities: character.summary.cardAbilities,
+        maxComboPts: character.summary.maxCombo,
     }, character.summary[defaultKey], row))) || [];
 }
 
@@ -398,8 +407,8 @@ function MoveTable(props) {
 
 class Attacks extends PureComponent {
     render() {
-        const leftAttacks = withCharacter('left', this.props.left, 'attacks', 'attackDefaults');
-        const rightAttacks = withCharacter('right', this.props.right, 'attacks', 'attackDefaults');
+        const leftAttacks = withCharacter(this.props.left, 'attacks', 'attackDefaults', defaultLeftTheme);
+        const rightAttacks = withCharacter(this.props.right, 'attacks', 'attackDefaults', defaultRightTheme);
         const attacks = leftAttacks.concat(rightAttacks);
 
         return <MoveTable
@@ -413,8 +422,8 @@ class Attacks extends PureComponent {
 class Throws extends PureComponent {
 
     render() {
-        const leftThrows = withCharacter('left', this.props.left, 'throws', 'throwDefaults');
-        const rightThrows = withCharacter('right', this.props.right, 'throws', 'throwDefaults');
+        const leftThrows = withCharacter(this.props.left, 'throws', 'throwDefaults', defaultLeftTheme);
+        const rightThrows = withCharacter(this.props.right, 'throws', 'throwDefaults', defaultRightTheme);
         const throws = leftThrows.concat(rightThrows);
 
         return <MoveTable
