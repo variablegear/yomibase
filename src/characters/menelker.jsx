@@ -97,7 +97,7 @@ export const menelker = {
         normalThrow(9),
         normalThrow('T'),
         {
-            speed: 0.0, rank: 'AAAA', name: 'Deathstrike Dragon', damage: 55,
+            speed: 4.6, rank: 'AAAA', name: 'Deathstrike Dragon', damage: 55,
             comboType: <CantCombo/>, comboPts: null, kd: false,
         },
     ],
