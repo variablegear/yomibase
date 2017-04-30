@@ -29,15 +29,66 @@ const headshots = {
     zane: require('../images/zane.jpg'),
 };
 
+const SelectButton = styled.button`
+    width: 45px;
+    height: 99px;
+    background-repeat: no-repeat;
+    background-size: 200%;
+    border: none;
+    &:hover {
+        opacity: 0.8;
+    }
+    &.selected:hover {
+        background-color: #CCCCCC;
+        background-blend-mode: multiply;
+    }
+`;
+
+const LeftSelectButton = styled(SelectButton)`
+    background-position: ${props => props.selected ? '0px 100%' : '0px 0px'};
+    &:hover {
+        background-position: ${props => props.selected ? '0px 0px' : '0px 100%'};
+    }
+`;
+
+const RightSelectButton = styled(SelectButton)`
+    background-position: ${props => props.selected ? '100% 100%' : '100% 0'};
+    &:hover {
+        background-position: ${props => props.selected ? '100% 0' : '100% 100%'};
+    }
+`;
+
+const ImageSelect = styled.div`
+    white-space: nowrap;
+    display: inline-block;
+`;
+
 const SelectorRow = styled.div`
     padding-bottom: 10px;
 `;
 
+const RightFloatCol = styled(Col)`
+    float: right;
+`;
+
+const MissingCharacter = styled.div`
+    width: 90px;
+    height: 99px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    font-size: 4em;
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
+    background-color: lightgray;
+    color: black;
+`;
+
 function ImageSelector(props) {
     if (props.characters[props.char]) {
-        return <div className='image-select'>
-            <button
-                className={'select-left' + (props.selectedLeft ? ' selected' : '')}
+        return <ImageSelect>
+            <LeftSelectButton
                 style={{
                     backgroundImage: "url(" + headshots[props.char] + ")",
                 }}
@@ -48,9 +99,9 @@ function ImageSelector(props) {
                         props.selectLeft(props.char);
                     }
                 }}
+                selected={props.selectedLeft}
             />
-            <button
-                className={'select-right' + (props.selectedRight ? ' selected' : '')}
+            <RightSelectButton
                 style={{
                     backgroundImage: "url(" + headshots[props.char] + ")",
                 }}
@@ -61,10 +112,11 @@ function ImageSelector(props) {
                         props.selectRight(props.char);
                     }
                 }}
+                selected={props.selectedRight}
             />
-        </div>
+        </ImageSelect>
     } else {
-        return <div className='missing-character'>?</div>
+        return <MissingCharacter>?</MissingCharacter>
     }
 }
 
@@ -80,7 +132,7 @@ export function ImageSelectorRow(props) {
     return (
         <SelectorRow>
             <Row>
-                <Col md={5} className="normal-characters" xsHidden>
+                <Col md={5} xsHidden>
                     {mkImageSelector("grave")}
                     {mkImageSelector("midori")}
                     {mkImageSelector("rook")}
@@ -92,7 +144,7 @@ export function ImageSelectorRow(props) {
                     {mkImageSelector("geiger")}
                     {mkImageSelector("argagarg")}
                 </Col>
-                <Col md={5} className="shadow-characters" xsHidden>
+                <RightFloatCol md={5} xsHidden>
                     {mkImageSelector("quince")}
                     {mkImageSelector("bbb")}
                     {mkImageSelector("menelker")}
@@ -103,7 +155,7 @@ export function ImageSelectorRow(props) {
                     {mkImageSelector("persephone")}
                     {mkImageSelector("gwen")}
                     {mkImageSelector("zane")}
-                </Col>
+                </RightFloatCol>
             </Row>
         </SelectorRow>
     );
