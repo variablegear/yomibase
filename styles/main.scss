@@ -7,9 +7,6 @@
 .right {
     background: #e0e2fc;
 }
-.combo-default > .damage, .combo-default > .moves > * {
-    opacity: .50;
-}
 
 .summary-col {
     padding-bottom: 100%;
@@ -17,11 +14,6 @@
 }
 .summary-row {
     overflow: hidden;
-}
-
-
-.sort-icon {
-    padding-left: 2px;
 }
 
 .select-left, .select-right {

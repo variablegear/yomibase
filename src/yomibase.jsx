@@ -17,6 +17,8 @@ import {
     Link,
 } from 'react-router-dom';
 
+import styled from 'styled-components';
+
 import characters from './characters.js';
 import {CharacterSummary, Title} from './summary.jsx';
 import {ComboDetails} from './combo.jsx';
@@ -133,6 +135,11 @@ class YomiBase extends PureComponent {
 };
 
 
+const SortIcon = styled.small`
+    padding-left: 2px;
+`;
+
+
 function SortingHeader(props) {
     let sortGlyph = null;
     if (props.header.props.sort) {
@@ -150,7 +157,7 @@ function SortingHeader(props) {
             onClick={props.onClick}
         >
             {props.header.props.name}
-            <small className="sort-icon">{sortGlyph}</small>
+            <SortIcon>{sortGlyph}</SortIcon>
         </th>
     );
 };
@@ -288,9 +295,14 @@ function Damage(props) {
 }
 
 
+const ComboWrapper = styled.span`
+    opacity: ${props => props.default ? .5 : 1};
+`;
+
+
 function Combo(props) {
     const combo = props.combo.toString();
-    return <span className={(props.className || '') + ' combo'}>
+    return <ComboWrapper default={props.default}>
         <span className="damage">{props.damage}</span>
         <br />
         <small className="moves">
@@ -301,7 +313,7 @@ function Combo(props) {
                     : <Attack>{move}</Attack>,
             ])}
         </small>
-    </span>;
+    </ComboWrapper>;
 }
 
 function mkComboHeader(prefix, throws) {
@@ -312,8 +324,8 @@ function mkComboHeader(prefix, throws) {
         format={(row) => {
             const damage = row[lowerPrefix + 'Damage'] || row.damage;
             const combo = row[lowerPrefix + 'Combo'] || (throws ? 't' : '') + row.rank;
-            const className = row[lowerPrefix + 'Combo'] ? '' : 'combo-default';
-            return <Combo combo={combo} damage={damage} className={className} />;
+            const comboDefault = row[lowerPrefix + 'Combo'] == null;
+            return <Combo combo={combo} damage={damage} default={comboDefault} />;
         }}
     />;
 }
