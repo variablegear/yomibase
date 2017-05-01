@@ -186,6 +186,9 @@ class SortHeader extends PureComponent { };
 
 const SortableTableRow = styled.tr`
     background: ${props => props.theme.text};
+    & > td {
+        vertical-align: middle !important;
+    };
 `;
 
 class SortableTable extends PureComponent {
