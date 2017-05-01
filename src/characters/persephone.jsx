@@ -61,11 +61,11 @@ export const persephone = {
         ],
     },
     attacks: [
-        normalAttack(2, {maxCombo: '2>3>4>J+++', maxDamage: 28, goodCombo: '2>3>AA', goodDamage: 21}),
-        normalAttack(3, {maxCombo: '3>4>5>J+++', maxDamage: 31, goodCombo: '3>4>AA', goodDamage: 23}),
-        normalAttack(4, {maxCombo: '4>5>6>J+++', maxDamage: 34, goodCombo: '4>5>AA', goodDamage: 25}),
-        normalAttack(5, {maxCombo: '5>6>J+++', maxDamage: 30, goodCombo: '5>6>AA', goodDamage: 27}),
-        normalAttack(6, {maxCombo: '6>J+++', maxDamage: 25, goodCombo: '6>AA', goodDamage: 22}),
+        normalAttack(2, {maxCombo: '2>3>4>J++', maxDamage: 24, goodCombo: '2>3>AA', goodDamage: 21}),
+        normalAttack(3, {maxCombo: '3>4>5>J++', maxDamage: 27, goodCombo: '3>4>AA', goodDamage: 23}),
+        normalAttack(4, {maxCombo: '4>5>6>J++', maxDamage: 30, goodCombo: '4>5>AA', goodDamage: 25}),
+        normalAttack(5, {maxCombo: '5>6>AA', maxDamage: 27, goodCombo: '5>6>J++', goodDamage: 26}),
+        normalAttack(6, {maxCombo: '6>AA', maxDamage: 22, goodCombo: '6>J++', goodDamage: 21}),
         {
             speed: 2.4, rank: 'J', name: 'Rapid Lashes', pumpWith: '+x+x',
             damage: '7', pump: '4', chip: '3', comboPts: 1, comboType: <Ender/>, kd: false,
@@ -95,7 +95,7 @@ export const persephone = {
         {
             speed: 8.0, rank: 'K', name: 'Wild Ride', damage: 9,
             comboType: <Starter/>, comboPts: 2, kd: true,
-            maxCombo: 'tK>6>J+++', maxDamage: 34, goodCombo: 'tK>5>6', goodDamage: 20
+            maxCombo: 'tK>6>J++', maxDamage: 30, goodCombo: 'tK>AA', goodDamage: 25
         },
     ],
 };
