@@ -248,14 +248,14 @@ class SortableTable extends PureComponent {
 
     render() {
         const rows = this.sortedData().map((row) => (
-            <ThemeProvider theme={row.theme}>
-                <SortableTableRow key={
-                    this.headers().filter(
-                        (header) => header.props.isKey
-                    ).map(
-                        (header) => this.formatKey(header, row)
-                    )
-                }>
+            <ThemeProvider theme={row.theme} key={
+                this.headers().filter(
+                    (header) => header.props.isKey
+                ).map(
+                    (header) => this.formatKey(header, row)
+                )
+            }>
+                <SortableTableRow>
                     {this.headers().map((header) => this.formatEntry(header, row))}
                 </SortableTableRow>
             </ThemeProvider>
