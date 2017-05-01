@@ -17,7 +17,8 @@ const normalThrow = mkNormal(0.8, {
 
 export const quince = {
     theme: {
-        text: 'linear-gradient(#82A0FA, #F5FFFF)',
+        // primary: #82A0FA, #F5FFFF
+        text: 'linear-gradient(#9db4fb, #F5FFFF)',
     },
     summary: {
         name: 'Quince',

@@ -34,7 +34,8 @@ const recycle35 = recycles('Card is likely to recycle from the discard once Jain
 
 export const jaina = {
     theme: {
-        text: "#FA4125",
+        // primary: #FA4125
+        text: '#fda89b',
     },
     summary: {
         name: 'Jaina',

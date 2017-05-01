@@ -17,7 +17,8 @@ const normalThrow = mkNormal(0.2, {
 
 export const setsuki = {
     theme: {
-        text: "#D68E42",
+        // primary: #D68E42
+        text: '#edcdab',
     },
     summary: {
         name: 'Setsuki',
