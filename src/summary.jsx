@@ -9,6 +9,7 @@ import styled from 'styled-components';
 
 export const Title = styled.small`
     white-space: nowrap;
+    color: #444444;
 `;
 
 export function CharacterSummary(props) {
