@@ -54,7 +54,9 @@ function EditLink(props) {
 }
 
 const SummaryCol = styled(Col)`
-    background: ${props => props.theme.text};
+    background: ${(props) => props.theme.text};
+    border-top: 5px solid ${(props) => props.theme.border};
+    border-bottom: 5px solid ${(props) => props.theme.border};
 `;
 
 const FlexRow =  styled(Row)`
@@ -109,14 +111,14 @@ class YomiBase extends PureComponent {
                     />
                     <FlexRow>
                         {leftCharacter &&
-                            <ThemeProvider theme={leftCharacter.theme || defaultLeftTheme}>
+                            <ThemeProvider theme={Object.assign(defaultLeftTheme, leftCharacter.theme)}>
                                 <SummaryCol md={6}>
                                     <CharacterSummary char={leftCharacter.summary} />
                                 </SummaryCol>
                             </ThemeProvider>
                         }
                         {rightCharacter &&
-                            <ThemeProvider theme={rightCharacter.theme || defaultRightTheme}>
+                            <ThemeProvider theme={Object.assign(defaultRightTheme, rightCharacter.theme)}>
                                 <SummaryCol md={6}>
                                     <CharacterSummary char={rightCharacter.summary} />
                                 </SummaryCol>
@@ -189,7 +191,9 @@ function SortingHeader(props) {
 class SortHeader extends PureComponent { };
 
 const SortableTableRow = styled.tr`
-    background: ${props => props.theme.text};
+    background: ${(props) => props.theme.text};
+    border-left: 5px solid ${(props) => props.theme.border};
+    border-right: 5px solid ${(props) => props.theme.border};
     & > td {
         vertical-align: middle !important;
     };
@@ -257,7 +261,7 @@ class SortableTable extends PureComponent {
             </ThemeProvider>
         ));
         return (
-            <Table condensed hover responsive >
+            <Table condensed hover >
                 <thead>
                     <tr>
                         {this.headers().map((header, idx) => (
@@ -370,7 +374,7 @@ function mkComboHeader(prefix, throws) {
 
 function withCharacter(character, moveKey, defaultKey, defaultTheme) {
     return (character && character[moveKey].map((row) => Object.assign({
-        theme: character.theme || defaultTheme,
+        theme: Object.assign(defaultTheme, character.theme),
         character: character.summary.name,
         abilities: character.summary.cardAbilities,
         maxComboPts: character.summary.maxCombo,
