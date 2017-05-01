@@ -3,17 +3,17 @@ import {rankValue} from './rank.js';
 import styled from 'styled-components';
 
 export const Block = styled.span`
-    color: #2369db;
+    color: #15516b;
     font-weight: bold;
 `;
 
 export const Attack = styled.span`
-    color: #bf1515;
+    color: #861713;
     font-weight: bold;
 `;
 
 export const Dodge = styled.span`
-    color: #670d9b;
+    color: #552a55;
     font-weight: bold;
 `;
 

@@ -67,6 +67,10 @@ const FlexRow =  styled(Row)`
     }
 `;
 
+const Brand = styled(Navbar.Brand)`
+    color: #000000 !important;
+`;
+
 class YomiBase extends PureComponent {
     render() {
         const leftKey = this.props.match.params.left;
@@ -78,9 +82,9 @@ class YomiBase extends PureComponent {
             <div className="base">
                 <Navbar staticTop componentClass="header" className="bs-docs-nav" role="banner">
                     <Navbar.Header>
-                        <Navbar.Brand>
+                        <Brand>
                             <Link to="/">YomiBase</Link>
-                        </Navbar.Brand>
+                        </Brand>
                         <Navbar.Toggle />
                     </Navbar.Header>
                 </Navbar>
@@ -283,6 +287,10 @@ function speedValue(row) {
     }
 }
 
+const Pump = styled.span`
+    font-size: 90%;
+`;
+
 function Move(props) {
     const abilities = props.abilities.filter((ability) => ability.rank == props.rank);
     let rank;
@@ -307,7 +315,7 @@ function Move(props) {
     return (
         <div>
             {rank}
-            <span className="text-muted">{props.pump}</span>
+            <Pump>{props.pump}</Pump>
             {props.name && <div><Title>{props.name}</Title></div>}
         </div>
     );
@@ -318,14 +326,15 @@ function Damage(props) {
         <span>
             {props.damage}
             {props.chip && <sub><Block>{props.chip}</Block></sub>}
-            {props.pump && <span className="text-muted">+{props.pump}</span>}
+            {props.pump && <Pump>+{props.pump}</Pump>}
         </span>
     );
 }
 
 
 const ComboWrapper = styled.span`
-    opacity: ${props => props.default ? .5 : 1};
+    opacity: ${props => props.default ? .8 : 1};
+    font-size: ${props => props.default ? '80%' : '100%'};
 `;
 
 
