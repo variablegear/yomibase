@@ -41,7 +41,7 @@ export const persephone = {
         ],
         cardAbilities: [
             {
-                rank: 7,
+                rank: 9,
                 name: 'Do As Told',
                 timing: 'Reaction',
                 text: "The opponent may take 10 damage to make their ability uncounterable. If they don't, counter that ability. (Prevent and undo the ability and the opponent discards the card if played from hand. You can't counter Aces, Jokers, or character cards.)",
@@ -71,7 +71,7 @@ export const persephone = {
             damage: '7', pump: '4', chip: '3', comboPts: 1, comboType: <Ender/>, kd: false,
         },
         {
-            speed: 4.0, rank: 'J', name: 'Power Lash', damage: '7', chip: '3',
+            speed: 4.0, rank: 'J', name: 'Power Lash', damage: '10', chip: '3',
             comboType: <CantCombo/>, kd: true,
         },
         {
