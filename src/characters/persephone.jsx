@@ -18,7 +18,7 @@ const normalThrow = mkNormal(0.6, {
 export const persephone = {
     theme: {
         // primary: #4B555E, #FFFFFF
-        text: 'linear-gradient(#c6ccd2, #FFFFFF)',
+        text: 'linear-gradient(#e3e6e9, #FFFFFF)',
     },
     summary: {
         name: 'Persephone',

@@ -18,8 +18,7 @@ const normalThrow = mkNormal(0.6, {
 export const grave = {
     theme: {
         // primary: #688BEF
-        background: '#a3b8f5',
-        text: '#a3b8f5',
+        text: '#d1dcfa',
     },
     summary: {
         name: 'Grave',
