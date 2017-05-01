@@ -9,10 +9,10 @@ const normalThrow = mkNormal(0.6, {
     comboPts: 2,
     comboType: <Starter/>,
     kd: true,
-    maxCombo: (rank) => 't' + rank + '>6>J+++',
-    maxDamage: 32,
-    goodCombo: (rank) => 't' + rank + '>5>6',
-    goodDamage: 18,
+    maxCombo: (rank) => 't' + rank + '>6>J++',
+    maxDamage: 28,
+    goodCombo: (rank) => 't' + rank + '>AA',
+    goodDamage: 23,
 });
 
 export const persephone = {
