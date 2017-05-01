@@ -28,7 +28,7 @@ const normalAttack = mkNormal(0.4, {
 export const onimaru = {
     theme: {
         // primary: #FF9127, #374536
-        text: 'linear-gradient(#ffcb99 66%, #c7d2c6)',
+        text: 'linear-gradient(#ffe5cc 66%, #e3e9e3)',
     },
     summary: {
         name: 'Onimaru',

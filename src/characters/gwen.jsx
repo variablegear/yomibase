@@ -19,7 +19,7 @@ const normalThrow = mkNormal(0.6, {
 export const gwen = {
     theme: {
         // primary: #99072E, #C3DFEB
-        text: 'linear-gradient(#fb9db6, #C3DFEB)',
+        text: 'linear-gradient(#fdceda, #d9ebf2)',
     },
     summary: {
         name: 'Gwen',

@@ -18,8 +18,7 @@ const normalThrow = mkNormal(0.8, {
 export const degrey = {
     theme: {
         // primary: #F8508B
-        background: '#f0cbd5',
-        text: '#fb9dbe',
+        text: '#fdcedf',
     },
     summary: {
         name: 'DeGrey',
