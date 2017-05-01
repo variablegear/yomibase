@@ -20,6 +20,15 @@ export function CharacterSummary(props) {
     });
     props.char.cardAbilities.forEach((entry) => abilities.push(...CardAbility(entry)));
 
+    function hasAbility(rank) {
+        const rankAbilities = props.char.cardAbilities.filter((ability) => ability.rank == rank);
+        return rankAbilities.length > 0;
+    }
+
+    function formatMoves(moves) {
+        return moves.map((rank) => hasAbility(rank) ? rank + '*' : rank).join(', ');
+    }
+
     return (
         <section className={props.className + ' character-summary'} >
             <h1>{props.char.fullName} <Title>{props.char.title}</Title></h1>
@@ -59,19 +68,19 @@ export function CharacterSummary(props) {
                     }
                     <tr>
                         <th><Attack>Attacks</Attack>:</th>
-                        <td><Attack>{props.char.attacks.join(', ')}</Attack></td>
+                        <td><Attack>{formatMoves(props.char.attacks)}</Attack></td>
                     </tr>
                     <tr>
                         <th><Throw>Throws</Throw>:</th>
-                        <td><Throw>{props.char.throws.join(', ')}</Throw></td>
+                        <td><Throw>{formatMoves(props.char.throws)}</Throw></td>
                     </tr>
                     <tr>
                         <th><Block>Blocks</Block>:</th>
-                        <td><Block>{props.char.blocks.join(', ')}</Block></td>
+                        <td><Block>{formatMoves(props.char.blocks)}</Block></td>
                     </tr>
                     <tr>
                         <th><Dodge>Dodges</Dodge>:</th>
-                        <td><Dodge>{props.char.dodges.join(', ')}</Dodge></td>
+                        <td><Dodge>{formatMoves(props.char.dodges)}</Dodge></td>
                     </tr>
                 </tbody>
             </Table>

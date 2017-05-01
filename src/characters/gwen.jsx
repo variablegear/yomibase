@@ -30,9 +30,9 @@ export const gwen = {
         attackSpeed: <span>x.0 <i>(x = card rank)</i></span>,
         throwSpeed: <div>x.6 <ComboDetails points={3} max={3} kd={true}/></div>,
         throwDamage: 6,
-        attacks: [2, 3, 4, 5, 6, 'J*', 'Q', 'K', 'A'],
-        throws: [7, 8, 9, 'T*', 'AAA'],
-        blocks: [2, 3, 4, 9, 'T*'],
+        attacks: [2, 3, 4, 5, 6, 'J', 'Q', 'K', 'A'],
+        throws: [7, 8, 9, 'T', 'A'],
+        blocks: [2, 3, 4, 9, 'T'],
         dodges: [5, 6, 7, 8],
         innateAbilities: [
             {

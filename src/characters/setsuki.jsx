@@ -30,9 +30,9 @@ export const setsuki = {
         throwSpeed: <div>x.2 <ComboDetails points={3} max={3} kd={true}/></div>,
         throwDamage: 6,
         attacks: [2, 3, 4, 5, 6, 'J', 'Q', 'K', 'A'],
-        throws: ['7*', 8, 9, 'T*', 'K'],
-        blocks: [6, '7*', 8, 9],
-        dodges: [2, 3, 4, 5, 'T*'],
+        throws: [7, 8, 9, 'T', 'K'],
+        blocks: [6, 7, 8, 9],
+        dodges: [2, 3, 4, 5, 'T'],
         innateAbilities: [
             {
                 name: 'Speed of the Fox',

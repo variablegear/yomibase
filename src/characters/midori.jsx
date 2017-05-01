@@ -39,8 +39,8 @@ export const midori = {
         throwSpeed: <div>x.8 <ComboDetails points={2} max={2} kd={true}/></div>,
         throwDamage: 8,
         attacks: [4, 5, 6, 7, 8, 'J', 'Q', 'A'],
-        throws: ['2*', 3, 4, 5, 9, 'T', 'K', 'A'],
-        blocks: ['2*', 3, 6, 7, 8],
+        throws: [2, 3, 4, 5, 9, 'T', 'K', 'A'],
+        blocks: [2, 3, 6, 7, 8],
         dodges: [9, 'T'],
         innateAbilities: [
             {
