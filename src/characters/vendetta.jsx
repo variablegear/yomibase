@@ -9,9 +9,9 @@ const normalThrow = mkNormal(0.4, {
     comboPts: 2,
     comboType: <Starter/>,
     kd: true,
-    maxCombo: (rank) => 't' + rank + 'J+++',
+    maxCombo: (rank) => 't' + rank + '>J+++',
     maxDamage: 27,
-    goodCombo: (rank) => 't' + rank + 'AA',
+    goodCombo: (rank) => 't' + rank + '>AA',
     goodDamage: 25,
 });
 
@@ -57,11 +57,11 @@ export const vendetta = {
     },
     attacks: [
         {
-            speed: 2.2, rank: '2', name: 'Pincer Poke', damage: '4', 
+            speed: 2.2, rank: '2', name: 'Pincer Poke', damage: '4',
             maxCombo: '2>Q>J+++', maxDamage: 31, goodCombo: '2>Q>6>7', goodDamage: 24,
         },
         {
-            speed: 3.2, rank: '3', name: 'Pincer Stab', damage: '4', 
+            speed: 3.2, rank: '3', name: 'Pincer Stab', damage: '4',
             maxCombo: '3>Q>J+++', maxDamage: '31', goodCombo: '3>Q>6>7', goodDamage: '24',
         },
         normalAttack(5, {maxCombo: '5>Q>J+++', maxDamage: 32, goodCombo: '5>6>7', goodDamage: 18}),
@@ -71,7 +71,7 @@ export const vendetta = {
             comboType: <Ender/>, kd: true,
         },
         {
-            speed: 2.4, rank: 'J', name: 'Tumbling Strike', pumpWith: '+x+x+x',
+            speed: 2.4, rank: 'J', name: 'Tumbling Strike', pumpWith: '+X+X+X',
             damage: '8', pump: '4', chip: '3', comboPts: 2, comboType: <Ender/>, kd: false,
         },
         {
@@ -106,5 +106,6 @@ export const vendetta = {
         {
             speed: '11.0', rank: 'K', name: 'Wall Dive Suplex', damage: '12',
             comboType: <CantCombo/>, kd: true, notes: 'kd1.0',
+        }
     ],
 };
