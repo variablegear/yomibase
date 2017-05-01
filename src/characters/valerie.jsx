@@ -17,7 +17,8 @@ const normalThrow = mkNormal(0.2, {
 
 export const valerie = {
     theme: {
-        text: 'linear-gradient(left, #58BCE0, #88C067)',
+        // primary: #58BCE0, #88C067
+        text: 'linear-gradient(left, #a9dcef, #c7e1b7)',
     },
     summary: {
         name: 'Valerie',

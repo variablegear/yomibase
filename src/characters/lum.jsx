@@ -21,6 +21,7 @@ const normalAttack = mkNormal({
 
 export const lum = {
     theme: {
+        // primary: #FDFFF4
         text: '#FDFFF4',
     },
     summary: {

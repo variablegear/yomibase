@@ -17,6 +17,7 @@ const normalThrow = mkNormal(0.8, {
 
 export const gloria = {
     theme: {
+        // primary: #FFD0DE, #F1FFFF
         text: 'linear-gradient(#FFD0DE, #F1FFFF)',
     },
     summary: {

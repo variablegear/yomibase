@@ -17,7 +17,8 @@ const normalThrow = mkNormal(0.6, {
 
 export const menelker = {
     theme: {
-        text: 'linear-gradient(left, #CA393E, #D9D5D6)',
+        // primary: #CA393E, #D9D5D6
+        text: 'linear-gradient(left, #e9afb1, #D9D5D6)',
     },
     summary: {
         name: 'Menelker',

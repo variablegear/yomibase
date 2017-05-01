@@ -17,7 +17,8 @@ const normalThrow = mkNormal(0.8, {
 
 export const argagarg = {
     theme: {
-        text: '#5FC19B',
+        // primary: #5FC19B
+        text: '#b5e3d1',
     },
     summary: {
         name: 'Argagarg',

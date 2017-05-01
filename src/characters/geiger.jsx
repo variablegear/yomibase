@@ -17,7 +17,8 @@ const normalThrow = mkNormal(0.8, {
 
 export const geiger = {
     theme: {
-        text: '#DADE65',
+        // primary: #DADE65
+        text: '#ebedab',
     },
     summary: {
         name: 'Geiger',

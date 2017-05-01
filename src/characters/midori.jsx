@@ -26,7 +26,8 @@ const Dragon = styled.span`
 
 export const midori = {
     theme: {
-        text: "#78BD52",
+        // primary: #78BD52
+        text: '#c5e3b5',
     },
     summary: {
         name: 'Midori',
