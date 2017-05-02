@@ -17,7 +17,7 @@ import {
     Link,
 } from 'react-router-dom';
 
-import styled, {ThemeProvider} from 'styled-components';
+import styled from 'styled-components';
 
 import characters from './characters.js';
 import {CharacterSummary, Title} from './summary.jsx';
@@ -114,18 +114,14 @@ class YomiBase extends Component {
                     />
                     <FlexRow>
                         {leftCharacter &&
-                            <ThemeProvider theme={leftTheme}>
-                                <SummaryCol md={6}>
-                                    <CharacterSummary char={leftCharacter.summary} />
-                                </SummaryCol>
-                            </ThemeProvider>
+                            <SummaryCol md={6} theme={leftTheme}>
+                                <CharacterSummary char={leftCharacter.summary} />
+                            </SummaryCol>
                         }
                         {rightCharacter &&
-                            <ThemeProvider theme={rightTheme}>
-                                <SummaryCol md={6}>
-                                    <CharacterSummary char={rightCharacter.summary} />
-                                </SummaryCol>
-                            </ThemeProvider>
+                            <SummaryCol md={6} theme={rightTheme}>
+                                <CharacterSummary char={rightCharacter.summary} />
+                            </SummaryCol>
                         }
                     </FlexRow>
                     {(leftCharacter || rightCharacter) &&
@@ -251,17 +247,15 @@ class SortableTable extends PureComponent {
 
     render() {
         const rows = this.sortedData().map((row) => (
-            <ThemeProvider theme={row.theme} key={
+            <SortableTableRow theme={row.theme} key={
                 this.headers().filter(
                     (header) => header.props.isKey
                 ).map(
                     (header) => this.formatKey(header, row)
                 )
             }>
-                <SortableTableRow>
-                    {this.headers().map((header) => this.formatEntry(header, row))}
-                </SortableTableRow>
-            </ThemeProvider>
+                {this.headers().map((header) => this.formatEntry(header, row))}
+            </SortableTableRow>
         ));
         return (
             <Table condensed hover >
