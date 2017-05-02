@@ -86,7 +86,7 @@ export const vendetta = {
             notes: 'kd1.0',
         },
         {
-            speed: 0.2, rank: 'AA', name: 'Maximum Ven',
+            speed: 2.0, rank: 'AA', name: 'Maximum Ven',
             damage: '18', chip: '4', comboPts: 2, comboType: <Ender/>, kd: false,
         },
         {
