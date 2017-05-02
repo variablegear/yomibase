@@ -17,7 +17,6 @@ export const characters = Object.assign({},
     require('./characters/onimaru.jsx'),
     require('./characters/gloria.jsx'),
     require('./characters/vendetta.jsx'),
-    require('./characters/zane.jsx'),
 );
 
 export default characters
