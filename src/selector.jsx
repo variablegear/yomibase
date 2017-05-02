@@ -3,7 +3,8 @@ import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
-import styled from 'styled-components';
+import styled, {ThemeProvider} from 'styled-components';
+import {defaultLeftTheme, defaultRightTheme} from './themes.js';
 
 
 const headshots = {
@@ -30,56 +31,101 @@ const headshots = {
 };
 
 const SelectButton = styled.button`
-    width: 45px;
-    height: 99px;
-    background-repeat: no-repeat;
-    background-size: 200%;
+    width: 48px;
+    height: 106px;
     border: none;
-    &:hover {
-        opacity: 0.8;
+    position: absolute;
+    top: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 20;
+
+    &:hover, &.selected {
+        background-repeat: no-repeat;
+        background-image: url(${(props) => props.headshot});
+        background-position: -8px -114px;
+        background-size: 96px;
+        width: 96px;
+        border: 8px solid ${(props) => props.theme.border};
     }
+
+    &:hover {
+        z-index: 10;
+        background-size: 96px;
+    }
+
+    &.selected {
+        z-index: 30;
+    }
+
     &.selected:hover {
-        background-color: #CCCCCC;
+        mask-image: none;
+        background-color: #999999;
         background-blend-mode: multiply;
     }
 `;
 
 const LeftSelectButton = styled(SelectButton)`
-    background-position: ${props => props.selected ? '0px 100%' : '0px 0px'};
+    left: 0px;
+
     &:hover {
-        background-position: ${props => props.selected ? '0px 0px' : '0px 100%'};
+        mask-image: linear-gradient(left, black, transparent);
     }
 `;
 
 const RightSelectButton = styled(SelectButton)`
-    background-position: ${props => props.selected ? '100% 100%' : '100% 0'};
+    left: 48px;
+
     &:hover {
-        background-position: ${props => props.selected ? '100% 0' : '100% 100%'};
+        mask-image: linear-gradient(right, black, transparent);
+    }
+
+    &:hover, &.selected {
+        left: 0;
     }
 `;
 
 const ImageSelect = styled.div`
     white-space: nowrap;
     display: inline-block;
+    position: relative;
+
+    & > img {
+        width: 96px;
+        height: 106px;
+        display: inline-block;
+        object-fit: cover;
+        object-position: ${(props) => props.selected ? '0 100%' : '0 0'};
+        z-index: 0;
+    }
+`;
+
+const SelectedBorder = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: ${(props) => props.selected ? '80px' : '96px'};
+    height: ${(props) => props.selected ? '90px' : '106px'};
+    background-color: rbga(0, 0, 0, 0);
+    border: ${(props) => props.selected ? '8px solid ' + props.theme.border : 'none'};
 `;
 
 const SelectorRow = styled.div`
     padding-bottom: 10px;
 `;
 
-const RightFloatCol = styled(Col)`
-    float: right;
+const RightJustifyCol = styled(Col)`
+    text-align: right;
 `;
 
 const MissingCharacter = styled.div`
-    width: 90px;
-    height: 99px;
+    width: 96px;
+    height: 106px;
     display: inline-block;
     text-align: center;
     vertical-align: top;
     font-size: 4em;
     border-style: solid;
-    border-width: 5px;
+    border-width: 8px;
     border-color: black;
     background-color: lightgray;
     color: black;
@@ -87,36 +133,52 @@ const MissingCharacter = styled.div`
 
 function ImageSelector(props) {
     if (props.characters[props.char]) {
-        return <ImageSelect>
-            <LeftSelectButton
-                style={{
-                    backgroundImage: "url(" + headshots[props.char] + ")",
-                }}
-                onClick={() => {
-                    if (props.selectedLeft) {
-                        props.resetLeft();
-                    } else {
-                        props.selectLeft(props.char);
-                    }
-                }}
-                selected={props.selectedLeft}
-            />
-            <RightSelectButton
-                style={{
-                    backgroundImage: "url(" + headshots[props.char] + ")",
-                }}
-                onClick={() => {
-                    if (props.selectedRight) {
-                        props.resetRight();
-                    } else {
-                        props.selectRight(props.char);
-                    }
-                }}
-                selected={props.selectedRight}
-            />
-        </ImageSelect>
+        let selectedTheme = {};
+        if (props.selectedLeft) {
+            selectedTheme = defaultLeftTheme;
+        }
+        if (props.selectedRight) {
+            selectedTheme = defaultRightTheme;
+        }
+
+        return (
+            <ImageSelect selected={props.selectedLeft || props.selectedRight}>
+                <img src={headshots[props.char]}/>
+                {/*<ThemeProvider theme={selectedTheme}>
+                    <SelectedBorder selected={props.selectedLeft || props.selectedRight} />
+                </ThemeProvider>*/}
+                <ThemeProvider theme={defaultLeftTheme}>
+                    <LeftSelectButton
+                        className={props.selectedLeft ? 'selected' : ''}
+                        onClick={() => {
+                            if (props.selectedLeft) {
+                                props.resetLeft();
+                            } else {
+                                props.selectLeft(props.char);
+                            }
+                        }}
+                        selected={props.selectedLeft}
+                        headshot={headshots[props.char]}
+                    />
+                </ThemeProvider>
+                <ThemeProvider theme={defaultRightTheme}>
+                    <RightSelectButton
+                        className={props.selectedRight ? 'selected' : ''}
+                        onClick={() => {
+                            if (props.selectedRight) {
+                                props.resetRight();
+                            } else {
+                                props.selectRight(props.char);
+                            }
+                        }}
+                        selected={props.selectedRight}
+                        headshot={headshots[props.char]}
+                    />
+                </ThemeProvider>
+            </ImageSelect>
+        );
     } else {
-        return <MissingCharacter>?</MissingCharacter>
+        return <MissingCharacter>?</MissingCharacter>;
     }
 }
 
@@ -132,30 +194,30 @@ export function ImageSelectorRow(props) {
     return (
         <SelectorRow>
             <Row>
-                <Col md={5} xsHidden>
-                    {mkImageSelector("grave")}
-                    {mkImageSelector("midori")}
-                    {mkImageSelector("rook")}
-                    {mkImageSelector("valerie")}
-                    {mkImageSelector("lum")}
-                    {mkImageSelector("jaina")}
-                    {mkImageSelector("setsuki")}
-                    {mkImageSelector("degrey")}
-                    {mkImageSelector("geiger")}
-                    {mkImageSelector("argagarg")}
+                <Col md={6} xsHidden>
+                    {mkImageSelector('grave')}
+                    {mkImageSelector('midori')}
+                    {mkImageSelector('rook')}
+                    {mkImageSelector('valerie')}
+                    {mkImageSelector('lum')}
+                    {mkImageSelector('jaina')}
+                    {mkImageSelector('setsuki')}
+                    {mkImageSelector('degrey')}
+                    {mkImageSelector('geiger')}
+                    {mkImageSelector('argagarg')}
                 </Col>
-                <RightFloatCol md={5} xsHidden>
-                    {mkImageSelector("quince")}
-                    {mkImageSelector("bbb")}
-                    {mkImageSelector("menelker")}
-                    {mkImageSelector("gloria")}
-                    {mkImageSelector("vendetta")}
-                    {mkImageSelector("onimaru")}
-                    {mkImageSelector("troq")}
-                    {mkImageSelector("persephone")}
-                    {mkImageSelector("gwen")}
-                    {mkImageSelector("zane")}
-                </RightFloatCol>
+                <RightJustifyCol md={6} xsHidden>
+                    {mkImageSelector('quince')}
+                    {mkImageSelector('bbb')}
+                    {mkImageSelector('menelker')}
+                    {mkImageSelector('gloria')}
+                    {mkImageSelector('vendetta')}
+                    {mkImageSelector('onimaru')}
+                    {mkImageSelector('troq')}
+                    {mkImageSelector('persephone')}
+                    {mkImageSelector('gwen')}
+                    {mkImageSelector('zane')}
+                </RightJustifyCol>
             </Row>
         </SelectorRow>
     );
@@ -194,8 +256,8 @@ export function DropdownSelectorRow(props) {
                         onSelect={props.selectLeft}
                         characters={props.characters}
                         current={props.left}
-                        slot="left"
-                        default="Pick a character..."
+                        slot='left'
+                        default='Pick a character...'
                         onReset={props.resetLeft}
                     />
                     {props.left &&
@@ -206,8 +268,8 @@ export function DropdownSelectorRow(props) {
                                 characters={props.characters}
                                 current={props.right}
                                 disabled={props.left}
-                                slot="right"
-                                default="Match up against..."
+                                slot='right'
+                                default='Match up against...'
                                 onReset={props.resetRight}
                             />
                         </span>

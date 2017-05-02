@@ -9,7 +9,7 @@ import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 
-import React, {PureComponent} from 'react';
+import React, {Component, PureComponent} from 'react';
 
 import {
     HashRouter as Router,
@@ -73,12 +73,15 @@ const Brand = styled(Navbar.Brand)`
     color: #000000 !important;
 `;
 
-class YomiBase extends PureComponent {
+class YomiBase extends Component {
     render() {
         const leftKey = this.props.match.params.left;
         const rightKey = this.props.match.params.right;
         const leftCharacter = characters[leftKey];
         const rightCharacter = characters[rightKey];
+
+        const leftTheme = Object.assign(defaultLeftTheme, (leftCharacter || {}).theme);
+        const rightTheme = Object.assign(defaultRightTheme, (rightCharacter || {}).theme);
 
         return (
             <div className="base">
@@ -111,14 +114,14 @@ class YomiBase extends PureComponent {
                     />
                     <FlexRow>
                         {leftCharacter &&
-                            <ThemeProvider theme={Object.assign(defaultLeftTheme, leftCharacter.theme)}>
+                            <ThemeProvider theme={leftTheme}>
                                 <SummaryCol md={6}>
                                     <CharacterSummary char={leftCharacter.summary} />
                                 </SummaryCol>
                             </ThemeProvider>
                         }
                         {rightCharacter &&
-                            <ThemeProvider theme={Object.assign(defaultRightTheme, rightCharacter.theme)}>
+                            <ThemeProvider theme={rightTheme}>
                                 <SummaryCol md={6}>
                                     <CharacterSummary char={rightCharacter.summary} />
                                 </SummaryCol>
