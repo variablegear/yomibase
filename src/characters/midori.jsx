@@ -84,7 +84,7 @@ export const midori = {
         },
         {
             speed: 2.4, rank: 'J', rankDisplay: <Dragon>J</Dragon>, name: <Dragon>Toxic Breath</Dragon>, damage: 9, chip: 2, comboPts: 1, comboType: <Starter/>,
-            maxCombo: 'dJ>AA', maxDamage: 29, goodCombo: 'J>7>8', goodDamage: 24, notes: dragon,
+            maxCombo: 'dJ>AA', maxDamage: 29, goodCombo: 'dJ>7>8', goodDamage: 24, notes: dragon,
         },
         {speed: 1.2, rank: 'Q', name: 'Rising Mountain', damage: 10, chip: 1, comboPts: 2, comboType: <Ender/>},
         {
@@ -109,7 +109,7 @@ export const midori = {
             speed: 0.0, rank: 'AA', rankDisplay: <Dragon>AA</Dragon>, pumpWith: '+A+A',
             name: <Dragon>Final Dragon Buster</Dragon>, damage: 20,
             pump: 16, comboType: <CantCombo/>, comboPts: null,
-            maxCombo: 'AA++', maxDamage: 52, goodCombo: 'AA+', goodDamage: 36, notes: dragon,
+            maxCombo: 'tAA++', maxDamage: 52, goodCombo: 'tAA+', goodDamage: 36, notes: dragon,
         },
     ],
 };
