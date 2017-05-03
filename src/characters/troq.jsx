@@ -1,5 +1,5 @@
 import React from 'react';
-import {Note} from '../note.jsx';
+import {Note, Icon} from '../note.jsx';
 import {CantCombo, Ender, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal, Block} from '../move.jsx';
 
@@ -117,7 +117,7 @@ export const troq = {
             damage: 45, comboPts: null, comboType: <CantCombo/>, kd: false,
             notes: <Note
                 text="Requires 2 attached blocks"
-                icon={<Block>{'+\u26CA >= 2'}</Block>}
+                icon={<Block><Icon>{'+\u26CA'}</Icon> >= 2</Block>}
             />,
         },
     ],

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Note, recycles} from '../note.jsx';
+import {Note, recycles, Icon} from '../note.jsx';
 import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal, Block, Attack} from '../move.jsx';
 
@@ -9,11 +9,13 @@ const normalAttack = mkNormal(0.6, {
         text="Chip damage on *red* normals only"
         icon={
             <span>
-                <Attack>{'\u2764'}</Attack>
-                /
-                <Attack>{'\u2666'}</Attack>
-                {'\u21D2'}
-                <Block>{'\u26CA'}</Block>
+                <Icon width={40}>
+                    <Attack>{'\u2764'}</Attack>
+                    /
+                    <Attack>{'\u2666'}</Attack>
+                </Icon>
+                <Icon>{'\u21D2'}</Icon>
+                <Icon><Block>{'\u26CA'}</Block></Icon>
             </span>
         }
     />,

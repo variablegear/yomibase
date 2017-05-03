@@ -13,14 +13,14 @@ const Inverse = styled(Icon)`
 function RangeGiving(props) {
     return <Note
         text='When this is blocked or wins combat, set range next turn'
-        icon={<Inverse>{'\u2316'}</Inverse>}
+        icon={<Inverse fontSize={175}>{'\u2316'}</Inverse>}
     />;
 }
 
 function Speed1AtRange(props) {
     return <Note
         text='Speed 1.0 when at range'
-        icon={<span><RangeLegal/>{'\u21D2'}<Icon>{'\uD83C\uDFC3'}</Icon>1.0</span>}
+        icon={<span><RangeLegal/><Icon>{'\u21D2'}</Icon><Icon>{'\uD83C\uDFC3'}</Icon>1.0</span>}
     />;
 }
 
@@ -29,7 +29,7 @@ function AnyRange(props) {
 }
 
 function RangeLegal(props) {
-    return <Icon>{'\u2316'}</Icon>;
+    return <Icon fontSize={175}>{'\u2316'}</Icon>;
 }
 
 const Green = styled.span`

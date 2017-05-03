@@ -1,5 +1,5 @@
 import React from 'react';
-import {Note} from '../note.jsx';
+import {Note, Icon} from '../note.jsx';
 import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
 
@@ -79,7 +79,7 @@ export const gwen = {
             maxCombo: 'J+>K++>A+', maxDamage: 42, goodCombo: 'J+>3>4>5>6', goodDamage: 32,
             notes: <Note
                 text="Unburstable due to Chillbane"
-                icon={<strike style={{fontSize: '150%'}}>{'\uD83D\uDCA5'}</strike>}
+                icon={<Icon><strike>{'\uD83D\uDCA5'}</strike></Icon>}
             />,
         },
         {

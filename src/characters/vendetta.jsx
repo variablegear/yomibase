@@ -20,7 +20,7 @@ const normalThrow = mkNormal(0.4, {
 function Speed1OnKD(props) {
     return <Note
         text='Speed 1.0 when opponent is knocked down'
-        icon={<span><KD/>{'\u21D2'}<Icon>{'\uD83C\uDFC3'}</Icon>1.0</span>}
+        icon={<span><KD/><Icon>{'\u21D2'}</Icon><Icon>{'\uD83C\uDFC3'}</Icon>1.0</span>}
     />;
 }
 

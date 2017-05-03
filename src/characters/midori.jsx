@@ -1,5 +1,5 @@
 import React from 'react';
-import {Note} from '../note.jsx';
+import {Note, Icon} from '../note.jsx';
 import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
 import styled from 'styled-components';
@@ -17,7 +17,7 @@ const normalThrow = mkNormal(0.8, {
     goodDamage: 16,
 });
 
-const dragon = <Note text="Requires Dragon Form" icon={<span style={{fontSize: '150%'}}>{'\uD83D\uDC32'}</span>} />;
+const dragon = <Note text="Requires Dragon Form" icon={<Icon>{'\uD83D\uDC32'}</Icon>} />;
 
 const Dragon = styled.span`
     color: #126d1c;

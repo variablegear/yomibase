@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const Icon = styled.div`
-    fontSize: 150%;
+    fontSize: ${(props) => props.fontSize || 150}%;
     display: inline-block;
-    width: 20px;
+    min-width: 20px;
     text-align: center;
     vertical-align: middle;
     height: 20px;
@@ -38,6 +38,6 @@ export class Note extends React.Component {
 export function recycles(text) {
     return <Note
         text={text || 'Card is likely to recycle from the discard'}
-        icon={<span style={{fontSize: '200%'}}>{'\u2672'}</span>}
+        icon={<Icon fontSize={200}>{'\u2672'}</Icon>}
     />;
 }
