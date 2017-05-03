@@ -35,9 +35,9 @@ export class Note extends React.Component {
     }
 }
 
-export function recycles(text) {
+export function Recycles(props) {
     return <Note
-        text={text || 'Card is likely to recycle from the discard'}
+        text={props.text || 'Card is likely to recycle from the discard'}
         icon={<Icon fontSize={200}>{'\u2672'}</Icon>}
     />;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Note, recycles, Icon} from '../note.jsx';
+import {Note, Recycles, Icon} from '../note.jsx';
 import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal, Block, Attack} from '../move.jsx';
 
@@ -32,7 +32,7 @@ const normalThrow = mkNormal(0.6, {
     goodDamage: 22,
 });
 
-const recycle35 = recycles('Card is likely to recycle from the discard once Jaina is below 35 life');
+const recycle35 = <Recycles text='Card is likely to recycle from the discard once Jaina is below 35 life'/>;
 
 export const jaina = {
     theme: {
