@@ -117,69 +117,51 @@ const RightJustifyCol = styled(Col)`
     text-align: right;
 `;
 
-const MissingCharacter = styled.div`
-    width: 96px;
-    height: 106px;
-    display: inline-block;
-    text-align: center;
-    vertical-align: top;
-    font-size: 4em;
-    border-style: solid;
-    border-width: 8px;
-    border-color: black;
-    background-color: lightgray;
-    color: black;
-`;
-
 function ImageSelector(props) {
-    if (props.characters[props.char]) {
-        let selectedTheme = {};
-        if (props.selectedLeft) {
-            selectedTheme = defaultLeftTheme;
-        }
-        if (props.selectedRight) {
-            selectedTheme = defaultRightTheme;
-        }
-
-        return (
-            <ImageSelect selected={props.selectedLeft || props.selectedRight}>
-                <img src={headshots[props.char]}/>
-                {/*<ThemeProvider theme={selectedTheme}>
-                    <SelectedBorder selected={props.selectedLeft || props.selectedRight} />
-                </ThemeProvider>*/}
-                <ThemeProvider theme={defaultLeftTheme}>
-                    <LeftSelectButton
-                        className={props.selectedLeft ? 'selected' : ''}
-                        onClick={() => {
-                            if (props.selectedLeft) {
-                                props.resetLeft();
-                            } else {
-                                props.selectLeft(props.char);
-                            }
-                        }}
-                        selected={props.selectedLeft}
-                        headshot={headshots[props.char]}
-                    />
-                </ThemeProvider>
-                <ThemeProvider theme={defaultRightTheme}>
-                    <RightSelectButton
-                        className={props.selectedRight ? 'selected' : ''}
-                        onClick={() => {
-                            if (props.selectedRight) {
-                                props.resetRight();
-                            } else {
-                                props.selectRight(props.char);
-                            }
-                        }}
-                        selected={props.selectedRight}
-                        headshot={headshots[props.char]}
-                    />
-                </ThemeProvider>
-            </ImageSelect>
-        );
-    } else {
-        return <MissingCharacter>?</MissingCharacter>;
+    let selectedTheme = {};
+    if (props.selectedLeft) {
+        selectedTheme = defaultLeftTheme;
     }
+    if (props.selectedRight) {
+        selectedTheme = defaultRightTheme;
+    }
+
+    return (
+        <ImageSelect selected={props.selectedLeft || props.selectedRight}>
+            <img src={headshots[props.char]}/>
+            {/*<ThemeProvider theme={selectedTheme}>
+                <SelectedBorder selected={props.selectedLeft || props.selectedRight} />
+            </ThemeProvider>*/}
+            <ThemeProvider theme={defaultLeftTheme}>
+                <LeftSelectButton
+                    className={props.selectedLeft ? 'selected' : ''}
+                    onClick={() => {
+                        if (props.selectedLeft) {
+                            props.resetLeft();
+                        } else {
+                            props.selectLeft(props.char);
+                        }
+                    }}
+                    selected={props.selectedLeft}
+                    headshot={headshots[props.char]}
+                />
+            </ThemeProvider>
+            <ThemeProvider theme={defaultRightTheme}>
+                <RightSelectButton
+                    className={props.selectedRight ? 'selected' : ''}
+                    onClick={() => {
+                        if (props.selectedRight) {
+                            props.resetRight();
+                        } else {
+                            props.selectRight(props.char);
+                        }
+                    }}
+                    selected={props.selectedRight}
+                    headshot={headshots[props.char]}
+                />
+            </ThemeProvider>
+        </ImageSelect>
+    );
 }
 
 export function ImageSelectorRow(props) {
