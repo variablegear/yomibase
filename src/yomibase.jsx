@@ -409,10 +409,12 @@ function MoveTable(props) {
     const maxComboHeader = mkComboHeader('Max', props.throws);
     const goodComboHeader = mkComboHeader('Good', props.throws);
     const notesHeader = <SortHeader name="Notes" format={(row) => row.notes} />;
+    const rangeHeader = <SortHeader name="Range" format={(row) => row.range} />;
 
     return <SortableTable data={props.moves} className={(row) => row.className} >
         {props.showCharacter && charHeader}
         {speedHeader}
+        {!props.moves.every((row) => row.range == null) && rangeHeader}
         {rankHeader}
         {damageHeader}
         {props.showComboDetails && comboHeader}
