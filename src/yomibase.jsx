@@ -186,6 +186,7 @@ const SortableTableRow = styled.tr`
     border-right: 5px solid ${(props) => props.theme.border};
     & > td {
         vertical-align: middle !important;
+        background: transparent;
     };
 `;
 
