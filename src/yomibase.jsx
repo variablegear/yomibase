@@ -144,15 +144,6 @@ class YomiBase extends Component {
                         {leftCharacter && <Col md={6}><EditLink char={leftCharacter.summary} /></Col>}
                         {rightCharacter && <Col md={6}><EditLink char={rightCharacter.summary} /></Col>}
                     </Row>
-                    <Row>
-                        <Col md={12}>
-                            <Well>
-                                Missing your favorite character?{'\u00A0'}
-                                <a href="https://github.com/cpennington/yomibase/new/master/src/characters">Add them!</a>{'\u00A0'}
-                                (you can copy <a href="https://github.com/cpennington/yomibase/blob/master/src/characters/template.jsx">this template</a> to start out)
-                                </Well>
-                        </Col>
-                    </Row>
                 </Grid>
             </div>
         );
