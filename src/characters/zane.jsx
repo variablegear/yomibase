@@ -16,6 +16,10 @@ const normalThrow = mkNormal(0.3, {
 });
 
 export const zane = {
+    theme: {
+        // primary: #F98CF5, #7ACC77
+        text: 'linear-gradient(#fccffb, #dbf1da)',
+    },
     summary: {
         name: 'Zane',
         fullName: 'Captain Zane',

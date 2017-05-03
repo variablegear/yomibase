@@ -16,6 +16,10 @@ const normalThrow = mkNormal(0.4, {
 });
 
 export const vendetta = {
+    theme: {
+        // primary: #7EAC3F, #524825
+        text: 'linear-gradient(#e7f1da 75%, #efebdc)',
+    },
     summary: {
         name: 'Vendetta',
         fullName: 'Vendetta',
