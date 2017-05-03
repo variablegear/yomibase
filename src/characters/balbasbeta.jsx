@@ -1,13 +1,9 @@
 import React from 'react';
-import Note from '../note.jsx';
+import {Note, Icon} from '../note.jsx';
 import {Ender, Linker, Starter, ComboDetails, CantCombo} from '../combo.jsx';
 import {mkNormal, Attack, Block, Dodge} from '../move.jsx';
 
 import styled from 'styled-components';
-
-const Icon = styled.span`
-    fontSize: 150%;
-`;
 
 const Inverse = styled(Icon)`
     background-color: black;

@@ -1,5 +1,5 @@
 import React from 'react';
-import Note from '../note.jsx';
+import {Note} from '../note.jsx';
 import {CantCombo, Ender, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal, Block} from '../move.jsx';
 

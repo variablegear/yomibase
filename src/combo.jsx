@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const knockdown = require('../images/knockdown.jpg');
 
-function KD(props) {
+export function KD(props) {
     return <img className="combo-kd" src={knockdown} height="20" />;
 }
 

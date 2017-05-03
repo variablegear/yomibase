@@ -1,8 +1,11 @@
 import React from 'react';
-import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
+import {CantCombo, Ender, Linker, ComboDetails, KD} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
+import {Note, Icon} from '../note.jsx';
 
-const normalAttack = mkNormal(0.3);
+const normalAttack = mkNormal(0.3, {
+    notes: <Speed1OnKD/>,
+});
 
 const normalThrow = mkNormal(0.3, {
     damage: 6,
@@ -14,6 +17,13 @@ const normalThrow = mkNormal(0.3, {
     goodCombo: (rank) => 't' + rank + '>9>J',
     goodDamage: 24,
 });
+
+function Speed1OnKD(props) {
+    return <Note
+        text='Speed 1.0 when opponent is knocked down'
+        icon={<span><KD/>{'\u21D2'}<Icon>{'\uD83C\uDFC3'}</Icon>1.0</span>}
+    />;
+}
 
 export const zane = {
     theme: {
@@ -65,11 +75,11 @@ export const zane = {
         ],
     },
     attacks: [
-        normalAttack(2, {maxCombo: '2>Q>AA', maxDamage: 28, goodCombo: '2>Q>9>J', goodDamage: 27, notes: 'kd1.0'}),
-        normalAttack(3, {maxCombo: '3>Q>AA', maxDamage: 29, goodCombo: '3>Q>9>J', goodDamage: 28, notes: 'kd1.0'}),
-        normalAttack(6, {maxCombo: '6>Q>AA', maxDamage: 32, goodCombo: '6>Q>9>J', goodDamage: 31, notes: 'kd1.0'}),
-        normalAttack(7, {maxCombo: '7>Q>AA', maxDamage: 33, goodCombo: '7>Q>9>J', goodDamage: 32, notes: 'kd1.0'}),
-        normalAttack(9, {maxCombo: '9>Q>AA', maxDamage: 35, goodCombo: '9>Q>9>J', goodDamage: 34, notes: 'kd1.0'}),
+        normalAttack(2, {maxCombo: '2>Q>AA', maxDamage: 28, goodCombo: '2>Q>9>J', goodDamage: 27}),
+        normalAttack(3, {maxCombo: '3>Q>AA', maxDamage: 29, goodCombo: '3>Q>9>J', goodDamage: 28}),
+        normalAttack(6, {maxCombo: '6>Q>AA', maxDamage: 32, goodCombo: '6>Q>9>J', goodDamage: 31}),
+        normalAttack(7, {maxCombo: '7>Q>AA', maxDamage: 33, goodCombo: '7>Q>9>J', goodDamage: 32}),
+        normalAttack(9, {maxCombo: '9>Q>AA', maxDamage: 35, goodCombo: '9>Q>9>J', goodDamage: 34}),
         {
             speed: 2.8, rank: 'J', name: 'Anarch Crusher',
             damage: '9', chip: '4', comboPts: 1, comboType: <Ender/>, kd: true,

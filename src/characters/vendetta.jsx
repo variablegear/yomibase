@@ -1,6 +1,8 @@
 import React from 'react';
-import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
+import {CantCombo, Ender, Linker, Starter, ComboDetails, KD} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
+import {Note, Icon} from '../note.jsx';
+
 
 const normalAttack = mkNormal(0.2);
 
@@ -14,6 +16,13 @@ const normalThrow = mkNormal(0.4, {
     goodCombo: (rank) => 't' + rank + '>AA',
     goodDamage: 25,
 });
+
+function Speed1OnKD(props) {
+    return <Note
+        text='Speed 1.0 when opponent is knocked down'
+        icon={<span><KD/>{'\u21D2'}<Icon>{'\uD83C\uDFC3'}</Icon>1.0</span>}
+    />;
+}
 
 export const vendetta = {
     theme: {
@@ -87,7 +96,7 @@ export const vendetta = {
             speed: 3.2, rank: 'K', name: 'Diving Pincer Slice',
             damage: '12', chip: '1', comboPts: 2, comboType: <Starter/>, kd: false,
             maxCombo: 'K>J+++', maxDamage: '32', goodCombo: 'K>Q>7', goodDamage: '26',
-            notes: 'kd1.0',
+            notes: <Speed1OnKD/>,
         },
         {
             speed: 2.0, rank: 'AA', name: 'Maximum Ven',
@@ -109,7 +118,7 @@ export const vendetta = {
         normalThrow(9),
         {
             speed: '11.0', rank: 'K', name: 'Wall Dive Suplex', damage: '12',
-            comboType: <CantCombo/>, kd: true, notes: 'kd1.0',
+            comboType: <CantCombo/>, kd: true, notes: <Speed1OnKD/>,
         }
     ],
 };

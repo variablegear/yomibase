@@ -2,6 +2,17 @@ import React from 'react';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+export const Icon = styled.div`
+    fontSize: 150%;
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    vertical-align: middle;
+    height: 20px;
+    line-height: 20px;
+`;
 
 export class Note extends React.Component {
     static propTypes = {
@@ -23,8 +34,6 @@ export class Note extends React.Component {
         );
     }
 }
-
-export default Note;
 
 export function recycles(text) {
     return <Note
