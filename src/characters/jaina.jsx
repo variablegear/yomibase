@@ -38,6 +38,7 @@ export const jaina = {
     theme: {
         // primary: #FA4125
         text: '#fed4cd',
+        headshot: require('../../images/jaina.jpg'),
     },
     summary: {
         name: 'Jaina',

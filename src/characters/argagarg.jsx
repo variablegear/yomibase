@@ -19,6 +19,7 @@ export const argagarg = {
     theme: {
         // primary: #5FC19B
         text: '#daf1e8',
+        headshot: require('../../images/argagarg.jpg'),
     },
     summary: {
         name: 'Argagarg',

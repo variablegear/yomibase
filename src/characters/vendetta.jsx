@@ -30,6 +30,7 @@ export const vendetta = {
     theme: {
         // primary: #7EAC3F, #524825
         text: 'linear-gradient(#e7f1da 75%, #efebdc)',
+        headshot: require('../../images/vendetta.jpg'),
     },
     summary: {
         name: 'Vendetta',

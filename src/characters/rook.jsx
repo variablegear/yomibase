@@ -14,6 +14,7 @@ export const rook = {
     theme: {
         // primary: D6DBE1
         text: '#e2e5e9',
+        headshot: require('../../images/rook.jpg'),
     },
     summary: {
         name: 'Rook',

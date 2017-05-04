@@ -29,6 +29,7 @@ export const onimaru = {
     theme: {
         // primary: #FF9127, #374536
         text: 'linear-gradient(#ffe5cc 66%, #e3e9e3)',
+        headshot: require('../../images/onimaru.jpg'),
     },
     summary: {
         name: 'Onimaru',

@@ -19,6 +19,7 @@ export const gloria = {
     theme: {
         // primary: #FFD0DE, #F1FFFF
         text: 'linear-gradient(#FFD0DE, #F1FFFF)',
+        headshot: require('../../images/gloria.jpg'),
     },
     summary: {
         name: 'Gloria',

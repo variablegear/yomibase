@@ -20,6 +20,7 @@ export const troq = {
     theme: {
         // primary: #482310, #C59D7A
         text: 'linear-gradient(#f6e1d6, #f0e5dc)',
+        headshot: require('../../images/troq.jpg'),
     },
     summary: {
         name: 'Troq',

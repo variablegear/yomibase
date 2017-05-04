@@ -28,6 +28,7 @@ export const midori = {
     theme: {
         // primary: #78BD52
         text: '#e2f1da',
+        headshot: require('../../images/midori.jpg'),
     },
     summary: {
         name: 'Midori',

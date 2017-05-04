@@ -78,6 +78,7 @@ export const bbb = {
     theme: {
         // primary: #E4A85F, #F6DD0E
         text: 'linear-gradient(#f8e8d3, #fdf8ce)',
+        headshot: require('../../images/bbb.jpg'),
     },
     summary: {
         name: 'BBB',

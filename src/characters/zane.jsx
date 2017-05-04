@@ -29,6 +29,7 @@ export const zane = {
     theme: {
         // primary: #F98CF5, #7ACC77
         text: 'linear-gradient(#fccffb, #dbf1da)',
+        headshot: require('../../images/zane.jpg'),
     },
     summary: {
         name: 'Zane',
@@ -41,7 +42,7 @@ export const zane = {
         throwDamage: 6,
         attacks: [2, 3, 6, 7, 9, 'J', 'Q', 'K', 'A'],
         throws: [5, 7, 8, 9, 'T'],
-        blocks: [2, 4, 6, 8,],
+        blocks: [2, 4, 6, 8],
         dodges: [2, 3, 4, 'T'],
         innateAbilities: [
             {

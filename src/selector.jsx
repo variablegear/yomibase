@@ -5,30 +5,7 @@ import MenuItem from 'react-bootstrap/lib/MenuItem';
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
 import styled, {ThemeProvider} from 'styled-components';
 import {defaultLeftTheme, defaultRightTheme} from './themes.js';
-
-
-const headshots = {
-    argagarg: require('../images/argagarg.jpg'),
-    bbb: require('../images/bbb.jpg'),
-    degrey: require('../images/degrey.jpg'),
-    geiger: require('../images/geiger.jpg'),
-    gloria: require('../images/gloria.jpg'),
-    grave: require('../images/grave.jpg'),
-    gwen: require('../images/gwen.jpg'),
-    jaina: require('../images/jaina.jpg'),
-    lum: require('../images/lum.jpg'),
-    menelker: require('../images/menelker.jpg'),
-    midori: require('../images/midori.jpg'),
-    onimaru: require('../images/onimaru.jpg'),
-    persephone: require('../images/persephone.jpg'),
-    quince: require('../images/quince.jpg'),
-    rook: require('../images/rook.jpg'),
-    setsuki: require('../images/setsuki.jpg'),
-    troq: require('../images/troq.jpg'),
-    valerie: require('../images/valerie.jpg'),
-    vendetta: require('../images/vendetta.jpg'),
-    zane: require('../images/zane.jpg'),
-};
+import characters from './characters.js';
 
 const SelectButton = styled.button`
     width: 48px;
@@ -128,7 +105,7 @@ function ImageSelector(props) {
 
     return (
         <ImageSelect selected={props.selectedLeft || props.selectedRight}>
-            <img src={headshots[props.char]}/>
+            <img src={characters[props.char].theme.headshot}/>
             {/*<ThemeProvider theme={selectedTheme}>
                 <SelectedBorder selected={props.selectedLeft || props.selectedRight} />
             </ThemeProvider>*/}
@@ -143,7 +120,6 @@ function ImageSelector(props) {
                         }
                     }}
                     selected={props.selectedLeft}
-                    headshot={headshots[props.char]}
                 />
             </ThemeProvider>
             <ThemeProvider theme={defaultRightTheme}>
@@ -157,7 +133,6 @@ function ImageSelector(props) {
                         }
                     }}
                     selected={props.selectedRight}
-                    headshot={headshots[props.char]}
                 />
             </ThemeProvider>
         </ImageSelect>

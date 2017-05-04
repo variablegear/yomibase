@@ -19,6 +19,7 @@ export const degrey = {
     theme: {
         // primary: #F8508B
         text: '#fdcedf',
+        headshot: require('../../images/degrey.jpg'),
     },
     summary: {
         name: 'DeGrey',

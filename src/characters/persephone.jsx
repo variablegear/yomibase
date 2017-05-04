@@ -19,6 +19,7 @@ export const persephone = {
     theme: {
         // primary: #4B555E, #FFFFFF
         text: 'linear-gradient(#e3e6e9, #FFFFFF)',
+        headshot: require('../../images/persephone.jpg'),
     },
     summary: {
         name: 'Persephone',

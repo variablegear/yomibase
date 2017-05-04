@@ -19,6 +19,7 @@ export const grave = {
     theme: {
         // primary: #688BEF
         text: '#d1dcfa',
+        headshot: require('../../images/grave.jpg'),
     },
     summary: {
         name: 'Grave',

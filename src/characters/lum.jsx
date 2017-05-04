@@ -23,6 +23,7 @@ export const lum = {
     theme: {
         // primary: #FDFFF4
         text: '#FDFFF4',
+        headshot: require('../../images/lum.jpg'),
     },
     summary: {
         name: 'Lum',

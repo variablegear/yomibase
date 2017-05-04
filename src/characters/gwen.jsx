@@ -20,6 +20,7 @@ export const gwen = {
     theme: {
         // primary: #99072E, #C3DFEB
         text: 'linear-gradient(#fdceda, #d9ebf2)',
+        headshot: require('../../images/gwen.jpg'),
     },
     summary: {
         name: 'Gwen',
