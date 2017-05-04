@@ -119,6 +119,7 @@ function ImageSelector(props) {
                             props.selectLeft(props.char);
                         }
                     }}
+                    headshot={characters[props.char].theme.headshot}
                     selected={props.selectedLeft}
                 />
             </ThemeProvider>
@@ -132,6 +133,7 @@ function ImageSelector(props) {
                             props.selectRight(props.char);
                         }
                     }}
+                    headshot={characters[props.char].theme.headshot}
                     selected={props.selectedRight}
                 />
             </ThemeProvider>
