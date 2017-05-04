@@ -106,8 +106,8 @@ export const grave = {
 grave.variants = {
     EX: Object.assign({}, grave, {
         summary: Object.assign({}, grave.summary, {
-            name: <span>{grave.summary.name}<sub>EX</sub></span>,
-            fullName: <span>{grave.summary.fullName}<sub>EX</sub></span>,
+            name: <span>EX {grave.summary.name}</span>,
+            fullName: <span>EX {grave.summary.fullName}</span>,
             innateAbilities: [
                 {
                     name: 'True Dragonheart',
