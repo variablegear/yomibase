@@ -131,3 +131,47 @@ export const jaina = {
         normalThrow('T'),
     ],
 };
+
+jaina.variants = {
+    EX: Object.assign({}, jaina, {
+        summary: Object.assign({}, jaina.summary, {
+            name: <span>EX {jaina.summary.name}</span>,
+            fullName: <span>EX {jaina.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                    name: 'Overeager Vigor',
+                    text: <span>
+                        During combat, you may pay 3 life to make your attacks
+                        deal double block damage or to get 2 more combo
+                        points that combat. At the end of combat, you may
+                        return any number of your combo cards to your hand
+                        and pay 3 life for each card returned that way.
+                    </span>
+                },
+            ],
+            cardAbilities: jaina.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: 'Phoenix Shots',
+                    timing: 'During Combat',
+                    text: <span>
+                        High Phoenix beats even numbered dodges. Low Phoenix
+                        beats odd numbered dodges and non-numbered dodges.
+                        Whenever you deal damage with this card and it wasn't
+                        blocked, you may combo into a Flame Arrow (Jack).
+                    </span>
+                },
+            ]),
+        }),
+        attacks: jaina.attacks.concat([
+            {
+                speed: 2.2, rank: 'D', name: 'High Phoenix', damage: 8, chip: 3,
+                comboPts: 1, comboType: <Ender/>
+            },
+            {
+                speed: 2.0, rank: 'D', name: 'Low Phoenix', damage: 7, chip: 3,
+                comboPts: 1, comboType: <Ender/>,
+            },
+        ]),
+    }),
+};
