@@ -28,6 +28,8 @@ import {DropdownSelectorRow, ImageSelectorRow} from './selector.jsx';
 import {Block, Attack, Throw} from './move.jsx';
 import {defaultLeftTheme, defaultRightTheme} from './themes.js';
 
+require('../_vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css');
+
 function keyedSort(list, keyFn, reversed) {
     let keyed = list.map((el) => ({
         key: keyFn(el),
