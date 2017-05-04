@@ -408,7 +408,7 @@ function MoveTable(props) {
         {!props.moves.every((row) => row.range == null) && rangeHeader}
         {rankHeader}
         {damageHeader}
-        {props.showComboDetails && comboHeader}
+        {comboHeader}
         {maxComboHeader}
         {goodComboHeader}
         {!props.moves.every((row) => row.notes == null) && notesHeader}
@@ -424,7 +424,6 @@ class Attacks extends PureComponent {
         return <MoveTable
             moves={attacks}
             showCharacter={this.props.left && this.props.right}
-            showComboDetails={!this.props.left != !this.props.right}
         />;
     }
 };
@@ -440,7 +439,6 @@ class Throws extends PureComponent {
             moves={throws}
             throws={true}
             showCharacter={this.props.left && this.props.right}
-            showComboDetails={!this.props.left != !this.props.right}
         />;
     }
 };
