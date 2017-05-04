@@ -114,3 +114,37 @@ export const midori = {
         },
     ],
 };
+
+midori.variants = {
+    EX: Object.assign({}, midori, {
+        summary: Object.assign({}, midori.summary, {
+            name: <span>EX {midori.summary.name}</span>,
+            fullName: <span>EX {midori.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                    name: 'Essense of the Dragon',
+                    text: <span>
+                        Your Dragon attacks can not be dodged.
+                        (You can only play Dragon moves while in Dragon Form.)
+                        Whenever you block an attack or Joker, you may return a non-
+                        Joker card from your discard pile (in addition to drawing from
+                        your block).
+                    </span>
+                },
+            ],
+            cardAbilities: midori.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: 'Eight-Point Counter',
+                    timing: 'During Combat',
+                    text: <span>
+                        You can play this while knocked down. If you dodge an attack
+                        or Joker with this, don't play a follow-up card. Your opponent
+                        takes 8 damage and is knocked down, then you may search
+                        your deck or discard pile for an Ace and put it in your hand.
+                    </span>
+                },
+            ]),
+        }),
+    }),
+};
