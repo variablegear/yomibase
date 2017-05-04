@@ -1,5 +1,5 @@
 import React from 'react';
-import {Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
+import {Ender, Linker, Starter, CantCombo, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
 
 const normalAttack = mkNormal(0.6);
@@ -101,4 +101,40 @@ export const grave = {
         normalThrow(9),
         normalThrow('T'),
     ],
+};
+
+grave.variants = {
+    EX: Object.assign({}, grave, {
+        summary: Object.assign({}, grave.summary, {
+            name: <span>{grave.summary.name}<sub>EX</sub></span>,
+            fullName: <span>{grave.summary.fullName}<sub>EX</sub></span>,
+            innateAbilities: [
+                {
+                    name: 'True Dragonheart',
+                    text: <span>
+                        Whenever you win combat, you may fetch a Queen from your discard pile.
+                        Your Queen can combo into True Power of Storms, but your super does only
+                        30 damage when you do.
+                    </span>
+                },
+            ],
+            cardAbilities: grave.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: 'Stormborne Sword',
+                    timing: 'During Combat',
+                    text: 'Overhead Slice is unblockable.',
+                },
+            ]),
+        }),
+        attacks: grave.attacks.concat([
+            {
+                speed: 7.0, rank: 'D', name: 'Overhead Slice', damage: 15, comboType: <CantCombo/>
+            },
+            {
+                speed: 2.0, rank: 'D', name: 'Rapid Poke', pumpWith: '+X+X',
+                damage: 4, pump: 4, chip: 1, comboPts: 1, comboType: <Linker/>,
+            },
+        ]),
+    }),
 };

@@ -8,6 +8,7 @@ import Table from 'react-bootstrap/lib/Table';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import QueryString from 'query-string';
 
 import React, {Component, PureComponent} from 'react';
 
@@ -48,7 +49,7 @@ function EditLink(props) {
             Found a bug, or have a suggestion about {props.char.name}?
                 Suggest a change <a href={
                 'https://github.com/cpennington/yomibase/edit/master/src/characters/' +
-                props.char.name.toLowerCase() +
+                props.char +
                 '.jsx'
             }>here</a>
         </Well>
@@ -79,8 +80,17 @@ class YomiBase extends Component {
     render() {
         const leftKey = this.props.match.params.left;
         const rightKey = this.props.match.params.right;
-        const leftCharacter = characters[leftKey];
-        const rightCharacter = characters[rightKey];
+        const search = QueryString.parse(this.props.history.location.search);
+        const leftVariantKey = search.vLeft || 'none';
+        const rightVariantKey = search.vRight || 'none';
+
+        const leftBase = characters[leftKey];
+        const leftVariant = leftBase && (leftBase.variants || {})[leftVariantKey];
+        const leftCharacter = leftVariant || leftBase;
+
+        const rightBase = characters[rightKey];
+        const rightVariant = rightBase && (rightBase.variants || {})[rightVariantKey];
+        const rightCharacter = rightVariant || rightBase;
 
         const leftTheme = Object.assign(defaultLeftTheme, (leftCharacter || {}).theme);
         const rightTheme = Object.assign(defaultRightTheme, (rightCharacter || {}).theme);
@@ -106,7 +116,8 @@ class YomiBase extends Component {
                         right={rightKey}
                     />
                     <DropdownSelectorRow
-                        selectLeft={(char) => this.props.history.push('/' + char)}
+                        smHidden mdHidden lgHidden
+                        selectLeft={(char) => this.props.history.push('/' + char + '/' + (rightKey || 'none'))}
                         selectRight={(char) => this.props.history.push('/' + leftKey + '/' + char)}
                         resetLeft={() => this.props.history.push('/')}
                         resetRight={() => this.props.history.push('/' + leftKey)}
@@ -114,10 +125,30 @@ class YomiBase extends Component {
                         left={leftKey}
                         right={rightKey}
                     />
+                    <DropdownSelectorRow
+                        selectLeft={(variant) => this.props.history.push(
+                            Object.assign(
+                                this.props.location,
+                                {search: QueryString.stringify({vLeft: variant, vRight: rightVariantKey})}
+                            )
+                        )}
+                        selectRight={(variant) => this.props.history.push(
+                            Object.assign(
+                                this.props.location,
+                                {search: QueryString.stringify({vLeft: leftVariantKey, vRight: variant})}
+                            )
+                        )}
+                        resetLeft={() => this.props.history.push('/')}
+                        resetRight={() => this.props.history.push('/' + leftKey)}
+                        leftCharacters={leftBase && Object.assign((leftBase || {}).variants || {}, {'none': leftBase})}
+                        rightCharacters={rightBase && Object.assign((rightBase || {}).variants || {}, {'none': rightBase})}
+                        left={leftVariantKey}
+                        right={rightVariantKey}
+                    />
                     <FlexRow>
-                        {leftCharacter &&
+                        {(leftCharacter) &&
                             <SummaryCol md={6} theme={leftTheme}>
-                                <CharacterSummary char={leftCharacter.summary} />
+                                <CharacterSummary char={(leftCharacter).summary} />
                             </SummaryCol>
                         }
                         {rightCharacter &&
@@ -143,8 +174,8 @@ class YomiBase extends Component {
                         ]
                     }
                     <Row>
-                        {leftCharacter && <Col md={6}><EditLink char={leftCharacter.summary} /></Col>}
-                        {rightCharacter && <Col md={6}><EditLink char={rightCharacter.summary} /></Col>}
+                        {leftCharacter && <Col md={6}><EditLink char={leftKey} /></Col>}
+                        {rightCharacter && <Col md={6}><EditLink char={rightKey} /></Col>}
                     </Row>
                 </Grid>
             </div>

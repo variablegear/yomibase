@@ -183,6 +183,10 @@ export function ImageSelectorRow(props) {
 }
 
 export function DropDownSelector(props) {
+    if (props.characters == null) {
+        return null;
+    }
+
     const current = props.characters[props.current];
     const characters = Object.keys(props.characters);
     characters.sort();
@@ -210,29 +214,27 @@ export function DropdownSelectorRow(props) {
     return (
         <SelectorRow>
             <Row>
-                <Col md={12} smHidden mdHidden lgHidden >
+                <Col md={12} {...props}>
                     <DropDownSelector
                         onSelect={props.selectLeft}
-                        characters={props.characters}
+                        characters={props.leftCharacters || props.characters}
                         current={props.left}
                         slot='left'
-                        default='Pick a character...'
+                        default={props.leftDefault || 'Pick a character...'}
                         onReset={props.resetLeft}
                     />
-                    {props.left &&
-                        <span style={{ float: 'right' }}>
-                            <DropDownSelector
-                                style={{ float: 'right' }}
-                                onSelect={props.selectRight}
-                                characters={props.characters}
-                                current={props.right}
-                                disabled={props.left}
-                                slot='right'
-                                default='Match up against...'
-                                onReset={props.resetRight}
-                            />
-                        </span>
-                    }
+                    <span style={{ float: 'right' }}>
+                        <DropDownSelector
+                            style={{ float: 'right' }}
+                            onSelect={props.selectRight}
+                            characters={props.rightCharacters || props.characters}
+                            current={props.right}
+                            disabled={props.left}
+                            slot='right'
+                            default={props.rightDefault || 'Match up against...'}
+                            onReset={props.resetRight}
+                        />
+                    </span>
                 </Col>
             </Row>
         </SelectorRow>
