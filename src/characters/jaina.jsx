@@ -162,6 +162,7 @@ jaina.variants = {
                     </span>
                 },
             ]),
+            attacks: grave.summary.attacks.concat(['D']),
         }),
         attacks: jaina.attacks.concat([
             {
