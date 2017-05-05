@@ -147,6 +147,7 @@ rook.variants = {
                 },
             ]),
             attacks: rook.summary.attacks.concat(['D']),
+            throws: rook.summary.throws.concat(['D']),
         }),
         attacks: rook.attacks.concat([
             {
