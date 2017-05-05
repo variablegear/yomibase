@@ -112,3 +112,43 @@ export const valerie = {
         normalThrow('T'),
     ],
 };
+
+valerie.variants = {
+    EX: Object.assign({}, valerie, {
+        summary: Object.assign({}, valerie.summary, {
+            name: <span>EX {valerie.summary.name}</span>,
+            fullName: <span>EX {valerie.summary.fullName}</span>,
+            maxCombo: 8,
+            innateAbilities: [
+                {
+                    name: 'Manic Hands',
+                    text: <span>
+                        When you combat-reveal a normal attack, draw a card.
+                        You can combo normal attacks in any order.
+                        (Out-of-order normals count as chain combos for you and let
+                        you search for Aces during the Power Up phase.)
+                    </span>
+                },
+            ],
+            cardAbilities: valerie.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: 'Rainbow Disc',
+                    timing: 'During Combat',
+                    text: <span>
+                        This attack can't be interrupted by attacks except those that
+                        knock down. (If it's hit by a faster (non-knockdown) attack, the
+                        opponent can't combo. This hits afterwards and wins combat.)
+                    </span>
+                },
+            ]),
+            attacks: valerie.summary.attacks.concat(['D']),
+        }),
+        attacks: valerie.attacks.concat([
+            {
+                speed: 3.0, rank: 'D', name: 'Rainbow Disc', damage: 6, chip: 2,
+                comboPts: 2, comboType: <Starter/>
+            },
+        ]),
+    }),
+};
