@@ -131,6 +131,10 @@ midori.variants = {
                         your block).
                     </span>
                 },
+                {
+                    name: 'Defense Mastery',
+                    text: 'Opponents don\'t draw when you block their normal attacks.',
+                },
             ],
             cardAbilities: midori.summary.cardAbilities.concat([
                 {
