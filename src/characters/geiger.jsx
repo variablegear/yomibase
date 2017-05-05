@@ -37,11 +37,11 @@ export const geiger = {
         innateAbilities: [
             {
                 name: 'Time Stop',
-                text: 'If your opponent takes block damage from a Time Spiral, your \
-                       opponent can\'t activate innate abilities from blocking, and \
-                       you may throw him. (Play a throw card from your hand and continue \
+                text: 'If your opponent takes block damage from a Time Spiral, they \
+                       can\'t activate innate abilities from blocking, and \
+                       you may throw them. (Play a throw card from your hand and continue \
                        your combo if you want. The opponent doesn\'t draw a card from \
-                       blocking if you throw him.)',
+                       blocking if you throw them.)',
             },
         ],
         cardAbilities: [
@@ -104,4 +104,48 @@ export const geiger = {
         normalThrow(9),
         normalThrow('T'),
     ],
+};
+
+geiger.variants = {
+    EX: Object.assign({}, geiger, {
+        summary: Object.assign({}, geiger.summary, {
+            name: <span>EX {geiger.summary.name}</span>,
+            fullName: <span>EX {geiger.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                    name: 'Golden Clock Stop',
+                    text: <span>
+                        If your opponent takes block damage from a Time
+                        Spiral, they can't activate innate abilities from blocking,
+                        and you may throw them. (Play a throw card from your
+                        hand and continue your combo if you want. The opponent
+                        doesn't draw a card from blocking if you throw them.)
+                        At the end of combat, you may fetch a Jack or Queen
+                        from your discard pile.
+                    </span>
+                },
+            ],
+            cardAbilities: geiger.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: 'Yestergear',
+                    timing: 'During Combat',
+                    text: <span>
+                        If this deals damage, block damage, or is dodged, choose
+                        two ranks of cards from your discard pile (for example: 3 and
+                        King). Next turn, your opponent's cards of those ranks do
+                        nothing if played and they can't discard them to power up,
+                        to pump, or to use abilities.
+                    </span>
+                },
+            ]),
+            attacks: geiger.summary.attacks.concat(['D']),
+        }),
+        attacks: geiger.attacks.concat([
+            {
+                speed: 3.4, rank: 'D', name: 'Ripsaw Gear', damage: 9, chip: 2,
+                comboPts: 1, comboType: <Starter/>
+            },
+        ]),
+    }),
 };
