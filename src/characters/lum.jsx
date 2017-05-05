@@ -63,7 +63,7 @@ export const lum = {
                 text: <div>
                     Draw a card then the opponent reveals a card from their hand at random.
                     If it's an Ace, they take 7 damage and you draw another card. If it's
-                    a Joker, you take 2 damage.',
+                    a Joker, you take 2 damage.
                 </div>
             },
             {
@@ -132,4 +132,95 @@ export const lum = {
             maxCombo: 'tT+++', maxDamage: 22, goodCombo: 'tT+', goodDamage: 14,
         },
     ],
+};
+
+lum.variants = {
+    gPanda: Object.assign({}, lum, {
+        summary: Object.assign({}, lum.summary, {
+            name: <span>G. Panda</span>,
+            fullName: <span>G. Panda</span>,
+            innateAbilities: [
+                {
+                    name: 'Any Challenge?',
+                    text: <span>
+                        Before combat-reveal, if you took damage last turn,
+                        you can say what your combat card is. If your opponent
+                        doesn't challenge it, it's what you said until end of
+                        combat. If they challenge and you lied, it's no-card
+                        and you take 5 damage. If they challenge and you told
+                        the truth, they take 5 damage and you get a panda coin.
+                    </span>
+                },
+            ],
+            cardAbilities: [
+                {
+                    rank: 2,
+                    name: 'want to fold?',
+                    timing: 'While Combat Cards Facedown',
+                    text: <div>
+                        Discard a 2 to name attack, block. throw or dodge, then
+                        the opponent can fold to cancel combat. If they do, you
+                        get a panda coin. If they don't and they combat-reveal
+                        what you named, they take 7 damage and are knocked down.
+                        (Discard all combat cards if they fold.)
+                    </div>
+                },
+                {
+                    rank: 6,
+                    name: 'sleight of paw',
+                    timing: 'After Combat Reveal',
+                    text: <div>
+                        Discard a 6 and spend a panda coin to replace your combat
+                        card with the top card of your deck. (Choos the side of
+                        the new card before revealing it).
+                    </div>
+                },
+                {
+                    rank: 'T',
+                    name: 'pay to play',
+                    timing: 'End of Combat',
+                    text: <div>
+                        Reveal a 10 and spend a panda coin -OR- discard a 10 to
+                        return all face cards you played this turn to your hand.
+                        (Aces are not face cards).
+                    </div>
+                }
+            ],
+            dodges: [2, 3, 4],
+        }),
+        attacks: [
+            normalAttack(3, { maxCombo: '3>K+++', maxDamage: 33, goodCombo: '3>4>5>6', goodDamage: 18 }),
+            normalAttack(4, { maxCombo: '4>K+++', maxDamage: 34, goodCombo: '4>5>6>7', goodDamage: 22 }),
+            normalAttack(5, { maxCombo: '5>K+++', maxDamage: 35, goodCombo: '5>6>7>J', goodDamage: 22 }),
+            normalAttack(6, { maxCombo: '6>K+++', maxDamage: 36, goodCombo: '6>7>J>5', goodDamage: 22 }),
+            normalAttack(7, { maxCombo: '7>K+++', maxDamage: 37, goodCombo: '7>J>5>6', goodDamage: 22 }),
+            {
+                speed: 1.4, rank: 'J', damage: 4, chip: 1, comboPts: 1, comboType: <Linker/>,
+                maxCombo: 'J>K+++', maxDamage: 34, goodCombo: 'J>5>6>7', goodDamage: 22,
+            },
+            {
+                speed: 0.4, rank: 'Q', pumpWith: '+Q', damage: 8, pump: 8, chip: 1,
+                comboPts: 3, comboType: <Ender/>, maxCombo: 'Q+', maxDamage: 16,
+            },
+            {
+                speed: 3.0, rank: 'K', pumpWith: '+K+K+K', damage: 6, pump: 8, chip: 3,
+                comboPts: 3, comboType: <Ender/>, maxCombo: 'K++++', maxDamage: 38,
+                goodCombo: 'K+', goodDamage: 14,
+            },
+            {
+                speed: 0.8, rank: 'A', pumpWith: '+A+A', damage: 10, pump: 12, chip: 2,
+                comboType: <CantCombo/>, maxCombo: 'A++', maxDamage: 34,
+                goodCombo: 'A+', goodDamage: 22,
+            },
+            {
+                speed: 1.0, rank: 'AA', damage: 21, chip: 4, comboType: <CantCombo/>,
+            },
+        ],
+        throws: [
+            normalThrow(6),
+            normalThrow(8),
+            normalThrow(9),
+            normalThrow('T'),
+        ],
+    }),
 };
