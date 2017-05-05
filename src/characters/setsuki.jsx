@@ -103,3 +103,36 @@ export const setsuki = {
         },
     ],
 };
+
+setsuki.variants = {
+    EX: Object.assign({}, setsuki, {
+        summary: Object.assign({}, setsuki.summary, {
+            name: <span>EX {setsuki.summary.name}</span>,
+            fullName: <span>EX {setsuki.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                    name: 'Fox Frenzy',
+                    text: <span>
+                        If you start the draw phase with 5 or fewer cards in
+                        hand, draw until you have 6 (instead of drawing just 1).
+                        If you drew three or more cards this way, you may
+                        dodge into a full combo this turn.
+                    </span>
+                },
+            ],
+            cardAbilities: setsuki.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: 'Ninjaport Dash',
+                    timing: 'During Combat',
+                    text: <span>
+                        If the opponent blocks or dodges this, next combat they can't
+                        dodge and you can do mixup normals to them. Next combat,
+                        your attacks are 1 speed faster, to a minimum of 0.0.
+                    </span>
+                },
+            ]),
+            dodges: setsuki.summary.dodges.concat(['D']),
+        }),
+    }),
+};
