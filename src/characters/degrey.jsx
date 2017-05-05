@@ -105,3 +105,41 @@ export const degrey = {
         normalThrow('T'),
     ],
 };
+
+degrey.variants = {
+    EX: Object.assign({}, degrey, {
+        summary: Object.assign({}, degrey.summary, {
+            name: <span>EX {degrey.summary.name}</span>,
+            fullName: <span>EX {degrey.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                    name: 'Moral Mountain',
+                    text: <span>
+                        If your opponent has more cards in hand than you, your
+                        attacks deal extra damage equal to the difference. This bonus
+                        damage can't be prevented with Combo Escape Jokers.
+                        (Compute this bonus after your combo is finished.)
+                    </span>
+                },
+            ],
+            cardAbilities: degrey.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: 'Ghostly Force',
+                    timing: 'During Combat',
+                    text: <span>
+                        When you hit the opponent with Ghostly Force,
+                        choose whether they draw a card or discard a card.
+                    </span>
+                },
+            ]),
+            attacks: degrey.summary.attacks.concat(['D']),
+        }),
+        attacks: degrey.attacks.concat([
+            {
+                speed: 2.4, rank: 'D', name: 'Ghostly Force', damage: 6, chip: 2,
+                comboPts: 0, comboType: <Linker/>,
+            },
+        ]),
+    }),
+};
