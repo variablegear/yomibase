@@ -44,12 +44,13 @@ function keyedSort(list, keyFn, reversed) {
 
 
 function EditLink(props) {
+    console.log(props);
     return (
         <Well>
-            Found a bug, or have a suggestion about {props.char.name}?
+            Found a bug, or have a suggestion about {props.char.summary.name}?
                 Suggest a change <a href={
                 'https://github.com/cpennington/yomibase/edit/master/src/characters/' +
-                props.char +
+                props.charKey +
                 '.jsx'
             }>here</a>
         </Well>
@@ -188,8 +189,8 @@ class YomiBase extends Component {
                         ]
                     }
                     <Row>
-                        {leftCharacter && <Col md={6}><EditLink char={leftKey} /></Col>}
-                        {rightCharacter && <Col md={6}><EditLink char={rightKey} /></Col>}
+                        {leftCharacter && <Col md={6}><EditLink char={leftCharacter} charKey={leftKey} /></Col>}
+                        {rightCharacter && <Col md={6}><EditLink char={rightCharacter} charKey={rightKey} /></Col>}
                     </Row>
                 </Grid>
             </div>
