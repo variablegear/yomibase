@@ -2,8 +2,7 @@ import React from 'react';
 import {CantCombo, Ender, Linker, Starter} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
 
-const normalThrow = mkNormal({
-    speed: (rank) => rank + 0.4,
+const normalThrow = mkNormal(0.4, {
     pumpWith: '+X+X+X',
     damage: (rank) => rank,
     pump: 3,
@@ -15,9 +14,7 @@ const normalThrow = mkNormal({
     goodDamage: (rank) => rank + 3,
 });
 
-const normalAttack = mkNormal({
-    speed: (rank) => rank + 0.4,
-});
+const normalAttack = mkNormal(0.4);
 
 export const lum = {
     theme: {
@@ -126,11 +123,10 @@ export const lum = {
         normalThrow(6),
         normalThrow(8),
         normalThrow(9),
-        {
-            rank: 'T', name: 'Extra Juice', pumpWith: '+X+X+X', speed: 10.4,
-            damage: 10, pump: 4,
+        normalThrow('T', {
+            name: 'Extra Juice', pumpWith: '+X+X+X', damage: 10, pump: 4,
             maxCombo: 'tT+++', maxDamage: 22, goodCombo: 'tT+', goodDamage: 14,
-        },
+        }),
     ],
 };
 
