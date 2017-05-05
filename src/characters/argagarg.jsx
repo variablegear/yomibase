@@ -99,3 +99,40 @@ export const argagarg = {
         normalThrow('T'),
     ],
 };
+
+argagarg.variants = {
+    EX: Object.assign({}, argagarg, {
+        summary: Object.assign({}, argagarg.summary, {
+            name: <span>EX {argagarg.summary.name}</span>,
+            fullName: <span>EX {argagarg.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                    name: 'Curse of Murkwood',
+                    text: <span>
+                        At the end of each turn you weren't knocked down,
+                        the opponent takes 5 damage.
+                        (This can be boosted by Bubble Shield.)
+                    </span>
+                },
+            ],
+            cardAbilities: argagarg.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: 'Raging River',
+                    timing: 'During Combat',
+                    text: <span>
+                        If this deals damage or block damage, players can't
+                        throw next turn. (Throws will do nothing and be discarded.)
+                    </span>
+                },
+            ]),
+            attacks: argagarg.summary.attacks.concat(['D']),
+        }),
+        attacks: argagarg.attacks.concat([
+            {
+                speed: 4.0, rank: 'D', name: 'Raging River', damage: 6, chip: 2,
+                comboPts: 1, comboType: <Ender/>
+            },
+        ]),
+    }),
+};
