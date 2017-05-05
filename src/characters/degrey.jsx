@@ -1,5 +1,5 @@
 import React from 'react';
-import {Ender, Starter, ComboDetails} from '../combo.jsx';
+import {Ender, Starter, Linker, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
 
 const normalAttack = mkNormal(0.6);
