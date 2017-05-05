@@ -138,7 +138,7 @@ degrey.variants = {
         attacks: degrey.attacks.concat([
             {
                 speed: 2.4, rank: 'D', name: 'Ghostly Force', damage: 6, chip: 2,
-                comboPts: 0, comboType: <Linker/>,
+                comboType: <Linker/>,    // comboPts: 0, but I'm not sure if having 0 there breaks anything
             },
         ]),
     }),
