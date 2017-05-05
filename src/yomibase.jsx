@@ -161,7 +161,14 @@ class YomiBase extends Component {
                         [
                             <Row key="attacks-header"><Col md={12}><h2>Attacks</h2></Col></Row>,
                             <Row key="attacks-table" className="table-row">
-                                <Col md={12}><Attacks left={leftCharacter} right={rightCharacter} /></Col>
+                                <Col md={12}>
+                                    <Attacks
+                                        left={leftCharacter}
+                                        leftKey={leftKey + leftVariantKey}
+                                        right={rightCharacter}
+                                        rightKey={rightKey + rightVariantKey}
+                                    />
+                                </Col>
                             </Row>,
                         ]
                     }
@@ -169,7 +176,14 @@ class YomiBase extends Component {
                         [
                             <Row key="throws-header"><Col md={12}><h2>Throws</h2></Col></Row>,
                             <Row key="throws-table" className="table-row">
-                                <Col md={12}><Throws left={leftCharacter} right={rightCharacter} /></Col>
+                                <Col md={12}>
+                                    <Throws
+                                        left={leftCharacter}
+                                        leftKey={leftKey + leftVariantKey}
+                                        right={rightCharacter}
+                                        rightKey={rightKey + rightVariantKey}
+                                    />
+                                </Col>
                             </Row>,
                         ]
                     }
@@ -265,19 +279,9 @@ class SortableTable extends PureComponent {
         );
     }
 
-    formatKey(header, row) {
-        return (typeof header.props.isKey == 'function' && header.props.isKey(row)) || row[header.props.rowKey];
-    }
-
     render() {
         const rows = this.sortedData().map((row) => (
-            <SortableTableRow theme={row.theme} key={
-                this.headers().filter(
-                    (header) => header.props.isKey
-                ).map(
-                    (header) => this.formatKey(header, row)
-                )
-            }>
+            <SortableTableRow theme={row.theme} key={row.key}>
                 {this.headers().map((header) => this.formatEntry(header, row))}
             </SortableTableRow>
         ));
@@ -393,8 +397,9 @@ function mkComboHeader(prefix, throws) {
     />;
 }
 
-function withCharacter(character, moveKey, defaultKey, defaultTheme) {
+function withCharacter(characterKey, character, moveKey, defaultKey, defaultTheme) {
     return (character && character[moveKey].map((row) => Object.assign({
+        key: characterKey + row.rank + row.name,
         theme: Object.assign(defaultTheme, character.theme),
         character: character.summary.name,
         abilities: character.summary.cardAbilities,
@@ -403,14 +408,13 @@ function withCharacter(character, moveKey, defaultKey, defaultTheme) {
 }
 
 function MoveTable(props) {
-    const charHeader = <SortHeader isKey name="Character" rowKey="character" sort={(row) => row.character} />;
+    const charHeader = <SortHeader name="Character" rowKey="character" sort={(row) => row.character} />;
     const speedHeader = <SortHeader
         sortDefault
         name="Speed" sort={(row) => parseFloat(row.speed)}
         format={(row) => parseFloat(row.speed).toFixed(1)}
     />;
     const rankHeader = <SortHeader
-        isKey={(row) => row.rank.toString().concat(row.name)}
         name="Rank"
         sort={(row) => rankValue(row.rank)}
         format={(row) => (
@@ -450,8 +454,8 @@ function MoveTable(props) {
 
 class Attacks extends PureComponent {
     render() {
-        const leftAttacks = withCharacter(this.props.left, 'attacks', 'attackDefaults', defaultLeftTheme);
-        const rightAttacks = withCharacter(this.props.right, 'attacks', 'attackDefaults', defaultRightTheme);
+        const leftAttacks = withCharacter(this.props.leftKey, this.props.left, 'attacks', 'attackDefaults', defaultLeftTheme);
+        const rightAttacks = withCharacter(this.props.rightKey, this.props.right, 'attacks', 'attackDefaults', defaultRightTheme);
         const attacks = leftAttacks.concat(rightAttacks);
 
         return <MoveTable
@@ -464,8 +468,8 @@ class Attacks extends PureComponent {
 class Throws extends PureComponent {
 
     render() {
-        const leftThrows = withCharacter(this.props.left, 'throws', 'throwDefaults', defaultLeftTheme);
-        const rightThrows = withCharacter(this.props.right, 'throws', 'throwDefaults', defaultRightTheme);
+        const leftThrows = withCharacter(this.props.leftKey, this.props.left, 'throws', 'throwDefaults', defaultLeftTheme);
+        const rightThrows = withCharacter(this.props.rightKey, this.props.right, 'throws', 'throwDefaults', defaultRightTheme);
         const throws = leftThrows.concat(rightThrows);
 
         return <MoveTable
