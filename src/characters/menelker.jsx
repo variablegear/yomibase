@@ -107,3 +107,38 @@ export const menelker = {
         },
     ],
 };
+
+menelker.variants = {
+    EX: Object.assign({}, menelker, {
+        summary: Object.assign({}, menelker.summary, {
+            name: <span>EX {menelker.summary.name}</span>,
+            fullName: <span>EX {menelker.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                    name: 'Gushing Wounds',
+                    text: <span>
+                        When you hit the opponent with a face card attack
+                        (even multiple times in a combo), draw a card and they
+                        discard a card. (Aces are not face cards.)
+                        During the powerup phase, you may power up for any
+                        non-Joker cards from your discard pile.
+                    </span>
+                },
+            ],
+            cardAbilities: menelker.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: 'Aerial Nether Orb',
+                    timing: 'During Combat',
+                    text: "If the opponent dodges this, they can't follow up."},
+            ]),
+            attacks: menelker.summary.attacks.concat(['D']),
+        }),
+        attacks: menelker.attacks.concat([
+            {
+                speed: 2.4, rank: 'D', name: 'Aerial Nether Orb', damage: 8, chip: 2,
+                comboPts: 1, comboType: <Starter/>
+            },
+        ]),
+    }),
+};
