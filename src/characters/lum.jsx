@@ -135,6 +135,7 @@ lum.variants = {
         summary: Object.assign({}, lum.summary, {
             name: <span>G. Panda</span>,
             fullName: <span>G. Panda</span>,
+            title: null,
             innateAbilities: [
                 {
                     name: 'Any Challenge?',
