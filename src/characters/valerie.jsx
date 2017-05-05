@@ -147,7 +147,7 @@ valerie.variants = {
         attacks: valerie.attacks.concat([
             {
                 speed: 3.0, rank: 'D', name: 'Rainbow Disc', damage: 6, chip: 2,
-                comboPts: 2, comboType: <Starter/>
+                comboPts: 2, comboType: <Starter/>, kd: true,
             },
         ]),
     }),
