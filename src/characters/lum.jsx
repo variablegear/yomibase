@@ -1,10 +1,11 @@
 import React from 'react';
 import {CantCombo, Ender, Linker, Starter} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
+import {rankValue} from '../rank.js';
 
 const normalThrow = mkNormal(0.4, {
     pumpWith: '+X+X+X',
-    damage: (rank) => rank,
+    damage: (rank) => rankValue(rank),
     pump: 3,
     comboType: <CantCombo/>,
     kd: false,
