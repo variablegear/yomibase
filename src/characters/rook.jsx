@@ -112,3 +112,50 @@ export const rook = {
         },
     ],
 };
+
+rook.variants = {
+    EX: Object.assign({}, rook, {
+        summary: Object.assign({}, rook.summary, {
+            name: <span>EX {rook.summary.name}</span>,
+            fullName: <span>EX {rook.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                    name: 'Diamond Armor',
+                    text: <span>
+                        If your normal attack is hit by the opponent's faster normal
+                        attack or special attack, the opponent finishes his combo,
+                        then if you were not knocked down, your attack is not
+                        interrupted and you may finish your combo.
+                    </span>
+                },
+                {
+                    name: 'Defense Mastery',
+                    text: 'Opponents don\'t draw when you block their normal attacks.',
+                },
+            ],
+            cardAbilities: rook.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: 'Verdant Vines',
+                    timing: 'During Combat',
+                    text: <span>
+                        After combat-reveal, you may rotate this card 180 degrees.
+                        When you deal damage (not block damage) with this card,
+                        you may choose to knock the opponent down and draw a card
+                        -OR- have this move deal double damage.
+                    </span>
+                },
+            ]),
+            attacks: rook.summary.attacks.concat(['D']),
+        }),
+        attacks: rook.attacks.concat([
+            {
+                speed: 4.0, rank: 'D', name: 'Rippervine', damage: 7, chip: 2,
+                comboType: <CantCombo/>
+            },
+        ]),
+        throws: rook.throws.concat([
+            {speed: 4.0, rank: 'D', name: 'Tanglevine', damage: 7, comboType: <CantCombo/>},
+        ]),
+    }),
+};
