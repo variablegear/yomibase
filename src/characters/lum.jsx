@@ -43,7 +43,7 @@ export const lum = {
                     At the end of combat, if you dealt damage or block damage with an attack
                     this turn, you may discard the top card of your deck and consult the table:
                     <ul>
-                        <li>2-3: Gain 4 life -OR- draw the bottom card from your deck.</li>
+                        <li>2-3: You gain 4 life -OR- draw the bottom card from your deck.</li>
                         <li>4-10: Knock down opponent until end of combat next turn -OR-
                             return all face cards you played to your hand.</li>
                         <li>J,Q,K: Opponent's attacks and throws are 4 speed slower next turn.</li>
@@ -132,6 +132,80 @@ export const lum = {
 };
 
 lum.variants = {
+    EX: Object.assign({}, lum, {
+        summary: Object.assign({}, lum.summary, {
+            name: <span>EX {lum.summary.name}</span>,
+            fullName: <span>EX {lum.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                    name: 'Roll the Loaded Dice',
+                    text: <div>
+                          At the end of combat, if you dealt damage or block damage with an attack
+                          this turn, you may discard the top card of your deck and consult the table:
+                          <ul>
+                              <li>2-3: You gain 7 life -OR- draw the bottom card from your deck.</li>
+                              <li>4-10: Knock down the opponent and fetch a non-Joker card from your discard pile.</li>
+                              <li>J,Q,K: Draw 3 cards and your opponent's attacks and throws are 4 speed slower next turn.</li>
+                              <li>A: Search your deck or discard pile for an Ace and trigger the Blackjack effect.</li>
+                              <li>Joker: You lose the game.</li>
+                          </ul>
+                    </div>
+                },
+            ],
+            cardAbilities: lum.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: 'Item Toss',
+                    timing: 'During Combat',
+                    text: <div>
+                        Whenever you play this in combat (even in a combo or after
+                        a dodge), play a random card from your item sidedeck, then
+                        return that card to your sidedeck.
+                        <ul>
+                            <li>Crash Potato:
+                                You take 5 damage, then the
+                                opponent takes 5 damage and
+                                can't continue their combo.</li>
+                            <li>Tiny Lum:
+                                Discard the top card of your
+                                deck and use it to trigger your
+                                character innate.</li>
+                            <li>Tiny Rook:
+                                The opponent takes 10 damage,
+                                is knocked down,
+                                and can't continue their combo.</li>
+                            <li>Bamboo Shaft:
+                                Take some time to eat!
+                                Gain 3 life. Your attacks and throws
+                                are 3 speed slower next combat.</li>
+                            <li>Gear:
+                                If Item Toss hit, Gear deals 8 damage.
+                                If Item Toss was normal blocked, the
+                                opponent can't activate innate abilities
+                                from blocking, and you may throw them.
+                                (Play a throw card from your hand. The
+                                opponent doesn't draw a card from blocking.)</li>
+                            <li>Rain of Dice:
+                                Choose three different effects
+                                from your character innate.</li>
+                            <li>Possibly Poison:
+                                The opponent chooses one:
+                                they take 5 damage now -OR- take
+                                10 damage if they don't win next
+                                combat, but 0 damage if they do.</li>
+                        </ul>
+                    </div>
+                },
+            ]),
+            attacks: lum.summary.attacks.concat(['D']),
+        }),
+        attacks: lum.attacks.concat([
+            {
+                speed: 2.6, rank: 'D', name: 'Item Toss', damage: 0,
+                comboPts: 1, comboType: <Ender/>
+            },
+        ]),
+    }),
     gPanda: Object.assign({}, lum, {
         summary: Object.assign({}, lum.summary, {
             name: <span>G. Panda</span>,
