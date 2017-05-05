@@ -149,6 +149,7 @@ midori.variants = {
                     </span>
                 },
             ]),
+            dodges: midori.summary.dodges.concat(['D']),
         }),
     }),
 };
