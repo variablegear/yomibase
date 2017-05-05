@@ -126,6 +126,7 @@ grave.variants = {
                     text: 'Overhead Slice is unblockable.',
                 },
             ]),
+            attacks: grave.summary.attacks.concat(['D']),
         }),
         attacks: grave.attacks.concat([
             {
