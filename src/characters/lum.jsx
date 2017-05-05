@@ -10,9 +10,9 @@ const normalThrow = mkNormal(0.4, {
     comboType: <CantCombo/>,
     kd: false,
     maxCombo: (rank) => 't' + rank + '+++',
-    maxDamage: (rank) => rank + 9,
+    maxDamage: (rank) => rankValue(rank) + 9,
     goodCombo: (rank) => 't' + rank + '+',
-    goodDamage: (rank) => rank + 3,
+    goodDamage: (rank) => rankValue(rank) + 3,
 });
 
 const normalAttack = mkNormal(0.4);
