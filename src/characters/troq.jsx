@@ -123,3 +123,45 @@ export const troq = {
         },
     ],
 };
+
+troq.variants = {
+    EX: Object.assign({}, troq, {
+        summary: Object.assign({}, troq.summary, {
+            name: <span>EX {troq.summary.name}</span>,
+            fullName: <span>EX {troq.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                    name: 'Gargantuan Growth',
+                    text: <span>
+                        Whenever you block an attack or Joker, attach your block
+                        card to Troq, or discard it if two cards are already attached.
+                        Your attacks and throws do +2 damage for each attached
+                        card. (You still draw a card from blocking, as usual.)
+                    </span>
+                },
+                {
+                    name: 'Defense Mastery',
+                    text: 'Opponents don\'t draw when you block their normal attacks.',
+                },
+            ],
+            cardAbilities: troq.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: 'Bullbuster',
+                    timing: 'During Combat',
+                    text: <span>
+                        If you played Bullbuster in combat and didn't win combat,
+                        return it to your hand.
+                    </span>
+                },
+            ]),
+            attacks: troq.summary.attacks.concat(['D']),
+            throws: troq.summary.throws.concat(['D']),
+        }),
+        throws: troq.throws.concat([
+            {speed: 8.0, rank: 'D', pumpWith: '+x+x', name: 'Bullbuster',
+             damage: 10, pump: 5, comboType: <CantCombo/>,
+             maxCombo: 'D++', maxDamage: 20, goodCombo: 'D+', goodDamage: '15'},
+        ]),
+    }),
+};
