@@ -202,6 +202,30 @@ export const bbb = {
     ],
 };
 
+bbb.variants = {
+    EX: Object.assign({}, bbb, {
+        summary: Object.assign({}, bbb.summary, {
+            name: <span>EX {bbb.summary.name}</span>,
+            fullName: <span>EX {bbb.summary.fullName}</span>,
+            hitPoints: 100,
+            maxCombo: 4,
+            cardAbilities: bbb.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: 'Graviton Field',
+                    timing: 'During Combat',
+                    text: <span>
+                        When you block an attack or Joker with this card, take no
+                        block damage, discard this card and don't draw a card from
+                        blocking. Set combat to ranged next turn.
+                    </span>
+                },
+            ]),
+            blocks: bbb.summary.blocks.concat(['D']),
+        }),
+    }),
+};
+
 // Individual Cards:
 
 // J:
