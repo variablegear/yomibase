@@ -9,10 +9,10 @@ const normalThrow = mkNormal(0.8, {
     comboPts: 2,
     comboType: <Starter/>,
     kd: true,
-    maxCombo: (rank) => 't' + rank + '>K+>K+',
-    maxDamage: 27,
-    goodCombo: (rank) => 't' + rank + '>5>6',
-    goodDamage: 17,
+    maxCombo: (rank) => 't' + rank + '>K+',
+    maxDamage: 20,
+    goodCombo: (rank) => 't' + rank + '>J',
+    goodDamage: 13,
 });
 
 export const argagarg = {
@@ -69,11 +69,11 @@ export const argagarg = {
         ],
     },
     attacks: [
-        normalAttack(2, {maxCombo: '2>K+>K+', maxDamage: 22, goodCombo: '2>3>4', goodCombo: 9}),
-        normalAttack(3, {maxCombo: '3>K+>K+', maxDamage: 23, goodCombo: '3>4>5', goodCombo: 12}),
-        normalAttack(4, {maxCombo: '4>K+>K+', maxDamage: 24, goodCombo: '4>5>6', goodCombo: 15}),
-        normalAttack(5, {maxCombo: '5>K+>K+', maxDamage: 25, goodCombo: '5>6>J', goodCombo: 18}),
-        normalAttack(6, {maxCombo: '6>K+>K+', maxDamage: 26, goodCombo: '6>K+>5', goodCombo: 21}),
+        normalAttack(2, {maxCombo: '2>K+>K+', maxDamage: 22, goodCombo: '2>3>4', goodDamage: 9}),
+        normalAttack(3, {maxCombo: '3>K+>K+', maxDamage: 23, goodCombo: '3>4>5', goodDamage: 12}),
+        normalAttack(4, {maxCombo: '4>K+>K+', maxDamage: 24, goodCombo: '4>5>6', goodDamage: 15}),
+        normalAttack(5, {maxCombo: '5>K+>K+', maxDamage: 25, goodCombo: '5>6>J', goodDamage: 18}),
+        normalAttack(6, {maxCombo: '6>K+>K+', maxDamage: 26, goodCombo: '6>AA', goodDamage: 22}),
         {
             speed: 2.4, rank: 'J', name: 'Flying Fish',
             damage: 7, chip: 2, comboPts: 1, comboType: <Ender/>,
