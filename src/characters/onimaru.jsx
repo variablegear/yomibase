@@ -124,3 +124,33 @@ export const onimaru = {
         normalThrow('T'),
     ],
 };
+
+onimaru.variants = {
+    EX: Object.assign({}, onimaru, {
+        summary: Object.assign({}, onimaru.summary, {
+            name: <span>EX {onimaru.summary.name}</span>,
+            fullName: <span>EX {onimaru.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                    name: 'Guard Thunder Crush',
+                    text: <span>
+                        Your normal attacks cannot be blocked,
+                        except by named blocks with special abilities.
+                    </span>
+                },
+            ],
+            cardAbilities: onimaru.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: 'Tactical Analysis',
+                    timing: 'During Combat',
+                    text: <span>
+                        If you dodge an attack or Joker with this, next turn when you
+                        combat-reveal, you may rotate your combat card 180 degrees.
+                    </span>
+                },
+            ]),
+            dodges: onimaru.summary.dodges.concat(['D']),
+        }),
+    }),
+};
