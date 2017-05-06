@@ -101,3 +101,47 @@ export const quince = {
         },
     ],
 };
+
+quince.variants = {
+    EX: Object.assign({}, quince, {
+        summary: Object.assign({}, quince.summary, {
+            name: <span>EX {quince.summary.name}</span>,
+            fullName: <span>EX {quince.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                    name: 'Positive Spin, Negative Spin',
+                    text: <div>
+                        At the end of the turn, if you dealt damage or block
+                        damage to your opponent, you may reveal a face card
+                        from your hand. If you combat-reveal that card next
+                        turn, choose one:
+                        <ul>
+                            <li>The opponent discards a card.</li>
+                            <li>Draw a card to rotate your combat card 180 degrees.</li>
+                        </ul>
+                    </div>
+                },
+            ],
+            cardAbilities: quince.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: "Chancellor's Veto",
+                    timing: 'Reaction',
+                    text: <span>
+                        Counter an ability. (Orevent and undo the ability and the opponent
+                        discards the card if played from hand. You can't counter Aces, Jokers, or
+                        character cards.)
+                    </span>
+                },
+            ]),
+            attacks: quince.summary.attacks.concat(['D']),
+            blocks: quince.summary.blocks.concat(['D']),
+        }),
+        attacks: quince.attacks.concat([
+            {
+                speed: 4.2, rank: 'D', name: 'Courage Assault', damage: 6, chip: 6,
+                comboPts: 1, comboType: <Ender/>
+            },
+        ]),
+    }),
+};
