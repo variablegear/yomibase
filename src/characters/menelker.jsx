@@ -108,37 +108,68 @@ export const menelker = {
     ],
 };
 
-menelker.variants = {
-    EX: Object.assign({}, menelker, {
-        summary: Object.assign({}, menelker.summary, {
-            name: <span>EX {menelker.summary.name}</span>,
-            fullName: <span>EX {menelker.summary.fullName}</span>,
-            innateAbilities: [
-                {
-                    name: 'Gushing Wounds',
-                    text: <span>
-                        When you hit the opponent with a face card attack
-                        (even multiple times in a combo), draw a card and they
-                        discard a card. (Aces are not face cards.)
-                        During the powerup phase, you may power up for any
-                        non-Joker cards from your discard pile.
-                    </span>
-                },
-            ],
-            cardAbilities: menelker.summary.cardAbilities.concat([
-                {
-                    rank: 'D',
-                    name: 'Aerial Nether Orb',
-                    timing: 'During Combat',
-                    text: "If the opponent dodges this, they can't follow up."},
-            ]),
-            attacks: menelker.summary.attacks.concat(['D']),
-        }),
-        attacks: menelker.attacks.concat([
+const EX = Object.assign({}, menelker, {
+    summary: Object.assign({}, menelker.summary, {
+        name: <span>EX {menelker.summary.name}</span>,
+        fullName: <span>EX {menelker.summary.fullName}</span>,
+        innateAbilities: [
             {
-                speed: 2.4, rank: 'D', name: 'Aerial Nether Orb', damage: 8, chip: 2,
-                comboPts: 1, comboType: <Starter/>
+                name: 'Gushing Wounds',
+                text: <span>
+                    When you hit the opponent with a face card attack
+                    (even multiple times in a combo), draw a card and they
+                    discard a card. (Aces are not face cards.)
+                    During the powerup phase, you may power up for any
+                    non-Joker cards from your discard pile.
+                </span>
             },
+        ],
+        cardAbilities: menelker.summary.cardAbilities.concat([
+            {
+                rank: 'D',
+                name: 'Aerial Nether Orb',
+                timing: 'During Combat',
+                text: "If the opponent dodges this, they can't follow up."},
         ]),
+        attacks: menelker.summary.attacks.concat(['D']),
     }),
+    attacks: menelker.attacks.concat([
+        {
+            speed: 2.4, rank: 'D', name: 'Aerial Nether Orb', damage: 8, chip: 2,
+            comboPts: 1, comboType: <Starter/>
+        },
+    ]),
+});
+
+const DSD = Object.assign({}, EX, {
+    summary: Object.assign({}, menelker.summary, {
+        name: <span>Deathstrike Dragon</span>,
+        fullName: <span>Deathstrike Dragon</span>,
+        title: null,
+        // Can there be a way to make "Master Menelker" a smaller title before "Deathstrike Dragon"?
+        // That mirrors the physical card, and it would emphasize how he breaks the mold compared to the others.
+        hitPoints: 140,
+        maxCombo: 6,
+        // Max Hand Size: 20
+        // Draw per turn: ???
+        innateAbilities: [
+            {
+                name: 'Multiple Masteries',
+                text: <span>
+                    Your red face cards do double damage.
+                    Your black face cards draw a card and make the opponent
+                    discard a card whenever they hit. (Aces are not face cards.)
+                    Whenever you snapback, you can start a new combo on
+                    the incoming character.
+                    You can power up for any cards in your draw deck,
+                    and for face cards and Aces from your discard pile.
+                </span>
+            },
+        ],
+    }),
+});
+
+menelker.variants = {
+    "EX": EX,
+    "DSD": DSD
 };
