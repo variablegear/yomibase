@@ -37,9 +37,11 @@ export const gloria = {
         innateAbilities: [
             {
                 name: 'Healing Touch',
-                text: "After the power up phase, if you aren't knocked down, you may discard \
-                two non-Hearts cards to gain 4 life and fetch a Hearts card from your discard \
-                pile.",
+                text: <span>
+                    After the power up phase, if you aren't knocked down, you may discard
+                    two non-Hearts cards to gain 4 life and fetch a Hearts card from your discard
+                    pile.
+                </span>
             },
         ],
         cardAbilities: [
@@ -118,4 +120,44 @@ export const gloria = {
             maxCombo: 'tQ++', maxDamage: 16, goodCombo: 'tQ+', goodDamage: 10
         },
     ],
+};
+
+gloria.variants = {
+    EX: Object.assign({}, gloria, {
+        summary: Object.assign({}, gloria.summary, {
+            name: <span>EX {gloria.summary.name}</span>,
+            fullName: <span>EX {gloria.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                    name: 'Potent Healing Touch',
+                    text: <span>
+                        After the power up phase, if you aren't knocked down,
+                        you may discard a non-Hearts card to gain 4 life and
+                        fetch a Hearts card from your discard pile.
+                    </span>
+                },
+            ],
+            cardAbilities: gloria.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: 'Pulsing Globes',
+                    timing: 'During Combat',
+                    text: <span>
+                        Each time you pump this card, gain 3 life.
+                    </span>
+                },
+            ]),
+            attacks: gloria.summary.attacks.concat(['D']),
+        }),
+        attacks: gloria.attacks.concat([
+            {
+                speed: 1.8, rank: 'D', pumpWith: '+x', name: 'Apogee Globe',
+                damage: 5, pump: 2, chip: 2, comboPts: 1, comboType: <Ender/>
+            },
+            {
+                speed: 4.0, rank: 'D', pumpWith: '+x+x+x', name: 'Perigee Globe',
+                damage: 6, pump: 4, chip: 4, comboPts: 2, comboType: <Starter/>
+            },
+        ]),
+    }),
 };
