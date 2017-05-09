@@ -37,7 +37,13 @@ export const persephone = {
         innateAbilities: [
             {
                 name: 'Dominance',
-                text: "Whenever you knock down your opponent, you may fetch a non-Joker card from your discard pile (before you discard combat cards). If you also knocked them down last combat, fetch up to four non-Joker cards of different ranks instead.",
+                text: <span>
+                    Whenever you knock down the opponent, you may fetch
+                    a non-Joker card from your discard pile (before you
+                    discard combat cards). If you also knocked them down
+                    last combat, fetch up to four non-Joker cards of different
+                    ranks instead.
+                </span>
             },
         ],
         cardAbilities: [
@@ -45,19 +51,37 @@ export const persephone = {
                 rank: 9,
                 name: 'Do As Told',
                 timing: 'Reaction',
-                text: "The opponent may take 10 damage to make their ability uncounterable. If they don't, counter that ability. (Prevent and undo the ability and the opponent discards the card if played from hand. You can't counter Aces, Jokers, or character cards.)",
+                text: <span>
+                    The opponent may take 10 damage to make their ability
+                    uncounterable. If they don't, counter that ability.
+                    (Prevent and undo the ability and the opponent discards the card if
+                    played from hand. You can't counter Aces, Jokers, or character cards.)
+                </span>
             },
             {
                 rank: 'T',
                 name: 'Bare Your Soul',
                 timing: 'Draw Phase',
-                text: "Put the top 3 cards of the opponent's deck face up on the table. If there are more than 3 such face up cards, discard down to 3 (your choice). Whenever they would draw a card, you may choose one of those face up cards for them to draw instead. If you don't, they discard the face up cards. Whenever the opponent would shuffle their deck, they shuffle those cards back into it.",
+                text: <span>
+                    Put the top 3 cards of the opponent's deck face up on the table.
+                    If there are more than 3 such face up cards, discard down to 3
+                    (your choice). Whenever they would draw a card, you may have
+                    them draw one of those face up cards instead. If you don't, they
+                    discard the face up cards. Whenever the opponent shuffles their
+                    deck, they shuffle those cards back into it.
+                </span>
             },
             {
                 rank: 'A',
                 name: "Mistress's Command",
                 timing: 'Draw Phase',
-                text: "If you won combat and Mistress's Command deals damage, you control the opponent's next turn until (and including) the combat-reveal. You can't control two turns in a row.\n(Look at their hand, you may play their abilities and their combat card. You control your own turn as usual.)",
+                text: <span>
+                    If you won combat and Mistress's Command deals damage,
+                    you control the opponent's next turn until the combat-reveal.
+                    You can't control two turns in a row.
+                    (Look at their hand, you may play their abilities and their combat
+                    card. You control your own turn as usual.)",
+                </span>
             },
         ],
     },
@@ -99,4 +123,46 @@ export const persephone = {
             maxCombo: 'tK>6>J++', maxDamage: 30, goodCombo: 'tK>AA', goodDamage: 25
         },
     ],
+};
+
+persephone.variants = {
+    EX: Object.assign({}, persephone, {
+        summary: Object.assign({}, persephone.summary, {
+            name: <span>EX {persephone.summary.name}</span>,
+            fullName: <span>EX {persephone.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                    name: 'Double-Edged Dominance',
+                    text: <span>
+                        Whenever you knock down the opponent, you may fetch
+                        a non-Joker card from your discard pile (before you
+                        discard combat cards) and the opponent discards a card.
+                        If you also knocked them down last combat, fetch up to
+                        four non-Joker cards of different ranks instead, and the
+                        opponent discards two cards total.
+                    </span>
+                },
+            ],
+            cardAbilities: persephone.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: 'Loyal Pets',
+                    timing: 'During Combat',
+                    text: <span>
+                        Whenever this deals combat damage (not block damage) to
+                        the opponent, it gains: "Ongoing. When you win combat, this
+                        deals 6 damage to the opponent. When you don't win
+                        combat, discard this."
+                    </span>
+                },
+            ]),
+            attacks: persephone.summary.attacks.concat(['D']),
+        }),
+        attacks: persephone.attacks.concat([
+            {
+                speed: 2.8, rank: 'D', name: 'Loyal Pets', damage: 6, chip: 3,
+                comboPts: 2, comboType: <Ender/>
+            },
+        ]),
+    }),
 };
