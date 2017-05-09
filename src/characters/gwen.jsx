@@ -114,3 +114,45 @@ export const gwen = {
         },
     ],
 };
+
+gwen.variants = {
+    EX: Object.assign({}, gwen, {
+        summary: Object.assign({}, gwen.summary, {
+            name: <span>EX {gwen.summary.name}</span>,
+            fullName: <span>EX {gwen.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                    name: 'Shadow Malady',
+                    text: 'During the draw phase, draw two extra cards and take 2 damage.',
+                },
+                {
+                    name: 'Frenzied Strikes',
+                    text: <span>
+                        Whenever the opponent would normal block your non-Ender
+                        attack, you may discard a red and a black normal attack. If you
+                        do, they both hit, you win combat (and it ends), the opponent's
+                        block is discarded, and they draw a card.
+                    </span>
+                },
+            ],
+            cardAbilities: gwen.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: 'Desperation',
+                    timing: 'During Combat',
+                    text: <span>
+                        When you play this, you lose 4 life, but this turn and next turn
+                        you don't lose the game if you have 0 or fewer hit points.
+                    </span>
+                },
+            ]),
+            attacks: gwen.summary.attacks.concat(['D']),
+        }),
+        attacks: gwen.attacks.concat([
+            {
+                speed: 0.2, rank: 'D', name: 'Desperate Strike', damage: 9, chip: 3,
+                comboPts: 2, comboType: <Starter/>
+            },
+        ]),
+    }),
+};
