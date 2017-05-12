@@ -111,3 +111,45 @@ export const zane = {
         normalThrow('T'),
     ],
 };
+
+zane.variants = {
+    EX: Object.assign({}, zane, {
+        summary: Object.assign({}, zane.summary, {
+            name: <span>EX {zane.summary.name}</span>,
+            fullName: <span>EX {zane.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                name: 'More Shenanigans',
+                text: <span>
+                        Once per turn, when you could play a combo card, reveal
+                        three cards from the top of your deck and you may use
+                        them in your combo. Discard the unused card(s).
+                    </span>
+                },
+                {
+                    name: 'Meaty Attacks',
+                    text: "While your opponent is knocked down, your normal attacks are speed 1.0.",
+                },
+            ],
+            cardAbilities: zane.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: 'A Little Shake-Up',
+                    timing: 'Draw Phase',
+                    text: <span>
+                        This turn you can't block. Your opponent discards their combat
+                        card if it's the same suit as yours. Your attacks are 2 speed
+                        faster (to a minimum of 1.0) and deal +2 damage each.
+                    </span>
+                },
+            ]),
+            attacks: zane.summary.attacks.concat(['D']),
+        }),
+        attacks: zane.attacks.concat([
+            {
+                speed: 2.3, rank: 'D', name: 'Dragonish Flight', damage: 9, chip: 2,
+                comboPts: 2, comboType: <Linker/>
+            },
+        ]),
+    }),
+};
