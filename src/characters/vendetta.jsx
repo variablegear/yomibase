@@ -125,3 +125,42 @@ export const vendetta = {
         }
     ],
 };
+
+vendetta.variants = {
+    EX: Object.assign({}, vendetta, {
+        summary: Object.assign({}, vendetta.summary, {
+            name: <span>EX {vendetta.summary.name}</span>,
+            fullName: <span>EX {vendetta.summary.fullName}</span>,
+            innateAbilities: vendetta.summary.innateAbilities.concat([
+                {
+                    name: 'Carrion Counter',
+                    text: <span>
+                        Whenever you block an Ender or Can't Combo attack, you
+                        may hit back with a Destiny card from your hand or
+                        discard pile and activate the Poison ability.
+                    </span>
+                },
+            ]),
+            cardAbilities: vendetta.summary.cardAbilities.concat([
+                {
+                    rank: 'D',
+                    name: 'Poison',
+                    timing: 'During Combat',
+                    text: <span>
+                        Whenever you deal damage with this and it wasn't blocked,
+                        attach it to the opponent's character card. At the end of each
+                        turn, the opponent takes 1 damage. (This stacks with other
+                        attached Poisons).
+                    </span>
+                },
+            ]),
+            attacks: vendetta.summary.attacks.concat(['D']),
+        }),
+        attacks: vendetta.attacks.concat([
+            {
+                speed: 2.2, rank: 'D', name: 'Venomous Stab', damage: 4, chip: 1,
+                comboPts: 1, comboType: <Starter/>
+            },
+        ]),
+    }),
+};
