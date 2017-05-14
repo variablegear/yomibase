@@ -37,12 +37,16 @@ export const grave = {
         innateAbilities: [
             {
                 name: 'Knowing the Opponent',
-                text: 'When you block an attack, you may reveal a card from your hand. If \
-                       you combat-reveal that card next turn but don\'t win combat with it, \
-                       draw a card. If you do win combat with it, search your deck or discard \
-                       pile for a Queen. (Shuffle your deck if you searched for it).',
+                text: <span>
+                    When you block an attack, you may reveal a card from
+                    your hand. If you combat-reveal that card next turn but
+                    don't win combat with it, draw a card. If you do win
+                    combat with it, search your deck or discard pile for a
+                    Queen. <i>(Shuffle your deck if you searched it.)</i>
+                </span>
             },
         ],
+        // quote: "My skills improve every day...do yours?"
         cardAbilities: [
             {
                 rank: 7,
@@ -54,9 +58,10 @@ export const grave = {
                 rank: 'T',
                 name: 'Mental Toughness',
                 timing: 'Reaction',
-                text: 'Discard a face card (and this card) to counter an ability. (Prevent \
-                       and undo the ability and the opponent discards the card if played \
-                       from hand. You can\'t counter Aces, Jokers or character cards).',
+                text: <span>Discard a face card (and this card) to counter an ability.
+                    <i>(Prevent and undo the ability and the opponent discards the card if
+                        played from hand. You can't counter Aces, Jokers or character cards).</i>
+                </span>
             },
             {
                 rank: 'J',
@@ -118,6 +123,7 @@ grave.variants = {
                     </span>
                 },
             ],
+            // quote: "Every time I thought I achieved mastery, I improved some more."
             cardAbilities: grave.summary.cardAbilities.concat([
                 {
                     rank: 'D',
@@ -137,5 +143,52 @@ grave.variants = {
                 damage: 4, pump: 4, chip: 1, comboPts: 1, comboType: <Linker/>,
             },
         ]),
+    }),
+    
+    FirstEd: Object.assign({}, grave, {
+        summary: Object.assign({}, grave.summary, {
+            name: <span>1<sup>st</sup> Ed. {grave.summary.name}</span>,
+            fullName: <span>1<sup>st</sup> Edition {grave.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                    name: 'Knowing the Opponent',
+                    text: <span>
+                        When you block an attack, you may reveal a card from
+                        your hand. If you play that card as your face down
+                        combat card next turn, when you reveal it in combat
+                        you may search your deck or discard pile for a
+                        Queen, reveal it, put it into your hand, then shuffle
+                        your deck.
+                    </span>
+                },
+            ],
+            cardAbilities:[
+                {
+                    rank: 7,
+                    name: 'Martial Mastery',
+                    timing: null,
+                    text: 'After the draw phase, you may discard this card to draw 2 cards, \
+                           then discard a card, then the opponent reveals his hand.',
+                },
+                {
+                    rank: 'T',
+                    name: 'Mental Toughness',
+                    timing: null,
+                    text: <span>
+                        Discard this card to counter the effect of any ability not on Aces,
+                        Jokers or character cards. <i>(Play this after the opponent spends any
+                        activation costs, then prevent and undo that entire ability. The opponent
+                        discards the ability card if it was played from his hand.)</i>
+                    </span>
+                },
+                {
+                    rank: 'J',
+                    name: 'Lightning Trap',
+                    timing: null,
+                    text: 'When you deal block damage with Lightning Cloud, return this card \
+                           to your hand and the opponent doesn\'t draw a card from blocking.',
+                },
+            ],
+        }),
     }),
 };
