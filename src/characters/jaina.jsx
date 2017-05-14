@@ -56,16 +56,21 @@ export const jaina = {
         innateAbilities: [
             {
                 name: 'Burning Vigor',
-                text: 'At the end of combat, if you attacked, you may return any number of combo \
-                       cards to your hand other than Queens or Aces. Take 3 damage for each card \
-                       returned this way.',
+                text: <span>
+                    At the end of combat, if you attacked, you may return
+                    any of your combo cards to your hand other than Queens
+                    or Aces. Take 3 damage for each card returned this way.
+                </span>
             },
             {
                 name: 'Burning Desperation',
-                text: 'If you have 35 life or less, you may also return Queens and Aces and take \
-                       4 damage for each.',
+                text: <span>
+                    If you have 35 life or less, you may also return Queens
+                    and Aces and take 4 damage for each.
+                </span>
             },
         ],
+        // quote: "You cross me and you get burned."
         cardAbilities: [
             {
                 rank: 7,
@@ -149,6 +154,7 @@ jaina.variants = {
                     </span>
                 },
             ],
+            // quote: "I'll finish you even if it kills me."
             cardAbilities: jaina.summary.cardAbilities.concat([
                 {
                     rank: 'D',
@@ -174,5 +180,79 @@ jaina.variants = {
                 comboPts: 1, comboType: <Ender/>,
             },
         ]),
+    }),
+    
+    FirstEd: Object.assign({}, jaina, {
+        summary: Object.assign({}, jaina.summary, {
+            name: <span>1<sup>st</sup> Ed. {jaina.summary.name}</span>,
+            fullName: <span>1<sup>st</sup> Edition {jaina.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                    name: 'Burning Vigor',
+                    text: <span>
+                        At the end of combat, if you attacked, you may return
+                        any number of your non-Joker combo cards to your hand.
+                        For each numbered card, face card, and Ace card returned
+                        this way, take 3, 4, and 5 damage, respectively.
+                    </span>
+                },
+            ],
+            // quote: "You think I'm hot? You have no idea..."
+            cardAbilities: [
+                {
+                    rank: 7,
+                    name: 'Unstable Power',
+                    timing: null,
+                    text: <span>
+                        After combat cards are revealed, you may discard this card
+                        and take 10 damage to rotate your combat card 180 degrees.
+                    </span>
+                },
+                {
+                    rank: 'T',
+                    name: 'Smoldering Embers',
+                    timing: null,
+                    text: <span>
+                        When combat cards are revealed, if the opponent revealed a
+                        dodge and this card is in your discard pile, you may return
+                        it to your hand and the opponent takes 2 damage.
+                    </span>
+                },
+            ],
+        }),
+        attacks: [
+            normalAttack(2, {maxCombo: '2>K+++>AA', maxDamage: 47, goodCombo: '2>3>4>AA', goodDamage: 25}),
+            normalAttack(3, {maxCombo: '3>K+++>AA', maxDamage: 48, goodCombo: '3>4>5>AA', goodDamage: 30}),
+            normalAttack(4, {maxCombo: '4>K+++>AA', maxDamage: 49, goodCombo: '4>5>6>AA', goodDamage: 33}),
+            normalAttack(5, {maxCombo: '5>K+++>AA', maxDamage: 50, goodCombo: '5>K+>5>6', goodDamage: 28}),
+            normalAttack(6, {maxCombo: '6>K+++>AA', maxDamage: 51, goodCombo: '6>K+>4>5', goodDamage: 28}),
+            {
+                speed: 2.6, rank: 'J', name: 'Flame Arrow', damage: 6,
+                chip: 5, comboType: <Ender/>, comboPts: 1,
+            },
+            {
+                speed: 8.6, rank: 'J', name: 'Charged Shot', damage: 8,
+                chip: 7, comboType: <CantCombo/>,
+            },
+            {
+                speed: 0.2, rank: 'Q', name: 'Dragonheart', pumpWith: '+X',
+                damage: 8, pump: 5, chip: 1, comboType: <Ender/>, comboPts: 3,
+                maxCombo: 'Q+', maxDamage: 13, notes: recycle35,
+            },
+            {
+                speed: 2.4, rank: 'K', name: 'Crossfire Kick', pumpWith: '+K+K+K',
+                damage: 6, pump: 7, chip: 3, comboType: <Linker/>, comboPts: 2,
+                maxCombo: 'K+++>6>AA', maxDamage: 51, goodCombo: 'K++>4>5>6', goodDamage: 35,
+            },
+            {
+                speed: 0.8, rank: 'A', name: 'Red Dragon', pumpWith: '+A+A+A',
+                damage: 10, pump: 9, chip: 2, comboType: <CantCombo/>, comboPts: null,
+                maxCombo: 'A+++', maxDamage: 37, goodCombo: 'A++', goodDamage: 28, notes: recycle35,
+            },
+            {
+                speed: 0.2, rank: 'AA', name: 'Letter J', damage: 18, chip: 4,
+                comboType: <Ender/>, comboPts: 2, notes: recycle35,
+            },
+        ],
     }),
 };
