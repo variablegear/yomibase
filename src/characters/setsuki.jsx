@@ -47,17 +47,21 @@ export const setsuki = {
                 rank: 7,
                 name: 'Bag of Tricks',
                 timing: 'End of Turn',
-                text: 'At the end of turn, if this is the only card in your hand, you may put \
-                       up to three non-Joker cards from your discard pile on top of your deck \
-                       in any order, then discard this card.',
+                text: <span>
+                    If this is the only card in your hand, put up to three non-Joker
+                    cards from your discard pile on top of your deck in any order,
+                    then discard this card.
+                </span>
             },
             {
                 rank: 'T',
                 name: 'Smoke Bomb',
                 timing: 'Reaction',
-                text: 'Discard two cards (and this card) to counter an ability. (Prevent and \
-                      undo the ability and the opponent discards the card if played from hand. \
-                      You can\'t counter Aces, Jokers or character cards.)',
+                text: <span>
+                    Discard two cards (and this card) to counter an ability.<br />
+                 <i>(Prevent and undo the ability and the opponent discards the card if
+                    played from hand. You can't counter Aces, Jokers or character cards.)</i>
+                </span>
             },
         ],
     },
@@ -133,6 +137,47 @@ setsuki.variants = {
                 },
             ]),
             dodges: setsuki.summary.dodges.concat(['D']),
+        }),
+    }),
+    
+    FirstEd: Object.assign({}, setsuki, {
+        summary: Object.assign({}, setsuki.summary, {
+            name: <span>1<sup>st</sup> Ed. {setsuki.summary.name}</span>,
+            fullName: <span>1<sup>st</sup> Edition {setsuki.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                    name: 'Speed of the Fox',
+                    text: <span>
+                        At the beginning of the turn, if you have 1 or 0 cards in your hand,
+                        draw 4 cards and you may hit back with a full combo if you dodge an
+                        attack or Joker this turn. <i>(You still draw as usual during the draw phase.)</i>
+                    </span>
+                },
+            ],
+            cardAbilities: [
+                {
+                    rank: 7,
+                    name: 'Bag of Tricks',
+                    timing: null,
+                    text: <span>
+                        At the end of turn, if this is the only card in your hand, you may
+                        put up to three non-Joker cards from your discard pile on top of
+                        your deck in any order, then discard this card.
+                    </span>
+                },
+                {
+                    rank: 'T',
+                    name: 'Smoke Bomb',
+                    timing: null,
+                    text: <span>
+                        Discard this card and two other cards to counter the effect of any
+                        ability except those on Aces or Jokers. <i>(Play this after the
+                        opponent spends any activation costs, then prevent and undo that
+                        entire ability. The opponent discards the ability card if it was
+                        played from his hand.)</i>
+                    </span>
+                },
+            ],
         }),
     }),
 };
