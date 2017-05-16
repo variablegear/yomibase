@@ -37,10 +37,13 @@ export const degrey = {
         innateAbilities: [
             {
                 name: 'Moral High Ground',
-                text: 'If your opponent has more cards in hand than you, your special \
-                       and super attacks deal extra damage equal to the difference. \
-                       (Compute this bonus after your combo is finished. Special attacks \
-                       are Jacks, Queeens, and Kings. Super attacks are Aces.)',
+                text: <span>
+                    If your opponent has more cards in hand than you, your
+                    special and super attacks deal extra damage equal
+                    to the difference.<br />
+                 <i>(Compute this bonus after your combo is finished. Special attacks
+                    are Jacks, Queeens, and Kings. Super attacks are Aces.)</i>
+                </span>
             },
         ],
         cardAbilities: [
@@ -64,7 +67,6 @@ export const degrey = {
                 text: 'You may hit back with a full combo if you dodge an attack \
                        or Joker with this. Return this card to your hand when combat \
                        ends unless you were thrown.',
-
             }
         ],
     },
@@ -141,5 +143,53 @@ degrey.variants = {
                 comboType: <Linker/>,    // comboPts: 0, but I'm not sure if having 0 there breaks anything
             },
         ]),
+    }),
+    FirstEd: Object.assign({}, degrey, {
+        summary: Object.assign({}, degrey.summary, {
+            name: <span><span>1<sup>st</sup> Ed. {degrey.summary.name}</span>,
+            fullName: <span><span>1<sup>st</sup> Ed. {degrey.summary.fullName}</span>,
+            innateAbilities: [
+                {
+                    name: 'Moral High Ground',
+                    text: <span>
+                        If your opponent has more cards in hand than you, your
+                        face cards deal extra damage equal to the difference.<br />
+                     <i>(Compute this bonus after your combo is finished.)</i>
+                    </span>
+                },
+            ],
+            cardAbilities: [
+                {
+                    rank: 7,
+                    name: 'Point, Counterpoint',
+                    timing: null,
+                    text: <span>
+                        If you play this card as a face down combat card, after
+                        combat cards are revealed you may discard a card to
+                        rotate this card 180 degrees.
+                    </span>
+                },
+                {
+                    rank: 4,
+                    name: 'Troublesome Rhetoric',
+                    timing: null,
+                    text: <span>
+                        After the draw phase, you may discard a card to choose:
+                        attack, block, throw, or dodge. If the opponent reveals
+                        that option in combat this turn, gain 12 life.
+                    </span>
+                },
+                {
+                    rank: 'A',
+                    name: 'Ghost Riposte',
+                    timing: null,
+                    text: <span>
+                        When you dodge an attack or Joker with Ghost Riposte,
+                        you may hit back with a full combo. Return this card to
+                        your hand at the end of combat unless you were thrown.
+                    </span>
+                }
+            ],
+        }),
     }),
 };
