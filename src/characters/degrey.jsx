@@ -146,8 +146,8 @@ degrey.variants = {
     }),
     FirstEd: Object.assign({}, degrey, {
         summary: Object.assign({}, degrey.summary, {
-            name: <span><span>1<sup>st</sup> Ed. {degrey.summary.name}</span>,
-            fullName: <span><span>1<sup>st</sup> Ed. {degrey.summary.fullName}</span>,
+            name: <span>1<sup>st</sup> Ed. {degrey.summary.name}</span>,
+            fullName: <span>1<sup>st</sup> Edition {degrey.summary.fullName}</span>,
             innateAbilities: [
                 {
                     name: 'Moral High Ground',
