@@ -143,15 +143,14 @@ const EX = Object.assign({}, menelker, {
 
 const DSD = Object.assign({}, EX, {
     summary: Object.assign({}, menelker.summary, {
-        name: <span>Deathstrike Dragon</span>,
-        fullName: <span>Deathstrike Dragon</span>,
+        name: 'Deathstrike Dragon',
+        fullName: 'Deathstrike Dragon',
+        preTitle: 'Master Menelker',
         title: null,
-        // Can there be a way to make "Master Menelker" a smaller title before "Deathstrike Dragon"?
-        // That mirrors the physical card, and it would emphasize how he breaks the mold compared to the others.
         hitPoints: 140,
         maxCombo: 6,
-        // Max Hand Size: 20
-        // Draw per turn: ???
+        maxHandSize: 20,
+        cardsPerTurn: 2,
         innateAbilities: [
             {
                 name: 'Multiple Masteries',

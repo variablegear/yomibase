@@ -12,6 +12,15 @@ export const Title = styled.small`
     color: #444444;
 `;
 
+const CharacterName = styled.h1`
+    & .title {
+        padding-left: 10px;
+    }
+    & .pre-title {
+        padding-right: 10px;
+    }
+`;
+
 export function CharacterSummary(props) {
     let abilities = [];
     props.char.innateAbilities.forEach((entry) => {
@@ -31,13 +40,25 @@ export function CharacterSummary(props) {
 
     return (
         <section className={props.className + ' character-summary'} >
-            <h1>{props.char.fullName} <Title>{props.char.title}</Title></h1>
+            <CharacterName>
+                {props.char.preTitle && <Title className='pre-title'>{props.char.preTitle}</Title>}
+                {props.char.fullName}
+                {props.char.title && <Title className='title'>{props.char.title}</Title>}
+            </CharacterName>
             <Table>
                 <tbody>
                     <tr>
                         <th>Hit Points:</th>
                         <td>{props.char.hitPoints}</td>
                     </tr>
+                    {props.char.maxHandSize && <tr>
+                        <th>Max Hand Size:</th>
+                        <td>{props.char.maxHandSize}</td>
+                    </tr>}
+                    {props.char.cardsPerTurn && <tr>
+                        <th>Cards Drawn Per Turn:</th>
+                        <td>{props.char.cardsPerTurn}</td>
+                    </tr>}
                     <tr>
                         <th>Max Combo:</th>
                         <td><ComboPoints count={props.char.maxCombo} max={props.char.maxCombo} /></td>
