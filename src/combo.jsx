@@ -38,7 +38,7 @@ export function ComboPoints(props) {
         return null;
     }
     const max = props.max || 6;
-    const perRow = Math.max(max, 6) / 2;
+    const perRow = Math.ceil(Math.max(max, 6) / 2);
     const points = '\u25CF'.repeat(props.count) + '\u25CB'.repeat(max - props.count);
 
     return (
