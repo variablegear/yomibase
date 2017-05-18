@@ -18,7 +18,7 @@ const normalThrow = mkNormal(0.8, {
 export const geiger = {
     theme: {
         // primary: #DADE65
-        text: '#f5f6d5',
+        text: 'linear-gradient(#f5f6d5, #f5f6d5)',
         headshot: require('../../images/geiger.jpg'),
     },
     summary: {

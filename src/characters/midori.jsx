@@ -27,7 +27,7 @@ const Dragon = styled.span`
 export const midori = {
     theme: {
         // primary: #78BD52
-        text: '#e2f1da',
+        text: 'linear-gradient(#e2f1da, #e2f1da)',
         headshot: require('../../images/midori.jpg'),
     },
     summary: {
@@ -158,7 +158,7 @@ midori.variants = {
             dodges: midori.summary.dodges.concat(['D']),
         }),
     }),
-    
+
     FirstEd: Object.assign({}, midori, {
         summary: Object.assign({}, midori.summary, {
             name: <span>1<sup>st</sup> Ed. {midori.summary.name}</span>,

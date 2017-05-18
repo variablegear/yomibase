@@ -20,7 +20,7 @@ const normalAttack = mkNormal(0.4);
 export const lum = {
     theme: {
         // primary: #FDFFF4
-        text: '#FDFFF4',
+        text: 'linear-gradient(#FDFFF4, #FDFFF4)',
         headshot: require('../../images/lum.jpg'),
     },
     summary: {

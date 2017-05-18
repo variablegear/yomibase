@@ -18,7 +18,7 @@ const normalThrow = mkNormal(0.6, {
 export const grave = {
     theme: {
         // primary: #688BEF
-        text: '#d1dcfa',
+        text: 'linear-gradient(#d1dcfa, #d1dcfa)',
         headshot: require('../../images/grave.jpg'),
     },
     summary: {
@@ -144,7 +144,7 @@ grave.variants = {
             },
         ]),
     }),
-    
+
     FirstEd: Object.assign({}, grave, {
         summary: Object.assign({}, grave.summary, {
             name: <span>1<sup>st</sup> Ed. {grave.summary.name}</span>,

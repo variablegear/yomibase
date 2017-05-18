@@ -18,7 +18,7 @@ const normalThrow = mkNormal(0.8, {
 export const degrey = {
     theme: {
         // primary: #F8508B
-        text: '#fdcedf',
+        text: 'linear-gradient(#fdcedf, #fdcedf)',
         headshot: require('../../images/degrey.jpg'),
     },
     summary: {

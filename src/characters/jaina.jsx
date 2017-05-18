@@ -37,7 +37,7 @@ const recycle35 = <Recycles text='Card is likely to recycle from the discard onc
 export const jaina = {
     theme: {
         // primary: #FA4125
-        text: '#fed4cd',
+        text: 'linear-gradient(#fed4cd, #fed4cd)',
         headshot: require('../../images/jaina.jpg'),
     },
     summary: {

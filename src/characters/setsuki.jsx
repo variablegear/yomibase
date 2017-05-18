@@ -18,7 +18,7 @@ const normalThrow = mkNormal(0.2, {
 export const setsuki = {
     theme: {
         // primary: #D68E42
-        text: '#f6e6d5',
+        text: 'linear-gradient(#f6e6d5, #f6e6d5)',
         headshot: require('../../images/setsuki.jpg'),
     },
     summary: {

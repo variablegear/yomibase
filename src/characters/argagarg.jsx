@@ -18,7 +18,7 @@ const normalThrow = mkNormal(0.8, {
 export const argagarg = {
     theme: {
         // primary: #5FC19B
-        text: '#daf1e8',
+        text: 'linear-gradient(#daf1e8, #daf1e8)',
         headshot: require('../../images/argagarg.jpg'),
     },
     summary: {

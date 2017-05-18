@@ -229,12 +229,15 @@ function SortingHeader(props) {
 class SortHeader extends PureComponent { };
 
 const SortableTableRow = styled.tr`
-    background: ${(props) => props.theme.text};
+    background: ${(props) => props.theme.text}, #dddddd;
     border-left: 5px solid ${(props) => props.theme.border};
     border-right: 5px solid ${(props) => props.theme.border};
     & > td {
         vertical-align: middle !important;
     };
+    &:hover {
+        background-blend-mode: multiply;
+    }
 `;
 
 class SortableTable extends PureComponent {
@@ -287,7 +290,7 @@ class SortableTable extends PureComponent {
             </SortableTableRow>
         ));
         return (
-            <Table condensed hover >
+            <Table condensed >
                 <thead>
                     <tr>
                         {this.headers().map((header, idx) => (
