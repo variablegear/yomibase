@@ -142,7 +142,7 @@ const EX = Object.assign({}, menelker, {
 });
 
 const DSD = Object.assign({}, EX, {
-    summary: Object.assign({}, menelker.summary, {
+    summary: Object.assign({}, EX.summary, {
         name: 'Deathstrike Dragon',
         fullName: 'Deathstrike Dragon',
         preTitle: 'Master Menelker',
