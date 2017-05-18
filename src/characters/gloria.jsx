@@ -17,8 +17,8 @@ const normalThrow = mkNormal(0.8, {
 
 export const gloria = {
     theme: {
-        // primary: #FFD0DE, #F1FFFF
-        text: 'linear-gradient(#FFD0DE, #F1FFFF)',
+        // primary: #FFD0DE, #FFFFFF
+        text: 'linear-gradient(#FFD0DE, #FFFFFF)',
         headshot: require('../../images/gloria.jpg'),
     },
     summary: {
