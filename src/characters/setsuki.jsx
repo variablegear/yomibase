@@ -139,7 +139,7 @@ setsuki.variants = {
             dodges: setsuki.summary.dodges.concat(['D']),
         }),
     }),
-    
+
     FirstEd: Object.assign({}, setsuki, {
         summary: Object.assign({}, setsuki.summary, {
             name: <span>1<sup>st</sup> Ed. {setsuki.summary.name}</span>,

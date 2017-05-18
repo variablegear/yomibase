@@ -38,12 +38,13 @@ export function ComboPoints(props) {
         return null;
     }
     const max = props.max || 6;
+    const perRow = Math.max(max, 6) / 2;
     const points = '\u25CF'.repeat(props.count) + '\u25CB'.repeat(max - props.count);
 
     return (
         <PointsWrapper>
-            <div>{points.slice(0, 3)}</div>
-            <div>{points.slice(3, 6)}</div>
+            <div>{points.slice(0, perRow)}</div>
+            <div>{points.slice(perRow, perRow*2)}</div>
         </PointsWrapper>
     );
 }
