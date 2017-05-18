@@ -44,3 +44,16 @@ export function mkNormal(speedOffset, defaults) {
     };
     return normal;
 };
+
+export function overrideMoves(baseMoves, overrides) {
+    return baseMoves.map((move) => Object.assign(
+        {},
+        move,
+        overrides.find(
+            (override) => (
+                move.rank == override.rank
+                && move.name == override.name
+            )
+        )
+    ));
+}

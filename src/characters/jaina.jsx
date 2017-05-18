@@ -1,7 +1,7 @@
 import React from 'react';
 import {Note, Recycles, Icon} from '../note.jsx';
 import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
-import {mkNormal, Block, Attack} from '../move.jsx';
+import {mkNormal, Block, Attack, overrideMoves} from '../move.jsx';
 
 const normalAttack = mkNormal(0.6, {
     chip: (rank) => '(' + rank + ')',
@@ -181,7 +181,7 @@ jaina.variants = {
             },
         ]),
     }),
-    
+
     FirstEd: Object.assign({}, jaina, {
         summary: Object.assign({}, jaina.summary, {
             name: <span>1<sup>st</sup> Ed. {jaina.summary.name}</span>,
@@ -220,39 +220,13 @@ jaina.variants = {
                 },
             ],
         }),
-        attacks: [
-            normalAttack(2, {maxCombo: '2>K+++>AA', maxDamage: 47, goodCombo: '2>3>4>AA', goodDamage: 25}),
-            normalAttack(3, {maxCombo: '3>K+++>AA', maxDamage: 48, goodCombo: '3>4>5>AA', goodDamage: 30}),
-            normalAttack(4, {maxCombo: '4>K+++>AA', maxDamage: 49, goodCombo: '4>5>6>AA', goodDamage: 33}),
-            normalAttack(5, {maxCombo: '5>K+++>AA', maxDamage: 50, goodCombo: '5>K+>5>6', goodDamage: 28}),
-            normalAttack(6, {maxCombo: '6>K+++>AA', maxDamage: 51, goodCombo: '6>K+>4>5', goodDamage: 28}),
-            {
-                speed: 2.6, rank: 'J', name: 'Flame Arrow', damage: 6,
-                chip: 5, comboType: <Ender/>, comboPts: 1,
-            },
-            {
-                speed: 8.6, rank: 'J', name: 'Charged Shot', damage: 8,
-                chip: 7, comboType: <CantCombo/>,
-            },
-            {
-                speed: 0.2, rank: 'Q', name: 'Dragonheart', pumpWith: '+X',
-                damage: 8, pump: 5, chip: 1, comboType: <Ender/>, comboPts: 3,
-                maxCombo: 'Q+', maxDamage: 13, notes: recycle35,
-            },
-            {
-                speed: 2.4, rank: 'K', name: 'Crossfire Kick', pumpWith: '+K+K+K',
-                damage: 6, pump: 7, chip: 3, comboType: <Linker/>, comboPts: 2,
-                maxCombo: 'K+++>6>AA', maxDamage: 51, goodCombo: 'K++>4>5>6', goodDamage: 35,
-            },
-            {
-                speed: 0.8, rank: 'A', name: 'Red Dragon', pumpWith: '+A+A+A',
-                damage: 10, pump: 9, chip: 2, comboType: <CantCombo/>, comboPts: null,
-                maxCombo: 'A+++', maxDamage: 37, goodCombo: 'A++', goodDamage: 28, notes: recycle35,
-            },
-            {
-                speed: 0.2, rank: 'AA', name: 'Letter J', damage: 18, chip: 4,
-                comboType: <Ender/>, comboPts: 2, notes: recycle35,
-            },
-        ],
+        attacks: overrideMoves(jaina.attacks, [
+            {rank: 'J', name: 'Charged Shot', comboType: <CantCombo/>},
+            {rank: 2, chip: '(3)'},
+            {rank: 3, chip: '(3)'},
+            {rank: 4, chip: '(3)'},
+            {rank: 5, chip: '(3)'},
+            {rank: 6, chip: '(3)'},
+        ]),
     }),
 };
