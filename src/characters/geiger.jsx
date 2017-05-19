@@ -1,6 +1,7 @@
 import React from 'react';
 import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
+import {EX} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.6);
 
@@ -110,7 +111,7 @@ geiger.variants = {
     EX: Object.assign({}, geiger, {
         summary: Object.assign({}, geiger.summary, {
             name: <span>EX {geiger.summary.name}</span>,
-            fullName: <span>EX {geiger.summary.fullName}</span>,
+            edition: EX,
             innateAbilities: [
                 {
                     name: 'Golden Clock Stop',

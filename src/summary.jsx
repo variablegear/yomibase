@@ -4,6 +4,7 @@ import Table from 'react-bootstrap/lib/Table';
 import {ComboPoints} from './combo.jsx';
 import {CardAbility} from './ability.jsx';
 import {Block, Throw, Dodge, Attack} from './move.jsx';
+import {Second} from './editions.jsx';
 
 import styled from 'styled-components';
 
@@ -47,6 +48,10 @@ export function CharacterSummary(props) {
             </CharacterName>
             <Table>
                 <tbody>
+                    <tr>
+                        <th>Edition:</th>
+                        <td>{props.char.edition || Second}</td>
+                    </tr>
                     <tr>
                         <th>Hit Points:</th>
                         <td>{props.char.hitPoints}</td>

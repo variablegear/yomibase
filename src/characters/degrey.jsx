@@ -1,6 +1,7 @@
 import React from 'react';
 import {Ender, Starter, Linker, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
+import {EX, First} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.6);
 
@@ -112,7 +113,7 @@ degrey.variants = {
     EX: Object.assign({}, degrey, {
         summary: Object.assign({}, degrey.summary, {
             name: <span>EX {degrey.summary.name}</span>,
-            fullName: <span>EX {degrey.summary.fullName}</span>,
+            edition: EX,
             innateAbilities: [
                 {
                     name: 'Moral Mountain',
@@ -147,7 +148,7 @@ degrey.variants = {
     FirstEd: Object.assign({}, degrey, {
         summary: Object.assign({}, degrey.summary, {
             name: <span>1<sup>st</sup> Ed. {degrey.summary.name}</span>,
-            fullName: <span>1<sup>st</sup> Edition {degrey.summary.fullName}</span>,
+            edition: First,
             innateAbilities: [
                 {
                     name: 'Moral High Ground',

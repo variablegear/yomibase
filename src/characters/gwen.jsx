@@ -2,6 +2,7 @@ import React from 'react';
 import {Note, Icon} from '../note.jsx';
 import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
+import {EX} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.0);
 
@@ -119,7 +120,7 @@ gwen.variants = {
     EX: Object.assign({}, gwen, {
         summary: Object.assign({}, gwen.summary, {
             name: <span>EX {gwen.summary.name}</span>,
-            fullName: <span>EX {gwen.summary.fullName}</span>,
+            edition: EX,
             innateAbilities: [
                 {
                     name: 'Shadow Malady',

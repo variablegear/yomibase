@@ -3,6 +3,7 @@ import {Note, Icon} from '../note.jsx';
 import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
 import styled from 'styled-components';
+import {EX, First} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.2);
 
@@ -125,7 +126,7 @@ midori.variants = {
     EX: Object.assign({}, midori, {
         summary: Object.assign({}, midori.summary, {
             name: <span>EX {midori.summary.name}</span>,
-            fullName: <span>EX {midori.summary.fullName}</span>,
+            edition: EX,
             innateAbilities: [
                 {
                     name: 'Essense of the Dragon',
@@ -162,7 +163,7 @@ midori.variants = {
     FirstEd: Object.assign({}, midori, {
         summary: Object.assign({}, midori.summary, {
             name: <span>1<sup>st</sup> Ed. {midori.summary.name}</span>,
-            fullName: <span>1<sup>st</sup> Edition {midori.summary.fullName}</span>,
+            edition: First,
             innateAbilities: [
                 {
                     name: 'Aspect of the Dragon',

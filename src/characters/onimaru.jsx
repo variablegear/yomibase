@@ -2,6 +2,7 @@ import React from 'react';
 import {CantCombo, Ender, Linker, Starter} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
 import {rankValue} from '../rank.js';
+import {EX} from '../editions.jsx';
 
 const normalThrow = mkNormal(0.2, {
     pumpWith: '+X+X',
@@ -129,7 +130,7 @@ onimaru.variants = {
     EX: Object.assign({}, onimaru, {
         summary: Object.assign({}, onimaru.summary, {
             name: <span>EX {onimaru.summary.name}</span>,
-            fullName: <span>EX {onimaru.summary.fullName}</span>,
+            edition: EX,
             innateAbilities: [
                 {
                     name: 'Guard Thunder Crush',

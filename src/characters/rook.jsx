@@ -1,6 +1,7 @@
 import React from 'react';
 import {CantCombo, Ender, Linker, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
+import {EX, First} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.8);
 
@@ -123,7 +124,7 @@ rook.variants = {
     EX: Object.assign({}, rook, {
         summary: Object.assign({}, rook.summary, {
             name: <span>EX {rook.summary.name}</span>,
-            fullName: <span>EX {rook.summary.fullName}</span>,
+            edition: EX,
             innateAbilities: [
                 {
                     name: 'Diamond Armor',
@@ -168,7 +169,7 @@ rook.variants = {
     FirstEd: Object.assign({}, rook, {
         summary: Object.assign({}, rook.summary, {
             name: <span>1<sup>st</sup> Ed. {rook.summary.name}</span>,
-            fullName: <span>1<sup>st</sup> Edition {rook.summary.fullName}</span>,
+            edition: First,
             innateAbilities: [
                 {
                     name: 'Rock Armor',

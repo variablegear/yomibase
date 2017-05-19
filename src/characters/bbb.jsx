@@ -2,6 +2,7 @@ import React from 'react';
 import {Note, Icon} from '../note.jsx';
 import {Ender, Linker, Starter, ComboDetails, CantCombo} from '../combo.jsx';
 import {mkNormal, Attack, Block, Dodge} from '../move.jsx';
+import {EX} from '../editions.jsx';
 
 import styled from 'styled-components';
 
@@ -206,7 +207,7 @@ bbb.variants = {
     EX: Object.assign({}, bbb, {
         summary: Object.assign({}, bbb.summary, {
             name: <span>EX {bbb.summary.name}</span>,
-            fullName: <span>EX {bbb.summary.fullName}</span>,
+            edition: EX,
             hitPoints: 100,
             maxCombo: 4,
             cardAbilities: bbb.summary.cardAbilities.concat([

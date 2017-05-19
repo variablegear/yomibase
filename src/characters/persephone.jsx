@@ -1,6 +1,7 @@
 import React from 'react';
 import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
+import {EX} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.4);
 
@@ -129,7 +130,7 @@ persephone.variants = {
     EX: Object.assign({}, persephone, {
         summary: Object.assign({}, persephone.summary, {
             name: <span>EX {persephone.summary.name}</span>,
-            fullName: <span>EX {persephone.summary.fullName}</span>,
+            edition: EX,
             innateAbilities: [
                 {
                     name: 'Double-Edged Dominance',

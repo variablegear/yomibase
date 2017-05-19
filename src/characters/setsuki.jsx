@@ -1,6 +1,7 @@
 import React from 'react';
 import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
+import {EX, First} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.2);
 
@@ -112,7 +113,7 @@ setsuki.variants = {
     EX: Object.assign({}, setsuki, {
         summary: Object.assign({}, setsuki.summary, {
             name: <span>EX {setsuki.summary.name}</span>,
-            fullName: <span>EX {setsuki.summary.fullName}</span>,
+            edition: EX,
             innateAbilities: [
                 {
                     name: 'Fox Frenzy',
@@ -143,7 +144,7 @@ setsuki.variants = {
     FirstEd: Object.assign({}, setsuki, {
         summary: Object.assign({}, setsuki.summary, {
             name: <span>1<sup>st</sup> Ed. {setsuki.summary.name}</span>,
-            fullName: <span>1<sup>st</sup> Edition {setsuki.summary.fullName}</span>,
+            edition: First,
             innateAbilities: [
                 {
                     name: 'Speed of the Fox',

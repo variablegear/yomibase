@@ -2,6 +2,7 @@ import React from 'react';
 import {CantCombo, Ender, Linker, Starter, ComboDetails, KD} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
 import {Note, Icon, Recycles} from '../note.jsx';
+import {EX} from '../editions.jsx';
 
 
 const normalAttack = mkNormal(0.2);
@@ -130,7 +131,7 @@ vendetta.variants = {
     EX: Object.assign({}, vendetta, {
         summary: Object.assign({}, vendetta.summary, {
             name: <span>EX {vendetta.summary.name}</span>,
-            fullName: <span>EX {vendetta.summary.fullName}</span>,
+            edition: EX,
             innateAbilities: vendetta.summary.innateAbilities.concat([
                 {
                     name: 'Carrion Counter',

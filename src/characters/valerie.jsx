@@ -1,6 +1,7 @@
 import React from 'react';
 import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
+import {EX} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.4);
 
@@ -117,7 +118,7 @@ valerie.variants = {
     EX: Object.assign({}, valerie, {
         summary: Object.assign({}, valerie.summary, {
             name: <span>EX {valerie.summary.name}</span>,
-            fullName: <span>EX {valerie.summary.fullName}</span>,
+            edition: EX,
             maxCombo: 8,
             innateAbilities: [
                 {

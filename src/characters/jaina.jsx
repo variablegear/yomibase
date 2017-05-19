@@ -2,6 +2,7 @@ import React from 'react';
 import {Note, Recycles, Icon} from '../note.jsx';
 import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal, Block, Attack, overrideMoves} from '../move.jsx';
+import {EX, First} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.6, {
     chip: (rank) => '(' + rank + ')',
@@ -141,7 +142,7 @@ jaina.variants = {
     EX: Object.assign({}, jaina, {
         summary: Object.assign({}, jaina.summary, {
             name: <span>EX {jaina.summary.name}</span>,
-            fullName: <span>EX {jaina.summary.fullName}</span>,
+            edition: EX,
             innateAbilities: [
                 {
                     name: 'Overeager Vigor',
@@ -185,7 +186,7 @@ jaina.variants = {
     FirstEd: Object.assign({}, jaina, {
         summary: Object.assign({}, jaina.summary, {
             name: <span>1<sup>st</sup> Ed. {jaina.summary.name}</span>,
-            fullName: <span>1<sup>st</sup> Edition {jaina.summary.fullName}</span>,
+            edition: First,
             innateAbilities: [
                 {
                     name: 'Burning Vigor',

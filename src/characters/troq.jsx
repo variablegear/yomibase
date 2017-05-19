@@ -2,6 +2,7 @@ import React from 'react';
 import {Note, Icon} from '../note.jsx';
 import {CantCombo, Ender, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal, Block} from '../move.jsx';
+import {EX} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.8);
 
@@ -128,7 +129,7 @@ troq.variants = {
     EX: Object.assign({}, troq, {
         summary: Object.assign({}, troq.summary, {
             name: <span>EX {troq.summary.name}</span>,
-            fullName: <span>EX {troq.summary.fullName}</span>,
+            edition: EX,
             innateAbilities: [
                 {
                     name: 'Gargantuan Growth',

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Ender, Linker, Starter, CantCombo, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
+import {EX} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.8);
 
@@ -126,7 +127,7 @@ gloria.variants = {
     EX: Object.assign({}, gloria, {
         summary: Object.assign({}, gloria.summary, {
             name: <span>EX {gloria.summary.name}</span>,
-            fullName: <span>EX {gloria.summary.fullName}</span>,
+            edition: EX,
             innateAbilities: [
                 {
                     name: 'Potent Healing Touch',

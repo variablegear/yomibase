@@ -1,6 +1,7 @@
 import React from 'react';
 import {Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
+import {EX} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.4);
 
@@ -104,7 +105,7 @@ argagarg.variants = {
     EX: Object.assign({}, argagarg, {
         summary: Object.assign({}, argagarg.summary, {
             name: <span>EX {argagarg.summary.name}</span>,
-            fullName: <span>EX {argagarg.summary.fullName}</span>,
+            edition: EX,
             innateAbilities: [
                 {
                     name: 'Curse of Murkwood',

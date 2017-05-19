@@ -1,6 +1,7 @@
 import React from 'react';
 import {Ender, Linker, Starter, CantCombo, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
+import {EX, First} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.6);
 
@@ -112,7 +113,7 @@ grave.variants = {
     EX: Object.assign({}, grave, {
         summary: Object.assign({}, grave.summary, {
             name: <span>EX {grave.summary.name}</span>,
-            fullName: <span>EX {grave.summary.fullName}</span>,
+            edition: EX,
             innateAbilities: [
                 {
                     name: 'True Dragonheart',
@@ -148,7 +149,7 @@ grave.variants = {
     FirstEd: Object.assign({}, grave, {
         summary: Object.assign({}, grave.summary, {
             name: <span>1<sup>st</sup> Ed. {grave.summary.name}</span>,
-            fullName: <span>1<sup>st</sup> Edition {grave.summary.fullName}</span>,
+            edition: First,
             innateAbilities: [
                 {
                     name: 'Knowing the Opponent',

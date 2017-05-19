@@ -1,6 +1,7 @@
 import React from 'react';
 import {CantCombo, Ender, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
+import {EX} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.8);
 
@@ -106,7 +107,7 @@ quince.variants = {
     EX: Object.assign({}, quince, {
         summary: Object.assign({}, quince.summary, {
             name: <span>EX {quince.summary.name}</span>,
-            fullName: <span>EX {quince.summary.fullName}</span>,
+            edition: EX,
             innateAbilities: [
                 {
                     name: 'Positive Spin, Negative Spin',

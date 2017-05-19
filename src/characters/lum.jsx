@@ -2,6 +2,7 @@ import React from 'react';
 import {CantCombo, Ender, Linker, Starter} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
 import {rankValue} from '../rank.js';
+import {EX} from '../editions.jsx';
 
 const normalThrow = mkNormal(0.4, {
     pumpWith: '+X+X+X',
@@ -135,7 +136,7 @@ lum.variants = {
     EX: Object.assign({}, lum, {
         summary: Object.assign({}, lum.summary, {
             name: <span>EX {lum.summary.name}</span>,
-            fullName: <span>EX {lum.summary.fullName}</span>,
+            edition: EX,
             innateAbilities: [
                 {
                     name: 'Roll the Loaded Dice',

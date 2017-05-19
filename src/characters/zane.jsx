@@ -2,6 +2,7 @@ import React from 'react';
 import {CantCombo, Ender, Linker, ComboDetails, KD} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
 import {Note, Icon} from '../note.jsx';
+import {EX} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.3, {
     notes: <Speed1OnKD/>,
@@ -116,7 +117,7 @@ zane.variants = {
     EX: Object.assign({}, zane, {
         summary: Object.assign({}, zane.summary, {
             name: <span>EX {zane.summary.name}</span>,
-            fullName: <span>EX {zane.summary.fullName}</span>,
+            edition: EX,
             innateAbilities: [
                 {
                 name: 'More Shenanigans',
