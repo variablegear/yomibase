@@ -25,7 +25,7 @@ import {CharacterSummary, Title} from './summary.jsx';
 import {ComboDetails} from './combo.jsx';
 import {CardAbility} from './ability.jsx';
 import {rankValue} from './rank.js';
-import {DropdownSelectorRow, ImageSelectorRow} from './selector.jsx';
+import {DropdownCharacterSelectorRow, ImageSelectorRow, VariantSelectorRow} from './selector.jsx';
 import {Block, Attack, Throw} from './move.jsx';
 import {defaultLeftTheme, defaultRightTheme} from './themes.js';
 
@@ -44,7 +44,6 @@ function keyedSort(list, keyFn, reversed) {
 
 
 function EditLink(props) {
-    console.log(props);
     return (
         <Well>
             Found a bug, or have a suggestion about {props.char.summary.name}?
@@ -96,6 +95,26 @@ class YomiBase extends Component {
         const leftTheme = Object.assign(defaultLeftTheme, (leftCharacter || {}).theme);
         const rightTheme = Object.assign(defaultRightTheme, (rightCharacter || {}).theme);
 
+        const history = this.props.history;
+        const location = this.props.location;
+
+        function goToChars(leftChar, rightChar, leftVariant, rightVariant) {
+            const path = '/' + (leftChar || leftKey) + '/' + (rightChar || rightKey);
+            const search = QueryString.stringify({
+                vLeft: leftVariant || leftVariantKey,
+                vRight: rightVariant || rightVariantKey,
+            });
+            history.push(
+                Object.assign(
+                    location,
+                    {
+                        pathname: path,
+                        search: search,
+                    }
+                )
+            );
+        }
+
         return (
             <div className="base">
                 <Navbar staticTop componentClass="header" className="bs-docs-nav" role="banner">
@@ -108,44 +127,32 @@ class YomiBase extends Component {
                 </Navbar>
                 <Grid>
                     <ImageSelectorRow
-                        selectLeft={(char) => this.props.history.push('/' + char + '/' + (rightKey || 'none'))}
-                        selectRight={(char) => this.props.history.push('/' + leftKey + '/' + char)}
-                        resetLeft={() => this.props.history.push('/none/' + rightKey)}
-                        resetRight={() => this.props.history.push('/' + leftKey)}
+                        selectLeft={(char) => goToChars(char, null)}
+                        selectRight={(char) => goToChars(null, char)}
+                        resetLeft={() => goToChars('none', null)}
+                        resetRight={() => goToChars(null, 'none')}
                         characters={characters}
                         left={leftKey}
                         right={rightKey}
                     />
-                    <DropdownSelectorRow
+                    <DropdownCharacterSelectorRow
                         smHidden mdHidden lgHidden
-                        selectLeft={(char) => this.props.history.push('/' + char + '/' + (rightKey || 'none'))}
-                        selectRight={(char) => this.props.history.push('/' + leftKey + '/' + char)}
-                        resetLeft={() => this.props.history.push('/')}
-                        resetRight={() => this.props.history.push('/' + leftKey)}
+                        selectLeft={(char) => goToChars(char, null)}
+                        selectRight={(char) => goToChars(null, char)}
+                        resetLeft={() => goToChars('none', null)}
+                        resetRight={() => goToChars(null, 'none')}
                         characters={characters}
                         left={leftKey}
                         right={rightKey}
                     />
-                    <DropdownSelectorRow
-                        selectLeft={(variant) => this.props.history.push(
-                            Object.assign(
-                                this.props.location,
-                                {search: QueryString.stringify({vLeft: variant, vRight: rightVariantKey})}
-                            )
-                        )}
-                        selectRight={(variant) => this.props.history.push(
-                            Object.assign(
-                                this.props.location,
-                                {search: QueryString.stringify({vLeft: leftVariantKey, vRight: variant})}
-                            )
-                        )}
-                        resetLeft={() => this.props.history.push('/')}
-                        resetRight={() => this.props.history.push('/' + leftKey)}
-                        leftCharacters={leftBase && Object.assign((leftBase || {}).variants || {}, {'none': leftBase})}
-                        rightCharacters={rightBase && Object.assign((rightBase || {}).variants || {}, {'none': rightBase})}
-                        left={leftVariantKey}
-                        right={rightVariantKey}
-                    />
+                    {(leftKey || rightKey) && <VariantSelectorRow
+                        selectLeft={(charKey, variantKey) => goToChars(charKey, null, variantKey, null)}
+                        selectRight={(charKey, variantKey) => goToChars(null, charKey, null, variantKey)}
+                        leftCharKey={leftKey}
+                        leftVariantKey={leftVariantKey}
+                        rightCharKey={rightKey}
+                        rightVariantKey={rightVariantKey}
+                    />}
                     <FlexRow>
                         {(leftCharacter) &&
                             <SummaryCol md={6} theme={leftTheme}>

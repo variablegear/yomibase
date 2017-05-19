@@ -182,7 +182,7 @@ export function ImageSelectorRow(props) {
     );
 }
 
-export function DropDownSelector(props) {
+function DropDownCharacterSelector(props) {
     if (props.characters == null) {
         return null;
     }
@@ -210,12 +210,12 @@ export function DropDownSelector(props) {
     );
 }
 
-export function DropdownSelectorRow(props) {
+export function DropdownCharacterSelectorRow(props) {
     return (
         <SelectorRow>
             <Row>
                 <Col md={12} {...props}>
-                    <DropDownSelector
+                    <DropDownCharacterSelector
                         onSelect={props.selectLeft}
                         characters={props.leftCharacters || props.characters}
                         current={props.left}
@@ -224,7 +224,7 @@ export function DropdownSelectorRow(props) {
                         onReset={props.resetLeft}
                     />
                     <span style={{ float: 'right' }}>
-                        <DropDownSelector
+                        <DropDownCharacterSelector
                             style={{ float: 'right' }}
                             onSelect={props.selectRight}
                             characters={props.rightCharacters || props.characters}
@@ -233,6 +233,100 @@ export function DropdownSelectorRow(props) {
                             slot='right'
                             default={props.rightDefault || 'Match up against...'}
                             onReset={props.resetRight}
+                        />
+                    </span>
+                </Col>
+            </Row>
+        </SelectorRow>
+    );
+}
+
+
+function VariantSelector(props) {
+    const leftChar = characters[props.leftCharKey];
+    const rightChar = characters[props.rightCharKey];
+    const current = props.slot == 'left' ? (
+        leftChar && leftChar.variants[props.leftVariantKey] || leftChar
+    ) : (
+        rightChar && rightChar.variants[props.rightVariantKey] || rightChar
+    );
+
+    function variantItems(char, charKey, disabledKey) {
+        return [
+            <MenuItem header key={char.summary.name + '-header'}>
+                {char.summary.name}
+            </MenuItem>,
+            <MenuItem
+                key={char.summary.name + '-primary'}
+                onSelect={() => props.onSelect(charKey, 'none')}
+                disabled={disabledKey == 'none'}
+            >
+                {char.summary.name}
+            </MenuItem>
+        ].concat(Object.entries(char.variants).map(([key, variant]) => (
+            <MenuItem
+                key={char.summary.name + key}
+                onSelect={() => props.onSelect(charKey, key)}
+                disabled={key == disabledKey}
+            >
+                {variant.summary.name}
+            </MenuItem>
+        )));
+    }
+    var leftItems, rightItems;
+
+    if (props.slot == 'right' || props.leftCharKey != props.rightCharKey) {
+        leftItems = variantItems(
+            leftChar,
+            props.leftCharKey,
+            props.slot == 'right' && props.leftVariantKey
+        );
+    } else {
+        leftItems = [];
+    }
+
+    if (props.slot == 'left' || props.leftCharKey != props.rightCharKey) {
+        rightItems = variantItems(
+            rightChar,
+            props.rightCharKey,
+            props.slot == 'left' && props.rightVariantKey
+        );
+    } else {
+        rightItems = [];
+    }
+
+    return (
+        <DropdownButton
+            title={(current && current.summary.name) || "Select mirror matchup..."}
+            id={props.slot + '-variant-selector'}
+        >{
+            leftItems.concat(rightItems)
+        }</DropdownButton>
+    );
+}
+
+export function VariantSelectorRow(props) {
+    return (
+        <SelectorRow>
+            <Row>
+                <Col md={12} {...props}>
+                    <VariantSelector
+                        onSelect={props.selectLeft}
+                        leftCharKey={props.leftCharKey}
+                        leftVariantKey={props.leftVariantKey}
+                        rightCharKey={props.rightCharKey}
+                        rightVariantKey={props.rightVariantKey}
+                        slot='left'
+                    />
+                    <span style={{ float: 'right' }}>
+                        <VariantSelector
+                            style={{ float: 'right' }}
+                            onSelect={props.selectRight}
+                            leftCharKey={props.leftCharKey}
+                            leftVariantKey={props.leftVariantKey}
+                            rightCharKey={props.rightCharKey}
+                            rightVariantKey={props.rightVariantKey}
+                            slot='right'
                         />
                     </span>
                 </Col>
