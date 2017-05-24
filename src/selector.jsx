@@ -275,7 +275,7 @@ function VariantSelector(props) {
     }
     var leftItems, rightItems;
 
-    if (props.slot == 'right' || props.leftCharKey != props.rightCharKey) {
+    if (leftChar && (props.slot == 'right' || props.leftCharKey != props.rightCharKey)) {
         leftItems = variantItems(
             leftChar,
             props.leftCharKey,
@@ -285,7 +285,7 @@ function VariantSelector(props) {
         leftItems = [];
     }
 
-    if (props.slot == 'left' || props.leftCharKey != props.rightCharKey) {
+    if (rightChar && (props.slot == 'left' || props.leftCharKey != props.rightCharKey)) {
         rightItems = variantItems(
             rightChar,
             props.rightCharKey,
@@ -295,14 +295,18 @@ function VariantSelector(props) {
         rightItems = [];
     }
 
-    return (
-        <DropdownButton
-            title={(current && current.summary.name) || "Select mirror matchup..."}
-            id={props.slot + '-variant-selector'}
-        >{
-            leftItems.concat(rightItems)
-        }</DropdownButton>
-    );
+    if (leftItems.length > 0 || rightItems.length > 0) {
+        return (
+            <DropdownButton
+                title={(current && current.summary.name) || 'Select mirror matchup...'}
+                id={props.slot + '-variant-selector'}
+            >{
+                leftItems.concat(rightItems)
+            }</DropdownButton>
+        );
+    } else {
+        return null;
+    }
 }
 
 export function VariantSelectorRow(props) {
