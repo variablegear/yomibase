@@ -156,6 +156,7 @@ valerie.variants = {
     
     FirstEd: Object.assign({}, valerie, {
         summary: Object.assign({}, valerie.summary, {
+            name: <span>1<sup>st</sup> Ed. {valerie.summary.name}</span>,
             edition: First,
             innateAbilities: [
                 {
