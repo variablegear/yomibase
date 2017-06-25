@@ -51,8 +51,8 @@ export const geiger = {
                 name: 'Temporal Distortion',
                 timing: 'Draw Phase',
                 text: <span>
-                    Fetch a Jack or Queen from your discard pile.<br>
-                    <b>Ongoing.</b> Your Time Spirals are 0 combo point Linkers that
+                    Fetch a Jack or Queen from your discard pile. <b>Ongoing.</b>
+                    Your Time Spirals are 0 combo point Linkers that
                     do +1 damage each and are immune to Rewind Time Jokers.
                     Discard this card when you get hit by an attack or throw.
                 </span>
@@ -63,7 +63,7 @@ export const geiger = {
                 timing: 'Draw Phase',
                 text: <span>
                     Look at the top X cards of your deck, put one in your hand,
-                    then put the rest back on top of your deck in any order.<br>
+                    then put the rest back on top of your deck in any order.
                     X is the number of Time Spiral cards in your discard pile.
                 </span>
             },
@@ -125,7 +125,7 @@ geiger.variants = {
                         Spiral, they can't activate innate abilities from blocking,
                         and you may throw them. <i>(Play a throw card from your
                         hand and continue your combo if you want. The opponent
-                        doesn't draw a card from blocking if you throw them.)</i><br>
+                        doesn't draw a card from blocking if you throw them.)</i>
                         At the end of combat, you may fetch a Jack or Queen
                         from your discard pile.
                     </span>
