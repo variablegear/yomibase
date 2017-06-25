@@ -1,7 +1,7 @@
 import React from 'react';
 import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
-import {EX} from '../editions.jsx';
+import {EX, First} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.4);
 
