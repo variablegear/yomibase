@@ -42,6 +42,7 @@ export const valerie = {
                         as chain combos for you and let you search for Aces during the Power Up phase.)',
             },
         ],
+        // quote: "Some would have me apologize for my passions, but I see the world a bit differently."
         cardAbilities: [
             {
                 rank: 7,
@@ -151,5 +152,55 @@ valerie.variants = {
                 comboPts: 2, comboType: <Starter/>, kd: true,
             },
         ]),
+    }),
+    
+    FirstEd: Object.assign({}, valerie, {
+        summary: Object.assign({}, valerie.summary, {
+            edition: First,
+            innateAbilities: [
+                {
+                    name: 'Agile Hands',
+                    text: <span>
+                        You can combo normal attacks in any order. This ability
+                        can not be countered. <i>(Out-of-order chain combos still
+                        let you search for Aces during the Power Up phase.)</i>
+                    </span>
+                },
+            ],
+            // quote: "I can love whoever I want in Rook's Land of Do-As-You-Please."
+            cardAbilities: [
+                {
+                    rank: 7,
+                    name: 'Bold Strokes',
+                    timing: null,
+                    text: <span>
+                        After combat cards are revealed, you may discard this card to
+                        give your normal attacks +1 damage each this turn. Draw a card.
+                    </span>
+                },
+                {
+                    rank: 'T',
+                    name: 'Burst of Speed',
+                    timing: null,
+                    text: <span>
+                        After combat cards are revealed, you may discard this card to
+                        make your attack or throw 2 speed faster. <i>(You may discard more
+                        than one 10 to stack this effect. 0 is the fastest possible speed.)</i>
+                    </span>
+                },
+                {
+                    rank: 'A',
+                    name: 'Unbounded Creativity',
+                    timing: null,
+                    text: 'When you hit the opponent with an Ace attack, draw a card.',
+                },
+                {
+                    rank: 'AA',
+                    name: 'Unbounded Creativity',
+                    timing: null,
+                    text: 'When you hit the opponent with an Ace attack, draw a card.',
+                },
+            ],
+        }),
     }),
 };
