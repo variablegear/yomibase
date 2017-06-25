@@ -2,7 +2,7 @@ import React from 'react';
 import {Note, Recycles, Icon} from '../note.jsx';
 import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal, Block, Attack, overrideMoves} from '../move.jsx';
-import {EX, FirstEd} from '../editions.jsx';
+import {EX, First} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.6, {
     chip: (rank) => '(' + rank + ')',
