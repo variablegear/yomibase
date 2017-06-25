@@ -38,21 +38,24 @@ export const geiger = {
         innateAbilities: [
             {
                 name: 'Time Stop',
-                text: 'If your opponent takes block damage from a Time Spiral, they \
-                       can\'t activate innate abilities from blocking, and \
-                       you may throw them. (Play a throw card from your hand and continue \
-                       your combo if you want. The opponent doesn\'t draw a card from \
-                       blocking if you throw them.)',
+                text: <span>
+                    If your opponent takes block damage from a Time
+                    Spiral, they can't activate innate abilities from blocking,
+                    and you may throw them. <i>(Play a throw card from your
+                    hand and continue your combo if you want. The opponent
+                    doesn't draw a card from blocking if you throw them.)</i>
+                </span>
             },
         ],
+        // quote: "Once time is lost, you can't get it back...or can you?"
         cardAbilities: [
             {
                 rank: 4,
                 name: 'Temporal Distortion',
                 timing: 'Draw Phase',
                 text: <span>
-                    Fetch a Jack or Queen from your discard pile. <b>Ongoing.</b>
-                    Your Time Spirals are 0 combo point Linkers that
+                    Fetch a Jack or Queen from your discard pile. <b>Ongoing.</b> Your
+                    Time Spirals are 0 combo point Linkers that
                     do +1 damage each and are immune to Rewind Time Jokers.
                     Discard this card when you get hit by an attack or throw.
                 </span>
