@@ -38,34 +38,43 @@ export const argagarg = {
         innateAbilities: [
             {
                 name: 'Hex of Murkwood',
-                text: "At the end of each turn, if you weren't knocked down this turn, the opponent takes 2 damage.",
+                text: <span>
+                    At the end of each turn that you weren't knocked down,
+                    the opponent takes 2 damage.
+                </span>
             },
         ],
+        // flavor: "Savages? We have more heart than other races... and usually less temper."
         cardAbilities: [
             {
                 rank: 7,
                 name: 'Protective Ward',
                 timing: 'Combat Reveal',
-                text: "Draw a card. This turn, the opponent's attacks and throws are Enders \
-                       that can't be pumped (or tag comboed from in 2v2).",
+                text: <span>
+                    Draw a card. This turn, the opponent's attacks and throws
+                    are Enders that can't be pumped <i>(or tag comboed from in 2v2)</i>.
+                </span>
             },
             {
                 rank: 'T',
                 name: 'Crash and Flow',
                 timing: 'Reaction',
-                text: "Counter an ability. The opponent who played it draws a card. If it was \
-                       played from hand, put it on the bottom of their deck. (Prevent and undo \
-                       the ability and the opponent discards the card if played from hand. You \
-                       can't counter Aces, Jokers or character cards.)",
+                text: <span>
+                    Counter an ability and that player draws a card. If it was played
+                    from hand, put it on the bottom of their deck. <i>(Prevent and undo
+                    the ability. You can't counter Aces, Jokers or character cards.)</i>
+                </span>
             },
             {
                 rank: 'A',
                 name: 'Bubble Shield',
                 timing: 'During Combat',
-                text: "If this blocks an attack or Joker, draw a card and this gets: Ongoing. \
-                       Your Hex of Murkwood deals an extra 2 damage per turn. When you get hit \
-                       with an attack or throw, take no damage, end combat and discard this.",
-
+                text: <span>
+                    If this blocks an attack or Joker, draw a card and this gets: <b>Ongoing.</b>
+                    Your Hex of Murkwood deals an extra 2 damage per turn.
+                    When you get hit with an attack or throw, take no damage,
+                    end combat and discard this.
+                </span>
             }
         ],
     },
@@ -111,8 +120,8 @@ argagarg.variants = {
                     name: 'Curse of Murkwood',
                     text: <span>
                         At the end of each turn you weren't knocked down,
-                        the opponent takes 5 damage.
-                        (This can be boosted by Bubble Shield.)
+                        the opponent takes 5 damage. <i>(This can be
+                        boosted by Bubble Shield.)</i>
                     </span>
                 },
             ],
@@ -123,7 +132,7 @@ argagarg.variants = {
                     timing: 'During Combat',
                     text: <span>
                         If this deals damage or block damage, players can't
-                        throw next turn. (Throws will do nothing and be discarded.)
+                        throw next turn. <i>(Throws will do nothing and be discarded.)</i>
                     </span>
                 },
             ]),
@@ -135,5 +144,57 @@ argagarg.variants = {
                 comboPts: 1, comboType: <Ender/>
             },
         ]),
+        FirstEd: Object.assign({}, argagarg, {
+        summary: Object.assign({}, argagarg.summary, {
+            edition: First,
+            innateAbilities: [
+                {
+                    name: 'Hex of Murkwood',
+                    text: <span>
+                        At the end of each turn, if you weren't knocked down this turn,
+                        the opponent takes 2 damage.
+                    </span>
+                },
+            ],
+            cardAbilities:[
+                {
+                    rank: 7,
+                    name: 'Protective Ward',
+                    timing: null,
+                    text: <span>
+                        After the draw phase, you may discard this card to prevent
+                        the opponent from playing multi-hit combos this turn.
+                        Draw a card. <i>(Any attack of throw they perform becomes
+                        an Ender.)</i>
+                    </span>
+                },
+                {
+                    rank: 'T',
+                    name: 'Crash and Flow',
+                    timing: null,
+                    text: <span>
+                        Discard this card to counter the effect of any ability
+                        other than those on Aces, Jokers, or character cards,
+                        then the opponent draws a card. <i>(Play this after the opponent
+                        spends any activation costs, then prevent and undo that entire
+                        ability. The opponent discards the ability card if it was played
+                        from his hand.)</i>
+                    </span>
+                },
+                {
+                    rank: 'A',
+                    name: 'Bubble Shield',
+                    timing: null,
+                    text: <span>
+                        If you block an attack or Joker with Bubble Shield, draw
+                        a card and attach Bubble Shield to your character card.
+                        While it's attached, your Hex of Murkwood deals an extra
+                        2 damage per turn. The next time you get hit with an
+                        attack or throw, take zero damage that combat and put
+                        this card in your discard pile.
+                    </span>
+                }
+            ],
+        }),
     }),
 };
