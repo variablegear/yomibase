@@ -147,6 +147,7 @@ argagarg.variants = {
     }),
     FirstEd: Object.assign({}, argagarg, {
         summary: Object.assign({}, argagarg.summary, {
+            name: <span>1<sup>st</sup> Ed. {argagarg.summary.name}</span>,
             edition: First,
             innateAbilities: [
                 {
@@ -165,7 +166,7 @@ argagarg.variants = {
                     text: <span>
                         After the draw phase, you may discard this card to prevent
                         the opponent from playing multi-hit combos this turn.
-                        Draw a card. <i>(Any attack of throw they perform becomes
+                        Draw a card. <i>(Any attack or throw they perform becomes
                         an Ender.)</i>
                     </span>
                 },
