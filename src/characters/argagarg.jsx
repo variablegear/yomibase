@@ -144,7 +144,7 @@ argagarg.variants = {
                 comboPts: 1, comboType: <Ender/>
             },
         ]),
-    ]}),
+    }),
     FirstEd: Object.assign({}, argagarg, {
         summary: Object.assign({}, argagarg.summary, {
             edition: First,
