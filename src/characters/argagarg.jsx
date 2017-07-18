@@ -1,7 +1,7 @@
 import React from 'react';
 import {Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
-import {EX} from '../editions.jsx';
+import {EX, First} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.4);
 
@@ -144,7 +144,8 @@ argagarg.variants = {
                 comboPts: 1, comboType: <Ender/>
             },
         ]),
-        FirstEd: Object.assign({}, argagarg, {
+    ]}),
+    FirstEd: Object.assign({}, argagarg, {
         summary: Object.assign({}, argagarg.summary, {
             edition: First,
             innateAbilities: [
@@ -193,7 +194,7 @@ argagarg.variants = {
                         attack or throw, take zero damage that combat and put
                         this card in your discard pile.
                     </span>
-                }
+                },
             ],
         }),
     }),
