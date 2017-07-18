@@ -3,9 +3,10 @@ import {Note, Recycles, Icon} from '../note.jsx';
 import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal, Block, Attack, overrideMoves} from '../move.jsx';
 import {EX, First} from '../editions.jsx';
+import {rankValue} from '../rank.js';
 
 const normalAttack = mkNormal(0.6, {
-    chip: (rank) => '(' + rank + ')',
+    chip: (rank) => '(' + (rankValue(rank) - 1) + ')',
     notes: (rank) => <Note
         text="Chip damage on *red* normals only"
         icon={
