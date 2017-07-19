@@ -298,7 +298,7 @@ lum.variants = {
     }),
     FirstEd: Object.assign({}, lum, {
         summary: Object.assign({}, lum.summary, {
-            name: <span>1<st> Ed. {lum.summary.name}</span>,
+            name: <span>1<sup>st</sup> Ed. {lum.summary.name}</span>,
             innateAbilities: [
                 {
                     name: 'Roll the Dice',
