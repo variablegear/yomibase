@@ -39,21 +39,22 @@ export const gloria = {
             {
                 name: 'Healing Touch',
                 text: <span>
-                    After the power up phase, if you aren't knocked down, you may discard
-                    two non-Hearts cards to gain 4 life and fetch a Hearts card from your discard
-                    pile.
+                    After the power up phase, if you aren't knocked down,
+                    you may discard two non-Hearts cards to gain 4 life and
+                    fetch a Hearts card from your discard pile.
                 </span>
             },
         ],
+        // quote: "Things will turn out well if we keep a positive attitude."
         cardAbilities: [
             {
                 rank: 'T',
                 name: 'Healing Sphere',
                 timing: 'Draw Phase',
                 text: <div>
-                    Ongoing. At the end of each turn:
+                    <b>Ongoing.</b> At the end of each turn:
                     <ul>
-                        <li>Draw a card if you healed (even if you were at max life).</li>
+                        <li>Draw a card if you healed <i>(even if you were at max life).</i></li>
                         <li>Discard this if you didn't heal or were thrown this turn.</li>
                     </ul>
                 </div>
@@ -62,15 +63,19 @@ export const gloria = {
                 rank: 'J',
                 name: 'Bathed in Moonlight',
                 timing: 'End of Combat',
-                text: 'When you hit with this attack, you may heal yourself and the \
-                opponent for 4 life. If you do, return this card to your hand.',
+                text: <span>
+                    If you hit with either side of this Jack, you may return it to
+                    your hand to heal yourself and the opponent for 4 life.
+                </span>
             },
             {
                 rank: 'A',
                 name: 'Overdose',
                 timing: 'End of Combat',
-                text: 'Both players take 10 damage (you first). If you won combat, draw \
-                2 cards. Play only one Overdose per turn.',
+                text: <span>
+                    Both players take 10 damage (you first). If you won combat,
+                    draw 2 cards. Play only one Overdose per turn.
+                </span>
             },
         ],
     },
@@ -102,7 +107,7 @@ export const gloria = {
         {
             speed: 2.0, rank: 'AA', name: 'Twilight Key', damage: 18, chip: 2,
             comboPts: 2, comboType: <Linker/>,
-            maxCombo: 'AA>5>6', maxDamage: 29, goodCombo: 'AA>4>5', goodDamage: 27,
+            maxCombo: 'AA>AA', maxDamage: 36, goodCombo: 'AA>5>6', goodDamage: 29,
         },
         {
             speed: 0.6, rank: 'AAA', name: 'Sun and Moon', damage: 29, chip: 2,
@@ -138,6 +143,7 @@ gloria.variants = {
                     </span>
                 },
             ],
+            // quote: "It's fun to practice fighting when I can heal us both."
             cardAbilities: gloria.summary.cardAbilities.concat([
                 {
                     rank: 'D',
@@ -157,7 +163,8 @@ gloria.variants = {
             },
             {
                 speed: 4.0, rank: 'D', pumpWith: '+x+x+x', name: 'Perigee Globe',
-                damage: 6, pump: 4, chip: 4, comboPts: 2, comboType: <Starter/>
+                damage: 6, pump: 4, chip: 4, comboPts: 2, comboType: <Starter/>,
+                maxCombo: 'D+++>AA', maxDamage: 36, goodCombo: 'D+++>5>6', goodDamage: 29
             },
         ]),
     }),
