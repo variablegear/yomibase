@@ -53,23 +53,29 @@ export const grave = {
                 rank: 7,
                 name: 'Martial Mastery',
                 timing: 'Draw Phase',
-                text: 'Draw 2 cards, then discard a card, then the opponent reveals his hand.',
+                text: <span>
+                    Draw 2 cards, then discard a card,
+                    then the opponent reveals their hand.
+                </span>
             },
             {
                 rank: 'T',
                 name: 'Mental Toughness',
                 timing: 'Reaction',
-                text: <span>Discard a face card (and this card) to counter an ability. <i>(Prevent
-                    and undo the ability and the opponent discards the card if played from hand.
-                    You can't counter Aces, Jokers or character cards).</i>
+                text: <span>
+                    Discard a face card (and this card) to counter an ability. <i>(Prevent
+                    and undo the ability and the opponent discards the card if
+                    played from hand. You can't counter Aces, Jokers or character cards).</i>
                 </span>
             },
             {
                 rank: 'J',
                 name: 'Lightning Trap',
                 timing: 'During Combat',
-                text: 'When you deal block damage with Lightning Cloud, return this card \
-                       to your hand and the opponent doesn\'t draw a card from blocking.',
+                text: <span>
+                    When you deal block damage with this card, return it to your
+                    hand and the opponent doesn't draw a card from blocking.
+                </span>
             },
         ],
     },
@@ -118,9 +124,10 @@ grave.variants = {
                 {
                     name: 'True Dragonheart',
                     text: <span>
-                        Whenever you win combat, you may fetch a Queen from your discard pile.
-                        Your Queen can combo into True Power of Storms, but your super does only
-                        30 damage when you do.
+                        Whenever you win combat, you may fetch a Queen from
+                        your discard pile. Your Queen can combo into True Power
+                        of Storms, but your super does only 30 damage when
+                        you do.
                     </span>
                 },
             ],
@@ -168,8 +175,10 @@ grave.variants = {
                     rank: 7,
                     name: 'Martial Mastery',
                     timing: null,
-                    text: 'After the draw phase, you may discard this card to draw 2 cards, \
-                           then discard a card, then the opponent reveals his hand.',
+                    text: <span>
+                        After the draw phase, you may discard this card to draw 2 cards,
+                        then discard a card, then the opponent reveals his hand.
+                    </span>
                 },
                 {
                     rank: 'T',
@@ -186,8 +195,10 @@ grave.variants = {
                     rank: 'J',
                     name: 'Lightning Trap',
                     timing: null,
-                    text: 'When you deal block damage with Lightning Cloud, return this card \
-                           to your hand and the opponent doesn\'t draw a card from blocking.',
+                    text: <span>
+                        When you deal block damage with Lightning Cloud, return this card
+                        to your hand and the opponent doesn't draw a card from blocking.
+                    </span>
                 },
             ],
         }),
