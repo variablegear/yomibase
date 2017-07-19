@@ -38,30 +38,35 @@ export const menelker = {
             {
                 name: 'Bleeding Wounds',
                 text: <div>
-                    When you hit the opponent with a black face card attack (even multiple times in a
-                    combo), draw a card and they discard a card. (Aces are not face cards.) During the
-                    powerup phase, you may power up for black face cards. (You may still power up for
-                    Aces, too.)
+                    Whenver you hit the opponent with a black face card
+                    attack (even multiple times in a combo), draw a card
+                    and they discard a card. <i>(Aces are not face cards.)</i> During
+                    the powerup phase, you may power up for black
+                    face cards. <i>(You may still power up for Aces, too.)</i>
                 </div>,
             },
         ],
+        // quote: "You'll be sorry you held yourself back from 'taboo tactics' when you're fighting for your life."
         cardAbilities: [
             {
                 rank: 7,
                 name: 'Bonecracker',
                 timing: 'During Combat',
-                text: 'When you throw the opponent with this card, the opponent reveals their hand and discards a card of your choice.',
+                text: <span>
+                    When you throw the opponent with this card,
+                    they reveal their hand and discard a card of your choice.
+                </span>
             },
             {
                 rank: 'T',
                 name: 'Into Oblivion',
                 timing: 'Draw Phase',
-                text: <div>
-                    Banish a card from the opponent's discard pile from the game. They
-                    must then banish another card of that same rank from their hand or
-                    from their deck. (They shuffle their deck afterwards. Banished cards
-                    are removed from the game.)
-                </div>,
+                text: <span>
+                    Banish a card from the opponent's discard pile. They must
+                    then banish another card of that same rank from their hand
+                    or their deck. <i>(They shuffle their deck afterwards. Banished cards
+                    are removed from the game.)</i>
+                </span>,
             },
         ],
     },
@@ -118,25 +123,28 @@ const EX = Object.assign({}, menelker, {
                 text: <span>
                     When you hit the opponent with a face card attack
                     (even multiple times in a combo), draw a card and they
-                    discard a card. (Aces are not face cards.)
-                    During the powerup phase, you may power up for any
+                    discard a card. <i>(Aces are not face cards.)</i> During
+                    the powerup phase, you may power up for any
                     non-Joker cards from your discard pile.
                 </span>
             },
         ],
+        // quote: "I'll show you some 'taboo tactics,' but you'll only get one look.
         cardAbilities: menelker.summary.cardAbilities.concat([
             {
                 rank: 'D',
                 name: 'Aerial Nether Orb',
                 timing: 'During Combat',
-                text: "If the opponent dodges this, they can't follow up."},
+                text: "If the opponent dodges this, they can't follow up."
+            },
         ]),
         attacks: menelker.summary.attacks.concat(['D']),
     }),
     attacks: menelker.attacks.concat([
         {
             speed: 2.4, rank: 'D', name: 'Aerial Nether Orb', damage: 8, chip: 2,
-            comboPts: 1, comboType: <Starter/>
+            comboPts: 1, comboType: <Starter/>,
+            maxCombo: 'D>K++>A+', maxDamage: 46, goodCombo: 'D>3>4>5>6', goodDamage: 26
         },
     ]),
 });
@@ -165,6 +173,7 @@ const DSD = Object.assign({}, EX, {
                 </span>
             },
         ],
+        // quote: "This is the first and last time you'll experience my full power."
     }),
 });
 
