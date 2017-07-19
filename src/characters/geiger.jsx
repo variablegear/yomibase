@@ -66,7 +66,7 @@ export const geiger = {
                 timing: 'Draw Phase',
                 text: <span>
                     Look at the top X cards of your deck, put one in your hand,
-                    then put the rest back on top of your deck in any order.
+                    then put the rest on top of your deck in any order.
                     X is the number of Time Spiral cards in your discard pile.
                 </span>
             },
@@ -153,7 +153,8 @@ geiger.variants = {
         attacks: geiger.attacks.concat([
             {
                 speed: 3.4, rank: 'D', name: 'Ripsaw Gear', damage: 9, chip: 2,
-                comboPts: 1, comboType: <Starter/>
+                comboPts: 1, comboType: <Starter/>,
+                maxCombo: 'D>AA', maxDamage: 29, goodCombo: 'D>Q>K', goodDamage: 25
             },
         ]),
     }),
