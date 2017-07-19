@@ -43,28 +43,34 @@ export const gwen = {
             },
             {
                 name: 'Relentless Strikes',
-                text: 'Whenever the opponent normal blocks your non-Ender attack, you \
-                       may discard a red and a black normal attack. If you do, the black \
-                       one hits, you win combat (and it ends), the opponent\'s block is \
-                       discarded, and they draw a card.',
+                text: <span>
+                    Whenever the opponent normal blocks your non-Ender attack, you
+                    may discard a red and a black normal attack. If you do, the
+                    black one hits, you win combat (and it ends), the opponent's
+                    block is discarded, and they draw a card.
+                </span>
             },
         ],
         cardAbilities: [
             {
                 rank: 'T',
-                name: 'Gloria\'s Remedy',
+                name: "Gloria's Remedy",
                 timing: 'During Combat',
-                text: 'When you block an attack or Joker with this card, take no block \
-                       damage, discard this card, and don\'t draw a card from blocking. \
-                       Gain 6 life.',
+                text: <span>
+                    When you block an attack or Joker with this card, take no
+                    block damage, discard this card, and don't draw a card from
+                    blocking. Gain 6 life.
+                </span>
             },
             {
                 rank: 'J',
                 name: 'Chillbane',
                 timing: 'During Combat',
-                text: 'When you hit with Chains of Ice, freeze the opponent (they skip all \
-                       decisions they would make the rest of the turn). Next turn, their \
-                       attacks and throws are 2 speed slower.',
+                text: <span>
+                    When you hit with Chains of Ice, freeze the opponent <i>(they
+                    skip all decisions they would make the rest of the turn).</i> Next
+                    turn, their attacks and throws are 2 speed slower.
+                </span>
             },
         ],
     },
@@ -80,7 +86,7 @@ export const gwen = {
             comboPts: 2, comboType: <Starter/>,
             maxCombo: 'J+>K++>A+', maxDamage: 42, goodCombo: 'J+>3>4>5>6', goodDamage: 32,
             notes: <Note
-                text="Unburstable due to Chillbane"
+                text="Chillbane prevents Rewind Time Jokers"
                 icon={<Icon><strike>{'\uD83D\uDCA5'}</strike></Icon>}
             />,
         },
@@ -124,14 +130,14 @@ gwen.variants = {
             innateAbilities: [
                 {
                     name: 'Shadow Malady',
-                    text: 'During the draw phase, draw two extra cards and take 2 damage.',
+                    text: <span>During the draw phase, draw two extra cards and take 2 damage.</span>
                 },
                 {
                     name: 'Frenzied Strikes',
                     text: <span>
-                        Whenever the opponent would normal block your non-Ender
-                        attack, you may discard a red and a black normal attack. If you
-                        do, they both hit, you win combat (and it ends), the opponent's
+                        Whenever the opponent normal blocks your non-Ender attack,
+                        you may discard a red and a black normal attack. If you do,
+                        they both hit, you win combat (and it ends), the opponent's
                         block is discarded, and they draw a card.
                     </span>
                 },
@@ -152,7 +158,8 @@ gwen.variants = {
         attacks: gwen.attacks.concat([
             {
                 speed: 0.2, rank: 'D', name: 'Desperate Strike', damage: 9, chip: 3,
-                comboPts: 2, comboType: <Starter/>
+                comboPts: 2, comboType: <Starter/>,
+                maxCombo: 'D>K++>A+', maxDamage: 37, goodCombo: 'D>3>4>5>6', goodDamage: 27
             },
         ]),
     }),
