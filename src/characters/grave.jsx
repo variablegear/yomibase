@@ -149,6 +149,7 @@ grave.variants = {
             {
                 speed: 2.0, rank: 'D', name: 'Rapid Poke', pumpWith: '+X+X',
                 damage: 4, pump: 4, chip: 1, comboPts: 1, comboType: <Linker/>,
+                maxCombo: 'D++>AAA', maxDamage: '57', goodCombo: 'D++>4>5>6', goodDamage: 27
             },
         ]),
     }),
