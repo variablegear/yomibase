@@ -78,16 +78,22 @@ export const jaina = {
                 rank: 7,
                 name: 'Unstable Power',
                 timing: 'Draw Phase',
-                text: 'Knocked down opponents stand up. You can\'t play Aces this turn, but you can \
-                       rotate your combat-revealed attack 180 degrees. If you hit the opponent this \
-                       combat, search your deck or discard pile for 2 Aces. Otherwise, take 7 damage.',
+                text: <span>
+                    Knocked down opponents stand up. You can't play Aces this
+                    turn, but you can rotate your combat-revealed attack 180
+                    degrees. If you hit the opponent this combat, search your
+                    deck or discard pile for 2 Aces. Otherwise, take 7 damage.
+                </span>
             },
             {
                 rank: 'T',
                 name: 'Smoldering Embers',
                 timing: 'Combat Reveal',
-                text: 'If the opponent dodged while this card is in your discard pile, they take two \
-                       damage. You can\'t power up with this card. (It\'s too hot.)',
+                text: <span>
+                    Whenever the opponent dodges while this card is in your
+                    discard pile, they take 2 damage.
+                    You can't power up with this card. <i>(It's too hot.)</i>
+                </span>
             },
         ],
     },
@@ -223,7 +229,8 @@ jaina.variants = {
             ],
         }),
         attacks: overrideMoves(jaina.attacks, [
-            {rank: 'J', name: 'Charged Shot', comboType: <CantCombo/>},
+            {rank: 'J', name: 'Charged Shot', speed: 8.6, comboType: <CantCombo/>, comboPts: null,
+             maxCombo: null, maxDamage: null, goodCombo: null, goodDamage: null},
             {rank: 2, chip: '(3)'},
             {rank: 3, chip: '(3)'},
             {rank: 4, chip: '(3)'},
