@@ -48,9 +48,11 @@ export const zane = {
         innateAbilities: [
             {
                 name: 'Shenanigans',
-                text: "Once per turn, when you could play a combo card, reveal two cards \
-                       from the top of your deck and use up to one of them in your combo. \
-                       Discard the unused card(s).",
+                text: <span>
+                    Once per turn, when you could play a combo card, reveal
+                    two cards from the top of your deck and use up to one of
+                    them in your combo. Discard the unused card(s).
+                </span>
             },
             {
                 name: 'Meaty Attacks',
@@ -62,17 +64,22 @@ export const zane = {
                 rank: 4,
                 name: 'Creator and Destroyer',
                 timing: 'Full Combo',
-                text: "Whenever you use all your combo points or hit with a \"Can't Combo\" move, \
-                       you may discard this card to remake the opponent's hand (they reveal their hand, \
-                       shuffle it, put it on the bottom of their deck, then draw that many cards).",
+                text: <span>
+                    Whenever you use all your combo points or hit with a
+                    "Can't Combo" move, you may discard this card to remake
+                    the opponent's hand <i>(they reveal their hand, shuffle it, put it on
+                    the bottom of their deck, then draw that many cards)</i>.
+                </span>
             },
             {
                 rank: 'K',
                 name: 'Crash Bomb',
                 timing: 'During Combat',
-                text: "This can't be interrupted. (If it's hit by a faster attack, the opponent \
-                       can't combo. This hits afterwards and wins combat.) If this is blocked, \
-                       you take 5 damage and are knocked down.",
+                text: <span>
+                    This can't be interrupted. <i>(If it's hit by a faster attack, the
+                    opponent can't combo. This hits afterwards and wins combat.)</i> If
+                    this is blocked, you take 5 damage and are knocked down.
+                </span>
             },
         ],
     },
@@ -149,7 +156,8 @@ zane.variants = {
         attacks: zane.attacks.concat([
             {
                 speed: 2.3, rank: 'D', name: 'Dragonish Flight', damage: 9, chip: 2,
-                comboPts: 2, comboType: <Linker/>
+                comboPts: 2, comboType: <Linker/>,
+                maxCombo: 'D>AA', maxDamage: 28, goodCombo: 'D>9>J', goodDamage: 27
             },
         ]),
     }),
