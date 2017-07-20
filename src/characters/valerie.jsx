@@ -38,8 +38,11 @@ export const valerie = {
         innateAbilities: [
             {
                 name: 'Agile Hands',
-                text: 'You can combo normal attacks in any order. (Out-of-order normals count \
-                        as chain combos for you and let you search for Aces during the Power Up phase.)',
+                text: <span>
+                    You can combo normal attacks in any order. <i>(Out-of-order
+                    normals count as chain combos for you and let
+                    you search for Aces during the Power Up phase.)</i>
+                </span>
             },
         ],
         // quote: "Some would have me apologize for my passions, but I see the world a bit differently."
@@ -54,8 +57,10 @@ export const valerie = {
                 rank: 'T',
                 name: 'Burst of Speed',
                 timing: 'Combat Reveal',
-                text: 'The attack or throw you combat-revealed is 2 speed faster, to a minimum \
-                        of speed 1.0. (Does stack if you play multiples.)',
+                text: <span>
+                    The attack or throw you combat-revealed is 2 speed faster,
+                    to a minimum of speed 1.0. <i>(Does stack if you play multiples.)</i>
+                </span>
             },
             {
                 rank: 'K',
@@ -126,9 +131,9 @@ valerie.variants = {
                     name: 'Manic Hands',
                     text: <span>
                         When you combat-reveal a normal attack, draw a card.
-                        You can combo normal attacks in any order.
-                        (Out-of-order normals count as chain combos for you and let
-                        you search for Aces during the Power Up phase.)
+                        You can combo normal attacks in any order. <i>(Out-of-order
+                        normals count as chain combos for you and let
+                        you search for Aces during the Power Up phase.)</i>
                     </span>
                 },
             ],
@@ -139,8 +144,8 @@ valerie.variants = {
                     timing: 'During Combat',
                     text: <span>
                         This attack can't be interrupted by attacks except those that
-                        knock down. (If it's hit by a faster (non-knockdown) attack, the
-                        opponent can't combo. This hits afterwards and wins combat.)
+                        knock down. <i>(If it's hit by a faster (non-knockdown) attack, the
+                        opponent can't combo. This hits afterwards and wins combat.)</i>
                     </span>
                 },
             ]),
@@ -150,6 +155,7 @@ valerie.variants = {
             {
                 speed: 3.0, rank: 'D', name: 'Rainbow Disc', damage: 6, chip: 2,
                 comboPts: 2, comboType: <Starter/>, kd: true,
+                maxCombo: 'D>6>6>6>6>J++', maxDamage: 51, goodCombo: 'D>6>6>6>6>AA', goodDamage: 46
             },
         ]),
     }),
