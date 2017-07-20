@@ -49,26 +49,35 @@ export const vendetta = {
         innateAbilities: [
             {
                 name: 'Carrion Reach',
-                text: 'Whenever your normal attack is blocked or wins combat, \
-                return it to your hand.',
+                text: <span>
+                    Whenever your normal attack is blocked or wins combat,
+                    return it to your hand.
+                </span>
             },
         ],
+        // quote: "You can escape Death, but you can't escape me."
         cardAbilities: [
             {
                 rank: 8,
                 name: 'Acrobatics',
                 timing: 'Combat Reveal',
-                text: "Discard a dodge (and this card) to cancel combat (discard all combat cards \
-                and no combat damage is dealt). Players skip forward to next turn's combat. \
-                Next turn your attacks and throws are 2 speed slower and you can't play Acrobatics. \
-                (You can't play this from the bench or while assisting.)",
+                text: <span>
+                    Discard a dodge (and this card) to cancel combat <i>(discard all
+                    combat cards and no combat damage is dealt)</i>. Players skip
+                    forward to next turn's combat. Next turn your attacks and
+                    throws are 2 speed slower and you can't play Acrobatics. <i>(You
+                    can't play this from the bench or while assisting.)</i>
+                </span>
             },
             {
                 rank: 'K',
                 name: 'Wall Dive Loop',
                 timing: 'During Combat',
-                text: "While the opponent is knocked down, both sides of this card are speed 1.0. \
-                When you hit with either side of this card, return it to your hand.",
+                text: <span>
+                    While the opponent is knocked down, both sides of this
+                    card are speed 1.0. When you hit with either side of this
+                    card, return it to your hand.
+                </span>
             },
         ],
     },
@@ -142,6 +151,7 @@ vendetta.variants = {
                     </span>
                 },
             ]),
+            // quote: "Never compromise, even in the face of armageddon."
             cardAbilities: vendetta.summary.cardAbilities.concat([
                 {
                     rank: 'D',
@@ -150,8 +160,8 @@ vendetta.variants = {
                     text: <span>
                         Whenever you deal damage with this and it wasn't blocked,
                         attach it to the opponent's character card. At the end of each
-                        turn, the opponent takes 1 damage. (This stacks with other
-                        attached Poisons).
+                        turn, the opponent takes 1 damage. <i>(This stacks with other
+                        attached Poisons).</i>
                     </span>
                 },
             ]),
@@ -160,7 +170,8 @@ vendetta.variants = {
         attacks: vendetta.attacks.concat([
             {
                 speed: 2.2, rank: 'D', name: 'Venomous Stab', damage: 4, chip: 1,
-                comboPts: 1, comboType: <Starter/>
+                comboPts: 1, comboType: <Starter/>,
+                maxCombo: 'D>Q>J+++', maxDamage: 31, goodCombo: 'D>4>5>6', goodDamage: 22
             },
         ]),
     }),
