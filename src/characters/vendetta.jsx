@@ -161,7 +161,7 @@ vendetta.variants = {
                         Whenever you deal damage with this and it wasn't blocked,
                         attach it to the opponent's character card. At the end of each
                         turn, the opponent takes 1 damage. <i>(This stacks with other
-                        attached Poisons).</i>
+                        attached Poisons.)</i>
                     </span>
                 },
             ]),
