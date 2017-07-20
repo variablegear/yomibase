@@ -181,11 +181,11 @@ jaina.variants = {
         attacks: jaina.attacks.concat([
             {
                 speed: 2.2, rank: 'D', name: 'High Phoenix', damage: 8, chip: 3,
-                comboPts: 1, comboType: <Ender/>
+                comboPts: 1, comboType: <Ender/>, maxCombo: "D>J", maxDamage: 14
             },
             {
                 speed: 2.0, rank: 'D', name: 'Low Phoenix', damage: 7, chip: 3,
-                comboPts: 1, comboType: <Ender/>,
+                comboPts: 1, comboType: <Ender/>, maxCombo: "D>J", maxDamage: 13
             },
         ]),
     }),
