@@ -65,7 +65,7 @@ export const grave = {
                 text: <span>
                     Discard a face card (and this card) to counter an ability. <i>(Prevent
                     and undo the ability and the opponent discards the card if
-                    played from hand. You can't counter Aces, Jokers or character cards).</i>
+                    played from hand. You can't counter Aces, Jokers or character cards.)</i>
                 </span>
             },
             {
