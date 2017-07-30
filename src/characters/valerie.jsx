@@ -12,8 +12,8 @@ const normalThrow = mkNormal(0.2, {
     kd: true,
     maxCombo: (rank) => 't' + rank + '>6>J++',
     maxDamage: 33,
-    goodCombo: (rank) => 't' + rank + '>4>5>6',
-    goodDamage: 21,
+    goodCombo: (rank) => 't' + rank + '>6>6>6',
+    goodDamage: 24,
 });
 
 export const valerie = {
@@ -83,11 +83,11 @@ export const valerie = {
         ],
     },
     attacks: [
-        normalAttack(2, {maxCombo: '2>6>6>6>J++', maxDamage: 41, goodCombo: '2>3>4>5>5>6', goodDamage: 25}),
-        normalAttack(3, {maxCombo: '3>6>6>6>J++', maxDamage: 42, goodCombo: '3>2>4>5>5>6', goodDamage: 25}),
-        normalAttack(4, {maxCombo: '4>6>6>6>J++', maxDamage: 43, goodCombo: '4>2>3>5>5>6', goodDamage: 25}),
-        normalAttack(5, {maxCombo: '5>6>6>6>J++', maxDamage: 44, goodCombo: '5>2>4>4>5>6', goodDamage: 26}),
-        normalAttack(6, {maxCombo: '6>6>6>6>J++', maxDamage: 45, goodCombo: '6>3>4>5>5>6', goodDamage: 29}),
+        normalAttack(2, {maxCombo: '2>6>6>6>J++', maxDamage: 41, goodCombo: '2>5>6>6>6>6', goodDamage: 31}),
+        normalAttack(3, {maxCombo: '3>6>6>6>J++', maxDamage: 42, goodCombo: '3>5>6>6>6>6', goodDamage: 32}),
+        normalAttack(4, {maxCombo: '4>6>6>6>J++', maxDamage: 43, goodCombo: '4>5>6>6>6>6', goodDamage: 33}),
+        normalAttack(5, {maxCombo: '5>6>6>6>J++', maxDamage: 44, goodCombo: '5>5>6>6>6>6', goodDamage: 34}),
+        normalAttack(6, {maxCombo: '6>6>6>6>J++', maxDamage: 45, goodCombo: '6>5>5>6>6>6', goodDamage: 34}),
         {
             speed: 2.2, rank: 'J', name: 'Three Colors', pumpWith: '+F+F',
             damage: 7, pump: 7, chip: 2, comboPts: 2, comboType: <Ender/>,
@@ -151,12 +151,25 @@ valerie.variants = {
             ]),
             attacks: valerie.summary.attacks.concat(['D']),
         }),
-        attacks: valerie.attacks.concat([
+        attacks: overrideMoves(valerie.attacks, [
+            {rank: 2, maxCombo: '2>6>6>6>6>K>J++', maxDamage: 53, goodCombo: '2>5>5>5>6>6>6>6', goodDamage: 31},
+            {rank: 3, maxCombo: '3>6>6>6>6>K>J++', maxDamage: 54, goodCombo: '3>5>5>5>6>6>6>6', goodDamage: 32},
+            {rank: 4, maxCombo: '4>6>6>6>6>K>J++', maxDamage: 55, goodCombo: '4>5>5>5>6>6>6>6', goodDamage: 33},
+            {rank: 5, maxCombo: '5>6>6>6>6>K>J++', maxDamage: 56, goodCombo: '5>5>5>5>6>6>6>6', goodDamage: 34},
+            {rank: 6, maxCombo: '6>6>6>6>K>K>J++', maxDamage: 57, goodCombo: '6>5>5>5>5>6>6>6', goodDamage: 34},
+            {rank: 'K', maxCombo: 'K>6>6>6>6>K>J++', maxDamage: 57, goodCombo: 'K>6>6>6>6>K>AA', goodDamage: 52},
+        ]).concat([
             {
                 speed: 3.0, rank: 'D', name: 'Rainbow Disc', damage: 6, chip: 2,
                 comboPts: 2, comboType: <Starter/>, kd: true,
                 maxCombo: 'D>6>6>6>6>J++', maxDamage: 51, goodCombo: 'D>6>6>6>6>AA', goodDamage: 46
             },
+        ]),
+        throws: overrideMoves(valerie.throws, [
+            {rank: 7, maxCombo: 't7>6>6>6>J++', maxDamage: 45, goodCombo: 't7>6>6>6>AA', goodDamage: 40},
+            {rank: 8, maxCombo: 't8>6>6>6>J++', maxDamage: 45, goodCombo: 't8>6>6>6>AA', goodDamage: 40},
+            {rank: 9, maxCombo: 't9>6>6>6>J++', maxDamage: 45, goodCombo: 't9>6>6>6>AA', goodDamage: 40},
+            {rank: 'T', maxCombo: 'tT>6>6>6>J++', maxDamage: 45, goodCombo: 'tT>6>6>6>AA', goodDamage: 40},
         ]),
     }),
     
