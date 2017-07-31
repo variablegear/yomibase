@@ -99,7 +99,7 @@ export const valerie = {
             maxCombo: 'Q++', maxDamage: 14, goodCombo: 'Q+', goodDamage: 11,
         },
         {
-            speed: 3.4, rank: 'K', name: 'Flying Rainbow Strike',
+            speed: 3.4, rank: 'K', name: 'Flying Rainbow Stroke',
             damage: 6, chip: 2, comboPts: 1, comboType: <Linker/>,
             maxCombo: 'K>6>6>6>J++', maxDamage: 45, goodCombo: 'K>3>4>4>5>6', goodDamage: 28,
         },
