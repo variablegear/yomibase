@@ -157,7 +157,8 @@ valerie.variants = {
             {rank: 4, maxCombo: '4>6>6>6>6>K>J++', maxDamage: 55, goodCombo: '4>5>5>5>6>6>6>6', goodDamage: 33},
             {rank: 5, maxCombo: '5>6>6>6>6>K>J++', maxDamage: 56, goodCombo: '5>5>5>5>6>6>6>6', goodDamage: 34},
             {rank: 6, maxCombo: '6>6>6>6>K>K>J++', maxDamage: 57, goodCombo: '6>5>5>5>5>6>6>6', goodDamage: 34},
-            {rank: 'K', maxCombo: 'K>6>6>6>6>K>J++', maxDamage: 57, goodCombo: 'K>6>6>6>6>K>AA', goodDamage: 52},
+            {rank: 'K', name: "Flying Rainbow Stroke", maxCombo: 'K>6>6>6>6>K>J++', maxDamage: 57,
+             goodCombo: 'K>6>6>6>6>K>AA', goodDamage: 52},
         ]).concat([
             {
                 speed: 3.0, rank: 'D', name: 'Rainbow Disc', damage: 6, chip: 2,
