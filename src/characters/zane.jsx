@@ -91,24 +91,24 @@ export const zane = {
         normalAttack(9, {maxCombo: '9>Q>AA', maxDamage: 35, goodCombo: '9>Q>9>J', goodDamage: 34}),
         {
             speed: 2.8, rank: 'J', name: 'Anarch Crusher',
-            damage: '9', chip: '4', comboPts: 1, comboType: <Ender/>, kd: true,
+            damage: 9, chip: 4, comboPts: 1, comboType: <Ender/>, kd: true,
         },
         {
             speed: 4.0, rank: 'Q', name: 'Shoulder Ram',
-            damage: '7', chip: '2', comboPts: 1, comboType: <Linker/>, kd: false,
+            damage: 7, chip: 2, comboPts: 1, comboType: <Linker/>, kd: false,
             maxCombo: 'Q>9>AA', maxDamage: 35, goodCombo: 'Q>9>Q>J', goodDamage: 7+9+7+19,
         },
         {
             speed: 5.0, rank: 'K', name: 'Crash Bomb',
-            damage: '10', chip: '5', comboType: <CantCombo/>, kd: true,
+            damage: 10, chip: 5, comboType: <CantCombo/>, kd: true,
         },
         {
             speed: 1.2, rank: 'AA', name: 'Slipstream Phase',
-            damage: '19', chip: '2', comboPts: 2, comboType: <Ender/>, kd: false,
+            damage: 19, chip: 2, comboPts: 2, comboType: <Ender/>, kd: false,
         },
         {
             speed: 0.0, rank: 'AAAA', name: 'Maximum Anarchy',
-            damage: '50', chip: '5', comboType: <CantCombo/>, kd: false,
+            damage: 50, chip: 5, comboType: <CantCombo/>, kd: false,
         },
     ],
     throws: [
