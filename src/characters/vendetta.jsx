@@ -83,54 +83,54 @@ export const vendetta = {
     },
     attacks: [
         {
-            speed: 2.2, rank: '2', name: 'Pincer Poke', damage: '4',
+            speed: 2.2, rank: '2', name: 'Pincer Poke', damage: 4,
             maxCombo: '2>Q>J+++', maxDamage: 31, goodCombo: '2>Q>6>7', goodDamage: 24,
         },
         {
-            speed: 3.2, rank: '3', name: 'Pincer Stab', damage: '4',
-            maxCombo: '3>Q>J+++', maxDamage: '31', goodCombo: '3>Q>6>7', goodDamage: '24',
+            speed: 3.2, rank: '3', name: 'Pincer Stab', damage: 4,
+            maxCombo: '3>Q>J+++', maxDamage: 31, goodCombo: '3>Q>6>7', goodDamage: 24,
         },
         normalAttack(5, {maxCombo: '5>Q>J+++', maxDamage: 32, goodCombo: '5>6>7', goodDamage: 18}),
         normalAttack(6, {maxCombo: '6>Q>J+++', maxDamage: 33, goodCombo: '6>Q>6>7', goodDamage: 26}),
         {
-            speed: 3.0, rank: '7', name: 'Claw Trip', damage: '7',
+            speed: 3.0, rank: '7', name: 'Claw Trip', damage: 7,
             comboType: <Ender/>, kd: true,
         },
         {
             speed: 2.4, rank: 'J', name: 'Tumbling Strike', pumpWith: '+X+X+X',
-            damage: '8', pump: '4', chip: '3', comboPts: 2, comboType: <Ender/>, kd: false,
+            damage: 8, pump: 4, chip: 3, comboPts: 2, comboType: <Ender/>, kd: false,
         },
         {
             speed: 3.0, rank: 'Q', name: 'Frost Web',
-            damage: '7', chip: '2', comboPts: 1, comboType: <Linker/>, kd: false,
-            maxCombo: 'Q>Q>J+++', maxDamage: 34, goodCombo: 'Q>5>6>7', goodDamage: '25',
+            damage: 7, chip: 2, comboPts: 1, comboType: <Linker/>, kd: false,
+            maxCombo: 'Q>Q>J+++', maxDamage: 34, goodCombo: 'Q>5>6>7', goodDamage: 25,
         },
         {
             speed: 3.2, rank: 'K', name: 'Diving Pincer Slice',
-            damage: '12', chip: '1', comboPts: 2, comboType: <Starter/>, kd: false,
-            maxCombo: 'K>J+++', maxDamage: '32', goodCombo: 'K>Q>7', goodDamage: '26',
+            damage: 12, chip: 1, comboPts: 2, comboType: <Starter/>, kd: false,
+            maxCombo: 'K>J+++', maxDamage: 32, goodCombo: 'K>Q>7', goodDamage: 26,
             notes: kingNotes,
         },
         {
             speed: 2.0, rank: 'AA', name: 'Maximum Ven',
-            damage: '18', chip: '4', comboPts: 2, comboType: <Ender/>, kd: false,
+            damage: 18, chip: 4, comboPts: 2, comboType: <Ender/>, kd: false,
         },
         {
             speed: 1.0, rank: 'AAA', name: 'Surgical Strike',
-            damage: '36', comboType: <CantCombo/>, kd: false,
+            damage: 36, comboType: <CantCombo/>, kd: false,
         },
     ],
     throws: [
         {
-            speed: '8.8', rank: '4', name: 'Kidney Shot', damage: '8',
+            speed: '8.8', rank: '4', name: 'Kidney Shot', damage: 8,
             comboPts: 1, comboType: <Starter/>, kd: false,
-            maxCombo: 't4>Q>J+++', maxDamage: '35', goodCombo: 't4>5>6>7', goodDamage: '26',
+            maxCombo: 't4>Q>J+++', maxDamage: 35, goodCombo: 't4>5>6>7', goodDamage: 26,
         },
         normalThrow(7),
         normalThrow(8),
         normalThrow(9),
         {
-            speed: '11.0', rank: 'K', name: 'Wall Dive Suplex', damage: '12',
+            speed: '11.0', rank: 'K', name: 'Wall Dive Suplex', damage: 12,
             comboType: <CantCombo/>, kd: true, notes: kingNotes,
         }
     ],
