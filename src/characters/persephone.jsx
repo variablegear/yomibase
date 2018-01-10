@@ -94,22 +94,22 @@ export const persephone = {
         normalAttack(6, {maxCombo: '6>AA', maxDamage: 22, goodCombo: '6>J++', goodDamage: 21}),
         {
             speed: 2.4, rank: 'J', name: 'Rapid Lashes', pumpWith: '+x+x',
-            damage: '7', pump: '4', chip: '3', comboPts: 1, comboType: <Ender/>, kd: false,
+            damage: 7, pump: 4, chip: 3, comboPts: 1, comboType: <Ender/>, kd: false,
         },
         {
-            speed: 4.0, rank: 'J', name: 'Power Lash', damage: '10', chip: '3',
+            speed: 4.0, rank: 'J', name: 'Power Lash', damage: 10, chip: 3,
             comboType: <CantCombo/>, kd: true,
         },
         {
-            speed: 0.2, rank: 'Q', name: 'Rising Pleasure', damage: '9', chip: '2',
+            speed: 0.2, rank: 'Q', name: 'Rising Pleasure', damage: 9, chip: 2,
             comboPts: 3, comboType: <Ender/>, kd: false,
         },
         {
-            speed: 3.0, rank: 'A', name: "Mistress's Command", damage: '1',
+            speed: 3.0, rank: 'A', name: "Mistress's Command", damage: 1,
             comboType: <CantCombo/>, kd: false,
         },
         {
-            speed: 0.4, rank: 'AA', name: 'On Your Knees', damage: '16', chip: '3',
+            speed: 0.4, rank: 'AA', name: 'On Your Knees', damage: 16, chip: 3,
             comboPts: 2, comboType: <Ender/>, kd: true,
         },
     ],
