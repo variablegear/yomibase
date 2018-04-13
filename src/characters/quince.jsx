@@ -129,9 +129,9 @@ quince.variants = {
                     name: "Chancellor's Veto",
                     timing: 'Reaction',
                     text: <span>
-                        Counter an ability. (Orevent and undo the ability and the opponent
+                        Counter an ability. <i>(Prevent and undo the ability and the opponent
                         discards the card if played from hand. You can't counter Aces, Jokers, or
-                        character cards.)
+                        character cards.)</i>
                     </span>
                 },
             ]),
