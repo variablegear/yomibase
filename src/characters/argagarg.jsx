@@ -70,8 +70,9 @@ export const argagarg = {
                 name: 'Bubble Shield',
                 timing: 'During Combat',
                 text: <span>
-                    If this blocks an attack or Joker, draw a card and this gets: <b>Ongoing.</b>
-                    Your Hex of Murkwood deals an extra 2 damage per turn.
+                    If this blocks an attack or Joker, draw a card and this
+                    gets: <b>Ongoing.</b> Your Hex of Murkwood deals an extra
+                    2 damage per turn.
                     When you get hit with an attack or throw, take no damage,
                     end combat and discard this.
                 </span>
