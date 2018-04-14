@@ -51,7 +51,7 @@ export const degrey = {
             {
                 rank: 7,
                 name: 'Point, Counterpoint',
-                timing: 'Combat Reveal',
+                timing: 'During Combat',
                 text: 'Discard a card to rotate this 180 degrees.',
             },
             {
