@@ -82,8 +82,9 @@ export const quince = {
             comboType: <CantCombo/>, kd: true,
         },
         {
-            speed: 1.2, rank: 'AA', name: 'Consent of the Governed', pumpWith: '+A+A',
+            speed: 1.2, rank: 'AA', name: 'Consent of the Governed', pumpWith: '+A',
             damage: 16, pump: 14, chip: 4, comboPts: 3, comboType: <Ender/>,
+            maxCombo: 'AA+', maxDamage: '30'
         },
     ],
     throws: [
