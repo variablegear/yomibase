@@ -97,7 +97,7 @@ export const quince = {
             damage: 7, pump: 5, comboPts: 2, comboType: <Ender/>,
         },
         {
-            speed: 9.0, rank: 'K', name: 'Righteous Tumbler', damage: 7, comboPts: 2,
+            speed: 9.0, rank: 'K', name: 'Crosswise Toss', damage: 7, comboPts: 2,
             comboType: <Starter/>, maxCombo: 'tK>tQ++', maxDamage: 26, goodCombo: 'tK>6>J',
             goodDamage: 24,
         },
