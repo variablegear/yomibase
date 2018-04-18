@@ -12,8 +12,8 @@ const normalThrow = mkNormal(0.6, {
     kd: true,
     maxCombo: (rank) => 't' + rank + '>K+',
     maxDamage: 21,
-    goodCombo: (rank) => 't' + rank + '>4>5',
-    goodDamage: 16,
+    goodCombo: (rank) => 't' + rank + '>A',
+    goodDamage: 19,
 });
 
 export const grave = {
@@ -142,7 +142,10 @@ grave.variants = {
             ]),
             attacks: grave.summary.attacks.concat(['D']),
         }),
-        attacks: grave.attacks.concat([
+        attacks: overrideMoves(grave.attacks, [
+            {rank: 'Q', name: 'Dragonheart', maxCombo: 'Q>AAA', maxDamage: 40},
+            {rank: 'K', name: 'Whirlwind', maxCombo: 'K+>D++>D++', maxDamage: 38, goodCombo: 'K+>6>J', goodDamage: 29},
+        ]).concat([
             {
                 speed: 7.0, rank: 'D', name: 'Overhead Slice', damage: 15, comboType: <CantCombo/>
             },
@@ -151,6 +154,12 @@ grave.variants = {
                 damage: 4, pump: 4, chip: 1, comboPts: 1, comboType: <Linker/>,
                 maxCombo: 'D++>AAA', maxDamage: '57', goodCombo: 'D++>4>5>6', goodDamage: 27
             },
+        ]),
+        throws: overrideMoves(grave.throws, [
+            {rank: 7, maxCombo: 't7>D++>D++', maxDamage: 31, goodCombo: 't7>K+', goodDamage: 21},
+            {rank: 8, maxCombo: 't8>D++>D++', maxDamage: 31, goodCombo: 't8>K+', goodDamage: 21},
+            {rank: 9, maxCombo: 't9>D++>D++', maxDamage: 31, goodCombo: 't9>K+', goodDamage: 21},
+            {rank: 'T', maxCombo: 'tT>D++>D++', maxDamage: 31, goodCombo: 'tT>K+', goodDamage: 21},
         ]),
     }),
 
