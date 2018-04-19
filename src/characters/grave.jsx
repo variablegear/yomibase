@@ -1,6 +1,6 @@
 import React from 'react';
 import {Ender, Linker, Starter, CantCombo, ComboDetails} from '../combo.jsx';
-import {mkNormal} from '../move.jsx';
+import {mkNormal, overrideMoves} from '../move.jsx';
 import {EX, First} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.6);
