@@ -20,7 +20,7 @@ export const degrey = {
     theme: {
         // primary: #F8508B
         text: 'linear-gradient(#fdcedf, #fdcedf)',
-        headshot: require('../../images/degrey.jpg'),
+        headshot: require('../images/degrey.jpg'),
     },
     summary: {
         name: 'DeGrey',
@@ -58,16 +58,20 @@ export const degrey = {
                 rank: 4,
                 name: 'Troublesome Rhetoric',
                 timing: 'Draw Phase',
-                text: 'Choose attack, block, throw, or dodge. If the opponent \
-                       combat-reveals that option this turn, gain 12 life.',
+                text: (
+                    'Choose attack, block, throw, or dodge. If the opponent ' +
+                    'combat-reveals that option this turn, gain 12 life.'
+                )
             },
             {
                 rank: 'A',
                 name: 'Ghost Riposte',
                 timing: 'During Combat',
-                text: 'You may hit back with a full combo if you dodge an attack \
-                       or Joker with this. Return this card to your hand when combat \
-                       ends unless you were thrown.',
+                text: (
+                    'You may hit back with a full combo if you dodge an attack ' +
+                    'or Joker with this. Return this card to your hand when combat ' +
+                    'ends unless you were thrown.'
+                )
             }
         ],
     },

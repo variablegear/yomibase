@@ -21,7 +21,7 @@ export const gwen = {
     theme: {
         // primary: #99072E, #C3DFEB
         text: 'linear-gradient(#fdceda, #d9ebf2)',
-        headshot: require('../../images/gwen.jpg'),
+        headshot: require('../images/gwen.jpg'),
     },
     summary: {
         name: 'Gwen',
@@ -86,6 +86,7 @@ export const gwen = {
             comboPts: 2, comboType: <Starter/>,
             maxCombo: 'J+>K++>A+', maxDamage: 42, goodCombo: 'J+>3>4>5>6', goodDamage: 32,
             notes: <Note
+                id="chillbane"
                 text="Chillbane prevents Rewind Time Jokers"
                 icon={<Icon><strike>{'\uD83D\uDCA5'}</strike></Icon>}
             />,

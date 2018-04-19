@@ -1,5 +1,5 @@
 import React from 'react';
-import {CantCombo, Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
+import {CantCombo, Ender, Starter, ComboDetails} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
 import {EX} from '../editions.jsx';
 
@@ -20,7 +20,7 @@ export const persephone = {
     theme: {
         // primary: #4B555E, #FFFFFF
         text: 'linear-gradient(#e3e6e9, #FFFFFF)',
-        headshot: require('../../images/persephone.jpg'),
+        headshot: require('../images/persephone.jpg'),
     },
     summary: {
         name: 'Persephone',

@@ -1,13 +1,12 @@
 
-import Navbar from 'react-bootstrap/lib/Navbar';
-import Grid from 'react-bootstrap/lib/Grid';
-import Row from 'react-bootstrap/lib/Row';
-import Col from 'react-bootstrap/lib/Col';
-import Well from 'react-bootstrap/lib/Well';
-import Table from 'react-bootstrap/lib/Table';
-import Glyphicon from 'react-bootstrap/lib/Glyphicon';
-import Tooltip from 'react-bootstrap/lib/Tooltip';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Navbar from 'reactstrap/lib/Navbar';
+import NavbarBrand from 'reactstrap/lib/NavbarBrand';
+import Container from 'reactstrap/lib/Container';
+import Row from 'reactstrap/lib/Row';
+import Col from 'reactstrap/lib/Col';
+import Alert from 'reactstrap/lib/Alert';
+import Table from 'reactstrap/lib/Table';
+import UncontrolledTooltip from 'reactstrap/lib/UncontrolledTooltip';
 import QueryString from 'query-string';
 
 import React, {Component, PureComponent} from 'react';
@@ -15,7 +14,6 @@ import React, {Component, PureComponent} from 'react';
 import {
     HashRouter as Router,
     Route,
-    Link,
 } from 'react-router-dom';
 
 import styled from 'styled-components';
@@ -28,8 +26,6 @@ import {rankValue} from './rank.js';
 import {DropdownCharacterSelectorRow, ImageSelectorRow, VariantSelectorRow} from './selector.jsx';
 import {Block, Attack, Throw} from './move.jsx';
 import {defaultLeftTheme, defaultRightTheme} from './themes.js';
-
-require('../_vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css');
 
 function keyedSort(list, keyFn, reversed) {
     let keyed = list.map((el) => ({
@@ -45,14 +41,14 @@ function keyedSort(list, keyFn, reversed) {
 
 function EditLink(props) {
     return (
-        <Well>
+        <Alert color="light">
             Found a bug, or have a suggestion about {props.char.summary.name}?
                 Suggest a change <a href={
                 'https://github.com/cpennington/yomibase/edit/master/src/characters/' +
                 props.charKey +
                 '.jsx'
             }>here</a>
-        </Well>
+        </Alert>
     );
 }
 
@@ -70,10 +66,6 @@ const FlexRow =  styled(Row)`
         display: flex;
         flex-direction: column;
     }
-`;
-
-const Brand = styled(Navbar.Brand)`
-    color: #000000 !important;
 `;
 
 class YomiBase extends Component {
@@ -117,15 +109,10 @@ class YomiBase extends Component {
 
         return (
             <div className="base">
-                <Navbar staticTop componentClass="header" className="bs-docs-nav" role="banner">
-                    <Navbar.Header>
-                        <Brand>
-                            <Link to="/">YomiBase</Link>
-                        </Brand>
-                        <Navbar.Toggle />
-                    </Navbar.Header>
+                <Navbar color="dark" dark>
+                    <NavbarBrand href='/'>YomiBase</NavbarBrand>
                 </Navbar>
-                <Grid>
+                <Container>
                     <ImageSelectorRow
                         selectLeft={(char) => goToChars(char, null)}
                         selectRight={(char) => goToChars(null, char)}
@@ -136,7 +123,7 @@ class YomiBase extends Component {
                         right={rightKey}
                     />
                     <DropdownCharacterSelectorRow
-                        smHidden mdHidden lgHidden
+                        className="d-block d-sm-none"
                         selectLeft={(char) => goToChars(char, null)}
                         selectRight={(char) => goToChars(null, char)}
                         resetLeft={() => goToChars('none', null)}
@@ -199,7 +186,7 @@ class YomiBase extends Component {
                         {leftCharacter && <Col md={6}><EditLink char={leftCharacter} charKey={leftKey} /></Col>}
                         {rightCharacter && <Col md={6}><EditLink char={rightCharacter} charKey={rightKey} /></Col>}
                     </Row>
-                </Grid>
+                </Container>
             </div>
         );
     }
@@ -214,12 +201,12 @@ const SortIcon = styled.small`
 function SortingHeader(props) {
     let sortGlyph = null;
     if (props.header.props.sort) {
-        if (props.current.sortHeader != props.name) {
-            sortGlyph = <Glyphicon glyph="sort" />;
+        if (props.current.sortHeader !== props.name) {
+            sortGlyph = <span>{"\u21c5"}</span>;
         } else if (props.current.reversed) {
-            sortGlyph = <Glyphicon glyph="sort-by-attributes-alt" />;
+            sortGlyph = <span>{"\u2191"}</span>;
         } else {
-            sortGlyph = <Glyphicon glyph="sort-by-attributes" />;
+            sortGlyph = <span>{"\u2193"}</span>;
         }
     }
     return (
@@ -258,7 +245,7 @@ class SortableTable extends PureComponent {
 
     onSort(sortHeader, event) {
         event.preventDefault();
-        if (sortHeader == this.state.sortHeader) {
+        if (sortHeader === this.state.sortHeader) {
             this.setState({ reversed: !this.state.reversed });
         } else {
             this.setState({
@@ -274,7 +261,7 @@ class SortableTable extends PureComponent {
 
     sortedData() {
         if (this.state.sortHeader != null) {
-            const sortHeader = this.headers().find((header) => header.props.name == this.state.sortHeader);
+            const sortHeader = this.headers().find((header) => header.props.name === this.state.sortHeader);
             let data = this.props.data.slice();
             return keyedSort(data, sortHeader.props.sort, this.state.reversed);
         } else {
@@ -319,34 +306,21 @@ class SortableTable extends PureComponent {
     }
 };
 
-function speedValue(row) {
-    if (row.speed == null) {
-        return rankValue(row.rank) + row.speedOffset;
-    } else {
-        return parseFloat(row.speed);
-    }
-}
-
 const Pump = styled.span`
     font-size: 90%;
 `;
 
 function Move(props) {
-    const abilities = props.abilities.filter((ability) => ability.rank == props.rank);
+    const abilities = props.abilities.filter((ability) => ability.rank === props.rank);
     let rank;
     if (abilities.length > 0) {
-        const tooltip = (
-            <Tooltip
-                id={props.rank.toString().concat(abilities.map((ability) => ability.name))}
-            >
-                <dl>{abilities.map((ability) => CardAbility(ability, true))}</dl>
-            </Tooltip>
-        );
-
         rank = (
-            <OverlayTrigger placement="top" overlay={tooltip}>
-                <span>{props.rank}*</span>
-            </OverlayTrigger>
+            <span id={props.id}>
+                {props.rank}*
+                <UncontrolledTooltip placement="top" target={props.id}>
+                    <dl>{abilities.map((ability) => CardAbility(ability, true))}</dl>
+                </UncontrolledTooltip>
+            </span>
         );
     } else {
         rank = props.rank;
@@ -429,7 +403,13 @@ function MoveTable(props) {
         name="Rank"
         sort={(row) => rankValue(row.rank)}
         format={(row) => (
-            <Move abilities={row.abilities} rank={row.rankDisplay || row.rank} pump={row.pumpWith} name={row.name} />
+            <Move
+            abilities={row.abilities}
+            rank={row.rankDisplay || row.rank}
+            pump={row.pumpWith}
+            name={row.name}
+            id={row.key.replace(/ /g, '')}
+            />
         )}
     />;
     const damageHeader = <SortHeader

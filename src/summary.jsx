@@ -1,5 +1,5 @@
 import React from 'react';
-import Table from 'react-bootstrap/lib/Table';
+import Table from 'reactstrap/lib/Table';
 
 import {ComboPoints} from './combo.jsx';
 import {CardAbility} from './ability.jsx';
@@ -31,7 +31,7 @@ export function CharacterSummary(props) {
     props.char.cardAbilities.forEach((entry) => abilities.push(...CardAbility(entry)));
 
     function hasAbility(rank) {
-        const rankAbilities = props.char.cardAbilities.filter((ability) => ability.rank == rank);
+        const rankAbilities = props.char.cardAbilities.filter((ability) => ability.rank === rank);
         return rankAbilities.length > 0;
     }
 

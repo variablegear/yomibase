@@ -20,7 +20,7 @@ export const gloria = {
     theme: {
         // primary: #FFD0DE, #FFFFFF
         text: 'linear-gradient(#FFD0DE, #FFFFFF)',
-        headshot: require('../../images/gloria.jpg'),
+        headshot: require('../images/gloria.jpg'),
     },
     summary: {
         name: 'Gloria',

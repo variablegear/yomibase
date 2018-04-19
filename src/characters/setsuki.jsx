@@ -20,7 +20,7 @@ export const setsuki = {
     theme: {
         // primary: #D68E42
         text: 'linear-gradient(#f6e6d5, #f6e6d5)',
-        headshot: require('../../images/setsuki.jpg'),
+        headshot: require('../images/setsuki.jpg'),
     },
     summary: {
         name: 'Setsuki',
@@ -38,9 +38,11 @@ export const setsuki = {
         innateAbilities: [
             {
                 name: 'Speed of the Fox',
-                text: 'If you start the draw phase with 1 or 0 cards in hand, draw 5 cards \
-                       (instead of 1) and you may hit back with a full combo if you dodge an \
-                       attack or Joker this turn.',
+                text: (
+                    'If you start the draw phase with 1 or 0 cards in hand, draw 5 cards '+
+                    '(instead of 1) and you may hit back with a full combo if you dodge an ' +
+                    'attack or Joker this turn.'
+                ),
             },
         ],
         cardAbilities: [

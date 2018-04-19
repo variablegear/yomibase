@@ -19,7 +19,7 @@ export const menelker = {
     theme: {
         // primary: #CA393E, #D9D5D6
         text: 'linear-gradient(#f4d7d8, #e7e4e5)',
-        headshot: require('../../images/menelker.jpg'),
+        headshot: require('../images/menelker.jpg'),
     },
     summary: {
         name: 'Menelker',

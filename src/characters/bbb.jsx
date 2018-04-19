@@ -13,6 +13,7 @@ const Inverse = styled(Icon)`
 
 function RangeGiving(props) {
     return <Note
+        id="RangeGiving"
         text='When this is blocked or wins combat, set range next turn'
         icon={<Inverse fontSize={175}>{'\u2316'}</Inverse>}
     />;
@@ -20,6 +21,7 @@ function RangeGiving(props) {
 
 function Speed1AtRange(props) {
     return <Note
+        id="RangedMeaty"
         text='Speed 1.0 when at range'
         icon={<span><RangeLegal/><Icon>{'\u21D2'}</Icon><Icon>{'\uD83C\uDFC3'}</Icon>1.0</span>}
     />;
@@ -79,7 +81,7 @@ export const bbb = {
     theme: {
         // primary: #E4A85F, #F6DD0E
         text: 'linear-gradient(#f8e8d3, #fdf8ce)',
-        headshot: require('../../images/bbb.jpg'),
+        headshot: require('../images/bbb.jpg'),
     },
     summary: {
         name: 'BBB',

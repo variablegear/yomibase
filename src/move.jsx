@@ -51,8 +51,8 @@ export function overrideMoves(baseMoves, overrides) {
         move,
         overrides.find(
             (override) => (
-                move.rank == override.rank
-                && move.name == override.name
+                move.rank === override.rank
+                && move.name === override.name
             )
         )
     ));

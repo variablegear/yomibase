@@ -8,6 +8,7 @@ import {rankValue} from '../rank.js';
 const normalAttack = mkNormal(0.6, {
     chip: (rank) => '(' + (rankValue(rank) - 1) + ')',
     notes: (rank) => <Note
+        id={"Chip"+rank}
         text="Chip damage on *red* normals only"
         icon={
             <span>
@@ -40,7 +41,7 @@ export const jaina = {
     theme: {
         // primary: #FA4125
         text: 'linear-gradient(#fed4cd, #fed4cd)',
-        headshot: require('../../images/jaina.jpg'),
+        headshot: require('../images/jaina.jpg'),
     },
     summary: {
         name: 'Jaina',

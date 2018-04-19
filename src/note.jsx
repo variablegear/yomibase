@@ -1,6 +1,5 @@
 import React from 'react';
-import Tooltip from 'react-bootstrap/lib/Tooltip';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import UncontrolledTooltip from 'reactstrap/lib/UncontrolledTooltip';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -16,6 +15,7 @@ export const Icon = styled.div`
 
 export class Note extends React.Component {
     static propTypes = {
+        id: PropTypes.string,
         text: PropTypes.string,
         icon: PropTypes.element,
     }
@@ -25,18 +25,20 @@ export class Note extends React.Component {
             return null;
         }
 
-        const tooltip = <Tooltip id={this.props.text}>{this.props.text}</Tooltip>;
-
         return (
-            <OverlayTrigger placement="top" overlay={tooltip}>
-                <span>{this.props.icon || '*'}</span>
-            </OverlayTrigger>
+            <span id={this.props.id}>
+                {this.props.icon || '*'}
+                <UncontrolledTooltip placement="top" target={this.props.id}>
+                    {this.props.text}
+                </UncontrolledTooltip>
+            </span>
         );
     }
 }
 
 export function Recycles(props) {
     return <Note
+        id="recycles"
         text={props.text || 'Card is likely to recycle from the discard'}
         icon={<Icon fontSize={200}>{'\u2672'}</Icon>}
     />;

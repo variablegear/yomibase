@@ -15,7 +15,7 @@ export const rook = {
     theme: {
         // primary: D6DBE1
         text: 'linear-gradient(#e2e5e9, #e2e5e9)',
-        headshot: require('../../images/rook.jpg'),
+        headshot: require('../images/rook.jpg'),
     },
     summary: {
         name: 'Rook',
@@ -71,8 +71,10 @@ export const rook = {
                 rank: 'K',
                 name: 'Windmill Crusher',
                 timing: 'During Combat',
-                text: 'This throw beats normal attacks with speed 5.0 or faster, but you still \
-                       take damage from the opponent\'s normal attack.',
+                text: (
+                    'This throw beats normal attacks with speed 5.0 or faster, but you still ' +
+                    'take damage from the opponent\'s normal attack.'
+                )
             },
         ],
     },

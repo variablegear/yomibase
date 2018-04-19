@@ -20,7 +20,7 @@ export const quince = {
     theme: {
         // primary: #82A0FA, #F5FFFF
         text: 'linear-gradient(#cedafd, #F5FFFF)',
-        headshot: require('../../images/quince.jpg'),
+        headshot: require('../images/quince.jpg'),
     },
     summary: {
         name: 'Quince',

@@ -1,5 +1,5 @@
 import React from 'react';
-import {CantCombo, Ender, Linker, Starter} from '../combo.jsx';
+import {CantCombo, Ender, Linker} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
 import {rankValue} from '../rank.js';
 import {EX, First} from '../editions.jsx';
@@ -22,7 +22,7 @@ export const lum = {
     theme: {
         // primary: #FDFFF4
         text: 'linear-gradient(#FDFFF4, #FDFFF4)',
-        headshot: require('../../images/lum.jpg'),
+        headshot: require('../images/lum.jpg'),
     },
     summary: {
         name: 'Lum',

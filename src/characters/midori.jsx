@@ -18,7 +18,7 @@ const normalThrow = mkNormal(0.8, {
     goodDamage: 16,
 });
 
-const dragon = <Note text="Requires Dragon Form" icon={<Icon>{'\uD83D\uDC32'}</Icon>} />;
+const dragon = <Note id="dragonform" text="Requires Dragon Form" icon={<Icon>{'\uD83D\uDC32'}</Icon>} />;
 
 const Dragon = styled.span`
     color: #126d1c;
@@ -29,7 +29,7 @@ export const midori = {
     theme: {
         // primary: #78BD52
         text: 'linear-gradient(#e2f1da, #e2f1da)',
-        headshot: require('../../images/midori.jpg'),
+        headshot: require('../images/midori.jpg'),
     },
     summary: {
         name: 'Midori',
@@ -65,8 +65,10 @@ export const midori = {
                 rank: 2,
                 name: 'Dragon Form',
                 timing: 'Draw Phase',
-                text: 'Ongoing. You can play Dragon moves. Discard this if you get thrown or you \
-                       combat-reveal a non-Dragon attack/throw.',
+                text: (
+                    'Ongoing. You can play Dragon moves. Discard this if you get thrown or you ' +
+                    'combat-reveal a non-Dragon attack/throw.'
+                )
             },
             {
                 rank: 'T',

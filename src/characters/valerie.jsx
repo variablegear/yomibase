@@ -20,7 +20,7 @@ export const valerie = {
     theme: {
         // primary: #58BCE0, #88C067
         text: 'linear-gradient(#d4eef7, #e3f0db)',
-        headshot: require('../../images/valerie.jpg'),
+        headshot: require('../images/valerie.jpg'),
     },
     summary: {
         name: 'Valerie',
@@ -173,7 +173,7 @@ valerie.variants = {
             {rank: 'T', maxCombo: 'tT>6>6>6>J++', maxDamage: 45, goodCombo: 'tT>6>6>6>AA', goodDamage: 40},
         ]),
     }),
-    
+
     FirstEd: Object.assign({}, valerie, {
         summary: Object.assign({}, valerie.summary, {
             name: <span>1<sup>st</sup> Ed. {valerie.summary.name}</span>,

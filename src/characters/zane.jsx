@@ -21,6 +21,7 @@ const normalThrow = mkNormal(0.3, {
 
 function Speed1OnKD(props) {
     return <Note
+        id="meatykd"
         text='Speed 1.0 when opponent is knocked down'
         icon={<span><KD/><Icon>{'\u21D2'}</Icon><Icon>{'\uD83C\uDFC3'}</Icon>1.0</span>}
     />;
@@ -30,7 +31,7 @@ export const zane = {
     theme: {
         // primary: #F98CF5, #7ACC77
         text: 'linear-gradient(#fccffb, #dbf1da)',
-        headshot: require('../../images/zane.jpg'),
+        headshot: require('../images/zane.jpg'),
     },
     summary: {
         name: 'Zane',

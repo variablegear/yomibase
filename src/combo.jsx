@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const knockdown = require('../images/knockdown.jpg');
+const knockdown = require('./images/knockdown.jpg');
 
 export function KD(props) {
-    return <img className="combo-kd" src={knockdown} height="20" />;
+    return <img className="combo-kd" src={knockdown} height="20" alt="knocks down"/>;
 }
 
 const DetailEntry = styled.span`

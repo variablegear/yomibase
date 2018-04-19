@@ -21,7 +21,7 @@ export const troq = {
     theme: {
         // primary: #482310, #C59D7A
         text: 'linear-gradient(#f6e1d6, #f0e5dc)',
-        headshot: require('../../images/troq.jpg'),
+        headshot: require('../images/troq.jpg'),
     },
     summary: {
         name: 'Troq',
@@ -39,10 +39,12 @@ export const troq = {
         innateAbilities: [
             {
                 name: 'Giant Growth',
-                text: 'Whenever you block an attack or Joker, attach your block card to your \
-                       character card, or discard it if two cards are already attached. Your \
-                       normal attacks and normal throws do +1 damage for each attached card. \
-                       (You still draw a card from blocking, as usual.)',
+                text: (
+                    'Whenever you block an attack or Joker, attach your block card to your ' +
+                    'character card, or discard it if two cards are already attached. Your ' +
+                    'normal attacks and normal throws do +1 damage for each attached card. ' +
+                    '(You still draw a card from blocking, as usual.)'
+                )
             },
             {
                 name: 'Defense Mastery',
@@ -54,23 +56,29 @@ export const troq = {
                 rank: 'T',
                 name: 'War Stomp',
                 timing: 'Draw Phase',
-                text: 'If you are not knocked down, knock the opponent down, draw a card, and the \
-                       opponent discards a card.',
+                text: (
+                    'If you are not knocked down, knock the opponent down, draw a card, and the ' +
+                    'opponent discards a card.'
+                )
             },
             {
                 rank: 'J',
                 name: 'Troq Armor',
                 timing: 'During Combat',
-                text: 'Neither side of this Jack can be interrupted by normal attacks. (If it\'s hit \
-                       by a faster normal attack, the opponent can\'t combo. This hits afterwards and \
-                       wins combat.)',
+                text: (
+                    'Neither side of this Jack can be interrupted by normal attacks. (If it\'s hit ' +
+                    'by a faster normal attack, the opponent can\'t combo. This hits afterwards and ' +
+                    'wins combat.)'
+                )
             },
             {
                 rank: 'K',
                 name: 'Lockhorn Skewer',
                 timing: 'During Combat',
-                text: 'This beats normal attacks with speed 5.0 or faster, but you still take damage \
-                       from the normal attack.',
+                text: (
+                    'This beats normal attacks with speed 5.0 or faster, but you still take damage ' +
+                    'from the normal attack.'
+                )
             },
             {
                 rank: 'AAA',
@@ -118,6 +126,7 @@ export const troq = {
             speed: 0.0, rank: 'AAA', name: 'Beast Unleashed',
             damage: 45, comboPts: null, comboType: <CantCombo/>, kd: false,
             notes: <Note
+                id='attachedblocks'
                 text="Requires 2 attached blocks"
                 icon={<Block><Icon>{'+\u26CA'}</Icon> >= 2</Block>}
             />,

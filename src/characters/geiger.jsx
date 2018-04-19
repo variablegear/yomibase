@@ -20,7 +20,7 @@ export const geiger = {
     theme: {
         // primary: #DADE65
         text: 'linear-gradient(#f5f6d5, #f5f6d5)',
-        headshot: require('../../images/geiger.jpg'),
+        headshot: require('../images/geiger.jpg'),
     },
     summary: {
         name: 'Geiger',
@@ -158,7 +158,7 @@ geiger.variants = {
             },
         ]),
     }),
-    
+
     FirstEd: Object.assign({}, geiger, {
         summary: Object.assign({}, geiger.summary, {
             name: <span>1<sup>st</sup> Ed. {geiger.summary.name}</span>,

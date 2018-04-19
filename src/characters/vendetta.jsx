@@ -20,6 +20,7 @@ const normalThrow = mkNormal(0.4, {
 
 function Speed1OnKD(props) {
     return <Note
+        id="meatyking"
         text='Speed 1.0 when opponent is knocked down'
         icon={<span><KD/><Icon>{'\u21D2'}</Icon><Icon>{'\uD83C\uDFC3'}</Icon>1.0</span>}
     />;
@@ -31,7 +32,7 @@ export const vendetta = {
     theme: {
         // primary: #7EAC3F, #524825
         text: 'linear-gradient(#e7f1da 75%, #efebdc)',
-        headshot: require('../../images/vendetta.jpg'),
+        headshot: require('../images/vendetta.jpg'),
     },
     summary: {
         name: 'Vendetta',

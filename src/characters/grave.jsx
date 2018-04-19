@@ -20,7 +20,7 @@ export const grave = {
     theme: {
         // primary: #688BEF
         text: 'linear-gradient(#d1dcfa, #d1dcfa)',
-        headshot: require('../../images/grave.jpg'),
+        headshot: require('../images/grave.jpg'),
     },
     summary: {
         name: 'Grave',

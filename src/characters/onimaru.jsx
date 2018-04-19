@@ -1,5 +1,5 @@
 import React from 'react';
-import {CantCombo, Ender, Linker, Starter} from '../combo.jsx';
+import {CantCombo} from '../combo.jsx';
 import {mkNormal} from '../move.jsx';
 import {rankValue} from '../rank.js';
 import {EX} from '../editions.jsx';
@@ -30,7 +30,7 @@ export const onimaru = {
     theme: {
         // primary: #FF9127, #374536
         text: 'linear-gradient(#ffe5cc 66%, #e3e9e3)',
-        headshot: require('../../images/onimaru.jpg'),
+        headshot: require('../images/onimaru.jpg'),
     },
     summary: {
         name: 'Onimaru',
