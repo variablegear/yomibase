@@ -195,6 +195,7 @@ class YomiBase extends Component {
 
 const SortIcon = styled.small`
     padding-left: 2px;
+    font-size: 125%;
 `;
 
 

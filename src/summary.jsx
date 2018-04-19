@@ -10,7 +10,6 @@ import styled from 'styled-components';
 
 export const Title = styled.small`
     white-space: nowrap;
-    color: #444444;
 `;
 
 const CharacterName = styled.h1`
@@ -41,10 +40,10 @@ export function CharacterSummary(props) {
 
     return (
         <section className={props.className + ' character-summary'} >
-            <CharacterName>
-                {props.char.preTitle && <Title className='pre-title'>{props.char.preTitle}</Title>}
+            <CharacterName className="h2">
+                {props.char.preTitle && <Title className='pre-title text-muted'>{props.char.preTitle}</Title>}
                 {props.char.fullName}
-                {props.char.title && <Title className='title'>{props.char.title}</Title>}
+                {props.char.title && <Title className='title text-muted'>{props.char.title}</Title>}
             </CharacterName>
             <Table>
                 <tbody>
