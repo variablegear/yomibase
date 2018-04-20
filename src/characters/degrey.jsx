@@ -1,6 +1,6 @@
 import React from 'react';
 import {Ender, Starter, Linker, ComboDetails} from '../combo.jsx';
-import {mkNormal} from '../move.jsx';
+import {mkNormal, overrideMoves} from '../move.jsx';
 import {EX, First} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.6);
@@ -47,6 +47,7 @@ export const degrey = {
                 </span>
             },
         ],
+        // quote: "By silver tongue or mighty fists, I will get justice for all."
         cardAbilities: [
             {
                 rank: 7,
@@ -78,13 +79,13 @@ export const degrey = {
     attacks: [
         normalAttack(2, {
             name: 'Spectral Pull', damage: 4,
-            maxCombo: '2>3>AA', maxDamage: 28, goodCombo: '2>3>K', goodDamage: 18,
+            maxCombo: '2>3>AA', maxDamage: 28, goodCombo: '2>3>J', goodDamage: 15,
         }),
         normalAttack(3, {
             name: 'Spectral Push', damage: 4,
-            maxCombo: '3>AA', maxDamage: 24, goodCombo: '3>K', goodDamage: 14,
+            maxCombo: '3>AA', maxDamage: 24, goodCombo: '3>J', goodDamage: 11,
         }),
-        normalAttack(5, {maxCombo: '5>6>AA', maxDamage: 31, goodCombo: '5>6>7>J', goodDamage: 25 }),
+        normalAttack(5, {maxCombo: '5>6>AA', maxDamage: 31, goodCombo: '5>6>J', goodDamage: 18 }),
         normalAttack(6, {maxCombo: '6>7>AA', maxDamage: 33, goodCombo: '6>7>J', goodDamage: 20 }),
         normalAttack(7, {maxCombo: '7>AA', maxDamage: 27, goodCombo: '7>K', goodDamage: 17 }),
         {
@@ -94,7 +95,7 @@ export const degrey = {
         {
             speed: 7.0, rank: 'Q', name: 'Pilebunker',
             damage: 14, chip: 4, comboPts: 2, comboType: <Starter/>, kd: true,
-            maxCombo: 'Q>AA', maxDamage: 34, goodCombo: 'Q>J', goodDamage: 21,
+            maxCombo: 'Q>AA', maxDamage: 34, goodCombo: 'Q>6>J', goodDamage: 27,
         },
         {
             speed: 0.2, rank: 'K', name: 'Spirit Justice',
@@ -129,6 +130,7 @@ degrey.variants = {
                     </span>
                 },
             ],
+            // quote: "Getting punched by justice never hurt more."
             cardAbilities: degrey.summary.cardAbilities.concat([
                 {
                     rank: 'D',
@@ -142,10 +144,19 @@ degrey.variants = {
             ]),
             attacks: degrey.summary.attacks.concat(['D']),
         }),
-        attacks: degrey.attacks.concat([
+        attacks: overrideMoves(degrey.attacks, [
+            {rank: '2', name: 'Spectral Pull',
+             maxCombo: '2>D>7>D>D>D>AA', maxDamage: 55, goodCombo: '2>D>5>6>J', goodDamage: 28},
+            {rank: '3', name: 'Spectral Push',
+             maxCombo: '3>D>7>D>D>D>AA', maxDamage: 55, goodCombo: '3>D>5>6>J', goodDamage: 28},
+            {rank: '5', maxCombo: '5>D>7>D>D>D>AA', maxDamage: 56, goodCombo: '5>D>5>6>J', goodDamage: 29},
+            {rank: '6', maxCombo: '6>7>D>D>D>D>AA', maxDamage: 57, goodCombo: '6>D>5>6>J', goodDamage: 30},
+            {rank: 'Q', name: 'Pilebunker', maxCombo: 'Q>D>D>D>D>AA', maxDamage: 64},
+        ]).concat([
             {
                 speed: 2.4, rank: 'D', name: 'Ghostly Force', damage: 6, chip: 2,
-                comboType: <Linker/>,    // comboPts: 0, but I'm not sure if having 0 there breaks anything
+                comboType: <Linker/>, comboPts: 0,
+                maxCombo: 'D>7>D>7>D>D>AA', maxDamage: 58, goodCombo: 'D>5>6>J', goodDamage: 24
             },
         ]),
     }),
@@ -163,6 +174,7 @@ degrey.variants = {
                     </span>
                 },
             ],
+            // quote: "By silver tongue or by blood-letting, I will get justice for all."
             cardAbilities: [
                 {
                     rank: 7,
