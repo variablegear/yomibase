@@ -83,7 +83,7 @@ export const degrey = {
         }),
         normalAttack(3, {
             name: 'Spectral Push', damage: 4,
-            maxCombo: '3>AA', maxDamage: 24, goodCombo: '3>J', goodDamage: 11   vc,
+            maxCombo: '3>AA', maxDamage: 24, goodCombo: '3>J', goodDamage: 11,
         }),
         normalAttack(5, {maxCombo: '5>6>AA', maxDamage: 31, goodCombo: '5>6>J', goodDamage: 18 }),
         normalAttack(6, {maxCombo: '6>7>AA', maxDamage: 33, goodCombo: '6>7>J', goodDamage: 20 }),
