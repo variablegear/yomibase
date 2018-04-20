@@ -145,12 +145,13 @@ degrey.variants = {
             attacks: degrey.summary.attacks.concat(['D']),
         }),
         attacks: overrideMoves(degrey.attacks, [
-            {rank: '2', name: 'Spectral Pull',
+            {rank: 2, name: 'Spectral Pull',
              maxCombo: '2>D>7>D>D>D>AA', maxDamage: 55, goodCombo: '2>D>5>6>J', goodDamage: 28},
-            {rank: '3', name: 'Spectral Push',
+            {rank: 3, name: 'Spectral Push',
              maxCombo: '3>D>7>D>D>D>AA', maxDamage: 55, goodCombo: '3>D>5>6>J', goodDamage: 28},
-            {rank: '5', maxCombo: '5>D>7>D>D>D>AA', maxDamage: 56, goodCombo: '5>D>5>6>J', goodDamage: 29},
-            {rank: '6', maxCombo: '6>7>D>D>D>D>AA', maxDamage: 57, goodCombo: '6>D>5>6>J', goodDamage: 30},
+            {rank: 5, maxCombo: '5>D>7>D>D>D>AA', maxDamage: 56, goodCombo: '5>D>5>6>J', goodDamage: 29},
+            {rank: 6, maxCombo: '6>7>D>D>D>D>AA', maxDamage: 57, goodCombo: '6>D>5>6>J', goodDamage: 30},
+            {rank: 7, maxCombo: '7>D>7>D>D>D>AA', maxDamage: 58, goodCombo: '7>D>5>6>J', goodDamage: 30},
             {rank: 'Q', name: 'Pilebunker', maxCombo: 'Q>D>D>D>D>AA', maxDamage: 64},
         ]).concat([
             {
@@ -159,6 +160,12 @@ degrey.variants = {
                 maxCombo: 'D>7>D>7>D>D>AA', maxDamage: 58, goodCombo: 'D>5>6>J', goodDamage: 24
             },
         ]),
+        throws: overrideMoves(degrey.throws, [
+            {rank: 7, maxCombo: 't7>D>D>D>D>AA', maxDamage: 52},
+            {rank: 8, maxCombo: 't8>D>D>D>D>AA', maxDamage: 52},
+            {rank: 9, maxCombo: 't9>D>D>D>D>AA', maxDamage: 52},
+            {rank: 'T', maxCombo: 'tT>D>D>D>D>AA', maxDamage: 52},
+        ])
     }),
     FirstEd: Object.assign({}, degrey, {
         summary: Object.assign({}, degrey.summary, {
