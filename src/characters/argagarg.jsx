@@ -141,10 +141,10 @@ argagarg.variants = {
         }),
         attacks: overrideMoves(argagarg.attacks, [
             {rank: 2, goodCombo: '2>K+>D', goodDamage: 18},
-            {rank: 3, goodCombo: '3>K+>D', goodDamage: 18},
-            {rank: 4, goodCombo: '4>K+>D', goodDamage: 18},
-            {rank: 5, goodCombo: '5>K+>D', goodDamage: 18},
-            {rank: 6, goodCombo: '6>K+>D', goodDamage: 18},
+            {rank: 3, goodCombo: '3>K+>D', goodDamage: 19},
+            {rank: 4, goodCombo: '4>K+>D', goodDamage: 20},
+            {rank: 5, goodCombo: '5>K+>D', goodDamage: 21},
+            {rank: 6, goodCombo: '6>K+>D', goodDamage: 22},
             {rank: 'K', name: 'Sparkling Bubble', goodCombo: 'K+>6>D', goodDamage: 22},
         ]).concat([
             {
