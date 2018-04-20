@@ -1,6 +1,6 @@
 import React from 'react';
 import {Ender, Linker, Starter, ComboDetails} from '../combo.jsx';
-import {mkNormal} from '../move.jsx';
+import {mkNormal, overrideMoves} from '../move.jsx';
 import {EX, First} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.4);
@@ -96,7 +96,7 @@ export const argagarg = {
         {
             speed: 3.2, rank: 'K', name: 'Sparkling Bubble', pumpWith: '+K',
             damage: 6, pump: 4, chip: 3, comboPts: 1, comboType: <Linker/>,
-            maxCombo: 'K+>K+>J', maxDamage: 27, goodCombo: 'K>5>6', goodDamage: 17,
+            maxCombo: 'K+>K+>J', maxDamage: 27, goodCombo: 'K+>AA', goodDamage: 26,
         },
         {
             speed: 0.2, rank: 'AA', name: 'Blowfish Spikes',
@@ -139,12 +139,25 @@ argagarg.variants = {
             ]),
             attacks: argagarg.summary.attacks.concat(['D']),
         }),
-        attacks: argagarg.attacks.concat([
+        attacks: overrideMoves(argagarg.attacks, [
+            {rank: 2, goodCombo: '2>K+>D', goodDamage: 18},
+            {rank: 3, goodCombo: '3>K+>D', goodDamage: 18},
+            {rank: 4, goodCombo: '4>K+>D', goodDamage: 18},
+            {rank: 5, goodCombo: '5>K+>D', goodDamage: 18},
+            {rank: 6, goodCombo: '6>K+>D', goodDamage: 18},
+            {rank: 'K', name: 'Sparkling Bubble', goodCombo: 'K+>6>D', goodDamage: 22},
+        ]).concat([
             {
                 speed: 4.0, rank: 'D', name: 'Raging River', damage: 6, chip: 2,
                 comboPts: 1, comboType: <Ender/>
             },
         ]),
+        throws: overrideMoves(argagarg.throws, [
+            {rank: 7, goodCombo: 't7>D', goodDamage: 12},
+            {rank: 8, goodCombo: 't8>D', goodDamage: 12},
+            {rank: 8, goodCombo: 't9>D', goodDamage: 12},
+            {rank: 'T', goodCombo: 'tT>D', goodDamage: 12},
+        ])
     }),
     FirstEd: Object.assign({}, argagarg, {
         summary: Object.assign({}, argagarg.summary, {
