@@ -1,6 +1,6 @@
 import React from 'react';
 import {CantCombo, Ender, Linker} from '../combo.jsx';
-import {mkNormal} from '../move.jsx';
+import {mkNormal, overrideMoves} from '../move.jsx';
 import {rankValue} from '../rank.js';
 import {EX, First} from '../editions.jsx';
 
@@ -86,10 +86,11 @@ export const lum = {
                 name: 'Blackjack',
                 timing: 'During Combat',
                 text: <div>
-                    If you dodge an attack or Joker with this card, discard cards from
-                    the top of your deck until they total more than 21 or you decide to
-                    stop. Deal that much damage unless you go over 21. If you deal exactly
-                    21, also put the cards in your hand. (Jokers count as 21.)
+                    If you dodge an attack or Joker with this card, don't hit back.
+                    Discard cards from your deck until they total more than 21 or
+                    you decide to stop. Deal that much damage unless you went
+                    over 21. If you deal exactly 21, also put the cards in your
+                    hand. <i>(Face cards count as 10; Aces as 1 or 11; Jokers as 21.)</i>
                 </div>
             }
         ],
@@ -98,12 +99,12 @@ export const lum = {
         normalAttack(3, { maxCombo: '3>K+++', maxDamage: 33, goodCombo: '3>4>5>6', goodDamage: 18 }),
         normalAttack(4, { maxCombo: '4>K+++', maxDamage: 34, goodCombo: '4>5>6>7', goodDamage: 22 }),
         normalAttack(5, { maxCombo: '5>K+++', maxDamage: 35, goodCombo: '5>6>7>J', goodDamage: 22 }),
-        normalAttack(6, { maxCombo: '6>K+++', maxDamage: 36, goodCombo: '6>7>J>5', goodDamage: 22 }),
-        normalAttack(7, { maxCombo: '7>K+++', maxDamage: 37, goodCombo: '7>J>5>6', goodDamage: 22 }),
+        normalAttack(6, { maxCombo: '6>K+++', maxDamage: 36, goodCombo: '6>Q', goodDamage: 22 }),
+        normalAttack(7, { maxCombo: '7>K+++', maxDamage: 37, goodCombo: '7>Q', goodDamage: 23 }),
         {
             speed: 1.4, rank: 'J', name: 'Coin Toss',
             damage: 4, chip: 1, comboPts: 1, comboType: <Linker/>,
-            maxCombo: 'J>K+++', maxDamage: 34, goodCombo: 'J>5>6>7', goodDamage: 22,
+            maxCombo: 'J>K+++', maxDamage: 34, goodCombo: 'J>4>5>6', goodDamage: 19,
         },
         {
             speed: 0.4, rank: 'Q', name: 'Rolling Panda', pumpWith: '+Q',
@@ -183,9 +184,9 @@ lum.variants = {
                                 If Item Toss hit, Gear deals 8 damage.
                                 If Item Toss was normal blocked, the
                                 opponent can't activate innate abilities
-                                from blocking, and you may throw them.
-                                (Play a throw card from your hand. The
-                                opponent doesn't draw a card from blocking.)</li>
+                                from blocking, and you may throw
+                                them. <i>(Play a throw card from your hand. The
+                                opponent doesn't draw a card from blocking.)</i></li>
                             <li>Rain of Dice:
                                 Choose three different effects
                                 from your character innate.</li>
@@ -200,7 +201,11 @@ lum.variants = {
             ]),
             attacks: lum.summary.attacks.concat(['D']),
         }),
-        attacks: lum.attacks.concat([
+        attacks: overrideMoves(lum.attacks, [
+            {rank: '5', goodCombo: '5>6>7>D', goodDamage: 18},
+            {rank: '5', goodCombo: '6>7>J>D', goodDamage: 17},
+            {rank: '4', goodCombo: '7>J>5>D', goodDamage: 16},
+        ]).concat([
             {
                 speed: 2.6, rank: 'D', name: 'Item Toss', damage: 0,
                 comboPts: 1, comboType: <Ender/>
