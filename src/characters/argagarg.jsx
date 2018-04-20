@@ -152,7 +152,7 @@ argagarg.variants = {
                 comboPts: 1, comboType: <Ender/>
             },
         ]),
-        throws: overrideMoves(argagarg.throw, [
+        throws: overrideMoves(argagarg.throws, [
             {rank: 7, goodCombo: 't7>D', goodDamage: 12},
             {rank: 8, goodCombo: 't8>D', goodDamage: 12},
             {rank: 8, goodCombo: 't9>D', goodDamage: 12},
