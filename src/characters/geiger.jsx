@@ -128,8 +128,8 @@ geiger.variants = {
                         Spiral, they can't activate innate abilities from blocking,
                         and you may throw them. <i>(Play a throw card from your
                         hand and continue your combo if you want. The opponent
-                        doesn't draw a card from blocking if you throw them.)</i>
-                        At the end of combat, you may fetch a Jack or Queen
+                        doesn't draw a card from blocking if you throw them.)</i> At
+                        the end of combat, you may fetch a Jack or Queen
                         from your discard pile.
                     </span>
                 },
