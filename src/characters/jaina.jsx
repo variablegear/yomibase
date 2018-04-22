@@ -29,13 +29,13 @@ const normalThrow = mkNormal(0.6, {
     comboPts: 2,
     comboType: <Starter/>,
     kd: true,
-    maxCombo: (rank) => 't' + rank + '>K+++>6',
+    maxCombo: (rank) => 't' + rank + '>6>K+++',
     maxDamage: 40,
     goodCombo: (rank) => 't' + rank + '>4>5>6',
     goodDamage: 22,
 });
 
-const recycle35 = <Recycles text='Card is likely to recycle from the discard once Jaina is below 35 life'/>;
+const recycle35 = <Recycles text='Card can be returned to hand once Jaina is below 35 life'/>;
 
 export const jaina = {
     theme: {
@@ -99,11 +99,11 @@ export const jaina = {
         ],
     },
     attacks: [
-        normalAttack(2, {maxCombo: '2>K+++>AA', maxDamage: 47, goodCombo: '2>3>4>AA', goodDamage: 25}),
-        normalAttack(3, {maxCombo: '3>K+++>AA', maxDamage: 48, goodCombo: '3>4>5>AA', goodDamage: 30}),
+        normalAttack(2, {maxCombo: '2>K+++>AA', maxDamage: 47, goodCombo: '2>3>4>5>6', goodDamage: 20}),
+        normalAttack(3, {maxCombo: '3>K+++>AA', maxDamage: 48, goodCombo: '3>4>5>6>J', goodDamage: 24}),
         normalAttack(4, {maxCombo: '4>K+++>AA', maxDamage: 49, goodCombo: '4>5>6>AA', goodDamage: 33}),
-        normalAttack(5, {maxCombo: '5>K+++>AA', maxDamage: 50, goodCombo: '5>K+>5>6', goodDamage: 28}),
-        normalAttack(6, {maxCombo: '6>K+++>AA', maxDamage: 51, goodCombo: '6>K+>4>5', goodDamage: 28}),
+        normalAttack(5, {maxCombo: '5>K+++>AA', maxDamage: 50, goodCombo: '5>6>K+>J', goodDamage: 30}),
+        normalAttack(6, {maxCombo: '6>K+++>AA', maxDamage: 51, goodCombo: '6>K+>6>J', goodDamage: 31}),
         {
             speed: 2.6, rank: 'J', name: 'Flame Arrow', damage: 6,
             chip: 5, comboType: <Ender/>, comboPts: 1,
@@ -111,7 +111,7 @@ export const jaina = {
         {
             speed: 4.6, rank: 'J', name: 'Charged Shot', damage: 8,
             chip: 7, comboType: <Starter/>, comboPts: 2,
-            maxCombo: 'J>K+++>6', maxDamage: 41, goodCombo: 'J>4>5>6', goodDamage: 24,
+            maxCombo: 'J>6>K+++', maxDamage: 41, goodCombo: 'J>4>5>6', goodDamage: 24,
         },
         {
             speed: 0.2, rank: 'Q', name: 'Dragonheart', pumpWith: '+X',
@@ -121,7 +121,7 @@ export const jaina = {
         {
             speed: 2.4, rank: 'K', name: 'Crossfire Kick', pumpWith: '+K+K+K',
             damage: 6, pump: 7, chip: 3, comboType: <Linker/>, comboPts: 2,
-            maxCombo: 'K+++>6>AA', maxDamage: 51, goodCombo: 'K++>4>5>6', goodDamage: 35,
+            maxCombo: 'K+++>6>AA', maxDamage: 51, goodCombo: 'K+>4>5>6', goodDamage: 28,
         },
         {
             speed: 0.8, rank: 'A', name: 'Red Dragon', pumpWith: '+A+A+A',
@@ -179,7 +179,15 @@ jaina.variants = {
             ]),
             attacks: jaina.summary.attacks.concat(['D']),
         }),
-        attacks: jaina.attacks.concat([
+        attacks: overrideMoves(jaina.attacks, [
+            {rank: 2, maxCombo: '2>K+++>5>6>AA', maxDamage: 65},
+            {rank: 3, maxCombo: '3>K+++>5>6>AA', maxDamage: 66, goodCombo: '3>4>5>6>D>J', goodDamage: 24},
+            {rank: 4, maxCombo: '4>K+++>5>6>AA', maxDamage: 67},
+            {rank: 5, maxCombo: '5>K+++>5>6>AA', maxDamage: 68, goodCombo: '5>6>K+>D>J', goodDamage: 38},
+            {rank: 6, maxCombo: '6>K+++>5>6>AA', maxDamage: 69, goodCombo: '6>K+>6>D>J', goodDamage: 39},
+            {rank: 'J', name: 'Charged Shot', maxCombo: 'J>6>K+++>AA', maxDamage: 59},
+            {rank: 'K', name: 'Crossfire Kick', maxCombo: 'K+++>4>5>6>AA', maxDamage: 60},
+        ]).concat([
             {
                 speed: 2.2, rank: 'D', name: 'High Phoenix', damage: 8, chip: 3,
                 comboPts: 1, comboType: <Ender/>, maxCombo: "D>J", maxDamage: 14
@@ -188,6 +196,12 @@ jaina.variants = {
                 speed: 2.0, rank: 'D', name: 'Low Phoenix', damage: 7, chip: 3,
                 comboPts: 1, comboType: <Ender/>, maxCombo: "D>J", maxDamage: 13
             },
+        ]),
+        throws: overrideMoves(jaina.throws, [
+            {rank: 7, maxCombo: 't7>6>K+++>AA', maxDamage: 58},
+            {rank: 8, maxCombo: 't8>6>K+++>AA', maxDamage: 58},
+            {rank: 9, maxCombo: 't9>6>K+++>AA', maxDamage: 58},
+            {rank: 'T', maxCombo: 'tT>6>K+++>AA', maxDamage: 58},
         ]),
     }),
 
