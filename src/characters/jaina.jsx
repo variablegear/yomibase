@@ -180,11 +180,11 @@ jaina.variants = {
             attacks: jaina.summary.attacks.concat(['D']),
         }),
         attacks: overrideMoves(jaina.attacks, [
-            {rank: 2, maxCombo: '2>K+++>5>6>AA', maxDamage: 65},
-            {rank: 3, maxCombo: '3>K+++>5>6>AA', maxDamage: 66, goodCombo: '3>4>5>6>D>J', goodDamage: 24},
-            {rank: 4, maxCombo: '4>K+++>5>6>AA', maxDamage: 67},
-            {rank: 5, maxCombo: '5>K+++>5>6>AA', maxDamage: 68, goodCombo: '5>6>K+>D>J', goodDamage: 38},
-            {rank: 6, maxCombo: '6>K+++>5>6>AA', maxDamage: 69, goodCombo: '6>K+>6>D>J', goodDamage: 39},
+            {rank: 2, maxCombo: '2>K+++>5>6>AA', maxDamage: 58},
+            {rank: 3, maxCombo: '3>K+++>5>6>AA', maxDamage: 59, goodCombo: '3>4>5>6>D>J', goodDamage: 32},
+            {rank: 4, maxCombo: '4>K+++>5>6>AA', maxDamage: 60},
+            {rank: 5, maxCombo: '5>K+++>5>6>AA', maxDamage: 61, goodCombo: '5>6>K+>D>J', goodDamage: 38},
+            {rank: 6, maxCombo: '6>K+++>5>6>AA', maxDamage: 62, goodCombo: '6>K+>6>D>J', goodDamage: 39},
             {rank: 'J', name: 'Charged Shot', maxCombo: 'J>6>K+++>AA', maxDamage: 59},
             {rank: 'K', name: 'Crossfire Kick', maxCombo: 'K+++>4>5>6>AA', maxDamage: 60},
         ]).concat([
