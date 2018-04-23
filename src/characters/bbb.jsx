@@ -1,7 +1,7 @@
 import React from 'react';
 import {Note, Icon} from '../note.jsx';
 import {Ender, Linker, Starter, ComboDetails, CantCombo} from '../combo.jsx';
-import {mkNormal, Attack, Block, Dodge} from '../move.jsx';
+import {mkNormal, overrideMoves, Attack, Block, Dodge} from '../move.jsx';
 import {EX} from '../editions.jsx';
 
 import styled from 'styled-components';
@@ -64,6 +64,11 @@ const normalAttack = mkNormal(0.8, {
         <RangeGiving/>, <Speed1AtRange/>
     </span>,
     range: <AnyRange/>,
+    // I have no idea if this would work, but it's based on how the throws are done below 
+    // maxCombo: (rank) => rank + '>Q++',
+    // maxDamage: (rank) => rank + 15,
+    // goodCombo: (rank) => rank + '>A',
+    // goodDamage: (rank) => rank + 11,
 });
 
 const normalThrow = mkNormal(0.4, {
@@ -73,8 +78,8 @@ const normalThrow = mkNormal(0.4, {
     kd: false,
     maxCombo: (rank) => 't' + rank + '>Q++',
     maxDamage: 22,
-    goodCombo: (rank) => 't' + rank + '>6',
-    goodDamage: 13,
+    goodCombo: (rank) => 't' + rank + '>A',
+    goodDamage: 18,
 });
 
 export const bbb = {
@@ -161,19 +166,19 @@ export const bbb = {
         {
             speed: 3.0, rank: 'J', name: 'Long Arm',
             damage: 7, chip: 2, comboPts: 1, comboType: <Linker/>, kd: false,
-            maxCombo: 'J>Q++', maxDamage: 22, goodCombo: 'J>6', goodDamage: 13,
+            maxCombo: 'J>Q++', maxDamage: 22, goodCombo: 'J>A', goodDamage: 18,
             range: <AnyRange/>,
         },
         {
             speed: 2.4, rank: 'J', name: 'Cog Shot',
             damage: 8, chip: 2, comboPts: 1, comboType: <Starter/>, kd: false,
-            maxCombo: 'J>Q++', maxDamage: 23, goodCombo: 'J>6', goodDamage: 14,
+            maxCombo: 'J>Q++', maxDamage: 23, goodCombo: 'J>A', goodDamage: 19,
             range: <AnyRange/>,
         },
         {
             speed: 4.0, rank: 'Q', name: 'Gyro Spin', pumpWith: '+X+X',
             damage: 5, pump: 5, chip: 3, comboPts: 1, comboType: <Linker/>, kd: false,
-            maxCombo: 'Q++>A', maxDamage: 26, goodCombo: 'Q+>6', goodDamage: 16,
+            maxCombo: 'Q++>Q++', maxDamage: 30, goodCombo: 'Q++>A', goodDamage: 26,
             range: <CloseRange/>,
         },
         {
