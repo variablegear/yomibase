@@ -11,8 +11,8 @@ const normalThrow = mkNormal(0.6, {
     comboPts: 3,
     comboType: <Starter/>,
     kd: true,
-    maxCombo: (rank) => 't' + rank + '>6>A+',
-    maxDamage: 21,
+    maxCombo: (rank) => 't' + rank + '>J or 6>A+',
+    maxDamage: 28,
     goodCombo: (rank) => 't' + rank + '>4>5>6',
     goodDamage: 21,
 });
