@@ -12,7 +12,7 @@ const normalThrow = mkNormal(0.8, {
     kd: true,
     maxCombo: (rank) => 't' + rank + '>AA',
     maxDamage: 24,
-    goodCombo: (rank) => 't' + rank + '>5>6',
+    goodCombo: (rank) => 't' + rank + '>6>J',
     goodDamage: 17,
 });
 
@@ -170,6 +170,12 @@ gloria.variants = {
                 damage: 6, pump: 4, chip: 4, comboPts: 2, comboType: <Starter/>,
                 maxCombo: 'D+++>AA', maxDamage: 36, goodCombo: 'D+++>J>D+', goodDamage: 30
             },
+        ]),
+        throws: overrideMoves(gloria.throws, [
+            {rank: 7, goodCombo: 't7>J>D+', goodDamage: 18},
+            {rank: 8, goodCombo: 't8>J>D+', goodDamage: 18},
+            {rank: 9, goodCombo: 't9>J>D+', goodDamage: 18},
+            {rank: 'T', goodCombo: 'tT>J>D+', goodDamage: 18},
         ]),
     }),
 };
