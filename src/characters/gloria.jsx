@@ -1,6 +1,6 @@
 import React from 'react';
 import {Ender, Linker, Starter, CantCombo, ComboDetails} from '../combo.jsx';
-import {mkNormal} from '../move.jsx';
+import {mkNormal, overrideMoves} from '../move.jsx';
 import {EX} from '../editions.jsx';
 
 const normalAttack = mkNormal(0.8);
@@ -83,8 +83,8 @@ export const gloria = {
         normalAttack(2, {maxCombo: '2>AA>6', maxDamage: '26', goodCombo: '2>3>4>5', goodDamage: 14}),
         normalAttack(3, {maxCombo: '3>AA>6', maxDamage: '27', goodCombo: '3>4>5>6', goodDamage: 18}),
         normalAttack(4, {maxCombo: '4>AA>6', maxDamage: '28', goodCombo: '4>5>6>J', goodDamage: 20}),
-        normalAttack(5, {maxCombo: '5>AA>6', maxDamage: '29', goodCombo: '5>6>J>6', goodDamage: 22}),
-        normalAttack(6, {maxCombo: '6>AA>6', maxDamage: '30', goodCombo: '6>J>5>6', goodDamage: 22}),
+        normalAttack(5, {maxCombo: '5>AA>6', maxDamage: '29', goodCombo: '5>6>J>J', goodDamage: 21}),
+        normalAttack(6, {maxCombo: '6>AA>6', maxDamage: '30', goodCombo: '6>J>J>J', goodDamage: 21}),
         {
             speed: 4.0, rank: 'J', name: 'Ray of Moonlight', damage: 9, chip: 2,
             comboPts: 1, comboType: <Starter/>,
@@ -107,12 +107,12 @@ export const gloria = {
         {
             speed: 2.0, rank: 'AA', name: 'Twilight Key', damage: 18, chip: 2,
             comboPts: 2, comboType: <Linker/>,
-            maxCombo: 'AA>AA', maxDamage: 36, goodCombo: 'AA>5>6', goodDamage: 29,
+            maxCombo: 'AA>AA', maxDamage: 36, goodCombo: 'AA>6>J', goodDamage: 29,
         },
         {
             speed: 0.6, rank: 'AAA', name: 'Sun and Moon', damage: 29, chip: 2,
             comboPts: 1, comboType: <Starter/>,
-            maxCombo: 'AAA>6', maxDamage: 35, goodCombo: 'AAA>J', goodDamage: 34,
+            maxCombo: 'AAA>6>J>6', maxDamage: 46, goodCombo: 'AAA>4>5>6', goodDamage: 44,
         },
     ],
     throws: [
@@ -156,7 +156,11 @@ gloria.variants = {
             ]),
             attacks: gloria.summary.attacks.concat(['D']),
         }),
-        attacks: gloria.attacks.concat([
+        attacks: overrideMoves(gloria.attacks, [
+            {rank: 5, goodCombo: '5>6>J>D+', goodDamage: 23},
+            {rank: 6, goodCombo: '6>J>J>D+', goodDamage: 23},
+            {rank: 'AA', name: "Twilight Key", goodCombo: 'AA>J>D+', goodDamage: 30},
+        ]).concat([
             {
                 speed: 1.8, rank: 'D', pumpWith: '+x', name: 'Apogee Globe',
                 damage: 5, pump: 2, chip: 2, comboPts: 1, comboType: <Ender/>
@@ -164,7 +168,7 @@ gloria.variants = {
             {
                 speed: 4.0, rank: 'D', pumpWith: '+x+x+x', name: 'Perigee Globe',
                 damage: 6, pump: 4, chip: 4, comboPts: 2, comboType: <Starter/>,
-                maxCombo: 'D+++>AA', maxDamage: 36, goodCombo: 'D+++>5>6', goodDamage: 29
+                maxCombo: 'D+++>AA', maxDamage: 36, goodCombo: 'D+++>J>D+', goodDamage: 30
             },
         ]),
     }),
